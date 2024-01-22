@@ -1,0 +1,11 @@
+name: "🟠 Fix"
+description: "기능 Fix 위한 이슈 생성"
+title: "[Fix] "
+labels: "fix"
+body:
+  - type: textarea
+    attributes:
+      label: 🖍 고칠 부분 설명
+      description: 고칠 부분에 대한 설명과 수정하는 이유에 대해 작성해 주세요.
+    validations:
+      required: true
