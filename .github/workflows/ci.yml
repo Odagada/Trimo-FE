@@ -14,3 +14,15 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: action-discord
+        uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          content: "<@&1192747539124977736> ${{ github.actor }}가 작성한 코드에서 에러가 발생하였습니다!
+          title: Error Occurred!!
+          color: FF0000
+          username: GitHub Actions
+
+      - run: echo '${{github.actor}}님 에러 확인 확인해주세요❗️😇'

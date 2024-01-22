@@ -1,0 +1,12 @@
+name: "🟢 Feat"
+description: "새로운 기능 추가 위한 이슈 생성"
+title: "[Feat] "
+labels: "feat"
+body:
+  - type: textarea
+    attributes:
+      label: 📝 설명
+      description: 새로운 기능에 대해 설명 해 주세요.
+      placeholder: 기능에 대해서 적어주세요.
+    validations:
+      required: true
