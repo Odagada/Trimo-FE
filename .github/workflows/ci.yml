@@ -20,7 +20,7 @@ jobs:
         if: failure()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          content: "<@&1192755731666055208> ${{ github.actor }}가 작성한 코드에서 에러가 발생하였습니다!
+          content: "${{ github.actor }}가 작성한 코드에서 에러가 발생하였습니다!
           title: ❗️ CI 검증 failed! 에러 발생 ❗️
           color: FF0000
           username: GitHub Actions
