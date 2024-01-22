@@ -15,13 +15,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: action-discord
+      - name: CI Discord Notification 🚨
         uses: sarisia/actions-status-discord@v1
         if: failure()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          content: "<@&1192747539124977736> ${{ github.actor }}가 작성한 코드에서 에러가 발생하였습니다!
-          title: Error Occurred!!
+          content: "<@&1192755731666055208> ${{ github.actor }}가 작성한 코드에서 에러가 발생하였습니다!
+          title: ❗️ CI 검증 failed! 에러 발생 ❗️
           color: FF0000
           username: GitHub Actions
 
