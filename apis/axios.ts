@@ -1,5 +1,5 @@
 import updateToken from "@/business/updateToken";
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const instance = axios.create({
   baseURL: "",
@@ -39,13 +39,15 @@ instance.interceptors.request.use(
   }
 );
 
-export const request = (config: AxiosRequestConfig) => {
+export const request = <T>(
+  config: AxiosRequestConfig
+): Promise<AxiosResponse<T, any>> => {
   const client = instance;
   return client(config);
 };
 
 const fetcher = async <T>(config: AxiosRequestConfig) => {
-  const response = await request({ ...config });
+  const response = await request<T>({ ...config });
   const { data, status }: { data: T; status: number } = response;
 
   return { data, status };
