@@ -18,5 +18,9 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "no-var": "error",
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "eqeqeq": "error"
+  }
 }
