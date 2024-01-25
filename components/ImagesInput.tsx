@@ -88,7 +88,7 @@ export default function ImagesInput({ imageList = [] }: Props) {
         {images.map((el, idx) => (
           <div className="relative overflow-hidden rounded-lg aspect-square" key={idx}>
             <button
-              className="h-4 w-4 absolute right-0 z-[2] rounded-full bg-gray-100 flex items-center justify-center cursor-pointer"
+              className="h-4 w-4 absolute right-1 top-1 z-[2] rounded-full bg-gray-900 flex items-center justify-center cursor-pointer text-white"
               onClick={() => deleteFile(idx)}
             >
               &times;
