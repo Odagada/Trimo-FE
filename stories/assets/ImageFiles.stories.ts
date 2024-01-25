@@ -15,6 +15,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Large: Story = {};
-
-export const Small: Story = {};
+export const Large: Story = {
+  args: {
+    imageList: [{ name: "df", url: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" }],
+  },
+};

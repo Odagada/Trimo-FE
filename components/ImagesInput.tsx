@@ -1,16 +1,21 @@
 import Image from "next/image";
-import { ChangeEvent, DragEvent, useState } from "react";
+import { ChangeEvent, DragEvent, useRef, useState } from "react";
 
 type Image = {
   name: string;
   url: string;
 };
 
-export default function ImagesInput() {
-  const [isDragging, setIsDragging] = useState(false);
-  const [images, setImages] = useState<Image[]>([]);
+interface Props {
+  imageList?: Image[];
+}
 
-  const getFiles = (files: FileList | null) => {
+export default function ImagesInput({ imageList = [] }: Props) {
+  const [isDragging, setIsDragging] = useState(false);
+  const [images, setImages] = useState<Image[]>(imageList);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleFiles = (files: FileList | null) => {
     if (files === null) return;
     for (let i = 0; i < files.length; i++) {
       if (!images.some((el) => el.name === files[i].name)) {
@@ -21,7 +26,7 @@ export default function ImagesInput() {
 
   const selectFile = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    getFiles(files);
+    handleFiles(files);
   };
 
   const deleteFile = (idx: number) => {
@@ -48,7 +53,7 @@ export default function ImagesInput() {
     e.preventDefault();
     setIsDragging(false);
     const files = e.dataTransfer.files;
-    getFiles(files);
+    handleFiles(files);
   };
 
   return (
@@ -60,34 +65,39 @@ export default function ImagesInput() {
         multiple={true}
         accept="image/*"
         onChange={selectFile}
+        ref={inputRef}
       />
-      <label
-        htmlFor="imageUpload"
+      <button
+        role="button"
         className={`w-full h-20 flex justify-center items-center border-[2px] rounded-lg border-gray-400 border-dashed ${
-          isDragging ? "bg-slate-300" : ""
+          isDragging && "bg-slate-300"
         }`}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+        onClick={() => {
+          inputRef.current?.click();
+        }}
       >
         <div className="pointer-events-none">
           {isDragging ? "이곳에 드롭해주세요" : "클릭 혹은 파일을 드롭해주세요"}
         </div>
-      </label>
+      </button>
       <div className="grid w-full grid-cols-5 gap-4 mt-4">
         {images.map((el, idx) => (
           <div className="relative overflow-hidden rounded-lg aspect-square" key={idx}>
-            <span
+            <button
               className="h-4 w-4 absolute right-0 z-[2] rounded-full bg-gray-100 flex items-center justify-center cursor-pointer"
               onClick={() => deleteFile(idx)}
             >
               &times;
-            </span>
+            </button>
             <Image src={el.url} alt={el.name} sizes="75px" fill style={{ objectFit: "cover" }} />
           </div>
         ))}
       </div>
+      <input type="text" />
     </div>
   );
 }
