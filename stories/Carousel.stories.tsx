@@ -1,6 +1,5 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-// @ts-ignore
 import Carousel from "../components/Carousel/Carousel";
 
 export default {
