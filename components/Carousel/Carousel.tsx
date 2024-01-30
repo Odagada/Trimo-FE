@@ -1,4 +1,5 @@
 import "@splidejs/react-splide/css";
+//@ts-ignore
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import data from "./data.json";
 
