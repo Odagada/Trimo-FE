@@ -1,4 +1,5 @@
 import "@splidejs/react-splide/css";
+import { useRef } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import data from "./data.json";
 
@@ -25,13 +26,14 @@ function Carousel() {
           wheel: true,
           wheelSleep: 1000,
           trimSpace: false,
+          heightRatio: 0.225,
         }}
       >
         <SplideTrack className="flex items-center">
           {data.resources.map((singleImgSlide, index) => (
             <SplideSlide key={index}>
               <img
-                className="min-w-full h-auto bg-cover"
+                className="w-full h-full object-cover rounded-[20px] border-[1.5px] border-black"
                 src={singleImgSlide.imageUrl}
                 alt={singleImgSlide.title}
               />
