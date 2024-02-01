@@ -1,3 +1,5 @@
+import GoogleMap from "@/components/atoms/GoogleMap";
+
 export default function Landing() {
-  return <></>;
+  return <GoogleMap></GoogleMap>;
 }
