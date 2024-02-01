@@ -34,6 +34,7 @@
     "@storybook/react": "^7.6.10",
     "@storybook/test": "^7.6.10",
     "@storybook/testing-library": "^0.2.2",
+    "@types/google.maps": "^3.55.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
