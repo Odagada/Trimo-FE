@@ -6,7 +6,7 @@ import GoogleMapContent from "@/components/molecules/GoogleMapContent";
 const DEFAULT_MARKED_LOCATION = "서울역";
 
 interface MapProps {
-  locationQuery?: string;
+  locationQuery?: string; // 검색 할 장소
 }
 
 function GoogleMap({ locationQuery = DEFAULT_MARKED_LOCATION }: MapProps) {
