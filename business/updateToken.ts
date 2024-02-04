@@ -2,16 +2,16 @@ import { request } from "@/apis/axios";
 import { AxiosInstance } from "axios";
 
 // 리프레시 토큰을 사용하여 액세스 토큰을 재발급
-const updateToken = async (instance: AxiosInstance) => {
+const reissueAccessToken = async (instance: AxiosInstance) => {
   try {
     // 실제 리프레시 토큰 엔드포인트가 생기면 바꿔야 됨
-    const updateTokenResponse = await request({
+    const reissueAccessTokenResponse = await request<any>({
       url: "/api/refresh-token",
       method: "post",
       data: { refreshToken: localStorage.getItem("refreshToken") },
     });
 
-    const { accessToken } = updateTokenResponse.data;
+    const { accessToken } = reissueAccessTokenResponse.data;
     localStorage.setItem("accessToken", accessToken);
 
     // 향후 요청에 대한 Authorization 헤더를 업데이트
@@ -24,4 +24,4 @@ const updateToken = async (instance: AxiosInstance) => {
   }
 };
 
-export default updateToken;
+export default reissueAccessToken;
