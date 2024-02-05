@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import { useEffect, useRef } from "react";
-
 import { MapContentProps } from "@/components/molecules/GoogleMapContent";
 import markPlaceByQuery from "@/utils/markPlaceByQuery";
 
