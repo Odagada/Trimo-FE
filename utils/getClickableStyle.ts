@@ -4,6 +4,8 @@ export const getClickableColorValue = (color: ClickableColor) => {
   switch (color) {
     case "black":
       return "bg-black text-white";
+    case "gray":
+      return "bg-gray-30 text-gray-40 border border-gray-40";
     case "white":
       return "bg-white text-black border border-gray-50";
     case "white-":
