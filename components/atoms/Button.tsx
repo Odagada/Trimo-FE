@@ -9,9 +9,8 @@ const Button = ({
   shape = "square",
   size = "large",
 }: {
-  className?: string;
-  disabled?: boolean;
   children: ReactNode;
+  className?: string;
   color?: ButtonColor;
   shape?: ButtonShape;
   size?: ButtonSize;
