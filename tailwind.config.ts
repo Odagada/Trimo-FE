@@ -10,10 +10,14 @@ const range = (start: number, end: number) => {
   return arr;
 };
 
-const accum = range(0, 1000).reduce((acc, px) => {
+type Accum = {
+  [key: string]: string;
+};
+
+const accum: Accum = range(0, 1000).reduce((acc, px) => {
   acc[`${px}`] = `${px / 10}rem`;
   return acc;
-}, {});
+}, {} as Accum);
 
 const config: Config = {
   content: [
@@ -22,6 +26,9 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    spacing: {
+      ...accum,
+    },
     colors: {
       primary: "#E26521",
       star: "#FFB800",
@@ -37,25 +44,27 @@ const config: Config = {
       black: "#030303",
     },
     fontSize: {
-      12: "0.75rem",
-      16: "1rem",
-      18: "1.125rem",
-      20: "1.25rem",
-      28: "1.75rem",
-      32: "2rem",
-      36: "2.25rem",
-      45: "2.8125rem",
+      12: "1.2rem",
+      14: "1.4rem",
+      16: "1.6rem",
+      18: "1.8rem",
+      20: "2rem",
+      28: "2.8rem",
+      32: "3.2rem",
+      36: "3.6rem",
+      45: "4.5rem",
     },
     lineHeight: {
-      18: "1.125rem",
-      24: "1.5rem",
-      27: "1.6875rem",
-      28: "1.75rem",
-      30: "1.875rem",
-      42: "2.625rem",
-      48: "3rem",
-      54: "3.375rem",
-      67.5: "4.2188rem",
+      18: "1.8rem",
+      21: "2.1rem",
+      24: "2.4rem",
+      27: "2.7rem",
+      28: "2.8rem",
+      30: "3rem",
+      42: "4.2rem",
+      48: "4.8rem",
+      54: "5.4rem",
+      67.5: "6.75rem",
     },
     fontFamily: {
       sans: ["Pretendard"],
