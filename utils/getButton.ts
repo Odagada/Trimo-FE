@@ -20,11 +20,11 @@ export const getButtonColorValue = (color: ButtonColor) => {
 export const getButtonSizeValue = (size: ButtonSize) => {
   switch (size) {
     case "large":
-      return "text-16 font-bold leading-22 px-12 py-20";
+      return "text-16 font-bold leading-22 px-20 py-12";
     case "medium":
-      return "text-14 font-regular";
+      return "text-14 font-medium px-15 py-5";
     case "small":
-      return "text-14 font-regular";
+      return "text-14 font-regular  px-15 py-5";
     default:
       return "";
   }
