@@ -25,8 +25,7 @@ const Button = ({
         ${shape === "square" ? "rounded-10" : "rounded-50"}
         ${ButtonSize}
         
-        inline-block text-center
-        w-full`}
+        font-sans inline-block text-center`}
     >
       {children}
     </span>
