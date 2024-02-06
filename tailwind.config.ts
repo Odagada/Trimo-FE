@@ -33,6 +33,8 @@ const config: Config = {
       primary: "#E26521",
       star: "#FFB800",
       white: "#FFF",
+      naver: "#2bd400",
+      kakao: "#FEE500",
       gray: {
         10: "#F3F3F3",
         20: "#E6E6E6",
