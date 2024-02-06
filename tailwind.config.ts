@@ -1,5 +1,20 @@
 import type { Config } from "tailwindcss";
 
+const range = (start: number, end: number) => {
+  let arr = [];
+  let length = end - start;
+  for (let i = 0; i <= length; i++) {
+    arr[i] = start;
+    start++;
+  }
+  return arr;
+};
+
+const accum = range(0, 1000).reduce((acc, px) => {
+  acc[`${px}`] = `${px / 10}rem`;
+  return acc;
+}, {});
+
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -53,7 +68,8 @@ const config: Config = {
     borderRadius: {
       10: "0.625rem",
       30: "1.875rem",
-      full: "100%",
+      100: "6.25rem",
+      full: "9999px",
     },
     boxShadow: {
       main: "0px 4px 10px 0px rgba(0, 0, 0, 0.10)",

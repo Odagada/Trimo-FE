@@ -7,7 +7,7 @@ interface Props {
 
 export default function SingleStarRate({ rate = 1 }: Props) {
   return (
-    <div>
+    <div className="small-text flex gap-1">
       <Image src={Star} alt="별 점" />
       {rate}
     </div>
