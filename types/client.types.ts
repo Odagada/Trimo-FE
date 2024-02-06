@@ -1,3 +1,3 @@
-export type ButtonColor = "primary" | "black" | "white" | "naver" | "kakao";
-export type ButtonShape = "square" | "capsule";
-export type ButtonSize = "large" | "medium" | "small";
+export type ClickableColor = "primary" | "black" | "white" | "naver" | "kakao";
+export type ClickableShape = "square" | "capsule";
+export type ClickableSize = "large" | "medium" | "small";

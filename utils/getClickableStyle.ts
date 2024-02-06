@@ -1,6 +1,6 @@
-import { ButtonColor, ButtonSize } from "@/types/client.types";
+import { ClickableColor, ClickableSize } from "@/types/client.types";
 
-export const getButtonColorValue = (color: ButtonColor) => {
+export const getClickableColorValue = (color: ClickableColor) => {
   switch (color) {
     case "primary":
       return "bg-primary text-black border border-primary";
@@ -17,7 +17,7 @@ export const getButtonColorValue = (color: ButtonColor) => {
   }
 };
 
-export const getButtonSizeValue = (size: ButtonSize) => {
+export const getClickableSizeValue = (size: ClickableSize) => {
   switch (size) {
     case "large":
       return "w-full text-16 font-bold leading-22 px-20 py-12";
