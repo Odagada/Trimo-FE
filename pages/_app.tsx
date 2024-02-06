@@ -1,4 +1,3 @@
-import "@/styles/reset.css";
 import "@/styles/globals.css";
 import "@/public/font/font.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
