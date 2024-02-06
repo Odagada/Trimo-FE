@@ -23,7 +23,7 @@ const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./utils/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     spacing: {
@@ -33,6 +33,8 @@ const config: Config = {
       primary: "#E26521",
       star: "#FFB800",
       white: "#FFF",
+      naver: "#2bd400",
+      kakao: "#FEE500",
       gray: {
         10: "#F3F3F3",
         20: "#E6E6E6",
@@ -75,10 +77,11 @@ const config: Config = {
       bold: "700",
     },
     borderRadius: {
-      10: "0.625rem",
-      30: "1.875rem",
-      100: "6.25rem",
-      full: "9999px",
+      10: "1rem",
+      30: "3rem",
+      50: "5rem",
+      100: "10rem",
+      full: "1000rem",
     },
     boxShadow: {
       main: "0px 4px 10px 0px rgba(0, 0, 0, 0.10)",
