@@ -75,10 +75,11 @@ const config: Config = {
       bold: "700",
     },
     borderRadius: {
-      10: "0.625rem",
-      30: "1.875rem",
-      100: "6.25rem",
-      full: "9999px",
+      10: "1rem",
+      30: "3rem",
+      50: "5rem",
+      100: "10rem",
+      full: "1000rem",
     },
     boxShadow: {
       main: "0px 4px 10px 0px rgba(0, 0, 0, 0.10)",
