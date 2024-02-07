@@ -1,3 +1,7 @@
 export default function Landing() {
-  return <></>;
+  return (
+    <>
+      <div>안녕하세요</div>
+    </>
+  );
 }
