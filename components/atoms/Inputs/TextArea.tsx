@@ -1,15 +1,14 @@
-import { InputProps } from "@/types/client.types";
+import { InputProps, TextAreaProps } from "@/types/client.types";
 import { ForwardedRef, forwardRef } from "react";
 
-const Input = (
-  { placeholder, id, name, onBlur, onChange, type = "text" }: InputProps,
-  ref: ForwardedRef<HTMLInputElement>
+const TextArea = (
+  { placeholder, id, name, onBlur, onChange }: TextAreaProps,
+  ref: ForwardedRef<HTMLTextAreaElement>
 ) => {
   return (
     <>
-      <input
+      <textarea
         className="flex-1 text-left text-16 leading-24 font-regular focus:outline-none text-black placeholder:text-gray-40"
-        type={type}
         id={id}
         ref={ref}
         name={name}
@@ -21,4 +20,4 @@ const Input = (
   );
 };
 
-export default forwardRef<HTMLInputElement, InputProps>(Input);
+export default forwardRef<HTMLTextAreaElement, InputProps>(TextArea);

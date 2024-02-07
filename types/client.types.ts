@@ -7,7 +7,7 @@ export type ClickableSize = "large" | "medium" | "small";
 
 export type InputProps = {
   id: string;
-  type: string;
+  type?: string;
   name?: string;
   placeholder?: string | undefined;
   onBlur: ChangeHandler;
@@ -16,10 +16,12 @@ export type InputProps = {
   onEyesToggle?: () => void;
 };
 
+export type TextAreaProps = Omit<InputProps, "type">;
+
 export type WrapperProps = {
   title?: string;
-  htmlFor?: string;
-  error?: FieldError | undefined;
+  htmlFor: string;
+  errors?: FieldError | undefined;
 };
 
 export type InputWrapperProps = {
