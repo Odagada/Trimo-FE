@@ -7,31 +7,37 @@ import Select from "react-select";
 function SignUp() {
   const router = useRouter();
   const { code } = router.query;
+  const provider = router.query.provider;
 
-  console.log(code);
-  console.log(router.query.provider);
+  // console.log(code);
+  // console.log(router.query.provider);
 
-  // axios.post(`http://localhost:8080/login/oauth/naver?code=${code}&state=null`);
+  // axios.post(`http://localhost:8080/login/oauth/${provider}?code=${code}&state=null`);
 
   const {
     register,
     handleSubmit,
-    getValues,
+    control,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
     shouldFocusError: true,
     reValidateMode: "onChange",
-    defaultValues: { nickName: "", gender: "남성", birthdate: 20 },
+    defaultValues: { nickName: "", gender: "남성", birthdate: 2000 },
   });
 
-  // const {
-  //   field: { value: langValue, onChange: langOnChange, ...restLangField },
-  // } = useController({ name: "birthdate", control });
+  const {
+    field: { value: birthdateVal, onChange: onBirthdateChange, ...restField },
+  } = useController({ name: "birthdate", control });
+
+  const birthdateList: { value: number; label: number }[] = [];
+  for (let i = 1960; i < 2015; i++) {
+    birthdateList.push({ value: i, label: i });
+  }
 
   const onSubmit = (data: { nickName: string; gender: string; birthdate: number }) => {
-    console.log("data: ", data);
-    console.log(typeof data);
+    // console.log("data: ", data);
+    // console.log(typeof data);
   };
 
   //닉네임/나이/성별
@@ -43,40 +49,23 @@ function SignUp() {
           maxLength: { value: 5, message: "5자 이하의 닉네임을 입력 해 주세요." },
         })}
       ></input>
-      {/* <Select
-        className="select-input"
+
+      <Select
+        instanceId="long-value-select"
         placeholder="생년월일 입력"
         isClearable
-        options={languageList}
-        value={langValue ? languageList.find((x) => x.value === langValue) : langValue}
-        onChange={(option) => langOnChange(option ? option.value : option)}
-        {...restLangField}
-      /> */}
+        options={birthdateList}
+        value={birthdateVal ? birthdateList.find((x) => x.value === birthdateVal) : birthdateVal}
+        onChange={(option) => onBirthdateChange(option)}
+        {...restField}
+      />
 
       <div>
         <input type="radio" value="male" {...register("gender")} />
         남성
-      </div>
-
-      <div>
         <input type="radio" value="female" {...register("gender")} />
         여성
       </div>
-
-      {/*       
-      <input
-        {...register("gender", {
-          required: true,
-          maxLength: 5,
-        })}
-      ></input> */}
-      <input
-        {...register("birthdate", {
-          required: true,
-          maxLength: 5,
-          pattern: /^(19|20)d{2}$/,
-        })}
-      ></input>
 
       <button type="submit">submit</button>
     </form>
