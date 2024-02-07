@@ -8,7 +8,7 @@ const TextArea = (
   return (
     <>
       <textarea
-        className="flex-1 text-left text-16 leading-24 font-regular focus:outline-none text-black placeholder:text-gray-40"
+        className="flex-1 text-left text-16 leading-24 font-regular focus:outline-none text-black h-350 placeholder:text-gray-40 resize-none"
         id={id}
         ref={ref}
         name={name}
