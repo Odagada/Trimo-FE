@@ -1,10 +1,15 @@
-import Star from "@/components/StarRate/Star";
 import { useState } from "react";
+import Star from "@/components/atoms/Star";
+
+interface Props {
+  readOnly?: boolean;
+  defaultRate?: number;
+}
 
 const stars = [1, 2, 3, 4, 5];
 
-export default function StarRate() {
-  const [rate, setRate] = useState(0);
+export default function StarRate({ readOnly = false, defaultRate = 0 }: Props) {
+  const [rate, setRate] = useState(defaultRate);
   const [select, setSelect] = useState(0);
 
   const handleClick = (num: number) => {
@@ -30,6 +35,7 @@ export default function StarRate() {
           onClick={handleClick}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
+          readOnly={readOnly}
         />
       ))}
     </div>
