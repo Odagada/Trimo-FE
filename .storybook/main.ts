@@ -1,11 +1,12 @@
 import type { StorybookConfig } from "@storybook/nextjs";
-import path from "path";
 
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const config: StorybookConfig = {
   webpackFinal: async (config, { configType }) => {
-    config.resolve.plugins = [new TsconfigPathsPlugin()];
+    if (config.resolve) {
+      config.resolve.plugins = [new TsconfigPathsPlugin()];
+    }
     return config;
   },
   stories: ["../**/*.stories.mdx", "../**/*.stories.@(js|jsx|ts|tsx)"],
