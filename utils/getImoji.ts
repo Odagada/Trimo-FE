@@ -6,7 +6,7 @@ const getImoji = (tag: Tag) => {
   switch (tag) {
     // 날씨 태그 스위쳐
     case "맑음":
-      imoji = "☀";
+      imoji = "☀️";
       break;
     case "흐림":
       imoji = "☁️";
@@ -41,7 +41,7 @@ const getImoji = (tag: Tag) => {
       imoji = "👬";
       break;
     case "연인":
-      imoji = "👩‍❤️‍👨";
+      imoji = "💏";
       break;
     case "혼자":
       imoji = "🕺";
@@ -52,7 +52,7 @@ const getImoji = (tag: Tag) => {
       break;
   }
 
-  return tag + imoji;
+  return imoji;
 };
 
 export default getImoji;
