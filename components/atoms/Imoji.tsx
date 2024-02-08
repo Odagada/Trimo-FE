@@ -7,7 +7,7 @@ const Imoji = ({ children }: { children: Tag }) => {
   return (
     <>
       {children}
-      <span className="text-16 font-[PretendardCancler]">{imoji}</span>
+      <span className="text-16 ml-1 font-[PretendardCancler]">{imoji}</span>
     </>
   );
 };
