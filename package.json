@@ -13,6 +13,7 @@
     "lint": "eslint --cache ."
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@tanstack/react-query": "^5.17.15",
     "@tanstack/react-query-devtools": "^5.17.18",
@@ -21,6 +22,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
+    "zod": "^3.22.4",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
@@ -48,6 +50,7 @@
     "sb": "^7.6.10",
     "storybook": "^7.6.10",
     "tailwindcss": "^3.3.0",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5"
   }
 }

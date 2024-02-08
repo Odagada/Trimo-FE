@@ -39,9 +39,7 @@ instance.interceptors.request.use(
   }
 );
 
-export const request = <T>(
-  config: AxiosRequestConfig
-): Promise<AxiosResponse<T, any>> => {
+export const request = <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T, any>> => {
   const client = instance;
   return client(config);
 };

@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+@layer utilities {
+  .heading1 {
+    @apply text-45 font-bold leading-67.5;
+  }
+  .heading2 {
+    @apply text-36 leading-54 font-bold;
+  }
+  .heading3 {
+    @apply text-32 leading-48 font-bold;
+  }
+  .heading4 {
+    @apply text-28 leading-42 font-bold;
+  }
+  .heading5 {
+    @apply text-20 leading-30 font-bold;
+  }
+  .heading6 {
+    @apply text-18 leading-27 font-bold;
+  }
+  .heading7 {
+    @apply leading-24 font-bold;
+  }
+  .body1 {
+    @apply text-20 leading-30 font-medium;
+  }
+  .body1 {
+    @apply text-20 leading-28;
+  }
+  .p-text {
+    @apply leading-24;
+  }
+  .small-text {
+    @apply text-12 leading-18;
+  }
+}

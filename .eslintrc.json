@@ -22,6 +22,7 @@
     "no-var": "error",
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     "eqeqeq": "error",
-    "no-unused-vars": "off" // 사용하지 않는 변수가 있을 때 에러 -> off
+    "no-unused-vars": "off", // 사용하지 않는 변수가 있을 때 에러 -> off
+    "no-undef": "off"
   }
 }
