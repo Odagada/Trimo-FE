@@ -6,8 +6,8 @@ import SearchBar from "../atoms/Inputs/SearchBar";
 import { NavStatus } from "@/types/client.types";
 
 interface NavProps {
-  navStatus: NavStatus;
-  hasSearchBar: boolean;
+  navStatus?: NavStatus;
+  hasSearchBar?: boolean;
 }
 
 function Nav({ navStatus = "LoggedIn", hasSearchBar = false }: NavProps) {
