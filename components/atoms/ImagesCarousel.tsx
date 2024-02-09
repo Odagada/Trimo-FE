@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const ImagesCarouse = ({ imageArray }: { imageArray: string[] }) => {
+const ImagesCarousel = ({ imageArray }: { imageArray: string[] }) => {
   const [isCover, setIsCover] = useState(true);
 
   return (
@@ -49,4 +49,4 @@ const ImagesCarouse = ({ imageArray }: { imageArray: string[] }) => {
     </>
   );
 };
-export default ImagesCarouse;
+export default ImagesCarousel;
