@@ -35,3 +35,17 @@ export type InputWrapperProps = {
   children: ReactNode;
   className?: string;
 } & WrapperProps;
+
+export type ReviewType = {
+  reviewId: number;
+  title: string;
+  author: string;
+  imageUrls: string[];
+  tag: [TagMonth, TagType, TagCompanion, TagWeather];
+  rate: number;
+  date: string;
+  destination: string;
+  description: string;
+  createdAt: string;
+  likeUserId: number[];
+};
