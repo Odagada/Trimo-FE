@@ -25,7 +25,7 @@ const Clickable = ({
         ${shape === "square" ? "rounded-10" : "rounded-50"}
         ${ClickableSize}
         
-        font-sans inline-block text-center`}
+        text-16 font-sans inline-block text-center`}
     >
       {children}
     </span>

@@ -44,6 +44,7 @@ const config: Config = {
         60: "#333",
       },
       black: "#030303",
+      error: "#FF5B56",
     },
     fontSize: {
       12: "1.2rem",

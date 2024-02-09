@@ -2,12 +2,14 @@ import { ClickableColor, ClickableSize } from "@/types/client.types";
 
 export const getClickableColorValue = (color: ClickableColor) => {
   switch (color) {
-    case "primary":
-      return "bg-primary text-black border border-primary";
     case "black":
-      return "bg-black text-white border border-black";
+      return "bg-black text-white";
+    case "gray":
+      return "bg-gray-30 text-gray-40 border border-gray-40";
     case "white":
-      return "bg-white text-black border border-gray-20";
+      return "bg-white text-black border border-gray-50";
+    case "white-":
+      return "bg-white text-gray-40 border border-gray-40";
     case "naver":
       return "bg-naver text-white border border-naver";
     case "kakao":
@@ -20,11 +22,11 @@ export const getClickableColorValue = (color: ClickableColor) => {
 export const getClickableSizeValue = (size: ClickableSize) => {
   switch (size) {
     case "large":
-      return "w-full text-16 font-bold leading-22 px-20 py-12";
+      return "max-w-437 w-full font-bold leading-22 py-12";
     case "medium":
-      return "text-14 font-medium leading-22 px-15 py-5";
+      return "max-w-210 w-full font-bold leading-22 py-12";
     case "small":
-      return "text-14 font-regular leading-24 px-15 py-5";
+      return "font-regular leading-24 px-15 py-5";
     default:
       return "";
   }
