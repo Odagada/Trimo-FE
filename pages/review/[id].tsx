@@ -1,7 +1,8 @@
 import fetcher from "@/apis/axios";
+import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import { Review } from "@/types/server.types";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { QueryClient, dehydrate } from "@tanstack/react-query";
+import { QueryClient, dehydrate, useQuery, useQueryClient } from "@tanstack/react-query";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
@@ -16,25 +17,47 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     };
   }
 
-  const id = context.params?.id;
+  const review_id = context.params?.id;
 
   const queryClient = new QueryClient();
 
   const { data: reviewData } = await queryClient.fetchQuery({
-    queryKey: ["review", id],
-    queryFn: () => fetcher<Review>({ method: "get", url: `/review/${id}` }),
+    queryKey: ["review", review_id],
+    queryFn: () => fetcher<Review>({ method: "get", url: `/review/${review_id}` }),
   });
 
-  if (reviewData.spot_id) {
+  const spot_id = reviewData.spot_id;
+
+  if (spot_id) {
     await queryClient.prefetchQuery({
-      queryKey: ["user"],
-      queryFn: () => fetcher<Review>({ method: "get", url: `/review/${id}` }),
+      queryKey: ["spot", spot_id],
+      queryFn: () => fetcher<Review>({ method: "get", url: `/review/${spot_id}` }),
     });
   }
 
   return {
-    props: { accessToken, dehydratedState: dehydrate(queryClient) },
+    props: { review_id, spot_id, dehydratedState: dehydrate(queryClient) },
   };
 };
 
-const readReview = ({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) => {};
+const ReadReview = ({ review_id, spot_id }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { data: reviewData } = useQuery({
+    queryKey: ["review", spot_id],
+    queryFn: () => fetcher<Review>({ method: "get", url: `/review/${review_id}` }),
+  });
+
+  const { data: spotData } = useQuery({
+    queryKey: ["review", spot_id],
+    queryFn: () => fetcher<Review>({ method: "get", url: `/review/${spot_id}` }),
+  });
+
+  return (
+    <>
+      {reviewData?.data.imageUrls ? <ImagesCarousel imageArray={reviewData.data.imageUrls}></ImagesCarousel> : "a"}
+
+      <p>{reviewData?.data.description}</p>
+    </>
+  );
+};
+
+export default ReadReview;
