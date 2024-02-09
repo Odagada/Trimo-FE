@@ -13,6 +13,7 @@
     "lint": "eslint --cache ."
   },
   "dependencies": {
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@hookform/resolvers": "^3.3.4",
     "@tanstack/react-query": "^5.17.15",
     "@tanstack/react-query-devtools": "^5.17.18",
@@ -21,6 +22,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
+    "swiper": "^11.0.6",
     "zod": "^3.22.4",
     "zustand": "^4.4.7"
   },
@@ -35,6 +37,7 @@
     "@storybook/react": "^7.6.10",
     "@storybook/test": "^7.6.10",
     "@storybook/testing-library": "^0.2.2",
+    "@types/google.maps": "^3.55.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
