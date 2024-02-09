@@ -10,7 +10,7 @@ interface NavProps {
   hasSearchBar: boolean;
 }
 
-function NavigationBar({ navStatus = "LoggedIn", hasSearchBar = false }: NavProps) {
+function Nav({ navStatus = "LoggedIn", hasSearchBar = false }: NavProps) {
   const renderNavbarLeftSide = (status: NavStatus) => {
     switch (status) {
       case "onlyLogo":
@@ -44,4 +44,4 @@ function NavigationBar({ navStatus = "LoggedIn", hasSearchBar = false }: NavProp
   );
 }
 
-export default NavigationBar;
+export default Nav;
