@@ -11,6 +11,8 @@ export type TagType = "맛집" | "관광" | "휴양" | "명소";
 export type TagCompanion = "가족" | "친구" | "연인" | "혼자";
 export type Tag = TagWeather | TagMonth | TagType | TagCompanion;
 
+export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
+
 export type InputProps = {
   id: string;
   type?: string;
