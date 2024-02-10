@@ -54,7 +54,7 @@ export type Destination = {
 };
 
 export type User = {
-  userId: number;
+  user_id: number;
   nickName: string;
   email: string;
   gender: "female" | "male";
