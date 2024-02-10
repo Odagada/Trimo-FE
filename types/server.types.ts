@@ -1,4 +1,4 @@
-import { Destination, TagCompanion, TagType, TagWeather, TagWithoutMonth } from "./client.types";
+import { Destination, Stars, Tag } from "./client.types";
 
 export type Review = {
   review_id: number;
@@ -9,11 +9,8 @@ export type Review = {
   destination: Destination;
   imageUrls?: string[];
   description: string;
-  tag?: {
-    weather?: TagWeather;
-    type?: TagType;
-    companion?: TagCompanion;
-  };
+  stars?: Stars;
+  tag?: Tag;
   createdAt: string;
   likeUserId: number[];
 };
