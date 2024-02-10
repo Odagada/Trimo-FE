@@ -3,7 +3,7 @@ import { ClickableColor, ClickableSize } from "@/types/client.types";
 export const getClickableColorValue = (color: ClickableColor) => {
   switch (color) {
     case "black":
-      return "bg-black text-white";
+      return "bg-black text-white border border-black";
     case "gray":
       return "bg-gray-30 text-gray-40 border border-gray-40";
     case "white":
