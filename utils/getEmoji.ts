@@ -1,6 +1,6 @@
 import { Tag } from "@/types/client.types";
 
-const getImoji = (tag: Tag) => {
+const getEmoji = (tag: Tag) => {
   let imoji;
 
   switch (tag) {
@@ -55,4 +55,4 @@ const getImoji = (tag: Tag) => {
   return imoji;
 };
 
-export default getImoji;
+export default getEmoji;
