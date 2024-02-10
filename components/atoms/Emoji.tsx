@@ -1,7 +1,7 @@
-import { Tag } from "@/types/client.types";
+import { TagWithMonth } from "@/types/client.types";
 import getEmoji from "@/utils/getEmoji";
 
-const Emoji = ({ children }: { children: Tag }) => {
+const Emoji = ({ children }: { children: TagWithMonth }) => {
   const Emoji = getEmoji(children);
 
   return (

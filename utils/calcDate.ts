@@ -1,3 +1,5 @@
+import { TagMonth } from "@/types/client.types";
+
 const calcData = (date: string) => {
   const targetDate = new Date(date);
 
@@ -12,7 +14,7 @@ const calcData = (date: string) => {
 
   const timeString = hours + ":" + minutes;
 
-  const tagMonth = `${String(targetDate.getMonth() + 1)}월`;
+  const tagMonth = `${String(targetDate.getMonth() + 1)}월` as TagMonth;
 
   return {
     dateString,

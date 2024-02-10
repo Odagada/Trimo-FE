@@ -14,7 +14,7 @@ export type Tag = {
   type?: TagType;
   companion?: TagCompanion;
 };
-// export type Tag = TagWeather | TagMonth | TagType | TagCompanion;
+export type TagWithMonth = TagWeather | TagMonth | TagType | TagCompanion;
 
 export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
 

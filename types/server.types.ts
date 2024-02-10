@@ -1,4 +1,4 @@
-import { Destination, Stars, Tag } from "./client.types";
+import { Stars, Tag, TagCompanion, TagType, TagWeather } from "./client.types";
 
 export type Review = {
   review_id: number;
@@ -6,7 +6,6 @@ export type Review = {
   spot_id: string;
   title: string;
   date: string;
-  destination: Destination;
   imageUrls?: string[];
   description: string;
   stars?: Stars;

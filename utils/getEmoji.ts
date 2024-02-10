@@ -1,6 +1,6 @@
-import { Tag } from "@/types/client.types";
+import { TagWithMonth } from "@/types/client.types";
 
-const getEmoji = (tag: Tag) => {
+const getEmoji = (tag: TagWithMonth) => {
   let imoji;
 
   switch (tag) {
