@@ -37,3 +37,23 @@ export type InputWrapperProps = {
   children: ReactNode;
   className?: string;
 } & WrapperProps;
+
+export type Destination = {
+  name: string;
+  formatted_address: string;
+  types: string[];
+  place_id: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+};
+
+export type User = {
+  userId: number;
+  nickName: string;
+  email: string;
+  gender: "female" | "male";
+  age: number;
+  likeReviewId: number[];
+};

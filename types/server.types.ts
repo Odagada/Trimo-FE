@@ -1,12 +1,15 @@
+import { Destination, TagWithoutMonth } from "./client.types";
+
 export type Review = {
-  reviewId: number;
+  review_id: number;
+  user_id: number;
+  spot_id: string;
   title: string;
   date: string;
-  destination: string;
+  destination: Destination;
   imageUrls: string[];
   description: string;
-  tag: string[];
+  tag: TagWithoutMonth[];
   createdAt: string;
   likeUserId: number[];
-  spot_id: number | string;
 };
