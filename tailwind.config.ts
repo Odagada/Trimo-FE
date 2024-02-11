@@ -58,6 +58,7 @@ const config: Config = {
       45: "4.5rem",
     },
     lineHeight: {
+      15: "1.5rem",
       18: "1.8rem",
       21: "2.1rem",
       24: "2.4rem",
