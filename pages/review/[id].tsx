@@ -17,7 +17,7 @@ import Nav from "@/components/molecules/NavigationBar";
 
 // export const getServerSideProps = async (context: GetServerSidePropsContext) => {
 //   const accessToken = getAccessTokenFromCookie(context) as string;
-//   const review_id = Number(context.params?.id);
+//   const reviewId = Number(context.params?.id);
 
 //   if (!accessToken) {
 //     return {
@@ -30,29 +30,27 @@ import Nav from "@/components/molecules/NavigationBar";
 
 //   const queryClient = new QueryClient();
 
-//   const { data: reviewData } = await queryClient.fetchQuery(getReview(review_id));
+//   const { data: reviewData } = await queryClient.fetchQuery(getReview(reviewId));
 
-//   const spot_id = reviewData.spot_id;
-//   const user_id = reviewData.user_id;
+//   const spotId = reviewData.spotId;
+//   const userId = reviewData.userId;
 
-//   if (spot_id && user_id) {
-//     await queryClient.prefetchQuery(getSpot(spot_id));
-//     await queryClient.prefetchQuery(getUser(user_id));
+//   if (spotId && userId) {
+//     await queryClient.prefetchQuery(getSpot(spotId));
+//     await queryClient.prefetchQuery(getUser(userId));
 //   }
 
 //   return {
-//     props: { review_id, spot_id, user_id, dehydratedState: dehydrate(queryClient) },
+//     props: { reviewId, spotId, userId, dehydratedState: dehydrate(queryClient) },
 //   };
 // };
 
-// { review_id, spot_id, user_id }: InferGetServerSidePropsType<typeof getServerSideProps>
+// { reviewId, spotId, userId }: InferGetServerSidePropsType<typeof getServerSideProps>
 
 const ReadReview = () => {
-  // const { data: reviewData } = useQuery(getReview(review_id));
+  // const { data: reviewData } = useQuery(getReview(reviewId));
 
-  // const { data: spotData } = useQuery(getSpot(spot_id));
-
-  // const { data: userData } = useQuery(getUser(user_id));
+  // const [{ data: spotData }, { data: userData }] = useQueries([getSpot(spotId), getUser(userId)])
 
   const data: Review = {
     userId: 1,
@@ -62,9 +60,9 @@ const ReadReview = () => {
       "비는 내리는데 원래 가려던 곳은 들어가려면 1시간 넘게 줄을 서야 한다고 해서 무작정 길을 돌아다니다가 발견한 곳이다. 일본은 실내 흡연이 아직 허용되는 건지 문을 열자마자 너구리 소굴마냥 담배 연기 + 안주 굽는 화로 연기로 매캐했다. 실제로 바에 앉은 손님 셋 중 둘은 담배 피고 있었고. 그래서 다른데 찾아볼까 하다가 일단 문 열고 들어왔으니 앉았는데, 진짜 지금까지 일본 여행하면서 가장 좋았다. 진짜 찐 동네사람들만 오는 이자카야 느낌쓰. 영어 메뉴판도 준비되어있기는 하지만, 간단한 일본어 회화 정도 할 줄 알면 훨씬 재미있게 즐길 수 있는 곳이라고 생각된다. 주력 안주는 꼬치구이지만 다른 안주들도 맛있고, 아츠캉(따듯하게 데운 사케)과 레몬 사와가 개인적으로는 추천하는 주류! 크게 중요하지는 않지만, 이 가게가 <와카코와 술>이라는 일본 드라마에도 나왔다고 한다.",
     tag: { companion: "가족", weather: "우천" },
     imageUrls: [
-      "https://lh3.googleusercontent.com/pw/ABLVV85MP1rVOS7jcB4P2nwkg6cBJaXuad95R7nZSCNPHNKmKccYKx6gi7AuREvAHfYKEYOMHFiyGXPt9NfzWqd4a0v8HLomlu_c6Phgu5BsBW4jC6bhEcER3iOAqMWrI5o7kmr9PmreUAHwKr0jFeePksoflK114wqEV-1ihpyL1TSvLFAg_isHG37IN-usAb_prBb5lcJOPNCl_vVModitegt1aiz2Er-M8uASGtEyJ5yBP6btdJYOzNQKiuOCTrKI4RcgUDWJYFsGCjurRKZiwYkmhgutXVXoZpu9LgcaF2r0uqDErt7JCClqP-JE9GwrLTN1HCL6ekAMzJZA_zm_PDIK783DHijDSZ0cf-zO68fYBe94MwbXckQbFuHQq4pBov3_bgjzRoe6cmTOY5_86iL6YBIVuTxvazgwvKhebSK2wS5ubR1HOeGEgeDPqLU7CKGByFomudpNpfg4cFm7wvtT65GTzcKxUsTOfBWrMeAwMNf8e8P8CVVw3GLJWdMYigc0WEjeldchSv_eUMH0LySWkAEB8MRh9W2sgJIKBXN_TYxmeOCj_3mKmJyMLK5JEbok2YPwx6HYd2g7IkxAvQhij_RL4gUrgyVAVG1eiKhiQojIih8Yl-llJRm1GfBa_rnZjXpfag0eqwfxCgWcPM0y73b7MeePd2aXNNJWLi-7SAmxJzLpIR2p2-Vsu9I517mi1RnR6JDiWN5mkmjG4ZK1zMPlYt-alUIC_y4WjyXtLDvcxH_zRpJsbJNFuq2ZrIrfY1o4lDWovjSnN6jKcKk7haO3ztANFhtW8wNdc-Tr58tfLLwKqlYGHQZJam18sUFMa2b8ysfIAFm-hcVKwM8gmpwIZjN8BWxY8xivsMvwk-iRbTrCZwEiUtcd2Y5p-OBMbdq9oR12bAMBfpLUppHKug=w2030-h2706-s-no-gm?authuser=0",
-      "https://lh3.googleusercontent.com/pw/ABLVV86Zm8SML7BzG5qd-mu4KzTwcXNBg-yysedp3Hp2pUfQlAsA6F-vS0393o9nP64l-yJRlKaLKFtDCbpUZ9JuZVdbgKh0emOLZNdSbIcS2glP1XGHClsBNIg-Fn5DsQKeFz3ufXGhSeL_6eWz2tX6njSRslm5LUwDgq1lrmPtCXmT6jAb4fPQZXapfXlPRVXfgjscUKlSmAOVOqKPZOeKMzR4bS4KL4Kx6aV7-y2GQA2OM2_pur_GlGN6mYO2H9o-NRERvrfLP-5cFy0XUmth8952AZLAlogFGS6MAsIe2RLuE1BDker2X0eTvjrvwifMINJmAtZHmReZwOFeokZ0aeRXEpp9Ho-MpW_qUNj7TYuKEPR8FpmQKT0jhVfAI-t8alZVTAUVTiUAGplsLgk61pqU98Yvqqwu4wPTeofnid0jg3FzYOjf2kJdbl3V1BG3RwhxN7IG83ncqcS4oW3O0lMHFwadGwlUpnV7RrNq_evCJtkBoM9c8u_-dBhRdUiSE2sowCipt17JbrYBPv1SYGqjPlGdJMuVCsL6M8Db5b4TzNojHS5L3SUsYbOGvdAqjUSv9G4WR7bg4urwRi1Jm8wCCyNBRxJAqoFJy1kespcoEVPEPipt4kupj1VuITk9gXtI4CjQCcFIO79azVCjNkwzbXdEp00D4IvpZTPMIjzhTzxXYTztA2Em05Xtu4I6xyvatowwrdyXkZaso0DXjt7k720EuTrEfqStC4SA-ai61K4nBDUGnAJNqCnuvZVdaEcMVg4Y4PcNh3AsEH4iU1OehpIORdpuM1bfUQJkocAevKMDvhOnrw2HokAxhx7EZMNc7z6sjeN0ducxyCOZuhEe0yH4XVJqCctXkYJgnTLSQfZIbwtrgvITyCz3VjZNaZC8lATkW-OvqiOzSBYCvBnkjw=w2030-h2706-s-no-gm?authuser=0",
-      "https://lh3.googleusercontent.com/pw/ABLVV85nOR4acinVOMhT_ywiosAzpDsjMGN0RUGTY2tdIx61RZEqEk6MqKNwWTQioKtFUhYT58dVWGDJkTmVb1_TT_CqZS6IrvYwzI5XqmraKERo12WC6MIHX30g79vmLDpthG2049kzz-JyOJuqt6_A0O0x2LVsknhsLMS8xCTsxKF6i8DQ1AQSbnjezvYdHJm-YYDCUxlR2eowzlqDoR0g_EH8ojCU_gd5m59_n-bddUzYFenxFNtwSjIaoxyGqGRDelUt-TwWtAbbD2PthCC3evDJDJqJaWcJH9_Bqs-19Xq44eHT-N3gWRUmdRx3J7SZMM-K5MbtlK36I-_mD_f19Mpmg1m7Pe0vxeWZtHWKySXZTCiMBHdvVm3fRB9c8VbkS1TJ8OUxqJ7z2GzOtKUjGeqB_E9LLs-4Ik7aWgdmuCtR9U1wyMXdNStJMMrIFcceXQGVS6isBBC3gDbO85XcL77EOXXgnfRAMN6rBdyb4pifz4kyK4GCgxkFmORxBKaqcbycLVcfvQYEYKms8P7zKrRmFW0FCWw2s9rNx62nNzIipxv9Cz2Qtks1nNnvWMq3DNRev_jUgAwmZcznvgmPhnyD0IGkCg6GnO6gds8FDFG8bJxfGSCrq8vbvm3Fq50pOQ6JxjTJJw76b1BNboM4r9vXyJj5siVHP69h-nmBU7nmPuTVetb3HfaZU8-48xUVW7YGxGrX4NV0JUgynkb6RRMdEkyemu4jDdgBnBLV1cjMg-k9TA6325RbYwrOl9X_waAZoGMb1scOhFi6RyLMtoSZHl7AgaqUE6YK-rPzX4TekVVtH63h_KNaMdI6u--va2SYLHMFKyqk7lHgTRok4Crz7h01gDTyOIXA2-FBqUjGY1sUzuBYM466-Qv4EZ4bPHgzFnmXfLbFitidlNJAdS__nQ=w3608-h2706-s-no-gm?authuser=0",
+      "https://lh3.googleusercontent.com/pw/ABLVV84OW647gIEza78e_npWU3dtCF_ckv-R6yPXMb6C4Z0fK0hq9RLTEPwA87ooTH7DZ6oJN-iJpu3ni9pW0cWpEGJD5fRTmWU8KwAUn7gxgMOD-Hu1RWVsgHg3QcK_B4yv3fYGlYPqVzdL8YrqLtxikLQOrR0B9uGqQq_2m0iHNFaB8VWi_Ltf55aaLc15oEy27Vx748LIhOeKUyjM2Rr1JzgNSWsw3h21mFj-nTBiC-SKxZalZRh0EXYGFz9o9wEQUO7QWj0cS5VL6tBuGaUW4WpQhMwPIbOjA5S_fvWirp6d1apdvruhDERufZ5yRIMfFpfNzZDX8S191vdzEZ9p_xJCjr7e4QRRFezGUwY93bKoV1vHktupMvr0K6HQkrg5-EkoUizV9MuwoaUDkacA1fW0DR49UxVmTUABXnhuLqtaoMM7dmdB39Jep-DpnaKLBzKXFgHNuUgtDcq6KVWf5_fu1TmlPeC49YgxfOmxJ-7Jj2YfhfTRVCbuJBA2FTtSkR2wZnyf8GeWP44Qz8D3SY5hHgDmPn--f7SpPFb_38dZDjroHknxeXdXhUWA2vLVx2Zi-OjYxOM4pVovySFthEThvtFlbt_ASYpQNvsWiXi-VczkUUXLtkPp_MlPX-XtIIPdwsVwT0SDUl4gUnWoTZjfmjGLUjfzCR4x9c7nvO0waPTUfmLWEEOv3SyE_xgRX8Y7ba8cCpOFjAUjouJrUq0D2mxr5epKJ6wLUF2sr47YttVpsKBxj8K5f0RSGQGu1wbyP8mrHwwOSo1pDkQsGOFGY0Z0alnz_a-r09Tqlkpi-n_DJr8uCdcc0sQ75XDNIaQjsuZHIjCI3USFS9Yc-6Z2vjBreSb4gJ8gh0ckgFcTL1bPaX7odnAkzaSz1EqQVjTOzJy-P4peijj0DwXfO4i18w=w2082-h2776-s-no?authuser=0",
+      "https://lh3.googleusercontent.com/pw/ABLVV85WRFPHSFHf8CLtyY1GaECQp711zTbVOsIts1KTNQjvG5KMIp3Nt3XbsNd2WDMFUcP3KLBpDy13ZUhamWyjDe4e7drV40mTX3njpYj5qQHwU91Fh2KjFJrV237bVf8J9uagTl9XTC53K0of5k-xgUEM8B6rQjFBlVvKvewwEB9hO9aWMNtDBFxste7xs-2FUoiEY7XO0arr7yIvsZYjDzUbpwy1zkNLz_JVa8Dmxqsy23-LuQun1HmFSuLAhIW2fiHvi38ca_XgVHhkmpEl-cJqlqqeAEsOfuT0qUNIfPv2AKSZDouJngOxz5POc-h1FP3b2ktVuhqMS6z8s9ShyQAi47pHabKtnbKlMkVHRU8KHGr1ScUXNFkC0WR2fSvlvRHfNIg2NSM6WXxW1QAJw1P3fFSIq2lyTXPAxtHEFZt7tm2sutf7wUB722w96SgShOP2m06q6YDLeIzSoeislRzbvZjVhN_4fwlHQ1eRV2JywIyrK2VkHSN1G_mXhfsw9rr5pjpcRMkBw8XQikSmlV_YyLkq0erX_95FVU8qN9C_0cjMUM6OzOxdAIwbQpQVJK5Ln3QXFXS_pzLkYX29yii94TNLr_j4baRW6TYb4oCeCGRQGjOgdXDZoK-71DaocNa4oCJ01gTjWwxLVAO_4ew-OyUym8__P1hpWitkmyk6LXteKnMiYbjiXYLvksbosXNQheY-2TQysdDSKQHJ9oyZBSZ0Kb_66EKgnBzx4JaHriZ-7aDk7gdhZIvykq9JCaIE33aMdnwICY0XRIlOGLFEbsbfBiJVu-qkr0MSIm2-OXbEh5N5L9yaX89_WApMp-EenSJQNwvfIC8V87M9pP-89HONTbscHKnCFqN3SXPnX8cmug-ih0DONVAXxqyA1cTEBmZFAH_KgV6ZCl6tdFpIxA=w2082-h2776-s-no?authuser=0",
+      "https://lh3.googleusercontent.com/pw/ABLVV86_E6Vzl5GCDY6oBSjTQBNHXfpUygErGZx8AkSAwC0XQUgkb2Xzg2Zc_PuirhjBFx8F3le_IB-5JOq4CBjB3y06CewK2fPyqUUBmx_6y0Q7Rlo5eDy5-P1zNXrMXGPupZ_5CQGmW3sLouXhTGJ99lkbkw8FHLaoGESDfukORD1RC799dSvFQgRRVWd35AmdJgL6Kt5WKdBlqarKC8ZMrCBoWEx3eEwkct-nMYRHBZEH4INJnLzIfIzGSC4HNZ_-bWJk6xtQ2wE2VTu293NwKCV7I8iJCFks_hD1VdkavK9QqBCBQiRT1tKIEVb-ObGSrJxvRHp0SA72S-wFEacKOTkAWOUfnrTFzWwKKeT7VIPua-oq4kcwDUK4CXjhGeoi13edYi-AnjSvcNUo_GjP3mHlQZfoMYf9NnvjGlAtRXihVlvHJSf5ScvILjXa3l2QilClJDz55RU4IcqatM3BEC6mB_a3C8bjZIBRNG07txeAn9WqXN1BqwHZiKsSN2S9k__oPG5gpgKj1476zqiIVd_qTlMPzFflLwXEAxhU_eb3wMPaHKA7cenrx1vBu0jYZM47XUOdgZpMOHINiRxkeYigX9NClRG-mESbYxW-sMe5qB1Pi2Ov8I7x3eqRpQ2irmQxHUKcEWm1C_ysxsMoUzFEyDUkwCsqUYMFvnh_AxISC9uBG8TjzGG6lTpabT1Bum6_0pqJG-B1XACDNMgCpDdW3M8VJ4BVgv64NU7Vmd61qjdE-QmgGrlp-AzAFmb2OXHNVdVUrf1AWPIGZxihO8-lBayYDKSRQJrPDxryomuU7WHlM6GqGznCX8ZXe8oHJ3I07sqo0MW23X84HVbOh64ZkM9V739yli_i5yQgrpL2Zmufr6zxiBaUmYCgifn85GuYFAzXpuLVO5YONputmIsaQA=w3702-h2776-s-no?authuser=0",
     ],
     title: "진짜 일본 이자카야 느낌",
     stars: 5,
@@ -89,7 +87,7 @@ const ReadReview = () => {
   return (
     <>
       <Nav />
-      <div className="mb-50">
+      <div className="mb-50 select-none">
         {imageUrlArray.length !== 0 ? (
           <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
         ) : (

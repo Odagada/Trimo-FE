@@ -15,8 +15,6 @@ import "swiper/css/navigation";
 
 const ImagesCarousel = ({ imageArray }: { imageArray: string[] }) => {
   const [isCover, setIsCover] = useState(true);
-  const prevRef = useRef<HTMLDivElement>(null);
-  const nextRef = useRef<HTMLDivElement>(null);
 
   return (
     <>

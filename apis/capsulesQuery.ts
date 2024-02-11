@@ -2,23 +2,23 @@ import { Destination, User } from "@/types/client.types";
 import { Review } from "@/types/server.types";
 import fetcher from "./axios";
 
-export const getReview = (review_id: number) => {
+export const getReview = (reviewId: number) => {
   return {
-    queryKey: ["review", review_id],
-    queryFn: () => fetcher<Review>({ method: "get", url: `/review/${review_id}` }),
+    queryKey: ["review", reviewId],
+    queryFn: () => fetcher<Review>({ method: "get", url: `/review/${reviewId}` }),
   };
 };
 
-export const getSpot = (spot_id: string) => {
+export const getSpot = (spotId: string) => {
   return {
-    queryKey: ["spot", spot_id],
-    queryFn: () => fetcher<Destination>({ method: "get", url: `/review/${spot_id}` }),
+    queryKey: ["spot", spotId],
+    queryFn: () => fetcher<Destination>({ method: "get", url: `/review/${spotId}` }),
   };
 };
 
-export const getUser = (user_id: number) => {
+export const getUser = (userId: number) => {
   return {
-    queryKey: ["user", user_id],
-    queryFn: () => fetcher<User>({ method: "get", url: `/review/${user_id}` }),
+    queryKey: ["user", userId],
+    queryFn: () => fetcher<User>({ method: "get", url: `/review/${userId}` }),
   };
 };
