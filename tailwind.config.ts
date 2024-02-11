@@ -47,6 +47,7 @@ const config: Config = {
       error: "#FF5B56",
     },
     fontSize: {
+      8: "0.8rem",
       12: "1.2rem",
       14: "1.4rem",
       16: "1.6rem",
@@ -58,6 +59,7 @@ const config: Config = {
       45: "4.5rem",
     },
     lineHeight: {
+      12: "1.2rem",
       15: "1.5rem",
       18: "1.8rem",
       21: "2.1rem",

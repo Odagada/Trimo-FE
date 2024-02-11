@@ -11,6 +11,9 @@ import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
 import Emoji from "@/components/atoms/Emoji";
 import { TagWithMonth } from "@/types/client.types";
+import GoogleMapContent from "@/components/molecules/GoogleMapContent";
+import Footer from "@/components/atoms/Footer";
+import Nav from "@/components/molecules/NavigationBar";
 
 // export const getServerSideProps = async (context: GetServerSidePropsContext) => {
 //   const accessToken = getAccessTokenFromCookie(context) as string;
@@ -77,15 +80,18 @@ const ReadReview = () => {
 
   const travelDate = reviewData?.data.date ?? "";
   const createDate = reviewData?.data.createdAt ?? "";
+  const updateDate = reviewData?.data.updatedAt ?? "";
   const imageUrlArray = reviewData?.data.imageUrls ?? [];
 
   const date = calcData(travelDate);
   const { dateString: createAt } = calcData(createDate);
+  const { dateString: updatedAt } = calcData(updateDate);
   const reviewTag = reviewData?.data.tag ?? {};
   const tag: TagWithMonth[] = [date.tagMonth, ...Object.values(reviewTag)];
 
   return (
     <>
+      <Nav />
       <div className="mb-50">
         {imageUrlArray.length !== 0 ? (
           <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
@@ -118,9 +124,9 @@ const ReadReview = () => {
         <p className="text-18 leading-42 text-justify mb-20">{reviewData?.data.content}</p>
 
         {/* map area */}
-        <div className="mb-73"></div>
+        <div className="mb-73">{/* <GoogleMapContent locationQuery={spotData.data.name} /> */}</div>
         {/* tag and createdAt */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-155">
           <div className="flex gap-10">
             {tag?.map((item, index) => {
               return (
@@ -133,6 +139,8 @@ const ReadReview = () => {
           <span className="text-16 leading-15 text-gray-40">{`작성일 : ${createAt}`}</span>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };
