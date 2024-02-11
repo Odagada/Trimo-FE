@@ -1,6 +1,6 @@
 .swiper-button-prev,
 .swiper-button-next {
-  background: url("/icons/carouselArrow.svg") no-repeat;
+  background: url("../public/icons/carouselArrow.svg") no-repeat;
   background-size: 100% auto;
   background-position: center;
 }

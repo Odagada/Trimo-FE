@@ -49,8 +49,8 @@ import Nav from "@/components/molecules/NavigationBar";
 
 const ReadReview = () => {
   // const { data: reviewData } = useQuery(getReview(reviewId));
-
-  // const [{ data: spotData }, { data: userData }] = useQueries([getSpot(spotId), getUser(userId)])
+  // const { data: spotData } = useQuery(getReview(spotId));
+  // const { data: userData } = useQuery(getReview(userId));
 
   const data: Review = {
     userId: 1,
