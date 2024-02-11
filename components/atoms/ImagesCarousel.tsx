@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useState } from "react";
+import arrowButton from "@/public/icons/carouselArrow.svg";
+import { useRef, useState } from "react";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,6 +15,8 @@ import "swiper/css/navigation";
 
 const ImagesCarousel = ({ imageArray }: { imageArray: string[] }) => {
   const [isCover, setIsCover] = useState(true);
+  const prevRef = useRef<HTMLDivElement>(null);
+  const nextRef = useRef<HTMLDivElement>(null);
 
   return (
     <>

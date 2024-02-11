@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import "@/public/font/font.css";
+import "@/styles/ImagesCarousel.css";
 import { HydrationBoundary, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
