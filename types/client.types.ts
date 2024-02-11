@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { ChangeHandler, FieldError } from "react-hook-form";
 
+export type Stars = 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4 | 4.5 | 5;
+
 export type ClickableColor = "primary" | "black" | "gray" | "white" | "white-" | "naver" | "kakao";
 export type ClickableShape = "square" | "capsule";
 export type ClickableSize = "large" | "medium" | "small";
@@ -45,7 +47,6 @@ export type InputWrapperProps = {
 export type Destination = {
   name: string;
   formatted_address: string;
-  types: string[];
   place_id: string;
   location: {
     lat: number;
@@ -59,7 +60,5 @@ export type User = {
   email: string;
   gender: "female" | "male";
   age: number;
-  likeReviewId: number[];
+  // likeReviewId: number[];
 };
-
-export type Stars = 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4 | 4.5 | 5;

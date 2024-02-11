@@ -1,15 +1,15 @@
-import { Stars, Tag, TagCompanion, TagType, TagWeather } from "./client.types";
+import { Stars, Tag } from "./client.types";
 
 export type Review = {
-  review_id: number;
-  user_id: number;
-  spot_id: string;
+  userId: number;
+  spotId: string;
   title: string;
+  content: string;
   date: string;
+  createdAt: string;
+  updatedAt: string;
   imageUrls?: string[];
-  description: string;
   stars?: Stars;
   tag?: Tag;
-  createdAt: string;
-  likeUserId: number[];
+  // likeUserId: number[];
 };
