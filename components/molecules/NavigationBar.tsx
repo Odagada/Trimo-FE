@@ -35,7 +35,7 @@ function Nav({ navStatus = "LoggedIn", hasSearchBar = false }: NavProps) {
 
   return (
     <div className="flex flex-col w-full h-fit mb-66">
-      <div className="flex fixed top-0 w-full h-fit py-21 px-121 items-center justify-between flex-wrap bg-white ">
+      <div className="flex z-50 fixed top-0 w-full h-fit py-21 px-121 items-center justify-between flex-wrap bg-white ">
         <Image src={Logo} alt="logo" width={78} height={20}></Image>
         {hasSearchBar && <SearchBar size="small"></SearchBar>}
         {renderNavbarLeftSide(navStatus)}
