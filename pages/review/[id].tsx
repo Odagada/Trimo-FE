@@ -52,14 +52,11 @@ const ReadReview = () => {
   // const { data: userData } = useQuery(getUser(user_id));
 
   const data: Review = {
-    user_id: 1,
-    review_id: 1,
-    spot_id: "1",
+    userId: 1,
+    spotId: "1",
     date: "2019-09-01 23:19:45",
-    createdAt: "2019-09-01 23:19:45",
-    description:
+    content:
       "건강과 지속 가능성을 추구하는 이들을 위해, 맛과 영양이 가득한 채식 요리 레시피를 소개합니다. 이 글에서는 간단하지만 맛있는 채식 요리 10가지를 선보입니다. 첫 번째 레시피는 아보카도 토스트, 아침 식사로 완벽하며 영양소가 풍부합니다. 두 번째는 콩과 야채를 사용한 푸짐한 채식 칠리, 포만감을 주는 동시에 영양소를 공급합니다. 세 번째는 색다른 맛의 채식 패드타이, 고소한 땅콩 소스로 풍미를 더합니다.",
-    likeUserId: [],
     tag: { companion: "가족", weather: "맑음" },
     imageUrls: [
       "https://lh3.googleusercontent.com/pw/ABLVV85MP1rVOS7jcB4P2nwkg6cBJaXuad95R7nZSCNPHNKmKccYKx6gi7AuREvAHfYKEYOMHFiyGXPt9NfzWqd4a0v8HLomlu_c6Phgu5BsBW4jC6bhEcER3iOAqMWrI5o7kmr9PmreUAHwKr0jFeePksoflK114wqEV-1ihpyL1TSvLFAg_isHG37IN-usAb_prBb5lcJOPNCl_vVModitegt1aiz2Er-M8uASGtEyJ5yBP6btdJYOzNQKiuOCTrKI4RcgUDWJYFsGCjurRKZiwYkmhgutXVXoZpu9LgcaF2r0uqDErt7JCClqP-JE9GwrLTN1HCL6ekAMzJZA_zm_PDIK783DHijDSZ0cf-zO68fYBe94MwbXckQbFuHQq4pBov3_bgjzRoe6cmTOY5_86iL6YBIVuTxvazgwvKhebSK2wS5ubR1HOeGEgeDPqLU7CKGByFomudpNpfg4cFm7wvtT65GTzcKxUsTOfBWrMeAwMNf8e8P8CVVw3GLJWdMYigc0WEjeldchSv_eUMH0LySWkAEB8MRh9W2sgJIKBXN_TYxmeOCj_3mKmJyMLK5JEbok2YPwx6HYd2g7IkxAvQhij_RL4gUrgyVAVG1eiKhiQojIih8Yl-llJRm1GfBa_rnZjXpfag0eqwfxCgWcPM0y73b7MeePd2aXNNJWLi-7SAmxJzLpIR2p2-Vsu9I517mi1RnR6JDiWN5mkmjG4ZK1zMPlYt-alUIC_y4WjyXtLDvcxH_zRpJsbJNFuq2ZrIrfY1o4lDWovjSnN6jKcKk7haO3ztANFhtW8wNdc-Tr58tfLLwKqlYGHQZJam18sUFMa2b8ysfIAFm-hcVKwM8gmpwIZjN8BWxY8xivsMvwk-iRbTrCZwEiUtcd2Y5p-OBMbdq9oR12bAMBfpLUppHKug=w2030-h2706-s-no-gm?authuser=0",
@@ -68,6 +65,8 @@ const ReadReview = () => {
     ],
     title: "여기 완전 추천",
     stars: 5,
+    updatedAt: "2019-09-01 23:19:45",
+    createdAt: "2019-09-01 23:19:45",
   };
 
   const reviewData = { data };
@@ -91,7 +90,7 @@ const ReadReview = () => {
         {imageUrlArray.length !== 0 ? (
           <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
         ) : (
-          <div className="relative bg-gray-40 h-[30vh] w-full flex items-center justify-center">
+          <div className="relative bg-gray-40 h-[40vh] w-full flex items-center justify-center">
             <Image src={noImage} alt="" fill className="object-contain" />
           </div>
         )}
@@ -116,7 +115,7 @@ const ReadReview = () => {
         </div>
 
         {/* text area */}
-        <p className="text-18 leading-42 text-justify mb-20">{reviewData?.data.description}</p>
+        <p className="text-18 leading-42 text-justify mb-20">{reviewData?.data.content}</p>
 
         {/* map area */}
         <div className="mb-73"></div>

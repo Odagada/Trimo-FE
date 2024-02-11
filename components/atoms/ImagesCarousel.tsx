@@ -26,12 +26,12 @@ const ImagesCarousel = ({ imageArray }: { imageArray: string[] }) => {
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper bg-gray-40 h-[30vh] w-full"
+        className="mySwiper bg-gray-40 h-[40vh] w-full"
       >
         {imageArray.map((item, i) => {
           return (
             <SwiperSlide key={i}>
-              <div className="relative h-[30vh] w-full flex items-center justify-center">
+              <div className="relative h-[40vh] w-full flex items-center justify-center">
                 <Image
                   onClick={() => {
                     setIsCover((prevValue) => !prevValue);
