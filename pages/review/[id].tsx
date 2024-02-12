@@ -65,7 +65,7 @@ const ReadReview = () => {
       "https://lh3.googleusercontent.com/pw/ABLVV86_E6Vzl5GCDY6oBSjTQBNHXfpUygErGZx8AkSAwC0XQUgkb2Xzg2Zc_PuirhjBFx8F3le_IB-5JOq4CBjB3y06CewK2fPyqUUBmx_6y0Q7Rlo5eDy5-P1zNXrMXGPupZ_5CQGmW3sLouXhTGJ99lkbkw8FHLaoGESDfukORD1RC799dSvFQgRRVWd35AmdJgL6Kt5WKdBlqarKC8ZMrCBoWEx3eEwkct-nMYRHBZEH4INJnLzIfIzGSC4HNZ_-bWJk6xtQ2wE2VTu293NwKCV7I8iJCFks_hD1VdkavK9QqBCBQiRT1tKIEVb-ObGSrJxvRHp0SA72S-wFEacKOTkAWOUfnrTFzWwKKeT7VIPua-oq4kcwDUK4CXjhGeoi13edYi-AnjSvcNUo_GjP3mHlQZfoMYf9NnvjGlAtRXihVlvHJSf5ScvILjXa3l2QilClJDz55RU4IcqatM3BEC6mB_a3C8bjZIBRNG07txeAn9WqXN1BqwHZiKsSN2S9k__oPG5gpgKj1476zqiIVd_qTlMPzFflLwXEAxhU_eb3wMPaHKA7cenrx1vBu0jYZM47XUOdgZpMOHINiRxkeYigX9NClRG-mESbYxW-sMe5qB1Pi2Ov8I7x3eqRpQ2irmQxHUKcEWm1C_ysxsMoUzFEyDUkwCsqUYMFvnh_AxISC9uBG8TjzGG6lTpabT1Bum6_0pqJG-B1XACDNMgCpDdW3M8VJ4BVgv64NU7Vmd61qjdE-QmgGrlp-AzAFmb2OXHNVdVUrf1AWPIGZxihO8-lBayYDKSRQJrPDxryomuU7WHlM6GqGznCX8ZXe8oHJ3I07sqo0MW23X84HVbOh64ZkM9V739yli_i5yQgrpL2Zmufr6zxiBaUmYCgifn85GuYFAzXpuLVO5YONputmIsaQA=w3702-h2776-s-no?authuser=0",
     ],
     title: "진짜 일본 이자카야 느낌",
-    stars: 5,
+    stars: 2.5,
     updatedAt: "2019-09-01 23:19:45",
     createdAt: "2019-09-01 23:19:45",
   };
@@ -107,7 +107,7 @@ const ReadReview = () => {
         </h2>
 
         {/* subTitle? */}
-        <div className="flex mb-30">
+        <div className="flex mb-30 items-center gap-10">
           <h3 className="text-18 leading-15 text-gray-40">
             {`${spotData?.data.name} · ${date.dateString} · ${date.timeString}`}
             {reviewData?.data.tag?.weather && ` · ${reviewData?.data.tag?.weather}`}
