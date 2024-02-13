@@ -3,13 +3,11 @@ import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Spinner from "@/components/atoms/Spinner";
 import GoogleMapContent from "@/components/molecules/GoogleMapContent";
 
-const DEFAULT_MARKED_LOCATION = "서울역";
-
 interface MapProps {
-  locationQuery?: string; // 검색 할 장소
+  locationID?: string; // Google Location ID to find
 }
 
-function GoogleMap({ locationQuery = DEFAULT_MARKED_LOCATION }: MapProps) {
+function GoogleMap({ locationID }: MapProps) {
   const apiKey = "AIzaSyCXXqxV548C4DL_qcOdDWIIqHvRwnl97rY";
 
   if (!apiKey) {
@@ -24,7 +22,7 @@ function GoogleMap({ locationQuery = DEFAULT_MARKED_LOCATION }: MapProps) {
   return (
     <Wrapper apiKey={apiKey} libraries={["places"]} render={render}>
       {" "}
-      <GoogleMapContent locationQuery={locationQuery} />
+      <GoogleMapContent locationID={locationID ?? ""} />
     </Wrapper>
   );
 }
