@@ -22,7 +22,7 @@ function GoogleMap({ locationID }: MapProps) {
   return (
     <Wrapper apiKey={apiKey} libraries={["places"]} render={render}>
       {" "}
-      <GoogleMapContent locationID={locationID ?? ""} />
+      <GoogleMapContent locationID={locationID || ""} />
     </Wrapper>
   );
 }
