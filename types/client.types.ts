@@ -53,3 +53,8 @@ export type ReviewType = {
   createdAt: string;
   likeUserId: number[];
 };
+
+export type ImageType = {
+  name: string;
+  url: string;
+};
