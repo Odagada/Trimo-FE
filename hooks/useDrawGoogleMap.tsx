@@ -4,7 +4,8 @@ import { MapContentProps } from "@/components/molecules/GoogleMapContent";
 import { addSingleMarkers } from "@/components/atoms/MapMarker";
 
 const DEFAULT_CENTER = { lat: 37.5519, lng: 126.9918 }; // default center 좌표 값 - 대한민국 서울 좌표
-const DEFAULT_ZOOM = 13; // zoom 설정 값
+const DEFAULT_ZOOM = 13; // zoom default 설정 값
+const ZOOM_WITH_NO_PLACE = 4; // zoom value when place info is not given
 
 const useDrawGoogleMap = ({ locationID }: MapContentProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -14,7 +15,7 @@ const useDrawGoogleMap = ({ locationID }: MapContentProps) => {
     if (ref.current) {
       const map = new window.google.maps.Map(ref.current, {
         center: DEFAULT_CENTER,
-        zoom: DEFAULT_ZOOM,
+        zoom: locationID ? DEFAULT_ZOOM : ZOOM_WITH_NO_PLACE,
       });
 
       // Add Single Marker On the Google Map with Place ID
