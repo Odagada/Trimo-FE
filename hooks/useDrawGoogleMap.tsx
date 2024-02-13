@@ -4,7 +4,7 @@ import { MapContentProps } from "@/components/molecules/GoogleMapContent";
 import { addSingleMarkers } from "@/components/atoms/MapMarker";
 
 const DEFAULT_CENTER = { lat: 37.5519, lng: 126.9918 }; // default center 좌표 값 - 대한민국 서울 좌표
-const DEFAULT_ZOOM = 4; // zoom 설정 값
+const DEFAULT_ZOOM = 13; // zoom 설정 값
 
 const useDrawGoogleMap = ({ locationID }: MapContentProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
