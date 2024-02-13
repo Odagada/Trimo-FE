@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ImagesInput from "../../components/ImagesInput";
+import ImagesInput from "@/components/atoms/Inputs/ImagesInput";
 
 const meta = {
   title: "Example/Header",

@@ -1,18 +1,15 @@
+import { ImageType } from "@/types/client.types";
 import Image from "next/image";
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
-
-type Image = {
-  name: string;
-  url: string;
-};
+import DeleteIcon from "../icons/DeleteIcon";
 
 interface Props {
-  imageList?: Image[];
+  imageList?: ImageType[];
 }
 
 export default function ImagesInput({ imageList = [] }: Props) {
   const [isDragging, setIsDragging] = useState(false);
-  const [images, setImages] = useState<Image[]>(imageList);
+  const [images, setImages] = useState<ImageType[]>(imageList);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFiles = (files: FileList | null) => {
@@ -57,7 +54,7 @@ export default function ImagesInput({ imageList = [] }: Props) {
   };
 
   return (
-    <div className="w-[400px]">
+    <div className="w-full middle-text">
       <input
         type="file"
         id="imageUpload"
@@ -69,8 +66,8 @@ export default function ImagesInput({ imageList = [] }: Props) {
       />
       <button
         role="button"
-        className={`w-full h-20 flex justify-center items-center border-[2px] rounded-lg border-gray-400 border-dashed ${
-          isDragging && "bg-slate-300"
+        className={`w-full h-131 flex justify-center items-center border rounded-10 border-black border-dashed ${
+          isDragging && "bg-gray-30"
         }`}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
@@ -84,14 +81,14 @@ export default function ImagesInput({ imageList = [] }: Props) {
           {isDragging ? "이곳에 드롭해주세요" : "클릭 혹은 파일을 드롭해주세요"}
         </div>
       </button>
-      <div className="grid w-full grid-cols-5 gap-4 mt-4">
+      <div className="grid w-full grid-cols-10 gap-8 mt-8">
         {images.map((el, idx) => (
-          <div className="relative overflow-hidden rounded-lg aspect-square" key={idx}>
+          <div className="aspect-square relative overflow-hidden rounded-lg" key={idx}>
             <button
-              className="h-4 w-4 absolute right-1 top-1 z-[2] rounded-full bg-gray-900 flex items-center justify-center cursor-pointer text-white"
+              className="h-24 w-24 absolute right-0 top-0 z-10 rounded-full bg-gray-900 flex items-center justify-center cursor-pointer text-white"
               onClick={() => deleteFile(idx)}
             >
-              &times;
+              <DeleteIcon />
             </button>
             <Image src={el.url} alt={el.name} sizes="75px" fill style={{ objectFit: "cover" }} />
           </div>
