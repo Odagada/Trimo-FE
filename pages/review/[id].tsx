@@ -1,9 +1,8 @@
-import { getReview, getSpot, getUser } from "@/apis/capsulesQuery";
+import { getReview, getSpot } from "@/apis/capsulesQuery";
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import RateStars from "@/components/atoms/RateStars";
 import calcData from "@/utils/calcDate";
-import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
@@ -15,70 +14,49 @@ import Nav from "@/components/molecules/NavigationBar";
 import GoogleMap from "@/components/organisms/GoogleMap";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const accessToken = getAccessTokenFromCookie(context) as string;
+  // const accessToken = getAccessTokenFromCookie(context) as string;
   const reviewId = Number(context.params?.id);
-
-  if (!accessToken) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/signin",
-      },
-    };
-  }
 
   const queryClient = new QueryClient();
 
   const { data: reviewData } = await queryClient.fetchQuery(getReview(reviewId));
 
-  const spotId = reviewData.spotId;
-  const userId = reviewData.userId;
+  if (!reviewData) {
+    return {
+      redirect: {
+        notFound: true,
+      },
+    };
+  }
 
-  if (spotId && userId) {
+  const spotId = reviewData.spotId;
+
+  if (spotId) {
     await queryClient.prefetchQuery(getSpot(spotId));
-    await queryClient.prefetchQuery(getUser(userId));
   }
 
   return {
-    props: { reviewId, spotId, userId, dehydratedState: dehydrate(queryClient) },
+    props: { reviewId, spotId, dehydratedState: dehydrate(queryClient) },
   };
 };
 
-const ReadReview = ({ reviewId, spotId, userId }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { data: reviewData } = useQuery(getReview(reviewId));
   const { data: spotData } = useQuery(getSpot(spotId));
-  const { data: userData } = useQuery(getUser(userId));
 
-  // const data: Review = {
-  //   userId: 1,
-  //   spotId: "1",
-  //   date: "2019-09-01 23:19:45",
-  //   content:
-  //     "비는 내리는데 원래 가려던 곳은 들어가려면 1시간 넘게 줄을 서야 한다고 해서 무작정 길을 돌아다니다가 발견한 곳이다. 일본은 실내 흡연이 아직 허용되는 건지 문을 열자마자 너구리 소굴마냥 담배 연기 + 안주 굽는 화로 연기로 매캐했다. 실제로 바에 앉은 손님 셋 중 둘은 담배 피고 있었고. 그래서 다른데 찾아볼까 하다가 일단 문 열고 들어왔으니 앉았는데, 진짜 지금까지 일본 여행하면서 가장 좋았다. 진짜 찐 동네사람들만 오는 이자카야 느낌쓰. 영어 메뉴판도 준비되어있기는 하지만, 간단한 일본어 회화 정도 할 줄 알면 훨씬 재미있게 즐길 수 있는 곳이라고 생각된다. 주력 안주는 꼬치구이지만 다른 안주들도 맛있고, 아츠캉(따듯하게 데운 사케)과 레몬 사와가 개인적으로는 추천하는 주류! 크게 중요하지는 않지만, 이 가게가 <와카코와 술>이라는 일본 드라마에도 나왔다고 한다.",
-  //   tag: { companion: "가족", weather: "우천" },
-  //   imageUrls: [
-  //     "https://lh3.googleusercontent.com/pw/ABLVV84OW647gIEza78e_npWU3dtCF_ckv-R6yPXMb6C4Z0fK0hq9RLTEPwA87ooTH7DZ6oJN-iJpu3ni9pW0cWpEGJD5fRTmWU8KwAUn7gxgMOD-Hu1RWVsgHg3QcK_B4yv3fYGlYPqVzdL8YrqLtxikLQOrR0B9uGqQq_2m0iHNFaB8VWi_Ltf55aaLc15oEy27Vx748LIhOeKUyjM2Rr1JzgNSWsw3h21mFj-nTBiC-SKxZalZRh0EXYGFz9o9wEQUO7QWj0cS5VL6tBuGaUW4WpQhMwPIbOjA5S_fvWirp6d1apdvruhDERufZ5yRIMfFpfNzZDX8S191vdzEZ9p_xJCjr7e4QRRFezGUwY93bKoV1vHktupMvr0K6HQkrg5-EkoUizV9MuwoaUDkacA1fW0DR49UxVmTUABXnhuLqtaoMM7dmdB39Jep-DpnaKLBzKXFgHNuUgtDcq6KVWf5_fu1TmlPeC49YgxfOmxJ-7Jj2YfhfTRVCbuJBA2FTtSkR2wZnyf8GeWP44Qz8D3SY5hHgDmPn--f7SpPFb_38dZDjroHknxeXdXhUWA2vLVx2Zi-OjYxOM4pVovySFthEThvtFlbt_ASYpQNvsWiXi-VczkUUXLtkPp_MlPX-XtIIPdwsVwT0SDUl4gUnWoTZjfmjGLUjfzCR4x9c7nvO0waPTUfmLWEEOv3SyE_xgRX8Y7ba8cCpOFjAUjouJrUq0D2mxr5epKJ6wLUF2sr47YttVpsKBxj8K5f0RSGQGu1wbyP8mrHwwOSo1pDkQsGOFGY0Z0alnz_a-r09Tqlkpi-n_DJr8uCdcc0sQ75XDNIaQjsuZHIjCI3USFS9Yc-6Z2vjBreSb4gJ8gh0ckgFcTL1bPaX7odnAkzaSz1EqQVjTOzJy-P4peijj0DwXfO4i18w=w2082-h2776-s-no?authuser=0",
-  //     "https://lh3.googleusercontent.com/pw/ABLVV85WRFPHSFHf8CLtyY1GaECQp711zTbVOsIts1KTNQjvG5KMIp3Nt3XbsNd2WDMFUcP3KLBpDy13ZUhamWyjDe4e7drV40mTX3njpYj5qQHwU91Fh2KjFJrV237bVf8J9uagTl9XTC53K0of5k-xgUEM8B6rQjFBlVvKvewwEB9hO9aWMNtDBFxste7xs-2FUoiEY7XO0arr7yIvsZYjDzUbpwy1zkNLz_JVa8Dmxqsy23-LuQun1HmFSuLAhIW2fiHvi38ca_XgVHhkmpEl-cJqlqqeAEsOfuT0qUNIfPv2AKSZDouJngOxz5POc-h1FP3b2ktVuhqMS6z8s9ShyQAi47pHabKtnbKlMkVHRU8KHGr1ScUXNFkC0WR2fSvlvRHfNIg2NSM6WXxW1QAJw1P3fFSIq2lyTXPAxtHEFZt7tm2sutf7wUB722w96SgShOP2m06q6YDLeIzSoeislRzbvZjVhN_4fwlHQ1eRV2JywIyrK2VkHSN1G_mXhfsw9rr5pjpcRMkBw8XQikSmlV_YyLkq0erX_95FVU8qN9C_0cjMUM6OzOxdAIwbQpQVJK5Ln3QXFXS_pzLkYX29yii94TNLr_j4baRW6TYb4oCeCGRQGjOgdXDZoK-71DaocNa4oCJ01gTjWwxLVAO_4ew-OyUym8__P1hpWitkmyk6LXteKnMiYbjiXYLvksbosXNQheY-2TQysdDSKQHJ9oyZBSZ0Kb_66EKgnBzx4JaHriZ-7aDk7gdhZIvykq9JCaIE33aMdnwICY0XRIlOGLFEbsbfBiJVu-qkr0MSIm2-OXbEh5N5L9yaX89_WApMp-EenSJQNwvfIC8V87M9pP-89HONTbscHKnCFqN3SXPnX8cmug-ih0DONVAXxqyA1cTEBmZFAH_KgV6ZCl6tdFpIxA=w2082-h2776-s-no?authuser=0",
-  //     "https://lh3.googleusercontent.com/pw/ABLVV86_E6Vzl5GCDY6oBSjTQBNHXfpUygErGZx8AkSAwC0XQUgkb2Xzg2Zc_PuirhjBFx8F3le_IB-5JOq4CBjB3y06CewK2fPyqUUBmx_6y0Q7Rlo5eDy5-P1zNXrMXGPupZ_5CQGmW3sLouXhTGJ99lkbkw8FHLaoGESDfukORD1RC799dSvFQgRRVWd35AmdJgL6Kt5WKdBlqarKC8ZMrCBoWEx3eEwkct-nMYRHBZEH4INJnLzIfIzGSC4HNZ_-bWJk6xtQ2wE2VTu293NwKCV7I8iJCFks_hD1VdkavK9QqBCBQiRT1tKIEVb-ObGSrJxvRHp0SA72S-wFEacKOTkAWOUfnrTFzWwKKeT7VIPua-oq4kcwDUK4CXjhGeoi13edYi-AnjSvcNUo_GjP3mHlQZfoMYf9NnvjGlAtRXihVlvHJSf5ScvILjXa3l2QilClJDz55RU4IcqatM3BEC6mB_a3C8bjZIBRNG07txeAn9WqXN1BqwHZiKsSN2S9k__oPG5gpgKj1476zqiIVd_qTlMPzFflLwXEAxhU_eb3wMPaHKA7cenrx1vBu0jYZM47XUOdgZpMOHINiRxkeYigX9NClRG-mESbYxW-sMe5qB1Pi2Ov8I7x3eqRpQ2irmQxHUKcEWm1C_ysxsMoUzFEyDUkwCsqUYMFvnh_AxISC9uBG8TjzGG6lTpabT1Bum6_0pqJG-B1XACDNMgCpDdW3M8VJ4BVgv64NU7Vmd61qjdE-QmgGrlp-AzAFmb2OXHNVdVUrf1AWPIGZxihO8-lBayYDKSRQJrPDxryomuU7WHlM6GqGznCX8ZXe8oHJ3I07sqo0MW23X84HVbOh64ZkM9V739yli_i5yQgrpL2Zmufr6zxiBaUmYCgifn85GuYFAzXpuLVO5YONputmIsaQA=w3702-h2776-s-no?authuser=0",
-  //   ],
-  //   title: "진짜 일본 이자카야 느낌",
-  //   stars: 2.5,
-  //   updatedAt: "2019-09-01 23:19:45",
-  //   createdAt: "2019-09-01 23:19:45",
-  // };
-  // const reviewData = { data };
-  // const userData = { data: { nickName: "본롸" } };
-
-  // const spotData = { data: { name: "보루가", placeId: "ChIJLREe-daMGGARptcB4hO92JQ" } };
-
-  const travelDate = reviewData?.data.date ?? "";
+  const travelDate = reviewData?.data.visitingTime ?? "";
   const createDate = reviewData?.data.createdAt ?? "";
-  const modifieDate = reviewData?.data.modifiedAt ?? "";
-  const imageUrlArray = reviewData?.data.imageUrls ?? [];
+  // const modifieDate = reviewData?.data.modifiedAt ?? "";
+  // const imageUrlArray = reviewData?.data.imageUrls ?? [];
+
+  const imageUrlArray: string[] = [
+    "https://lh3.googleusercontent.com/pw/ABLVV84HXR_w1HBL4jvTkG4ffIV_gK-dFtNYR-T0hv5lM2qI_UtXTbbdX_ImF9ehVU3ekqcqFn_G2B2ZCYPFaE7PW_vg5bzLdZ57J_qdoW1eFh8FlrBwxayz9Z2hYqi6Khb3jPFoiw4P-CCYTI0QnjY0W8JtiKTIr4WjGoUDmuK1nP7Icv-ydIPkj3l2x-zEWTMkfZtDcuMfzKoH5iJMbC2SIapusoDLT0FfRrfRNdFpDPTs2vo5Yo_taRZM2BZ29I3DZjWCDqZ98DkFxCxENg1kdf0aW0A-5B2OaqkhR1PwsLhNoThjN1HBfJKbeaA0rOh9ProReqH447552qjeY5HYc30psrhm-uivpcNxd_1UOF6BblY4SZBEjOyXLGoVMl_CJE4d16d29IWYGr9aMYp5WIQGfWuDmSwCM28Bcn2qymdCI7z__m6u8EBYo9oV6-ctBV75U6kP9TzYvV4KKqkjX_sUQueoipoyrGgu-3L0R2bA_eXXdCo4BaI4V3YnD3rNA_8bCPAlFeckrtw0qlTygorDUQS-MatFTRnw9nYFR6pucpMItIS5EY8GvIIdylNeQLnwNoOQU9L2Yn6juzd0hJURkemO72JzXBEYNa2Z4gTTe332wI5Tei-_wEDsuFRnBJ6JxGtZKPCZoNotqdYETHYPOnAemW7Lg-vOURVas5dR5jTXmh0LvZOI_TFesavhEwwqwi7CyvaRwKL-HIMh96zNA6nX-I92np5ekaanCU1C3LJUIQnV34XU4LLf9TTquT-nb3Jkd8c72yca6yBAbrxpyo3xHnNsPHmdQlL3taW0orHWHztUVq2PxldU3y4d0mG0gnaIhaDxxx8DjHegascbPSChfpnWyCNddsaeNYQr3Ydh-A-Bvr4QvqZYWsVg_U_k4aGz5Eb-iizRjK7YKe_FRw=w2082-h2776-s-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/ABLVV84Q_tN_ps9nzYVmJ9TnLK_dME5ua1hUAWrRgTtl9qt-dXB6hMEWwpoBCqEeQF73d3EKCbuxSVmqhlJ55pK3KWUBzukRbQW2Pz03KMC9Q1sybNzFiW21d_d1rcTVz2N_q3a6FF7w7JVZ4OoDAer_-oTrP6ga4hlHXypDUzyebKto0ayATI0p6t4rrjeUXR1d0OUZnHfrJyQERIpy89WCfXO-CuQJQo9y9_1YfVhQt41Z-FE2ZYnFKkdY0pJpBBUlGnX_pF57yPlKO0CSBip490leYH_n4xVJ3AnhivIqkysEr-PEPvCXspNO65C4bqS0MHVKEk0bLRkP-XgdRU-6qvIGIlW6O0YBFCVAAtmphgCKc-ZsCyUMjFeBpRBnXgCBc9YATuK0-GlAg-eSS_oafhlreK4ds_thPritrmS3pQH9j3EH0otH67FHtw8BsiO0XWxmATTXM1KMFKR5e7MAQR6M-uYiZY-4yo6JZm_OsEbcSaUQb3e32G5VGXXli68GZevZTcrv-aEgvA9AFoLymdIbZ9RxRQg8DyLEqGnZd1b_W8kbaFB-W5rDGWC-8tR9lzIEJOAhTv0aF4TGOPGC-w_ck7k2BlG2Acl79p3EWz0tLmLc2LjzgrbF7fnmHfkoC7kcasnC4bqbPdmWYqAyWU5mr7YejXirnP1lpOFxQGBLYnc1-xwzfh1s5qcQ99GWYzIRbxB9no3X31uhmV-vnjTA7tubxMLwSWlwWem-e2c8tdiwdaSwclWHSaIoqRK4hluEPIcIth7DtxcxfbmAbaX-gTFNSZmYGUB0u49m6DD0pMZTZgZz45gZ0AYqNbDzakd0765dtYseA1581QACR14wUkvLTEPr6giXtd9rejNIOc1QtrwzknEX7_eurJlhgBIZOiaYDRqHEEN4B55xz0S0zw=w2082-h2776-s-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/ABLVV84Z1RS-9TLyDpgl-2ZDwiPX9Jj2d8krFbV5fUnPkQISSDdOD--ZJvqNpwLUHU7-btSeWx3giIwqt0PvjhtOwxANi0EagNGHnja0YCjgrsitVTVXyNmWy6Y1weey0t5T6bjfFJ1x3vEkwU5rUZNEmAsL1A5MNZrrDnIhw_OlUbyO29cXdoaiFVIp5q6AR4v9SQgIJLAkiXYySlgZAU1KC_dXHs8IG13vnXrh6aXyEQAPBqb9S5RYQy5k3a2FE0oBpMOM9oigAzc1Az22MCsDKAM2e30dQou4fW336NgtFG110fe9GfAxP9HjBId7kYa-OE1G5_HSv8FmVKl8Ew2uCyvcJ_uHCBnIqKMp_tT8GuhVN3du589soLV8fX_ciYi9ykr1cmxTtyvAFcQeLEHXSMPHU8GbTQALLCY8-sm0nma9O85daLIVG37ZYpribNY2WZNPcXEWS3O7pMDvJXxbwIUZMTTbMp2O8JYD0bLNm9n-y7txruYlkVzwbY43RqbkGX8v2Mrwy_VPL_IERtyQxD1kkJhPQyyVLjKqUz1l8i38B6Gl8ETz0_oAShW9rN8X8Mn-nFEDtFY9ynk7B_UUR03i8YU0sS-dN2CvWU4kUreXHcrF3pelvDJhYCIUMAyEy2ChrtERLCR4iBZW-K4K0q6T6H79SYEhrMapQu46e80jkCyf0_O7DUtL3yViM6IRrYdL8eySatkDvPfTxUXeUCLflXtPjYWngacRUYHaBDSxdoDTbs3tEbNr9X_TxrFnsG0boAO3c0x-OEJBf78pnyjVH6o0sEfpEgi7iIWJ5PmRQwEKkfNL_p6QONeZx8abkc8Y4CsoEnQjfCo37vHJUUi08pMoGoBF7C9Sgi5mVK5ny-I95WYdfZsJ-xBxjjhc74vjTKxteNSJWc9IrNHWpiDD=w3702-h2776-s-no?authuser=0",
+  ];
 
   const date = calcData(travelDate);
   const { dateString: createAt } = calcData(createDate);
-  // const { dateString: modifiedAt } = calcData(modifieDate);
   const reviewTag = reviewData?.data.tagValues ?? {};
   const tag: TagWithMonth[] = [date.tagMonth, ...Object.values(reviewTag)];
 
@@ -101,7 +79,7 @@ const ReadReview = ({ reviewId, spotId, userId }: InferGetServerSidePropsType<ty
         <h2 className="mb-12 flex gap-15 items-baseline">
           <span className="heading1">{reviewData?.data.title}</span>
 
-          <span className="text-18 text-medium leading-15">{`by ${userData?.data.nickName}`}</span>
+          <span className="text-18 text-medium leading-15">{`by ${reviewData?.data.nickName ?? "본롸"}`}</span>
         </h2>
 
         {/* subTitle? */}

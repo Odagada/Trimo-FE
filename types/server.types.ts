@@ -5,11 +5,11 @@ export type Review = {
   title: string;
   content: string;
   tagValues?: Tag;
-  userId: number;
+  nickName: string;
   spotId: string;
   createdAt: string;
   modifiedAt: string;
-  date: string;
+  visitingTime: string;
   imageUrls?: string[];
   stars?: Stars;
 };
