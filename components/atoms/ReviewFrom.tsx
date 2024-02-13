@@ -44,7 +44,7 @@ export default function ReviewFrom() {
   // console.log(date.toUTCString());
 
   function postForm(data: SubmitHandler<FromData>) {
-    console.log(data);
+    // console.log(data);
   }
 
   return (
