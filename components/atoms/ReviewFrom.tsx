@@ -1,9 +1,9 @@
 import Clickable from "./Clickable";
 import DatePicker from "./DatePicker";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import TextArea from "./Inputs/TextArea";
 import InputWrapper from "./Inputs/InputWapper";
-import ReactGoogleAutocomplete, { usePlacesWidget } from "react-google-autocomplete";
+import ReactGoogleAutocomplete from "react-google-autocomplete";
 import TagRadioButton from "./TagRadioButton";
 import { useState } from "react";
 
@@ -16,6 +16,14 @@ interface Destination {
     lat: number;
     lng: number;
   };
+}
+
+interface FromData {
+  description: string;
+  people: string;
+  title: string;
+  type: string;
+  weather: string;
 }
 
 export default function ReviewFrom() {
@@ -33,6 +41,11 @@ export default function ReviewFrom() {
       location: { lat: geometry.location.lat(), lng: geometry.location.lng() },
     });
   }
+  // console.log(date.toUTCString());
+
+  function postForm(data: SubmitHandler<FromData>) {
+    console.log(data);
+  }
 
   return (
     <div className="px-120 pt-96 pb-60 flex flex-col gap-28">
@@ -48,7 +61,7 @@ export default function ReviewFrom() {
           className="focus:outline-none w-full"
         />
       </div>
-      <form className="flex flex-col gap-28" onSubmit={}>
+      <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
         <div className="heading4">
           <input
             {...register("title")}
@@ -122,7 +135,7 @@ export default function ReviewFrom() {
           </div>
         </div>
         <div className="flex gap-16 m-auto ">
-          <button className="w-210 h-46" type="submit">
+          <button className="w-210 h-46" type="button">
             <Clickable color="white" size="medium">
               취소
             </Clickable>

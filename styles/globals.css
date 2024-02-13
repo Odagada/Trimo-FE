@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+:root {
   font-size: 62.5%;
   box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
 @layer utilities {
@@ -37,6 +42,9 @@
   }
   .p-text {
     @apply leading-24;
+  }
+  .middle-text {
+    @apply text-14 leading-21;
   }
   .small-text {
     @apply text-12 leading-18;
