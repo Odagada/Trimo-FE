@@ -60,10 +60,11 @@ export type User = {
   email: string;
   gender: "female" | "male";
   age: number;
-  // likeReviewId: number[];
 };
 
 export type ImageType = {
   name: string;
   url: string;
 };
+
+export type OrderValue = "인기순" | "평점순" | "최신순";
