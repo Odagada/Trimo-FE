@@ -15,4 +15,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {};
 
-export const ReadOnly: Story = { args: { readOnly: true, defaultRate: 3 } };
+export const DefaultRate: Story = { args: { defaultRate: 3 } };

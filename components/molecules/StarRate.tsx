@@ -35,7 +35,6 @@ export default function StarRate({ readOnly = false, defaultRate = 0 }: Props) {
           onClick={handleClick}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
-          readOnly={readOnly}
         />
       ))}
     </div>
