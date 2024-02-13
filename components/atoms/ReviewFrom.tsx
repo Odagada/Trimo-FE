@@ -48,7 +48,7 @@ export default function ReviewFrom() {
           className="focus:outline-none w-full"
         />
       </div>
-      <form className="flex flex-col gap-28" onSubmit={handleSubmit((data) => console.log(data))}>
+      <form className="flex flex-col gap-28" onSubmit={}>
         <div className="heading4">
           <input
             {...register("title")}
