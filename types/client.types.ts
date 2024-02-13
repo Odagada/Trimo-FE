@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { ChangeHandler, FieldError } from "react-hook-form";
 
+export type Stars = 0.5 | 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4 | 4.5 | 5;
+
 export type ClickableColor = "primary" | "black" | "gray" | "white" | "white-" | "naver" | "kakao";
 export type ClickableShape = "square" | "capsule";
 export type ClickableSize = "large" | "medium" | "small";
@@ -37,3 +39,24 @@ export type InputWrapperProps = {
   children: ReactNode;
   className?: string;
 } & WrapperProps;
+
+export type ReviewType = {
+  reviewId: number;
+  title: string;
+  author: string;
+  imageUrls: string[];
+  tag: [TagMonth, TagType, TagCompanion, TagWeather];
+  rate: number;
+  date: string;
+  destination: string;
+  description: string;
+  createdAt: string;
+  likeUserId: number[];
+};
+
+export type ImageType = {
+  name: string;
+  url: string;
+};
+
+export type OrderValue = "인기순" | "평점순" | "최신순";
