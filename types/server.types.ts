@@ -1,15 +1,15 @@
 import { Stars, Tag } from "./client.types";
 
 export type Review = {
-  userId: number;
-  spotId: string;
+  reviewId: number;
   title: string;
   content: string;
-  date: string;
+  tagValues?: Tag;
+  userId: number;
+  spotId: string;
   createdAt: string;
-  updatedAt: string;
+  modifiedAt: string;
+  date: string;
   imageUrls?: string[];
   stars?: Stars;
-  tag?: Tag;
-  // likeUserId: number[];
 };
