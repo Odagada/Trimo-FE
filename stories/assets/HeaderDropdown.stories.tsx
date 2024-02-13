@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import OrderDropdown from "@/components/atoms/Dropdowns/OrderDropdown";
+import HeaderDropdown from "@/components/atoms/Dropdowns/HeaderDropdown";
 
 const meta = {
-  title: "Dropdown/OrderDropdown",
-  component: OrderDropdown,
+  title: "Dropdown/HeaderDropdown",
+  component: HeaderDropdown,
   parameters: {
     layout: "fullscreen",
   },
-} satisfies Meta<typeof OrderDropdown>;
+} satisfies Meta<typeof HeaderDropdown>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
