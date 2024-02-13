@@ -16,6 +16,10 @@ export type Tag = TagWeather | TagMonth | TagType | TagCompanion;
 
 export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
 
+export interface Children {
+  children: ReactNode;
+}
+
 export type InputProps = {
   id: string;
   type?: string;
