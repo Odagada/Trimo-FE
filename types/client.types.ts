@@ -12,6 +12,8 @@ export type TagCompanion = "가족" | "친구" | "연인" | "혼자";
 export type TagWithoutMonth = TagMonth | TagType | TagCompanion;
 export type Tag = TagWeather | TagMonth | TagType | TagCompanion;
 
+export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
+
 export type InputProps = {
   id: string;
   type?: string;
