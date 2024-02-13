@@ -1,17 +1,28 @@
 /* eslint-disable no-undef */
 
-// 구글 지도에 마커 컴포넌트 표시하기
 export const addSingleMarkers = ({
-  locations,
+  locationID,
   map,
 }: {
-  locations: ReadonlyArray<google.maps.LatLngLiteral>;
+  locationID: string;
   map: google.maps.Map | null | undefined;
-}) =>
-  locations?.map(
-    (position) =>
-      new google.maps.Marker({
-        position,
-        map,
-      })
-  );
+}) => {
+  const service = new google.maps.places.PlacesService(map!);
+
+  // Add Marker on Google Map Component
+  service.getDetails({ placeId: locationID }, (result, status) => {
+    map?.setCenter(result?.geometry?.location!);
+    const marker = new google.maps.Marker({
+      map,
+      draggable: true,
+      clickable: true,
+      position: result?.geometry?.location,
+    });
+
+    // Evoke Zoom Effect when Marker Clicked
+    google.maps.event.addListener(marker, "click", () => {
+      map?.setZoom(18);
+      map?.setCenter(marker.getPosition()!);
+    });
+  });
+};
