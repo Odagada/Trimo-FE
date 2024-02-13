@@ -37,3 +37,8 @@ export type InputWrapperProps = {
   children: ReactNode;
   className?: string;
 } & WrapperProps;
+
+export type ImageType = {
+  name: string;
+  url: string;
+};
