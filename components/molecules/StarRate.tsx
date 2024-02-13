@@ -1,14 +1,15 @@
 import { useState } from "react";
 import Star from "@/components/atoms/Star";
+import { Stars } from "@/types/client.types";
 
 interface Props {
   readOnly?: boolean;
   defaultRate?: number;
 }
 
-const stars = [1, 2, 3, 4, 5];
+const stars: Stars[] = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 
-export default function StarRate({ readOnly = false, defaultRate = 0 }: Props) {
+export default function StarRate({ defaultRate = 0 }: Props) {
   const [rate, setRate] = useState(defaultRate);
   const [select, setSelect] = useState(0);
 
@@ -26,7 +27,7 @@ export default function StarRate({ readOnly = false, defaultRate = 0 }: Props) {
   };
 
   return (
-    <div className="flex">
+    <div className="flex relative">
       {stars.map((el) => (
         <Star
           isChecked={el > rate}
@@ -35,6 +36,7 @@ export default function StarRate({ readOnly = false, defaultRate = 0 }: Props) {
           onClick={handleClick}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
+          halfStar={el % 1 !== 0}
         />
       ))}
     </div>
