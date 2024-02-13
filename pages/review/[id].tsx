@@ -11,9 +11,9 @@ import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
 import Emoji from "@/components/atoms/Emoji";
 import { TagWithMonth } from "@/types/client.types";
-import GoogleMapContent from "@/components/molecules/GoogleMapContent";
 import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
+import GoogleMap from "@/components/organisms/GoogleMap";
 
 // export const getServerSideProps = async (context: GetServerSidePropsContext) => {
 //   const accessToken = getAccessTokenFromCookie(context) as string;
@@ -119,7 +119,9 @@ const ReadReview = () => {
         <p className="text-18 leading-42 text-justify mb-20 whitespace-pre-wrap">{reviewData?.data.content}</p>
 
         {/* map area */}
-        <div className="mb-73">{/* <GoogleMapContent locationQuery={spotData.data.name} /> */}</div>
+        <div className="mb-73">
+          <GoogleMap locationQuery={spotData.data.name} />
+        </div>
         {/* tag and createdAt */}
         <div className="flex justify-between items-center mb-155">
           <div className="flex gap-10">
