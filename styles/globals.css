@@ -49,4 +49,7 @@ body {
   .small-text {
     @apply text-12 leading-18;
   }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
 }
