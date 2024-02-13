@@ -71,7 +71,8 @@ const ReadReview = () => {
   };
   const reviewData = { data };
   const userData = { data: { nickName: "본롸" } };
-  const spotData = { data: { name: "보루가" } };
+
+  const spotData = { data: { name: "보루가", placeId: "ChIJLREe-daMGGARptcB4hO92JQ" } };
 
   const travelDate = reviewData?.data.date ?? "";
   const createDate = reviewData?.data.createdAt ?? "";
