@@ -62,6 +62,14 @@ export type User = {
   age: number;
 };
 
+export type Review = {
+  title: string;
+  content: string;
+  tagValues?: Tag;
+  visitingTime: string;
+  stars?: Stars;
+};
+
 export type ImageType = {
   name: string;
   url: string;
