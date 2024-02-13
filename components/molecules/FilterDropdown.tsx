@@ -30,9 +30,11 @@ export default function FilterDropdown() {
               </button>
             </div>
             <div className="flex justify-end">
-              <Clickable shape="capsule" size="small">
-                <div className="w-70">확인</div>
-              </Clickable>
+              <button>
+                <Clickable shape="capsule" size="small">
+                  <div className="w-70">확인</div>
+                </Clickable>
+              </button>
             </div>
           </div>
         )}
