@@ -62,3 +62,8 @@ export type User = {
   age: number;
   // likeReviewId: number[];
 };
+
+export type ImageType = {
+  name: string;
+  url: string;
+};
