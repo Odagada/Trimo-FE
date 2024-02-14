@@ -1,25 +1,38 @@
 import Clickable from "./Clickable";
 import DatePicker from "./DatePicker";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import TextArea from "./Inputs/TextArea";
 import InputWrapper from "./Inputs/InputWapper";
 import ReactGoogleAutocomplete from "react-google-autocomplete";
 import TagRadioButton from "./TagRadioButton";
 import { useState } from "react";
 import StarRate from "../molecules/StarRate";
+import fetcher from "@/apis/axios";
 
 interface Destination {
-  name: string | undefined;
-  formatted_address: string | undefined;
-  place_id: string | undefined;
+  placeId: string;
+  displayName: string;
+  formattedAddress: string;
   location: {
-    lat: number;
-    lng: number;
+    latitude: string;
+    longitude: string;
   };
 }
 
+interface Review {
+  title: string;
+  content: string;
+  tagValues?: {
+    weather?: string;
+    companion?: string;
+    placeType?: string;
+  };
+  visitingTime: string;
+  starRank?: number;
+}
+
 export default function ReviewFrom() {
-  const defaultValues = {
+  const defaultValues: Review = {
     title: "",
     content: "",
     tagValues: {
@@ -46,15 +59,17 @@ export default function ReviewFrom() {
 
   function handlePlace(place: google.maps.places.PlaceResult) {
     const { name, place_id, formatted_address, geometry } = place;
+    const latitude = geometry?.location.lat().toString() as string;
+    const longitude = geometry?.location.lng().toString() as string;
     setDestination({
-      name,
-      place_id,
-      formatted_address,
-      location: { lat: geometry.location.lat(), lng: geometry.location.lng() },
+      displayName: name!,
+      placeId: place_id!,
+      formattedAddress: formatted_address!,
+      location: { latitude, longitude },
     });
   }
 
-  function postForm(data) {
+  function postForm(data: Review) {
     console.log(data);
   }
 
@@ -70,7 +85,6 @@ export default function ReviewFrom() {
           }}
           placeholder="어느곳을 다녀오셨나요?"
           className="focus:outline-none w-full"
-          onBlur={() => console.log("벗어남")}
         />
       </div>
       <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
@@ -97,7 +111,7 @@ export default function ReviewFrom() {
           </InputWrapper>
           {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
         </div>
-        <div>이미지 삽입 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+        <div>이미지 컴포넌트 삽입 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
         <div className="grid grid-cols-2 gap-110">
           <div className="heading6 flex flex-col gap-10">
             방문시간
