@@ -6,11 +6,11 @@ import InputWrapper from "./Inputs/InputWapper";
 import ReactGoogleAutocomplete from "react-google-autocomplete";
 import TagRadioButton from "./TagRadioButton";
 import { useState } from "react";
+import StarRate from "../molecules/StarRate";
 
 interface Destination {
   name: string | undefined;
   formatted_address: string | undefined;
-  types: string[] | undefined;
   place_id: string | undefined;
   location: {
     lat: number;
@@ -18,33 +18,44 @@ interface Destination {
   };
 }
 
-interface FromData {
-  description: string;
-  people: string;
-  title: string;
-  type: string;
-  weather: string;
-}
-
 export default function ReviewFrom() {
-  const { register, handleSubmit } = useForm();
-  const [date, setDate] = useState(new Date());
+  const defaultValues = {
+    title: "",
+    content: "",
+    tagValues: {
+      weather: "",
+      companion: "",
+      placeType: "",
+    },
+    visitingTime: `${new Date().toISOString()}`,
+    starRank: 0,
+  };
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues,
+  });
   const [destination, setDestination] = useState<Destination>();
 
+  const timeWatcher = watch("visitingTime");
+  const starWatcher = watch("starRank");
+
   function handlePlace(place: google.maps.places.PlaceResult) {
-    const { name, place_id, formatted_address, types, geometry } = place;
+    const { name, place_id, formatted_address, geometry } = place;
     setDestination({
       name,
       place_id,
       formatted_address,
-      types,
       location: { lat: geometry.location.lat(), lng: geometry.location.lng() },
     });
   }
-  // console.log(date.toUTCString());
 
-  function postForm(data: SubmitHandler<FromData>) {
-    // console.log(data);
+  function postForm(data) {
+    console.log(data);
   }
 
   return (
@@ -55,26 +66,36 @@ export default function ReviewFrom() {
           onPlaceSelected={handlePlace}
           options={{
             types: [],
-            fields: ["name", "geometry.location", "place_id", "formatted_address", "types"],
+            fields: ["name", "geometry.location", "place_id", "formatted_address"],
           }}
           placeholder="어느곳을 다녀오셨나요?"
           className="focus:outline-none w-full"
+          onBlur={() => console.log("벗어남")}
         />
       </div>
       <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
         <div className="heading4">
           <input
-            {...register("title")}
+            {...register("title", { required: "제목을 입력해 주세요." })}
             type="text"
             id="title"
-            placeholder="제목을 작성해 주세요"
+            placeholder="제목을 작성해 주세요."
             className="heading4 focus:outline-none text-black placeholder:text-gray-40 w-full"
           />
+          {errors.title && <p className="text-error middle-text font-bold mt-10">{errors.title.message}</p>}
         </div>
         <div>
-          <InputWrapper htmlFor="description" className="border-gray-20">
-            <TextArea {...register("description")} id="description" placeholder="내용을 입력해주세요." />
+          <InputWrapper htmlFor="content" className="border-gray-20">
+            <TextArea
+              {...register("content", {
+                required: "본문을 입력해 주세요.",
+                maxLength: { value: 1000, message: "1,000자 이하로 입력해 주세요" },
+              })}
+              id="content"
+              placeholder="내용을 입력해주세요."
+            />
           </InputWrapper>
+          {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
         </div>
         <div>이미지 삽입 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
         <div className="grid grid-cols-2 gap-110">
@@ -86,7 +107,7 @@ export default function ReviewFrom() {
                 <br />
                 선택해주세요.
               </div>
-              <DatePicker setValue={setDate} value={date} />
+              <DatePicker setValue={setValue} value={timeWatcher} />
             </div>
           </div>
           <div className="heading6 flex flex-col gap-10">
@@ -97,7 +118,7 @@ export default function ReviewFrom() {
                 <br />
                 어느정도 인가요?
               </div>
-              <div>별점 컴포넌트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+              <StarRate setValue={setValue} value={starWatcher} />
             </div>
           </div>
           <div className="heading6 flex flex-col gap-10">
@@ -108,7 +129,7 @@ export default function ReviewFrom() {
                 <br />
                 어느정도 인가요?
               </div>
-              <TagRadioButton {...register("type")} tag="type" />
+              <TagRadioButton {...register("tagValues.placeType")} tag="placeType" />
             </div>
           </div>
           <div className="heading6 flex flex-col gap-10">
@@ -119,7 +140,7 @@ export default function ReviewFrom() {
                 <br />
                 다녀오셨나요?
               </div>
-              <TagRadioButton {...register("people")} tag="people" />
+              <TagRadioButton {...register("tagValues.companion")} tag="companion" />
             </div>
           </div>
           <div className="heading6 flex flex-col gap-10">
@@ -130,7 +151,7 @@ export default function ReviewFrom() {
                 <br />
                 어땠나요?
               </div>
-              <TagRadioButton {...register("weather")} tag="weather" />
+              <TagRadioButton {...register("tagValues.weather")} tag="weather" />
             </div>
           </div>
         </div>

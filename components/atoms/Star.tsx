@@ -33,6 +33,7 @@ export default function Star({ isChecked, onClick, rate, onMouseOver, onMouseOut
         onClick={() => {
           onClick(rate);
         }}
+        type="button"
       >
         {isChecked ? (
           <Image src={StarEmpty} alt="빈 별" style={{ maxWidth: "100vw" }} />

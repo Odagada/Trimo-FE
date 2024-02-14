@@ -1,21 +1,33 @@
 import { useState } from "react";
 import Star from "@/components/atoms/Star";
 import { Stars } from "@/types/client.types";
+import { UseFormSetValue } from "react-hook-form";
 
 interface Props {
   readOnly?: boolean;
   defaultRate?: number;
+  setValue: UseFormSetValue<{
+    title: string;
+    content: string;
+    tagValues: {
+      weather: string;
+      companion: string;
+      placeType: string;
+    };
+    visitingTime: string;
+    starRank: number;
+  }>;
+  value: number;
 }
 
 const stars: Stars[] = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 
-export default function StarRate({ defaultRate = 0 }: Props) {
+export default function StarRate({ defaultRate = 0, setValue, value }: Props) {
   const [rate, setRate] = useState(defaultRate);
-  const [select, setSelect] = useState(0);
 
   const handleClick = (num: number) => {
     setRate(num);
-    setSelect(num);
+    setValue("starRank", num);
   };
 
   const handleMouseOver = (num: number) => {
@@ -23,7 +35,7 @@ export default function StarRate({ defaultRate = 0 }: Props) {
   };
 
   const handleMouseOut = () => {
-    setRate(select);
+    setRate(value);
   };
 
   return (

@@ -7,7 +7,7 @@ interface TagRadioButtonProps {
   onBlur: ChangeHandler;
   onChange: ChangeHandler;
   name: string;
-  tag: "type" | "weather" | "people";
+  tag: "placeType" | "weather" | "companion";
 }
 
 function TagRadioButton({ onBlur, onChange, name, tag }: TagRadioButtonProps, ref: ForwardedRef<HTMLInputElement>) {
@@ -16,13 +16,13 @@ function TagRadioButton({ onBlur, onChange, name, tag }: TagRadioButtonProps, re
   let items: string[] = [];
 
   switch (tag) {
-    case "type":
+    case "placeType":
       items = ["맛집", "관광", "휴양", "명소"];
       break;
     case "weather":
       items = ["맑음", "흐림", "우천", "눈"];
       break;
-    case "people":
+    case "companion":
       items = ["가족", "친구", "연인", "혼자"];
       break;
     default:

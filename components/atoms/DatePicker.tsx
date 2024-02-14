@@ -1,14 +1,25 @@
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
+import { UseFormSetValue } from "react-hook-form";
 
-export default function DatePicker({
-  setValue,
-  value,
-}: {
-  setValue: React.Dispatch<React.SetStateAction<Date>>;
-  value: Date;
-}) {
+interface DatePickerProps {
+  setValue: UseFormSetValue<{
+    title: string;
+    content: string;
+    tagValues: {
+      weather: string;
+      companion: string;
+      placeType: string;
+    };
+    visitingTime: string;
+    starRank: number;
+  }>;
+  value: string;
+}
+
+export default function DatePicker({ setValue, value }: DatePickerProps) {
+  const parsingDate = new Date(value);
   return (
-    <Datepicker onChange={(value) => setValue(value as Date)} value={value}>
+    <Datepicker onChange={(value) => setValue("visitingTime", value?.toISOString() as string)} value={parsingDate}>
       <Datepicker.Input
         format="yyyy/MM/dd HH:mm"
         className="flex w-160 h-36 border border-gray30 rounded-10 middle-text"
