@@ -1,6 +1,5 @@
 import Image from "next/image";
-import arrowButton from "@/public/icons/carouselArrow.svg";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
