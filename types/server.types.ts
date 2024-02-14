@@ -1,6 +1,6 @@
 import { Destination, Stars, Tag } from "./client.types";
 
-export type Review = {
+export type SingleReviewData = {
   reviewId: number;
   title: string;
   content: string;
@@ -14,6 +14,6 @@ export type Review = {
   stars?: Stars;
 };
 
-export type Spot = {
+export type SpotData = {
   averageStars: Stars;
 } & Destination;
