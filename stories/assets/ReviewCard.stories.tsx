@@ -16,19 +16,21 @@ type Story = StoryObj<typeof meta>;
 export const Review: Story = {
   args: {
     review: {
-      reviewId: 1,
-      title: "string",
-      author: "여행자",
-      imageUrls: [
-        "https://images.unsplash.com/photo-1588438127981-fe383cf43bbd?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      ],
-      tag: ["2월", "맛집", "친구", "흐림"],
-      rate: 5,
-      date: "1995-12-17T03:24:00",
-      destination: "제주 애월해변",
-      description: "너무 멋있는 풍경이다",
-      createdAt: "1995-12-17T03:24:00",
-      likeUserId: [1, 2],
+      reviewId: 10,
+      title: "대한민국 정부의 중심을 엿보다",
+      content:
+        "역사적인 건물과 아름다운 정원, 그리고 정치의 중심에서 벌어지는 이야기들을 엿볼 수 있는 특별한 시간이었어요.",
+      tagValues: {
+        weather: "눈",
+        companion: "가족",
+        placeType: "명소",
+      },
+      nickName: "test11@gmail.com",
+      spotId: "ChIJa6GU77eifDUR3K3qNfHVFgs",
+      createdAt: "2024-02-14T21:43:30.68089",
+      modifiedAt: "2024-02-14T21:43:30.68089",
+      visitingTime: "2023-01-17T12:30:00",
+      stars: 5,
     },
   },
 };

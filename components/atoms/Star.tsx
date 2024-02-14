@@ -1,6 +1,6 @@
-import StarFull from "@/public/images/icons/filled_star.svg";
-import StarEmpty from "@/public/images/icons/empty_star.svg";
-import halfStarImg from "@/public/images/icons/half_star.svg";
+import StarFull from "@/public/icons/filled_star.svg";
+import StarEmpty from "@/public/icons/empty_star.svg";
+import halfStarImg from "@/public/icons/half_star.svg";
 import Image from "next/image";
 import { KeyboardEvent } from "react";
 import { Stars } from "@/types/client.types";

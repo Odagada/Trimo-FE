@@ -1,8 +1,9 @@
-import Star from "@/public/images/icons/star.svg";
+import Star from "@/public/icons/filled_star.svg";
+import { Stars } from "@/types/client.types";
 import Image from "next/image";
 
 interface Props {
-  rate: number;
+  rate: Stars | undefined;
 }
 
 export default function SingleStarRate({ rate = 1 }: Props) {

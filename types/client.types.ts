@@ -66,7 +66,6 @@ export type Review = {
   title: string;
   content: string;
   tagValues?: Tag;
-  nickName: string;
   visitingTime: string;
   stars?: Stars;
 };
