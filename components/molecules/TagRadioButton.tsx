@@ -1,6 +1,6 @@
 import { ChangeEvent, ForwardedRef, Fragment, forwardRef, useState } from "react";
-import Clickable from "./Clickable";
-import Imoji from "./Imoji";
+import Clickable from "../atoms/Clickable";
+import Emoji from "../atoms/Emoji";
 import { ChangeHandler } from "react-hook-form";
 
 interface TagRadioButtonProps {
@@ -10,7 +10,10 @@ interface TagRadioButtonProps {
   tag: "placeType" | "weather" | "companion";
 }
 
-function TagRadioButton({ onBlur, onChange, name, tag }: TagRadioButtonProps, ref: ForwardedRef<HTMLInputElement>) {
+function TagRadioButton(
+  { onBlur, onChange, name, tag = "placeType" }: TagRadioButtonProps,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   const [selectedType, setSelectedType] = useState(`${name}disable`);
 
   let items: string[] = [];
@@ -51,7 +54,7 @@ function TagRadioButton({ onBlur, onChange, name, tag }: TagRadioButtonProps, re
           />
           <label htmlFor={item} className="cursor-pointer">
             <Clickable color={selectedType === item ? "black" : "white-"} size="small" shape="capsule">
-              <Imoji>{item}</Imoji>
+              <Emoji>{item}</Emoji>
             </Clickable>
           </label>
         </Fragment>
@@ -69,7 +72,7 @@ function TagRadioButton({ onBlur, onChange, name, tag }: TagRadioButtonProps, re
       />
       <label htmlFor={`${name}disable`} className="cursor-pointer">
         <Clickable color={selectedType === `${name}disable` ? "black" : "white-"} size="small" shape="capsule">
-          <Imoji>선택 안함</Imoji>
+          <Emoji>선택 안함</Emoji>
         </Clickable>
       </label>
     </div>

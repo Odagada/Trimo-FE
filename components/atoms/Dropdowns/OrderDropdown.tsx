@@ -1,5 +1,5 @@
 import useComponentPopup from "@/hooks/useComponentPopup";
-import DropdownImg from "@/public/images/icons/dropdown.svg";
+import DropdownImg from "@/public/icons/dropdown.svg";
 import { OrderValue } from "@/types/client.types";
 import Image from "next/image";
 import { useState } from "react";

@@ -1,90 +1,66 @@
-import Clickable from "./Clickable";
-import DatePicker from "./DatePicker";
+import Clickable from "../atoms/Clickable";
+import DatePicker from "../atoms/DatePicker";
 import { useForm } from "react-hook-form";
-import TextArea from "./Inputs/TextArea";
-import InputWrapper from "./Inputs/InputWapper";
-import ReactGoogleAutocomplete from "react-google-autocomplete";
-import TagRadioButton from "./TagRadioButton";
-import { useState } from "react";
+import TextArea from "../atoms/Inputs/TextArea";
+import InputWrapper from "../atoms/Inputs/InputWapper";
+import TagRadioButton from "../molecules/TagRadioButton";
 import StarRate from "../molecules/StarRate";
-import fetcher from "@/apis/axios";
-
-interface Destination {
-  placeId: string;
-  displayName: string;
-  formattedAddress: string;
-  location: {
-    latitude: string;
-    longitude: string;
-  };
-}
-
-interface Review {
-  title: string;
-  content: string;
-  tagValues?: {
-    weather?: string;
-    companion?: string;
-    placeType?: string;
-  };
-  visitingTime: string;
-  starRank?: number;
-}
+import { Review, Stars } from "@/types/client.types";
+import ImagesInput from "../atoms/Inputs/ImagesInput";
+import { useState } from "react";
+import GoogleAutoComplete from "../molecules/GoogleAutoComplete";
+import { useMutation } from "@tanstack/react-query";
+import { postReviews } from "@/apis/reviewPost";
 
 export default function ReviewFrom() {
   const defaultValues: Review = {
     title: "",
     content: "",
     tagValues: {
-      weather: "",
-      companion: "",
-      placeType: "",
+      weather: undefined,
+      companion: undefined,
+      placeType: undefined,
     },
-    visitingTime: `${new Date().toISOString()}`,
-    starRank: 0,
+    visitingTime: "",
+    stars: 0,
   };
   const {
     register,
     handleSubmit,
     setValue,
     watch,
+    setFocus,
     formState: { errors },
   } = useForm({
     defaultValues,
   });
-  const [destination, setDestination] = useState<Destination>();
-
   const timeWatcher = watch("visitingTime");
-  const starWatcher = watch("starRank");
+  const starWatcher = watch("stars");
 
-  function handlePlace(place: google.maps.places.PlaceResult) {
-    const { name, place_id, formatted_address, geometry } = place;
-    const latitude = geometry?.location.lat().toString() as string;
-    const longitude = geometry?.location.lng().toString() as string;
-    setDestination({
-      displayName: name!,
-      placeId: place_id!,
-      formattedAddress: formatted_address!,
-      location: { latitude, longitude },
-    });
+  const [spotId, setSpotId] = useState("");
+  const [spotError, setSpotError] = useState("");
+
+  const { mutate: postReviewsMutate } = useMutation({
+    mutationFn: postReviews,
+    onSuccess(data) {
+      console.log(data);
+    },
+    onError(error, variables, context) {
+      console.log(error, variables, context);
+    },
+  });
+  function postForm(postData: Review) {
+    if (spotId === "") {
+      setSpotError("장소를 입력해주세요");
+      setFocus("title");
+      return;
+    }
+    postReviewsMutate({ postData, spotId });
   }
-
-  function postForm(data: Review) {}
 
   return (
     <div className="px-120 pt-96 pb-60 flex flex-col gap-28">
-      <div className="heading4">
-        <ReactGoogleAutocomplete
-          apiKey="AIzaSyBcIqwDpNYJQW4v6_q9rkX7zEJXCJN2Znc"
-          onPlaceSelected={handlePlace}
-          options={{
-            types: [],
-            fields: ["name", "geometry.location", "place_id", "formatted_address"],
-          }}
-          placeholder="어느곳을 다녀오셨나요?"
-          className="focus:outline-none w-full"
-        />
-      </div>
+      <GoogleAutoComplete setSpotId={setSpotId} spotError={spotError} setSpotError={setSpotError} />
       <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
         <div className="heading4">
           <input
@@ -109,7 +85,7 @@ export default function ReviewFrom() {
           </InputWrapper>
           {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
         </div>
-        <div>이미지 컴포넌트 삽입 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+        <ImagesInput />
         <div className="grid grid-cols-2 gap-110">
           <div className="heading6 flex flex-col gap-10">
             방문시간
@@ -130,7 +106,7 @@ export default function ReviewFrom() {
                 <br />
                 어느정도 인가요?
               </div>
-              <StarRate setValue={setValue} value={starWatcher} />
+              <StarRate setValue={setValue} value={starWatcher as Stars} />
             </div>
           </div>
           <div className="heading6 flex flex-col gap-10">
