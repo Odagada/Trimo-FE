@@ -1,0 +1,15 @@
+.swiper-button-prev,
+.swiper-button-next {
+  background: url("../public/icons/carouselArrow.svg") no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+.swiper-button-next {
+  transform: rotate(180deg);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
