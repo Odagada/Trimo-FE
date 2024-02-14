@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useCallback, useState } from "react";
+import searchIcon from "@/public/icons/search.svg";
 
 const SearchBar = ({
   initialValue = "",
@@ -46,7 +47,7 @@ const SearchBar = ({
         } bg-black rounded-100 m-6 flex items-center justify-center`}
       >
         <Image
-          src="/images/icons/search.svg"
+          src={searchIcon}
           width={`${size === "large" ? 19 : 13}`}
           height={`${size === "large" ? 19 : 13}`}
           alt=""
