@@ -28,7 +28,7 @@ export default function ReviewCard({ review }: Props) {
       <div className="w-250 flex flex-col gap-8 mt-8">
         <div className="flex items-center justify-between">
           <h3 className="heading6 w-190 text-ellipsis overflow-hidden whitespace-nowrap">
-            제목 들어오는 곳긴젲모모모목
+            제목 들어오는 곳입니다 긴이름
           </h3>
           <span className="small-text w-54 text-ellipsis overflow-hidden whitespace-nowrap">by{nickName}</span>
         </div>
@@ -48,4 +48,3 @@ export default function ReviewCard({ review }: Props) {
     </div>
   );
 }
-// bg-gray-10 w-43 px-2 py-4 text-center rounded-full
