@@ -2,6 +2,7 @@ import { ChangeEvent, ForwardedRef, Fragment, forwardRef, useState } from "react
 import Clickable from "../atoms/Clickable";
 import Emoji from "../atoms/Emoji";
 import { ChangeHandler } from "react-hook-form";
+import { TagWithMonth } from "@/types/client.types";
 
 interface TagRadioButtonProps {
   onBlur: ChangeHandler;
@@ -16,7 +17,7 @@ function TagRadioButton(
 ) {
   const [selectedType, setSelectedType] = useState(`${name}disable`);
 
-  let items: string[] = [];
+  let items: TagWithMonth[] = [];
 
   switch (tag) {
     case "placeType":
@@ -72,7 +73,7 @@ function TagRadioButton(
       />
       <label htmlFor={`${name}disable`} className="cursor-pointer">
         <Clickable color={selectedType === `${name}disable` ? "black" : "white-"} size="small" shape="capsule">
-          <Emoji>선택 안함</Emoji>
+          <span>선택 안함</span>
         </Clickable>
       </label>
     </div>
