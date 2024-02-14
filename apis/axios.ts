@@ -3,22 +3,12 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const instance = axios.create({
   baseURL: "http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api",
-  withCredentials: true,
   timeout: 5 * 1000,
 });
 
 // 401 오류와 리프레시 토큰을 처리하는 요청 인터셉터
 instance.interceptors.request.use(
-  async (config) => {
-    const accessToken = localStorage.getItem("accessToken");
-
-    // 액세스 토큰이 있으면 요청 헤더에 추가
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
-
-    return config;
-  },
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
