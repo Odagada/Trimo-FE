@@ -11,6 +11,7 @@ import { useState } from "react";
 import GoogleAutoComplete from "../molecules/GoogleAutoComplete";
 import { useMutation } from "@tanstack/react-query";
 import { postReviews } from "@/apis/reviewPost";
+import { useRouter } from "next/router";
 
 export default function ReviewFrom() {
   const defaultValues: Review = {
@@ -30,6 +31,7 @@ export default function ReviewFrom() {
     setValue,
     watch,
     setFocus,
+    setError,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -39,14 +41,15 @@ export default function ReviewFrom() {
 
   const [spotId, setSpotId] = useState("");
   const [spotError, setSpotError] = useState("");
+  const router = useRouter();
 
   const { mutate: postReviewsMutate } = useMutation({
     mutationFn: postReviews,
-    onSuccess(data) {
-      console.log(data);
+    onSuccess() {
+      // router.push('/list') 추후 추가
     },
-    onError(error, variables, context) {
-      console.log(error, variables, context);
+    onError() {
+      setError("title", { message: "다시 시도해주세요." }, { shouldFocus: true }); // 오류메시지 어디다 띄울지?
     },
   });
   function postForm(postData: Review) {
