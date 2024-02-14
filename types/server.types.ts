@@ -1,4 +1,4 @@
-import { Stars, Tag } from "./client.types";
+import { Destination, Stars, Tag } from "./client.types";
 
 export type Review = {
   reviewId: number;
@@ -13,3 +13,7 @@ export type Review = {
   imageUrls?: string[];
   stars?: Stars;
 };
+
+export type Spot = {
+  averageStars: Stars;
+} & Destination;
