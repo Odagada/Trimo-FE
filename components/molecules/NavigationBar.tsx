@@ -12,7 +12,7 @@ interface NavProps {
   hasSearchBar?: boolean;
 }
 
-function Nav({ navStatus = "LoggedIn", hasSearchBar = false }: NavProps) {
+function Nav({ navStatus = "LoggedIn" }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
   const renderNavbarLeftSide = (status: NavStatus) => {
@@ -44,7 +44,7 @@ function Nav({ navStatus = "LoggedIn", hasSearchBar = false }: NavProps) {
     <div className="h-fit mb-66 flex flex-col w-full">
       <div className="z-50 h-fit py-21 px-121 fixed top-0 flex flex-wrap items-center justify-between w-full bg-white">
         <Image src={Logo} alt="logo" width={78} height={20}></Image>
-        {hasSearchBar && <SearchBar size="small"></SearchBar>}
+        <span id="navSearchBar"></span>
         {renderNavbarLeftSide(navStatus)}
       </div>
     </div>
