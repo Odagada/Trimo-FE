@@ -93,6 +93,6 @@ const config: Config = {
       main: "0px 4px 10px 0px rgba(0, 0, 0, 0.10)",
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
 export default config;
