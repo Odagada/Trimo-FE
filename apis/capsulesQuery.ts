@@ -1,4 +1,5 @@
-import { SingleReviewData, SpotData } from "@/types/server.types";
+import { Destination } from "@/types/client.types";
+import { SingleReviewData } from "@/types/server.types";
 import fetcher from "./axios";
 
 export const getReview = (reviewId: number) => {
@@ -11,13 +12,13 @@ export const getReview = (reviewId: number) => {
 export const getSpot = (spotId: string) => {
   return {
     queryKey: ["spot", spotId],
-    queryFn: () => fetcher<SpotData>({ method: "get", url: `users/spots/${spotId}` }),
+    queryFn: () => fetcher<Destination>({ method: "get", url: `users/spots/${spotId}` }),
   };
 };
 
-export const getReviewList = () => {
+export const getReviewList = (query: string) => {
   return {
-    queryKey: ["reviewList"],
-    queryFn: () => fetcher<Review[]>({ method: "get", url: "main/reviews" }),
+    queryKey: ["reviewList", query],
+    queryFn: () => fetcher<SingleReviewData[]>({ method: "get", url: "main/reviews" }),
   };
 };

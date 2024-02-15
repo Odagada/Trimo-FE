@@ -30,14 +30,14 @@ export default function ReviewCard({ review }: Props) {
           className="rounded-10"
         />
       </div>
-      <div className="flex flex-col w-full gap-8 mt-8">
+      <div className="flex flex-col w-full gap-8 px-16 pb-12 mt-8">
         <div className="flex items-center justify-between">
           <h3 className="heading6 w-190 text-ellipsis whitespace-nowrap overflow-hidden">
             제목 들어오는 곳입니다 긴이름
           </h3>
           <span className="small-text w-54 text-ellipsis whitespace-nowrap overflow-hidden">by {nickName}</span>
         </div>
-        <div className="small-text flex items-center justify-between">
+        <div className="small-text flex justify-between">
           <div className="flex gap-4">
             <div className="bg-gray-10 w-43 px-2 py-4 text-center rounded-full">{tagMonth}</div>
             {tagValues &&

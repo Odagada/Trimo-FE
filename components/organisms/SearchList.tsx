@@ -2,16 +2,18 @@ import { getReviewList } from "@/apis/capsulesQuery";
 import { useQuery } from "@tanstack/react-query";
 import ReviewCard from "../molecules/ReviewCard";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function SearchList() {
-  const { data: reviewListData } = useQuery(getReviewList());
-  const reviewList = reviewListData?.data;
+  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const { query } = router;
+  const { data: reviewListData } = useQuery(getReviewList(searchQuery));
+  const reviewList = reviewListData?.data;
 
   useEffect(() => {
-    console.log("검색 api 실행");
+    //검색 api 실행
+    setSearchQuery(JSON.stringify(query));
   }, [query]);
 
   return (
