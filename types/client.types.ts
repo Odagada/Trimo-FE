@@ -46,7 +46,7 @@ export type InputWrapperProps = {
 
 export type Destination = {
   name: string;
-  formatted_address: string;
+  formattedAddress: string;
   placeId: string;
   location: {
     latitude: string;
