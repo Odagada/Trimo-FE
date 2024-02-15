@@ -14,30 +14,26 @@ import Nav from "@/components/molecules/NavigationBar";
 import GoogleMap from "@/components/organisms/GoogleMap";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  // const accessToken = getAccessTokenFromCookie(context) as string;
-  const reviewId = Number(context.params?.id);
+  try {
+    // const accessToken = getAccessTokenFromCookie(context) as string;
+    const reviewId = Number(context.params?.id);
 
-  const queryClient = new QueryClient();
+    const queryClient = new QueryClient();
 
-  const { data: reviewData } = await queryClient.fetchQuery(getReview(reviewId));
+    const { data: reviewData, status } = await queryClient.fetchQuery(getReview(reviewId));
 
-  if (!reviewData) {
+    const spotId = reviewData.spotId;
+
+    if (spotId) {
+      await queryClient.prefetchQuery(getSpot(spotId));
+    }
+
     return {
-      redirect: {
-        notFound: true,
-      },
+      props: { reviewId, spotId, dehydratedState: dehydrate(queryClient) },
     };
+  } catch {
+    return { notFound: true };
   }
-
-  const spotId = reviewData.spotId;
-
-  if (spotId) {
-    await queryClient.prefetchQuery(getSpot(spotId));
-  }
-
-  return {
-    props: { reviewId, spotId, dehydratedState: dehydrate(queryClient) },
-  };
 };
 
 const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
