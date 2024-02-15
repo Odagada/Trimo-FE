@@ -42,6 +42,7 @@ export type WrapperProps = {
 export type InputWrapperProps = {
   children: ReactNode;
   className?: string;
+  divOptions?: string;
 } & WrapperProps;
 
 export type ReviewType = {
