@@ -228,11 +228,30 @@ export default function Landing() {
         </div>
       </section>
 
-      <section>
+      <section className="flex flex-col items-center text-center pt-48 pb-56">
+        <p className="text-20 font-medium leading-36">그 여행지, 실제 후기는 어떨까?</p>
+        <p className="text-28 font-bold leading-42">
+          이미 다녀온 유저의 리뷰를 한곳에 모아
+          <br />
+          <span className="text-primary">나만의 여행 계획</span>을 세워보세요.
+        </p>
+      </section>
+
+      <section className="pt-32 pb-129">
         <div className="flex flex-col gap-41">
           <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={array} />
           <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={array} />
         </div>{" "}
+      </section>
+
+      <section className="bg-gray-60 items-center text-center pt-60 pb-136">
+        <div className="flex flex-col">
+          <p className="text-28 font-bold leading-42 text-white">
+            이미 다녀온 유저의 리뷰를 한곳에 모아
+            <br />
+            <span className="text-primary">나만의 여행 계획</span>을 세워보세요.
+          </p>
+        </div>
       </section>
 
       <br></br>
