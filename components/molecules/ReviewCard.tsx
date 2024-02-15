@@ -1,4 +1,4 @@
-import { Review } from "@/types/server.types";
+import { SingleReviewData } from "@/types/server.types";
 import SingleStarRate from "../atoms/SingleStarRate";
 import Image from "next/image";
 import NoImg from "@/public/images/no_image.webp";
@@ -6,7 +6,7 @@ import calcData from "@/utils/calcDate";
 import ReviewCardTag from "../atoms/ReviewCardTag";
 
 interface Props {
-  review: Review;
+  review: SingleReviewData;
 }
 
 export default function ReviewCard({ review }: Props) {
