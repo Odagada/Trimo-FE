@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import useComponentPopup from "@/hooks/useComponentPopup";
-import FilterImg from "@/public/images/icons/filter.svg";
+import FilterImg from "@/public/icons/filter.svg";
 import DeleteIcon from "@/components/atoms/icons/DeleteIcon";
 import Clickable from "../atoms/Clickable";
 
