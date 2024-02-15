@@ -15,3 +15,10 @@ export const getSpot = (spotId: string) => {
     queryFn: () => fetcher<Destination>({ method: "get", url: `users/spots/${spotId}` }),
   };
 };
+
+export const getReviewList = () => {
+  return {
+    queryKey: ["reviewList"],
+    queryFn: () => fetcher<Review[]>({ method: "get", url: "main/reviews" }),
+  };
+};
