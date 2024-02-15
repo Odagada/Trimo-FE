@@ -28,7 +28,7 @@ export default function OrderDropdown() {
         <Image src={DropdownImg} alt="닫기" />
       </button>
       {isOpen && (
-        <div className="w-124 shadow-main rounded-10 top-29 absolute z-10 px-6 py-8 ml-4 bg-white" ref={popupRef}>
+        <div className="w-124 shadow-main rounded-10 absolute z-10 px-6 py-8 mt-8 ml-4 bg-white" ref={popupRef}>
           {values.map((el) => (
             <button
               className={`h-27 rounded-5 px-14 text-start w-full py-3 ${

@@ -10,6 +10,6 @@ export type Review = {
   createdAt: string;
   modifiedAt: string;
   visitingTime: string;
-  imageUrls?: string[];
+  images?: string[];
   stars?: Stars;
 };

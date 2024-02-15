@@ -4,20 +4,24 @@ import Image from "next/image";
 import NoImg from "@/public/images/no_image.webp";
 import calcData from "@/utils/calcDate";
 import ReviewCardTag from "../atoms/ReviewCardTag";
+import Link from "next/link";
 
 interface Props {
   review: Review;
 }
 
 export default function ReviewCard({ review }: Props) {
-  const { stars, nickName, reviewId, tagValues, visitingTime } = review;
+  const { stars, nickName, reviewId, tagValues, visitingTime, images } = review;
   const { tagMonth } = calcData(visitingTime);
 
   return (
-    <div className="shadow-main rounded-10 flex flex-col items-center w-full p-8 bg-white">
+    <Link
+      href={`/review/${reviewId}`}
+      className="shadow-main rounded-10 flex flex-col items-center w-full p-8 bg-white"
+    >
       <div className="aspect-266/240 relative w-full overflow-hidden">
         <Image
-          src={NoImg}
+          src={images ? images[0] : NoImg}
           alt="카드 이미지"
           fill
           style={{
@@ -26,12 +30,12 @@ export default function ReviewCard({ review }: Props) {
           className="rounded-10"
         />
       </div>
-      <div className="w-full flex flex-col gap-8 mt-8">
+      <div className="flex flex-col w-full gap-8 mt-8">
         <div className="flex items-center justify-between">
           <h3 className="heading6 w-190 text-ellipsis whitespace-nowrap overflow-hidden">
             제목 들어오는 곳입니다 긴이름
           </h3>
-          <span className="small-text w-54 text-ellipsis whitespace-nowrap overflow-hidden">by{nickName}</span>
+          <span className="small-text w-54 text-ellipsis whitespace-nowrap overflow-hidden">by {nickName}</span>
         </div>
         <div className="small-text flex items-center justify-between">
           <div className="flex gap-4">
@@ -44,6 +48,6 @@ export default function ReviewCard({ review }: Props) {
           <SingleStarRate rate={stars} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -3,14 +3,13 @@ import SearchBar from "@/components/atoms/Inputs/SearchBar";
 import FilterDropdown from "@/components/molecules/FilterDropdown";
 import Nav from "@/components/molecules/NavigationBar";
 import SearchList from "@/components/organisms/SearchList";
-import React from "react";
 
 export default function Search() {
   return (
     <div>
       <Nav />
       <SearchBar size="small" />
-      <div className="flex justify-center">
+      <div className="mt-15 flex justify-center">
         <div className="w-460 text-right">
           <FilterDropdown />
         </div>
