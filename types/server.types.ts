@@ -1,10 +1,12 @@
-import { Destination, Stars, Tag } from "./client.types";
+import { Destination, Stars, TagCompanion, TagWeather, TagPlaceType } from "./client.types";
 
 export type SingleReviewData = {
   reviewId: number;
   title: string;
   content: string;
-  tagValues?: Tag;
+  weather: TagWeather;
+  companion: TagCompanion;
+  placeType: TagPlaceType;
   nickName: string;
   spotId: string;
   createdAt: string;

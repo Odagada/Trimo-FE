@@ -1,20 +1,9 @@
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
-import { UseFormSetValue } from "react-hook-form";
-import { Review } from "@/types/client.types";
 import formatDateTime from "@/utils/formatDateTime";
 
-interface DatePickerProps {
-  setValue: UseFormSetValue<Review>;
-  value: string;
-}
-
-export default function DatePicker({ setValue, value }: DatePickerProps) {
+export default function DatePicker({ onChange }: { onChange: (arg: string) => void }) {
   return (
-    <Datepicker
-      onChange={(value) => {
-        setValue("visitingTime", formatDateTime(value as Date));
-      }}
-    >
+    <Datepicker onChange={(value) => onChange(formatDateTime(value as Date))}>
       <Datepicker.Input
         format="yyyy/MM/dd HH:mm"
         className="flex w-160 h-36 border border-gray30 rounded-10 middle-text"

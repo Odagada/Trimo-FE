@@ -1,20 +1,16 @@
-import { ChangeEvent, ForwardedRef, Fragment, forwardRef, useState } from "react";
+import { ChangeEvent, Fragment, useState } from "react";
 import Clickable from "../atoms/Clickable";
 import Emoji from "../atoms/Emoji";
-import { ChangeHandler } from "react-hook-form";
 import { TagWithMonth } from "@/types/client.types";
 
 interface TagRadioButtonProps {
-  onBlur: ChangeHandler;
-  onChange: ChangeHandler;
+  onBlur: () => void;
+  onChange: (arg: string) => void;
   name: string;
   tag: "placeType" | "weather" | "companion";
 }
 
-function TagRadioButton(
-  { onBlur, onChange, name, tag = "placeType" }: TagRadioButtonProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+export default function TagRadioButton({ onBlur, onChange, name, tag = "placeType" }: TagRadioButtonProps) {
   const [selectedType, setSelectedType] = useState(`${name}disable`);
 
   let items: TagWithMonth[] = [];
@@ -35,7 +31,7 @@ function TagRadioButton(
 
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedType(event.target.id);
-    onChange(event);
+    onChange(event.target.value);
   };
 
   return (
@@ -50,7 +46,6 @@ function TagRadioButton(
             onChange={handleRadioChange}
             checked={selectedType === item}
             className="hidden"
-            ref={ref}
             value={item}
           />
           <label htmlFor={item} className="cursor-pointer">
@@ -68,7 +63,6 @@ function TagRadioButton(
         onChange={handleRadioChange}
         checked={selectedType === `${name}disable`}
         className="hidden"
-        ref={ref}
         value=""
       />
       <label htmlFor={`${name}disable`} className="cursor-pointer">
@@ -79,5 +73,3 @@ function TagRadioButton(
     </div>
   );
 }
-
-export default forwardRef<HTMLInputElement, TagRadioButtonProps>(TagRadioButton);
