@@ -18,10 +18,10 @@ export default function FilterDropdown() {
           <Image src={FilterImg} alt="필터 이미지" />
         </div>
       </button>
-      <div className="relative w-screen">
+      <div className="absolute w-screen">
         {isOpen && (
           <div
-            className="w-617 left-1/2 shadow-main rounded-30 absolute px-20 pt-16 pb-24 -translate-x-1/2"
+            className="w-617 left-1/2 shadow-main rounded-30 absolute z-10 px-20 pt-16 pb-24 -translate-x-1/2 bg-white"
             ref={popupRef}
           >
             <div className="flex justify-end">
