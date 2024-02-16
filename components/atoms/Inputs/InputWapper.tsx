@@ -2,7 +2,7 @@ import { InputWrapperProps } from "@/types/client.types";
 
 function InputWrapper({ title, htmlFor, className = "", errors, children, divOptions }: InputWrapperProps) {
   return (
-    <div className={`flex flex-col w-full gap-10 ${divOptions}`}>
+    <div className={`flex flex-col w-full gap-10 relative ${divOptions}`}>
       {title && <p className="text-primary-900 heading5">{title}</p>}
       <label
         htmlFor={htmlFor}
@@ -12,7 +12,7 @@ function InputWrapper({ title, htmlFor, className = "", errors, children, divOpt
       >
         {children}
       </label>
-      {errors && <div className="text-error">{errors?.message}</div>}
+      {errors && <div className="text-error absolute -bottom-26">{errors?.message}</div>}
     </div>
   );
 }
