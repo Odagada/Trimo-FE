@@ -1,13 +1,18 @@
 /* eslint-disable no-console */
-import { useController, useForm } from "react-hook-form";
+import { FieldValue, FieldValues, Path, useController, useForm } from "react-hook-form";
+import useUserData from "./useUserData";
+import { UserAdditionalInfo, UserInfoType, birthdateValType } from "@/types/client.types";
+import { useState } from "react";
+import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-function useSubmitAdditionalInfo() {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({
+function useSubmitAdditionalInfo<T extends FieldValues>(userDataInputs: Path<T>[]) {
+  const queryClient = useQueryClient();
+
+  const [isBtnActive, setIsBtnActive] = useState(false);
+
+  const { setUserData, userData } = useUserData();
+  const { register, handleSubmit, control, getValues, formState } = useForm({
     mode: "onBlur",
     shouldFocusError: true,
     reValidateMode: "onChange",
@@ -16,27 +21,27 @@ function useSubmitAdditionalInfo() {
 
   const {
     field: { value: birthyearVal, onChange: onBirthYearChange, ...restField1 },
-  } = useController({ name: "birthyear", control });
+  } = useController({ name: "birthyear", control, rules: { required: true } });
 
   const {
     field: { value: birthmonthVal, onChange: onBirthMonthChange, ...restField2 },
-  } = useController({ name: "birthmonth", control });
+  } = useController({ name: "birthmonth", control, rules: { required: true } });
 
   const {
     field: { value: birthdateVal, onChange: onBirthDateChange, ...restField3 },
-  } = useController({ name: "birthdate", control });
+  } = useController({ name: "birthdate", control, rules: { required: true } });
 
-  const birthyearList: { value: number; label: number }[] = [];
+  const birthyearList: birthdateValType[] = [];
   for (let i = 1960; i < 2015; i++) {
     birthyearList.push({ value: i, label: i });
   }
 
-  const birthmonthList: { value: number; label: number }[] = [];
+  const birthmonthList: birthdateValType[] = [];
   for (let i = 1; i < 13; i++) {
     birthmonthList.push({ value: i, label: i });
   }
 
-  const birthdateList: { value: number; label: number }[] = [];
+  const birthdateList: birthdateValType[] = [];
   for (let i = 1; i < 32; i++) {
     birthdateList.push({ value: i, label: i });
   }
@@ -44,13 +49,38 @@ function useSubmitAdditionalInfo() {
   const onSubmit = (data: {
     nickName: string;
     gender: string;
-    birthdate: number | null;
-    birthyear: number | null;
-    birthmonth: number | null;
+    birthdate: birthdateValType | null;
+    birthyear: birthdateValType | null;
+    birthmonth: birthdateValType | null;
   }) => {
+    const userBirthdate = `${data.birthyear?.value}-${data.birthmonth?.value}-${data.birthdate?.value}`;
     console.log("data: ", data);
-    console.log(typeof data);
+    const userSignUpData = {
+      birthDate: userBirthdate,
+      gender: data.gender,
+      nickName: data.nickName,
+    };
+    setUserData(userSignUpData);
+    console.log(userSignUpData);
+    mutate(userSignUpData);
   };
+
+  const handleSignUp = async (userSignUpData: UserAdditionalInfo) => {
+    const data = await axios.post(
+      `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/guest/update`,
+      userSignUpData
+    );
+    return data;
+  };
+
+  const { mutate, isError, error } = useMutation({
+    mutationFn: handleSignUp,
+    onSuccess: (data: { data: boolean; status: number }) => {
+      // eslint-disable-next-line no-console
+      console.log(data);
+    },
+    onError: (error) => alert(error),
+  });
 
   return {
     onSubmit,
@@ -65,7 +95,8 @@ function useSubmitAdditionalInfo() {
     birthdateVal,
     birthmonthVal,
     birthyearVal,
-    errors,
+    formState,
+    getValues,
     onBirthDateChange,
     onBirthMonthChange,
     onBirthYearChange,
