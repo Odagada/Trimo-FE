@@ -2,8 +2,10 @@ import { request } from "@/apis/axios";
 import { useMutation } from "@tanstack/react-query";
 import { UserAdditionalInfo, birthdateValType } from "@/types/client.types";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
+import { useRouter } from "next/router";
 
 function useSubmitAdditionalInfo({ progressStatus }: SignupContentProps) {
+  const router = useRouter();
   const onSubmit = (data: {
     nickName: string;
     gender: string;
@@ -41,7 +43,10 @@ function useSubmitAdditionalInfo({ progressStatus }: SignupContentProps) {
       console.log(); //jwt토큰으로 저장
       progressStatus();
     },
-    onError: (error) => alert(error),
+    onError: (error) => {
+      alert(error);
+      router.push("/login");
+    },
   });
 
   return {
@@ -50,3 +55,7 @@ function useSubmitAdditionalInfo({ progressStatus }: SignupContentProps) {
 }
 
 export default useSubmitAdditionalInfo;
+
+// Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxeEhOMnBvV2VhQ1RNOWczbmJNM0RkVXJZYjRldHR0Z0hUeTI1cGdkZURFIiwiaWF0IjoxNzA4MTA4NTcwLCJleHAiOjE3MDgxMTIxNzB9.yYOlvNbmNkCGjt3wbiVF0jWb7okGGttXYh0BRSHgf9k
+
+// Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxeEhOMnBvV2VhQ1RNOWczbmJNM0RkVXJZYjRldHR0Z0hUeTI1cGdkZURFIiwiaWF0IjoxNzA4MTA4NjIzLCJleHAiOjE3MDgxMTIyMjN9.HmGWTqaTjra2i2iuFvlLfBuz_sDvHsT2eMOXhNo1f4g
