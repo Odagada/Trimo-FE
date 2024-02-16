@@ -1,41 +1,18 @@
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { TERMS } from "@/constants/signupConstants";
+import Clickable from "@/components/atoms/Clickable";
+import useHandleTermsCheck from "@/hooks/signup/useHandleTermsCheck";
 import checked from "@/public/images/icons/checked.svg";
 import notChecked from "@/public/images/icons/notChecked.svg";
-import { Terms } from "@/constants/signupTerms";
-import Clickable from "@/components/atoms/Clickable";
 
-interface Props {
+export interface SignupContentProps {
   progressStatus: () => void;
 }
 
-function TermsAgreements({ progressStatus }: Props) {
-  const [checkedTerms, setCheckedTerms] = useState<number[]>([]);
-
-  const handleSingleCheck = (checked: boolean, id: number) => {
-    if (checked) {
-      setCheckedTerms((prev) => [...prev, id]);
-    } else {
-      setCheckedTerms(checkedTerms.filter((notCheckedTerm) => notCheckedTerm !== id));
-    }
-  };
-
-  const handleAllCheck = (checked: boolean) => {
-    if (checked) {
-      setCheckedTerms(Terms.map((term) => term.termNo));
-    } else {
-      setCheckedTerms([]);
-    }
-  };
-
-  const validateTermCheck = () => {
-    if (checkedTerms.length !== Terms.length) {
-      alert("모든 약관에 동의하셔야 회원가입이 가능합니다.");
-      return;
-    }
-    alert("모든 약관에 동의하셨습니다.");
-    progressStatus();
-  };
+function TermsAgreements({ progressStatus }: SignupContentProps) {
+  const { checkedTerms, handleSingleCheck, handleAllCheck, validateTermCheck } = useHandleTermsCheck({
+    progressStatus,
+  });
 
   return (
     <div className="mt-60">
@@ -46,9 +23,9 @@ function TermsAgreements({ progressStatus }: Props) {
             value="male"
             className="h-18 w-18 appearance-none"
             onChange={(e) => handleAllCheck(e.target.checked)}
-            checked={checkedTerms.length === Terms.length}
+            checked={checkedTerms.length === TERMS.length}
           />
-          {checkedTerms.length === Terms.length ? (
+          {checkedTerms.length === TERMS.length ? (
             <Image src={checked} alt="checked" width={20} height={20} />
           ) : (
             <Image src={notChecked} alt="checked" width={20} height={20} />
@@ -57,7 +34,7 @@ function TermsAgreements({ progressStatus }: Props) {
         </label>
       </div>
 
-      {Terms.map((termContent, key) => {
+      {TERMS.map((termContent, key) => {
         return (
           <>
             <h5 className="mb-12">{termContent.title}</h5>
