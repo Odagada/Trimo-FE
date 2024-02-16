@@ -1,8 +1,7 @@
 import { createPortal } from "react-dom";
-import SearchBar from "../atoms/Inputs/SearchBar";
-import { useLayoutEffect, useState } from "react";
+import { ReactNode, useLayoutEffect, useState } from "react";
 
-const PortalSearchBar = ({ switcher }: { switcher: boolean | undefined }) => {
+const PortalSearchBar = ({ switcher, children }: { switcher: boolean | undefined; children: ReactNode }) => {
   const [mounted, setMounted] = useState(false);
 
   useLayoutEffect(() => {
@@ -15,10 +14,7 @@ const PortalSearchBar = ({ switcher }: { switcher: boolean | undefined }) => {
   const heroSecSearchBar = document.getElementById("heroSecSearchBar") as HTMLSpanElement;
   const navSearchBar = document.getElementById("navSearchBar") as HTMLSpanElement;
 
-  return createPortal(
-    <SearchBar size={`${switcher ? "large" : "small"}`} />,
-    switcher ? heroSecSearchBar : navSearchBar
-  );
+  return createPortal(children, switcher ? heroSecSearchBar : navSearchBar);
 };
 
 export default PortalSearchBar;
