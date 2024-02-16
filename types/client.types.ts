@@ -65,3 +65,19 @@ export type ImageType = {
 };
 
 export type OrderValue = "인기순" | "평점순" | "최신순";
+
+export type UserAdditionalInfo = {
+  birthDate: string;
+  gender: string;
+  nickName: string;
+};
+
+export type UserInfoType = {
+  email: string;
+  nickName: string;
+  imageUrl: string;
+  gender: string;
+  birthDate: string;
+  role: string;
+};
+export type birthdateValType = { value: number; label: number };
