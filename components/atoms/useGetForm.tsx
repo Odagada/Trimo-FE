@@ -1,5 +1,5 @@
 import { Review } from "@/types/client.types";
-import { useController } from "react-hook-form";
+import { useController, useFieldArray } from "react-hook-form";
 import { Control } from "react-hook-form";
 
 export default function useGetForm(control: Control<Review>) {
@@ -36,6 +36,9 @@ export default function useGetForm(control: Control<Review>) {
   const { field: visitingTime } = useController({
     name: "visitingTime",
     control: control,
+    rules: {
+      required: "날짜를 입력해 주세요.",
+    },
   });
 
   const { field: stars } = useController({
@@ -43,5 +46,13 @@ export default function useGetForm(control: Control<Review>) {
     control: control,
   });
 
-  return { title, content, placeType, companion, weather, visitingTime, stars };
+  const images = useFieldArray({
+    name: "images",
+    control: control,
+    rules: {
+      maxLength: 10,
+    },
+  });
+
+  return { title, content, placeType, companion, weather, visitingTime, stars, images };
 }

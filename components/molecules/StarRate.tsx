@@ -6,7 +6,7 @@ interface Props {
   readOnly?: boolean;
   defaultRate?: number;
   onChange: (arg: Stars) => void;
-  value: Stars | undefined;
+  value: Stars;
 }
 
 const stars: Stars[] = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];

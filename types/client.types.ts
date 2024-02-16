@@ -65,7 +65,8 @@ export type Review = {
   companion: TagCompanion;
   placeType: TagPlaceType;
   visitingTime: string;
-  stars?: Stars;
+  stars: Stars;
+  images: File[];
 };
 
 export type ImageType = {
