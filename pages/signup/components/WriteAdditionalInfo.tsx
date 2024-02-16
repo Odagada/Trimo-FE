@@ -43,8 +43,8 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
         <div className="flex items-end">
           <InputWrapper
-            className="w-412 py-17 border-gray-400"
-            divOptions="w-min"
+            className="py-17 border-gray-400"
+            divOptions="w-412"
             htmlFor="title"
             title="닉네임"
             errors={formState.errors.nickName}
@@ -63,7 +63,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
             {data?.status === 200 && <Image src={check} width={20} height={20} alt="nickname validated" />}
           </InputWrapper>
           <button onClick={() => validateNickname(getValues("nickName"))}>
-            <Clickable size="medium" className="px-30 py-17 ml-10 font-medium">
+            <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
               중복확인
             </Clickable>
           </button>
@@ -150,32 +150,32 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
           htmlFor="title"
           title="성별"
           errors={formState.errors.gender}
-          className="border-none px-0"
+          className="border-none px-0 "
           divOptions="px-0"
         >
           <div className="flex items-center gap-100">
-            <label>
+            <label className="flex items-center">
               <input
                 type="radio"
-                value="male"
+                value="남자"
                 {...register("gender", { required: true })}
                 className="h-18 w-18 border-0 accent-black mr-12"
               />
               남성
             </label>
 
-            <label>
+            <labe className="flex items-center">
               <input
                 type="radio"
-                value="female"
+                value="여자"
                 {...register("gender", { required: true })}
                 className="h-18 w-18 border-0 accent-black mr-12"
               />
               여성
-            </label>
+            </labe>
           </div>
         </InputWrapper>
-        <TermsBox></TermsBox>
+
         <button
           type="submit"
           className="w-full mt-20"
