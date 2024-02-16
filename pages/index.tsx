@@ -255,7 +255,7 @@ export default function Landing() {
 
       <section className="pt-88 pb-122">
         <div className="relative w-914 h-275 mx-auto">
-          <Image className="object-cover" fill src={hero_sec} alt="" />
+          <Image className="object-cover" draggable={false} fill src={hero_sec} alt="" />
         </div>
         <div id="heroSecSearchBar" className="h-65">
           <span ref={ref}></span>

@@ -53,6 +53,7 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
         } bg-black rounded-100 m-6 flex items-center justify-center`}
       >
         <Image
+          draggable={false}
           src={searchIcon}
           width={`${size === "large" ? 19 : 13}`}
           height={`${size === "large" ? 19 : 13}`}

@@ -22,7 +22,7 @@ function Nav({ navStatus = "LoggedIn" }: NavProps) {
         return (
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-              <Image src={defaultProfile} width={22} height={22} alt="default user profile" />
+              <Image draggable={false} src={defaultProfile} width={22} height={22} alt="default user profile" />
               <span className="text-16">닉네임</span>
             </button>
             {isOpen && <HeaderDropdown ref={popupRef} />}
@@ -42,7 +42,7 @@ function Nav({ navStatus = "LoggedIn" }: NavProps) {
   return (
     <nav className="h-fit mb-66 flex flex-col w-full">
       <div className="z-50 h-fit py-12 px-121 fixed top-0 flex flex-wrap items-center justify-between w-full bg-white">
-        <Image src={Logo} alt="logo" width={78} height={20}></Image>
+        <Image draggable={false} src={Logo} alt="logo" width={78} height={20}></Image>
         <span id="navSearchBar" className="h-50"></span>
         {renderNavbarLeftSide(navStatus)}
       </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div className="bg-gray-50 px-120 pt-26 pb-44">
-      <Image className="text-white" src={logo} alt="" width={62} height={30} />
+      <Image draggable={false} className="text-white" src={logo} alt="" width={62} height={30} />
       <div className="mt-8 ">
         <p className="text-white text-12 leading-18">
           여행 기록 서비스, 트리모

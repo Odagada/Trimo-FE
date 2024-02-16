@@ -58,7 +58,7 @@ const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof get
           <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
         ) : (
           <div className="relative bg-gray-40 h-[40vh] w-full flex items-center justify-center">
-            <Image src={noImage} alt="" fill className="object-contain" />
+            <Image draggable={false} src={noImage} alt="" fill className="object-contain" />
           </div>
         )}
       </div>
