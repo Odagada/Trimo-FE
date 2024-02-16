@@ -1,49 +1,41 @@
 import Clickable from "@/components/atoms/Clickable";
 import Input from "@/components/atoms/Inputs/Input";
 import InputWrapper from "@/components/atoms/Inputs/InputWapper";
-import ShadowBox from "@/components/atoms/ShadowBox";
-import ProgressNavigator from "@/components/molecules/ProgressNavigator";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import Select from "react-select";
-import { useController, useForm } from "react-hook-form";
 import TermsBox from "@/components/molecules/TermsBox";
-import useSubmitAdditionalInfo from "@/hooks/useSubmitAdditionalInfo";
-import useValidateNickname from "@/hooks/useValidateNickname";
-import { UserAdditionalInfo } from "@/types/client.types";
+import useSubmitAdditionalInfo from "@/hooks/signup/useSubmitAdditionalInfo";
+import useValidateNickname from "@/hooks/signup/useValidateNickname";
 import check from "@/public/images/icons/blackCheck.svg";
 import Image from "next/image";
-import useUserData from "@/hooks/useUserData";
+import useRegisterDropdown from "@/hooks/signup/useRegisterDropdowns";
+import { SignupContentProps } from "./TermsAgreements";
+import { INPUT_VALIDATION_MESSAGE } from "@/constants/signupConstants";
 
-interface Props {
-  progressStatus: () => void;
+interface Props extends SignupContentProps {
   setNickname: (value: string) => void;
 }
 
 function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
+  const { onSubmit } = useSubmitAdditionalInfo({ progressStatus });
+
   const {
-    onSubmit,
-    handleSubmit,
     register,
+    handleSubmit,
+    getValues,
+    formState,
+    onBirthYearChange,
+    onBirthMonthChange,
+    onBirthDateChange,
+    birthyearVal,
+    birthmonthVal,
+    birthdateVal,
     restField1,
     restField2,
     restField3,
-    birthmonthList,
-    birthyearList,
-    birthdateList,
-    birthdateVal,
-    birthmonthVal,
-    birthyearVal,
-    formState,
-    getValues,
-    onBirthDateChange,
-    onBirthMonthChange,
-    onBirthYearChange,
-  } = useSubmitAdditionalInfo(["nickName", "gender", "birthdate", "birthyear", "birthmonth"]);
+    availableBirthdateList,
+  } = useRegisterDropdown();
 
   const { validateNickname, data } = useValidateNickname();
-
-  // const { userData } = useUserData();
 
   return (
     <>
@@ -51,7 +43,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
         <div className="flex items-end">
           <InputWrapper
-            className="w-[412px] py-17 border-gray-400"
+            className="w-412 py-17 border-gray-400"
             divOptions="w-min"
             htmlFor="title"
             title="닉네임"
@@ -60,9 +52,9 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
             <Input
               {...register("nickName", {
                 required: true,
-                maxLength: { value: 5, message: "5자 이하의 닉네임을 입력 해 주세요." },
+                maxLength: { value: 5, message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG },
                 validate: () =>
-                  data?.status === null || data?.status === 200 ? true : "중복되지 않은 닉네임을 입력 해 주세요.",
+                  data?.status === null || data?.status === 200 ? true : INPUT_VALIDATION_MESSAGE.NICKNAME_DUPLICATED,
               })}
               id="title"
               placeholder="닉네임"
@@ -95,10 +87,12 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
                   borderRadius: 10,
                 }),
               }}
-              instanceId="long-value-select"
+              instanceId="date-select"
               placeholder="출생년도"
-              options={birthyearList}
-              value={birthyearVal ? birthyearList.find((x) => x.value === birthyearVal) : birthyearVal}
+              options={availableBirthdateList.yearList}
+              value={
+                birthyearVal ? availableBirthdateList.yearList.find((x) => x.value === birthyearVal) : birthyearVal
+              }
               onChange={(option) => onBirthYearChange(option)}
               components={{
                 IndicatorSeparator: () => null,
@@ -116,10 +110,12 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
                   borderRadius: 10,
                 }),
               }}
-              instanceId="long-value-select"
+              instanceId="date-select"
               placeholder="월"
-              options={birthmonthList}
-              value={birthmonthVal ? birthmonthList.find((x) => x.value === birthmonthVal) : birthmonthVal}
+              options={availableBirthdateList.monthList}
+              value={
+                birthmonthVal ? availableBirthdateList.monthList.find((x) => x.value === birthmonthVal) : birthmonthVal
+              }
               onChange={(option) => onBirthMonthChange(option)}
               components={{
                 IndicatorSeparator: () => null,
@@ -137,10 +133,10 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
                   borderRadius: 10,
                 }),
               }}
-              instanceId="long-value-select"
+              instanceId="date-select"
               placeholder="일"
-              options={birthdateList}
-              value={birthdateVal ? birthdateList.find((x) => x.value === birthdateVal) : birthdateVal}
+              options={availableBirthdateList.dayList}
+              value={birthdateVal ? availableBirthdateList.dayList.find((x) => x.value === birthdateVal) : birthdateVal}
               onChange={(option) => onBirthDateChange(option)}
               components={{
                 IndicatorSeparator: () => null,
