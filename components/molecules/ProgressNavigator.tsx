@@ -10,7 +10,7 @@ function Line() {
 
 function ProgressNavigator({ stepArray = [1, 0, 0] }: ProgressNavProps) {
   return (
-    <div className="w-fit h-[30px] relative flex items-center">
+    <div className="w-fit h-30 relative flex items-center">
       {stepArray.map((isOnstep, index) => (
         <>
           {isOnstep ? (
@@ -18,7 +18,7 @@ function ProgressNavigator({ stepArray = [1, 0, 0] }: ProgressNavProps) {
           ) : (
             <ProgressChip num={index + 1} key={index} />
           )}
-          {index + 1 < stepArray.length && <Line />}
+          {index + 1 < stepArray.length && <Line key={index} />}
         </>
       ))}
     </div>
