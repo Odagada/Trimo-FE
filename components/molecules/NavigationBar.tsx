@@ -42,7 +42,11 @@ function Nav({ navStatus = "LoggedIn" }: NavProps) {
   return (
     <nav className="h-fit mb-66 flex flex-col w-full">
       <div className="z-50 h-fit py-12 px-121 fixed top-0 flex flex-wrap items-center justify-between w-full bg-white">
-        <Image draggable={false} src={Logo} alt="logo" width={78} height={20}></Image>
+        <h1>
+          <Link href="/">
+            <Image draggable={false} src={Logo} alt="trimo logo" width={78} height={20} />
+          </Link>
+        </h1>
         <span id="navSearchBar" className="h-50"></span>
         {renderNavbarLeftSide(navStatus)}
       </div>
