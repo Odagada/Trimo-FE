@@ -3,10 +3,14 @@ import Image from "next/image";
 import useComponentPopup from "@/hooks/useComponentPopup";
 import FilterImg from "@/public/icons/filter.svg";
 import DeleteIcon from "@/components/atoms/icons/DeleteIcon";
-import Clickable from "../atoms/Clickable";
+import FilterForm from "./FilterForm";
 
 export default function FilterDropdown() {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
   return (
     <div>
       <button
@@ -25,17 +29,11 @@ export default function FilterDropdown() {
             ref={popupRef}
           >
             <div className="flex justify-end">
-              <button onClick={() => setIsOpen(false)}>
+              <button onClick={closeDropdown}>
                 <DeleteIcon size="large" />
               </button>
             </div>
-            <div className="flex justify-end">
-              <button>
-                <Clickable shape="capsule" size="small">
-                  <div className="w-70">확인</div>
-                </Clickable>
-              </button>
-            </div>
+            <FilterForm closeDropdown={closeDropdown} />
           </div>
         )}
       </div>

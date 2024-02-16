@@ -2,16 +2,25 @@ import useComponentPopup from "@/hooks/useComponentPopup";
 import DropdownImg from "@/public/icons/dropdown.svg";
 import { OrderValue } from "@/types/client.types";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const values: OrderValue[] = ["인기순", "평점순", "최신순"];
+const transQuery = {
+  인기순: "popular",
+  평점순: "rating",
+  최신순: "recent",
+};
 
 export default function OrderDropdown() {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
-  const [currentOrder, setCurrentOrder] = useState<OrderValue>("최신순");
+  const [currentOrder, setCurrentOrder] = useState<OrderValue>("평점순");
+  const router = useRouter();
+  const { query } = router;
 
   const handleClick = (el: OrderValue) => {
     //TODO:api 추가
+    router.push({ query: { ...query, order: transQuery[currentOrder] } });
     setCurrentOrder(el);
   };
 

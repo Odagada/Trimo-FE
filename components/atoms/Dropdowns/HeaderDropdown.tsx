@@ -9,7 +9,7 @@ const menus = [
 export default forwardRef(function HeaderDropdown(_, ref: ForwardedRef<HTMLDivElement>) {
   return (
     <div
-      className="w-122 flex-center shadow-main rounded-10 text-15 leading-21 absolute right-0 flex flex-col gap-5 p-12 mt-12"
+      className="w-122 flex-center shadow-main rounded-10 text-15 leading-21 absolute right-0 flex flex-col gap-5 p-12 mt-12 z-10 bg-white"
       ref={ref}
     >
       {menus.map((el, idx) => (
