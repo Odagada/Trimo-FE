@@ -12,7 +12,7 @@ function SignUp() {
   const { calculateStepArray, renderContentOnProgress, storeAccessToken } = useSignUp();
 
   const userSocialData = useGetUserSocialInfo({ code, provider });
-  if (storeAccessToken) storeAccessToken(userSocialData.data.accessToken!);
+  if (userSocialData.data.accessToken) storeAccessToken(userSocialData.data.accessToken);
 
   return (
     <div className="h-screen flex w-full flex-col mt-20 mb-20">
