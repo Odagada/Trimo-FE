@@ -1,97 +1,91 @@
-import Clickable from "@/components/atoms/Clickable";
-import Input from "@/components/atoms/Inputs/Input";
-import InputWrapper from "@/components/atoms/Inputs/InputWapper";
-import ShadowBox from "@/components/atoms/ShadowBox";
-import ProgressNavigator from "@/components/molecules/ProgressNavigator";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import Select from "react-select";
-
-import { useController, useForm } from "react-hook-form";
-import { boolean } from "zod";
+import Image from "next/image";
 import { useCallback, useState } from "react";
+import checked from "@/public/images/icons/checked.svg";
+import notChecked from "@/public/images/icons/notChecked.svg";
+import { Terms } from "@/constants/signupTerms";
+import Clickable from "@/components/atoms/Clickable";
 
-function TermsAgreements() {
-  const [termsCheckedStatus, setTermsCheckedStatus] = useState({ term1: false, term2: false, term3: false });
+interface Props {
+  progressStatus: () => void;
+}
 
-  const handleTermCheck = useCallback(
-    (termType: string, status: boolean) => {
-      setTermsCheckedStatus({ ...termsCheckedStatus, [termType]: status });
-      console.log(termsCheckedStatus);
-    },
-    [termsCheckedStatus]
-  );
+function TermsAgreements({ progressStatus }: Props) {
+  const [checkedTerms, setCheckedTerms] = useState<number[]>([]);
+
+  const handleSingleCheck = (checked: boolean, id: number) => {
+    if (checked) {
+      setCheckedTerms((prev) => [...prev, id]);
+    } else {
+      setCheckedTerms(checkedTerms.filter((notCheckedTerm) => notCheckedTerm !== id));
+    }
+  };
+
+  const handleAllCheck = (checked: boolean) => {
+    if (checked) {
+      setCheckedTerms(Terms.map((term) => term.termNo));
+    } else {
+      setCheckedTerms([]);
+    }
+  };
+
+  const validateTermCheck = () => {
+    if (checkedTerms.length !== Terms.length) {
+      alert("모든 약관에 동의하셔야 회원가입이 가능합니다.");
+      return;
+    }
+    alert("모든 약관에 동의하셨습니다.");
+    progressStatus();
+  };
 
   return (
-    <div>
-      <span className="text-20 font-bold text-center mb-15 mt-35">회원가입</span>
-      <ProgressNavigator stepArray={[1, 0, 0]}></ProgressNavigator>
-      <div>
-        <span>개인정보처리방침</span>
-        <label>
+    <div className="mt-60">
+      <div className="absolute right-62">
+        <label className="flex gap-8">
           <input
-            type="radio"
+            type="checkbox"
             value="male"
-            className="h-18 w-18 border-0 accent-black mr-12"
-            onClick={() => handleTermCheck("term1", !termsCheckedStatus.term1)}
+            className="h-18 w-18 appearance-none"
+            onChange={(e) => handleAllCheck(e.target.checked)}
+            checked={checkedTerms.length === Terms.length}
           />
+          {checkedTerms.length === Terms.length ? (
+            <Image src={checked} alt="checked" width={20} height={20} />
+          ) : (
+            <Image src={notChecked} alt="checked" width={20} height={20} />
+          )}
           전체 동의
         </label>
       </div>
 
-      <p className="w-[675px] h-[280px] rounded-[10px] border border-zinc-400">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
-      <label>
-        <input
-          type="radio"
-          value="male"
-          className="h-18 w-18 border-0 accent-black mr-12"
-          onClick={() => handleTermCheck("term1", !termsCheckedStatus.term1)}
-        />
-        동의
-      </label>
-      <p className="w-[675px] h-[280px] rounded-[10px] border border-zinc-400">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
-      <label>
-        <input
-          type="radio"
-          value="male"
-          className="h-18 w-18 border-0 accent-black mr-12"
-          onClick={() => handleTermCheck("term2", !termsCheckedStatus.term2)}
-        />
-        동의
-      </label>
-      <p className="w-[675px] h-[280px] rounded-[10px] border border-zinc-400">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
-      <label>
-        <input
-          type="radio"
-          value="male"
-          className="h-18 w-18 border-0 accent-black mr-12"
-          onClick={() => handleTermCheck("term3", !termsCheckedStatus.term3)}
-        />
-        동의
-      </label>
-      <button onClick={() => console.log(termsCheckedStatus)}>
-        <Clickable size="medium">확인</Clickable>
+      {Terms.map((termContent, key) => {
+        return (
+          <>
+            <h5 className="mb-12">{termContent.title}</h5>
+            <p className="w-675 h-200 rounded-[10px] border border-zinc-400 p-20 overflow-y-auto" key={key}>
+              {termContent.content}
+            </p>
+            <label className="flex gap-12 m-10 mb-50 items-center">
+              <input
+                type="checkbox"
+                value="male"
+                className="h-18 w-18 appearance-none"
+                onChange={(e) => handleSingleCheck(e.target.checked, termContent.termNo)}
+                checked={checkedTerms.includes(termContent.termNo)}
+              />
+              {checkedTerms.includes(termContent.termNo) ? (
+                <Image src={checked} alt="checked" width={20} height={20} className="absolute" />
+              ) : (
+                <Image src={notChecked} alt="checked" width={20} height={20} className="absolute" />
+              )}
+              동의
+            </label>
+          </>
+        );
+      })}
+      <button className="w-full" onClick={validateTermCheck}>
+        <Clickable size="large" className="w-full">
+          확인
+        </Clickable>
       </button>
     </div>
   );
