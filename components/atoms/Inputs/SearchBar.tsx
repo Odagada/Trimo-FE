@@ -37,7 +37,7 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
       ${className}
       ${
         size === "large" ? "w-536 border-2 border-black " : "w-460 border border-gray-50"
-      } m-auto   rounded-100 flex items-center justify-center`}
+      } m-auto rounded-100 flex items-center justify-center`}
     >
       <div className={size === "large" ? "w-49 h-49" : "w-33 h-33"}></div>
       <input
