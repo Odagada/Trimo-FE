@@ -1,20 +1,18 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { SIGNUP_SERVER_ERROR } from "@/constants/signupConstants";
 
 interface Props {
   code: string | undefined | string[];
   provider: string | undefined | string[];
 }
-//usegetAccessToken
 function useGetUserSocialInfo({ code, provider }: Props) {
   const router = useRouter();
-  const [data, setData] = useState({});
-  // const fetchUserSocialData = async (code: string | string[]) => {
-  const queryClient = useQueryClient();
+  const [data, setData] = useState({ data: { accessToken: null } });
 
-  const { mutate, isPending, isError, error } = useMutation({
+  const { mutate, error } = useMutation({
     mutationFn: () =>
       axios.post(
         `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}&state=null`
@@ -23,14 +21,10 @@ function useGetUserSocialInfo({ code, provider }: Props) {
       setData(data);
     },
     onError: (error) => {
-      alert(
-        `${error.message} \n회원가입 중 에러가 발생했습니다. 다시 시도해주세요.\n에러가 지속되면 관리자에게 문의하세요.`
-      );
+      alert(`${error.message} ${SIGNUP_SERVER_ERROR} `);
       router.push("/login");
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["inviteItem"] });
-    },
+    onSettled: () => {},
   });
 
   useEffect(() => {
