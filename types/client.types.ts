@@ -76,3 +76,7 @@ export type ImageType = {
 };
 
 export type OrderValue = "인기순" | "평점순" | "최신순";
+
+export interface MapProps {
+  locationIDList: string[];
+}

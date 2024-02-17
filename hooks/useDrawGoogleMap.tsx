@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 import { useEffect, useRef } from "react";
-import { MapContentProps } from "@/components/molecules/GoogleMapContent";
 import { addSingleMarkers } from "@/components/atoms/MapMarker";
+import { MapProps } from "@/types/client.types";
 
 const DEFAULT_CENTER = { lat: 37.5519, lng: 126.9918 }; // default center 좌표 값 - 대한민국 서울 좌표
-const DEFAULT_ZOOM = 4; // zoom 설정 값
+const DEFAULT_MARKER_ZOOM = 4; // zoom 설정 값
 
-const useDrawGoogleMap = ({ locationID }: MapContentProps) => {
+const useDrawGoogleMap = ({ locationIDList }: MapProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -14,13 +14,13 @@ const useDrawGoogleMap = ({ locationID }: MapContentProps) => {
     if (ref.current) {
       const map = new window.google.maps.Map(ref.current, {
         center: DEFAULT_CENTER,
-        zoom: DEFAULT_ZOOM,
+        zoom: DEFAULT_MARKER_ZOOM,
       });
 
       // Add Single Marker On the Google Map with Place ID
-      addSingleMarkers({ locationID, map }); // PlaceID로 지도에 마커 표시
+      addSingleMarkers({ locationIDList, map }); // PlaceID로 지도에 마커 표시
     }
-  }, [locationID]);
+  }, [locationIDList]);
 
   return ref;
 };
