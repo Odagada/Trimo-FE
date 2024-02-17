@@ -13,6 +13,7 @@
     "lint": "eslint --cache ."
   },
   "dependencies": {
+    "@aliakbarazizi/headless-datepicker": "^2.0.2",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@hookform/resolvers": "^3.3.4",
     "@tanstack/react-query": "^5.17.15",
