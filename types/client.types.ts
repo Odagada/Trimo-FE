@@ -88,6 +88,16 @@ export type UserAdditionalInfo = {
   nickName: string;
 };
 
+export type UserSocialLoginData = {
+  id: number;
+  email: string;
+  nickName: string;
+  imageUrl: string;
+  role: string; //ROLE_USER, ROLE_GUEST
+  tokenType: string;
+  accessToken: string;
+};
+
 export type UserInfoType = {
   email: string;
   nickName: string;
