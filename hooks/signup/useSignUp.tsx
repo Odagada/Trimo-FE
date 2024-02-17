@@ -2,22 +2,24 @@ import { useState } from "react";
 import SuccessPage from "@/pages/signup/components/SignUpSuccess";
 import TermsAgreements from "@/pages/signup/components/TermsAgreements";
 import WriteAdditionalInfo from "@/pages/signup/components/WriteAdditionalInfo";
+import { UserSocialLoginData } from "@/types/client.types";
 
 function useSignUp() {
   const [signUpStatus, setSignUpStatus] = useState(0);
   const [nickname, setNickname] = useState("");
 
-  const storeAccessToken = (accessToken: string) => {
-    if (accessToken) {
-      localStorage.setItem("accessToken", accessToken);
-    }
-  };
-  const renderContentOnProgress = () => {
+  const renderContentOnProgress = (userData: UserSocialLoginData) => {
     switch (signUpStatus) {
       case 0:
         return <TermsAgreements progressStatus={progressStatus} />;
       case 1:
-        return <WriteAdditionalInfo progressStatus={progressStatus} setNickname={setUserNickname} />;
+        return (
+          <WriteAdditionalInfo
+            progressStatus={progressStatus}
+            setNickname={setUserNickname}
+            userAccessToken={userData.accessToken}
+          />
+        );
       case 2:
         return <SuccessPage nickname={nickname || ""} />;
     }
@@ -34,7 +36,7 @@ function useSignUp() {
 
   const progressStatus = () => setSignUpStatus((prev) => ++prev);
 
-  return { calculateStepArray, renderContentOnProgress, storeAccessToken };
+  return { calculateStepArray, renderContentOnProgress };
 }
 
 export default useSignUp;
