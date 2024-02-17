@@ -4,7 +4,7 @@ export default function TimePicker() {
   return (
     <Datepicker>
       <Datepicker.Input
-        format="HH:mm aa"
+        format="HH aa"
         className="flex w-160 h-36 border border-gray30 rounded-10 middle-text text-center font-bold"
       />
       <Datepicker.Picker className="flex max-h-135 heading5 bg-white border middle-text" id="HourPicker">
@@ -20,23 +20,6 @@ export default function TimePicker() {
                 {("0" + item.text).slice(-2)}
               </Datepicker.Item>
             ))
-          }
-        </Datepicker.Items>
-        <Datepicker.Items type="minute" className="overflow-y-auto scroll-smooth p-16 space-y-20" disableAutoScroll>
-          {({ items }) =>
-            items.map(
-              (item) =>
-                (item.text === "0" || item.text === "15" || item.text === "30" || item.text === "45") && (
-                  <Datepicker.Item
-                    key={item.key}
-                    item={item}
-                    action="close"
-                    className="flex justify-center items-center h-10 hover:text-gray-20"
-                  >
-                    {("0" + item.text).slice(-2)}
-                  </Datepicker.Item>
-                )
-            )
           }
         </Datepicker.Items>
       </Datepicker.Picker>
