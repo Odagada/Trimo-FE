@@ -42,7 +42,6 @@ const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof get
 
   const travelDate = reviewData?.data.visitingTime ?? "";
   const createDate = reviewData?.data.createdAt ?? "";
-  const modifieDate = reviewData?.data.modifiedAt ?? "";
   const imageUrlArray = reviewData?.data.imageUrls ?? [];
 
   const date = calcData(travelDate);

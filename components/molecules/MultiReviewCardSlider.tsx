@@ -22,7 +22,7 @@ const MultiReviewCardSlider = ({
       <div
         className={`${
           align === "left" ? "flex-row" : "flex-row-reverse"
-        } w-full flex gap-20 px-240 overflow-x-auto scrollbar-hide pb-10`}
+        } w-full flex gap-20 px-260 overflow-x-auto scrollbar-hide pb-10`}
       >
         {reviewCards.map((review, i) => {
           return <ReviewCard key={i} review={review} />;
