@@ -2,7 +2,6 @@ import Clickable from "@/components/atoms/Clickable";
 import Input from "@/components/atoms/Inputs/Input";
 import InputWrapper from "@/components/atoms/Inputs/InputWapper";
 import Select from "react-select";
-import TermsBox from "@/components/molecules/TermsBox";
 import useSubmitAdditionalInfo from "@/hooks/signup/useSubmitAdditionalInfo";
 import useValidateNickname from "@/hooks/signup/useValidateNickname";
 import check from "@/public/images/icons/blackCheck.svg";
@@ -13,10 +12,11 @@ import { INPUT_VALIDATION_MESSAGE } from "@/constants/signupConstants";
 
 interface Props extends SignupContentProps {
   setNickname: (value: string) => void;
+  userAccessToken: string;
 }
 
-function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
-  const { onSubmit } = useSubmitAdditionalInfo({ progressStatus });
+function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: Props) {
+  const { onSubmit } = useSubmitAdditionalInfo({ progressStatus, userAccessToken });
 
   const {
     register,
@@ -164,7 +164,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
               남성
             </label>
 
-            <labe className="flex items-center">
+            <label className="flex items-center">
               <input
                 type="radio"
                 value="여자"
@@ -172,7 +172,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname }: Props) {
                 className="h-18 w-18 border-0 accent-black mr-12"
               />
               여성
-            </labe>
+            </label>
           </div>
         </InputWrapper>
 
