@@ -7,9 +7,9 @@ import { useState } from "react";
 
 const values: OrderValue[] = ["인기순", "평점순", "최신순"];
 const transQuery = {
-  인기순: "popular",
-  평점순: "rating",
-  최신순: "recent",
+  인기순: "POPULAR",
+  평점순: "RATING",
+  최신순: "RECENT",
 };
 
 export default function OrderDropdown() {
@@ -20,7 +20,7 @@ export default function OrderDropdown() {
 
   const handleClick = (el: OrderValue) => {
     //TODO:api 추가
-    router.push({ query: { ...query, order: transQuery[currentOrder] } });
+    router.push({ pathname: "/search", query: { ...query, order: transQuery[el] } });
     setCurrentOrder(el);
   };
 

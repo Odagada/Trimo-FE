@@ -23,7 +23,7 @@ export default function Search() {
         <SearchList />
       </div>
       <button
-        onClick={() => router.push({ query: { ...query, place: "소격동" } })}
+        onClick={() => router.push({ query: { order: query.order, searchValue: "소격동" } })}
         className="w-300 bg-gray-10 h-48 rounded-full"
       >
         소격동
