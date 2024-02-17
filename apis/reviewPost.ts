@@ -2,7 +2,7 @@ import { Destination, Review } from "@/types/client.types";
 import fetcher from "./axios";
 
 const apiKey =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiLslYTrsJTrsJTrsJTrsJRAbmF2ZXIuY29tIiwiaWF0IjoxNzA3OTA5NTM3LCJleHAiOjE3MDc5MTMxMzd9.NgkZJd6rxr5DATtz7G6-Yq50xTNYnwYbr6SjxFU_o8M";
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dHRAdHR0LnR0dCIsImlhdCI6MTcwODA5NjM5NywiZXhwIjoxNzA4MDk5OTk3fQ.thbCLb0KKbXAdRZZQuYFo2ei3PD_E3gL72kIZ5V1pNk";
 
 export async function postSpots(postData: Destination) {
   const { data } = await fetcher<Destination>({
@@ -18,7 +18,7 @@ export async function postReviews({ postData, spotId }: { postData: Review; spot
   const { data } = await fetcher<Review>({
     method: "post",
     url: `/users/spots/${spotId}/reviews`,
-    headers: { Authorization: apiKey, "Content-Type": "application/json" },
+    headers: { Authorization: apiKey, "Content-Type": "multipart/form-data" },
     data: postData,
   });
   return data;

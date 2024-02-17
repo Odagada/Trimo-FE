@@ -66,7 +66,7 @@ export type Review = {
   placeType: TagPlaceType;
   visitingTime: string;
   stars: Stars;
-  images: File[];
+  images: { file: File }[];
 };
 
 export type ImageType = {

@@ -1,7 +1,7 @@
 import GoogleAutoComplete from "../molecules/GoogleAutoComplete";
 
 import { useState } from "react";
-import ReviewFrom from "../molecules/ReviewForm";
+import ReviewFrom from "../molecules/ReviewWrite";
 
 //나중에 DevTool 지우기
 

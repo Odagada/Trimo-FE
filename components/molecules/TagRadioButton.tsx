@@ -4,13 +4,12 @@ import Emoji from "../atoms/Emoji";
 import { TagWithMonth } from "@/types/client.types";
 
 interface TagRadioButtonProps {
-  onBlur: () => void;
   onChange: (arg: string) => void;
   name: string;
   tag: "placeType" | "weather" | "companion";
 }
 
-export default function TagRadioButton({ onBlur, onChange, name, tag = "placeType" }: TagRadioButtonProps) {
+export default function TagRadioButton({ onChange, name, tag = "placeType" }: TagRadioButtonProps) {
   const [selectedType, setSelectedType] = useState(`${name}disable`);
 
   let items: TagWithMonth[] = [];
@@ -42,7 +41,6 @@ export default function TagRadioButton({ onBlur, onChange, name, tag = "placeTyp
             type="radio"
             id={item}
             name={name}
-            onBlur={onBlur}
             onChange={handleRadioChange}
             checked={selectedType === item}
             className="hidden"
@@ -59,7 +57,6 @@ export default function TagRadioButton({ onBlur, onChange, name, tag = "placeTyp
         type="radio"
         id={`${name}disable`}
         name={name}
-        onBlur={onBlur}
         onChange={handleRadioChange}
         checked={selectedType === `${name}disable`}
         className="hidden"

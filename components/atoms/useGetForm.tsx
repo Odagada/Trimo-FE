@@ -49,9 +49,7 @@ export default function useGetForm(control: Control<Review>) {
   const images = useFieldArray({
     name: "images",
     control: control,
-    rules: {
-      maxLength: 10,
-    },
+    rules: { maxLength: 10 },
   });
 
   return { title, content, placeType, companion, weather, visitingTime, stars, images };

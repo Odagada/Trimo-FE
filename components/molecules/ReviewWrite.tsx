@@ -4,8 +4,8 @@ import ImagesInput from "../atoms/Inputs/ImagesInput";
 import useGetControl from "../atoms/useGetForm";
 import { ReviewOption } from "../atoms/ReviewOption";
 
-import TagRadioButton from "../molecules/TagRadioButton";
-import StarRate from "../molecules/StarRate";
+import TagRadioButton from "./TagRadioButton";
+import StarRate from "./StarRate";
 
 import { Review, Stars } from "@/types/client.types";
 import { postReviews } from "@/apis/reviewPost";
@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
+//나중에 지우기
 const DevT: React.ElementType = dynamic(() => import("@hookform/devtools").then((module) => module.DevTool), {
   ssr: false,
 });
@@ -41,6 +42,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
     setFocus,
     setError,
     formState: { errors },
+    clearErrors,
   } = useForm({
     defaultValues,
   });
@@ -64,8 +66,18 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
       setFocus("title");
       return;
     }
+    const formData = new FormData();
+    const render = new FileReader();
+    render.onload = function (e) {
+      const text = e.target?.result;
+      console.log(text);
+    };
+    const { images, ...reviewWriteRequest } = postData;
+    formData.append("reviewWriteRequest", new Blob([JSON.stringify(reviewWriteRequest)], { type: "application/json" }));
+    for (let key of formData.keys()) {
+      console.log(key, ":", render.readAsText(formData.get(key)));
+    }
     // postReviewsMutate({ postData, spotId });
-    console.log(postData);
   }
 
   //나중에 fragment dev 지우면 같이 지우기
@@ -90,14 +102,18 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
           ></textarea>
           {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
         </div>
-        <ImagesInput />
+        <div>
+          <ImagesInput fields={images.fields} append={images.append} remove={images.remove} />
+          {errors.images && <p className="text-error middle-text font-bold mt-10">이미지는 10개 이하로 가능합니다.</p>}
+        </div>
+
         <ReviewOption>
           <ReviewOption.section>
             <ReviewOption.info>
               <ReviewOption.title> 방문시간</ReviewOption.title>
               <ReviewOption.description>방문하신 시간을 선택해주세요.</ReviewOption.description>
             </ReviewOption.info>
-            <DatePicker {...visitingTime} />
+            <DatePicker onChange={visitingTime.onChange} />
             {errors.visitingTime && <ReviewOption.error>{errors.visitingTime.message}</ReviewOption.error>}
           </ReviewOption.section>
           <ReviewOption.section>
@@ -105,28 +121,28 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
               <ReviewOption.title> 별점</ReviewOption.title>
               <ReviewOption.description>그곳의 만족도는 어느정도 인가요?</ReviewOption.description>
             </ReviewOption.info>
-            <StarRate {...stars} />
+            <StarRate value={stars.value} onChange={stars.onChange} />
           </ReviewOption.section>
           <ReviewOption.section>
             <ReviewOption.info>
               <ReviewOption.title> 유형</ReviewOption.title>
               <ReviewOption.description>어떤 타입의 여행지를 다녀오셨나요?</ReviewOption.description>
             </ReviewOption.info>
-            <TagRadioButton {...placeType} tag="placeType" />
+            <TagRadioButton onChange={placeType.onChange} name={placeType.name} tag="placeType" />
           </ReviewOption.section>
           <ReviewOption.section>
             <ReviewOption.info>
               <ReviewOption.title> 동행</ReviewOption.title>
               <ReviewOption.description>누구와 함께 여행지를 다녀오셨나요?</ReviewOption.description>
             </ReviewOption.info>
-            <TagRadioButton {...companion} tag="companion" />
+            <TagRadioButton onChange={companion.onChange} name={companion.name} tag="companion" />
           </ReviewOption.section>
           <ReviewOption.section>
             <ReviewOption.info>
               <ReviewOption.title> 날씨</ReviewOption.title>
               <ReviewOption.description>그날의 날씨는 어땠나요?</ReviewOption.description>
             </ReviewOption.info>
-            <TagRadioButton {...weather} tag="weather" />
+            <TagRadioButton onChange={weather.onChange} name={weather.name} tag="weather" />
           </ReviewOption.section>
         </ReviewOption>
         <div className="flex gap-16 m-auto">

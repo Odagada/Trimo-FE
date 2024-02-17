@@ -8,7 +8,7 @@ export default function DatePicker({ onChange }: { onChange: (arg: string) => vo
         format="yyyy/MM/dd HH:mm"
         className="flex w-160 h-36 border border-gray30 rounded-10 middle-text"
       />
-      <Datepicker.Picker defaultType="day" className="rounded-10 bg-white w-300 heading5 p-10 border">
+      <Datepicker.Picker defaultType="day" className="rounded-10 bg-white w-300 heading5 p-10 border z-20">
         {({ monthName, hour, minute, year }) => (
           <>
             <div className="flex w-full items-center justify-between space-x-6 py-2 rtl:space-x-reverse">
