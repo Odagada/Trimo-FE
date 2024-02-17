@@ -47,9 +47,7 @@ export default function SearchForm() {
     name: "companion",
     control: control,
   });
-  function handleSearch(data: query) {
-    console.log(data);
-  }
+  function handleSearch(data: query) {}
   return (
     <form onSubmit={handleSubmit(handleSearch)}>
       <SearchOption>
