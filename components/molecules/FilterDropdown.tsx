@@ -3,7 +3,6 @@ import Image from "next/image";
 import useComponentPopup from "@/hooks/useComponentPopup";
 import FilterImg from "@/public/icons/filter.svg";
 import DeleteIcon from "@/components/atoms/icons/DeleteIcon";
-import FilterForm from "./FilterForm";
 
 export default function FilterDropdown() {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
@@ -33,7 +32,6 @@ export default function FilterDropdown() {
                 <DeleteIcon size="large" />
               </button>
             </div>
-            <FilterForm closeDropdown={closeDropdown} />
           </div>
         )}
       </div>
