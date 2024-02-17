@@ -1,8 +1,9 @@
-import { useForm } from "react-hook-form";
+import { useForm, useController } from "react-hook-form";
 import { SearchOption } from "../atoms/SearchOption";
 import DeleteIcon from "../atoms/icons/DeleteIcon";
 import TimePicker from "../atoms/TimePicker";
 import TagRadioButton from "./TagRadioButton";
+import Clickable from "../atoms/Clickable";
 
 interface query {
   searchValue: string;
@@ -26,11 +27,16 @@ export default function SearchForm() {
   };
   const { control, handleSubmit } = useForm({ defaultValues });
 
-  function handleSearch(data) {
+  const month = useController({
+    name: "month",
+    control: control,
+  });
+
+  function handleSearch(data: query) {
     console.log(data);
   }
   return (
-    <form>
+    <form onSubmit={handleSubmit(handleSearch)}>
       <SearchOption>
         <button className="flex justify-end" type="button">
           <DeleteIcon />
@@ -40,7 +46,7 @@ export default function SearchForm() {
             <SearchOption.title>날짜</SearchOption.title>
             <SearchOption.description>방문하신 날짜를 선택해주세요.</SearchOption.description>
           </SearchOption.info>
-          <TagRadioButton tag="date" />
+          <TagRadioButton onChange={month} name={month} tag="date" />
         </SearchOption.section>
         <SearchOption.section>
           <SearchOption.info>
@@ -70,6 +76,11 @@ export default function SearchForm() {
           </SearchOption.info>
           <TagRadioButton tag="companion" />
         </SearchOption.section>
+        <button className="flex justify-end" type="submit">
+          <Clickable size="small" shape="capsule">
+            확인
+          </Clickable>
+        </button>
       </SearchOption>
     </form>
   );
