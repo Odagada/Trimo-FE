@@ -14,7 +14,7 @@ type Accum = {
   [key: string]: string;
 };
 
-const accum: Accum = range(0, 1000).reduce((acc, px) => {
+const accum: Accum = range(0, 1600).reduce((acc, px) => {
   acc[`${px}`] = `${px / 10}rem`;
   return acc;
 }, {} as Accum);
@@ -53,6 +53,7 @@ const config: Config = {
       16: "1.6rem",
       18: "1.8rem",
       20: "2rem",
+      24: "2.4rem",
       28: "2.8rem",
       32: "3.2rem",
       36: "3.6rem",
@@ -67,6 +68,7 @@ const config: Config = {
       27: "2.7rem",
       28: "2.8rem",
       30: "3rem",
+      36: "3.6rem",
       42: "4.2rem",
       48: "4.8rem",
       54: "5.4rem",
