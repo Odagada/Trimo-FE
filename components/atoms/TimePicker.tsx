@@ -1,8 +1,13 @@
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
 
-export default function TimePicker() {
+export default function TimePicker({ onChange }: { onChange: (arg: string) => void }) {
+  function formatHours(date: Date) {
+    const hours = String(date.getHours()).padStart(2, "0");
+    const format = hours + "00";
+    return format;
+  }
   return (
-    <Datepicker>
+    <Datepicker onChange={(date) => onChange(formatHours(date as Date))}>
       <Datepicker.Input
         format="HH aa"
         className="flex w-160 h-36 border border-gray30 rounded-10 middle-text text-center font-bold"
