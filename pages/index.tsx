@@ -220,21 +220,6 @@ const array: MultiReviewData[] = [
   },
 ];
 
-const tagArray: TagWithMonth[] = [
-  "맑음",
-  "흐림",
-  "우천",
-  "눈",
-  "맛집",
-  "관광",
-  "휴양",
-  "명소",
-  "가족",
-  "친구",
-  "연인",
-  "혼자",
-];
-
 const tagClassArray = [
   "top-0 py-12 animate-marquee whitespace-nowrap",
   "absolute top-0 py-12 animate-marquee2 whitespace-nowrap",
@@ -244,55 +229,19 @@ export default function Landing() {
   return (
     <>
       <Nav />
+
       <HeroSection />
+
       <CardSection />
+
       <TagSection />
 
-      <section className="bg-gray-10">
-        <div className="flex items-center">
-          <div className=" overflow-hidden py-10">
-            <Image src={desktopScreenShot2} alt="" width={882} />
-          </div>
-
-          <div className="overflow-hidden bg-white h-min pl-152 rounded-l-full pt-128 pb-109">
-            <p className="text-16 font-medium leading-24">마이페이지</p>
-            <p className="text-28 font-bold leading-36">
-              지금까지 여행의 기록들을
-              <br />
-              <span className="text-primary">지도</span>로 이어보세요.
-            </p>
-
-            <Link href="/">
-              <Clickable className="px-20 py-15" color="primary" shape="square" size="medium">
-                나의 리뷰보기
-              </Clickable>
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex items-center">
-          <div className="w-1/2 overflow-hidden text-right bg-white h-min pr-152 rounded-r-full pt-128 pb-109">
-            <p className="text-16 font-medium leading-24">리뷰</p>
-            <p className="text-28 font-bold leading-36">
-              다른 유저의 <span className="text-primary">리뷰를 저장</span>하고
-              <br />
-              나의 여행에 참고해보세요.
-            </p>
-
-            <Link href="/">
-              <Clickable className="px-20 py-15" color="primary" shape="square" size="medium">
-                나의 리뷰보기
-              </Clickable>
-            </Link>
-          </div>
-          <div className="w-1/2 overflow-hidden">
-            <Image src={desktopScreenShot} alt="" width={882} />
-          </div>
-        </div>
-      </section>
+      <ServiceExplainSection />
 
       <DeviceSection />
+
       <RightNowSection />
+
       <Footer />
     </>
   );
@@ -339,6 +288,21 @@ const CardSection = () => {
 };
 
 const TagSection = () => {
+  const tagArray: TagWithMonth[] = [
+    "맑음",
+    "흐림",
+    "우천",
+    "눈",
+    "맛집",
+    "관광",
+    "휴양",
+    "명소",
+    "가족",
+    "친구",
+    "연인",
+    "혼자",
+  ];
+
   return (
     <section className="bg-gray-60 text-center pt-60 pb-78">
       <div className="flex flex-col gap-8 mb-60">
@@ -413,6 +377,58 @@ const DeviceSection = () => {
   );
 };
 
+const ServiceExplainSection = () => {
+  return (
+    <section>
+      <div className="bg-gray-10 flex items-center">
+        <div className="w-1/2 h-652 overflow-hidden relative">
+          <Image className="absolute right-0 min-w-882" src={desktopScreenShot2} alt="" width={882} />
+        </div>
+
+        <div className="w-1/2 flex flex-col gap-24  bg-white shadow-main h-fit ml-80 pt-128 pb-109 pl-152 rounded-l-full">
+          <div>
+            <p className="text-16 font-medium leading-24">태그 검색</p>
+            <p className="text-24 font-bold leading-36">
+              태그를 통해 다른 유저의 여행 리뷰를
+              <br />
+              <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
+            </p>{" "}
+          </div>
+
+          <Link href="/">
+            <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
+              리뷰 작성하기
+            </Clickable>
+          </Link>
+        </div>
+      </div>
+
+      <div className="bg-gray-10 flex items-center">
+        <div className="w-1/2 flex flex-col gap-24 bg-white shadow-main h-fit mr-80 pt-128 pb-109 pr-152 rounded-r-full text-right">
+          <div>
+            <p className="text-16 font-medium leading-24">태그 검색</p>
+            <p className="text-24 font-bold leading-36">
+              태그를 통해 다른 유저의 여행 리뷰를
+              <br />
+              <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
+            </p>
+          </div>
+
+          <Link href="/">
+            <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
+              리뷰 작성하기
+            </Clickable>
+          </Link>
+        </div>
+
+        <div className="w-1/2 h-652 overflow-hidden relative">
+          <Image className="absolute left-0 min-w-882" src={desktopScreenShot2} alt="" width={882} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const RightNowSection = () => {
   return (
     <section className="flex flex-col py-92 bg-gray-60 items-center gap-24">
@@ -423,7 +439,7 @@ const RightNowSection = () => {
       </p>
 
       <Link href="/">
-        <Clickable className="px-20 py-15" color="primary" shape="square" size="medium">
+        <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
           리뷰 작성하기
         </Clickable>
       </Link>
