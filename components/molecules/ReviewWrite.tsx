@@ -70,12 +70,12 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
     const render = new FileReader();
     render.onload = function (e) {
       const text = e.target?.result;
-      console.log(text);
+      // console.log(text);
     };
     const { images, ...reviewWriteRequest } = postData;
     formData.append("reviewWriteRequest", new Blob([JSON.stringify(reviewWriteRequest)], { type: "application/json" }));
     for (let key of formData.keys()) {
-      console.log(key, ":", render.readAsText(formData.get(key)));
+      // console.log(key, ":", render.readAsText(formData.get(key)));
     }
     // postReviewsMutate({ postData, spotId });
   }
