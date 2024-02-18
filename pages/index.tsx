@@ -26,11 +26,11 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
     const queryClient = new QueryClient();
 
-    const { data: popularReviewCardArray } = await queryClient.fetchQuery(getReviewCardArray("populer"));
-    const { data: recentReviewCardArray } = await queryClient.fetchQuery(getReviewCardArray("recent"));
+    const { data: popularReviewCardData } = await queryClient.fetchQuery(getReviewCardArray("populer"));
+    const { data: recentReviewCardData } = await queryClient.fetchQuery(getReviewCardArray("recent"));
 
     return {
-      props: { popularReviewCardArray, recentReviewCardArray, dehydratedState: dehydrate(queryClient) },
+      props: { popularReviewCardData, recentReviewCardData, dehydratedState: dehydrate(queryClient) },
     };
   } catch {
     return { notFound: true };
@@ -38,8 +38,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 
 export default function Landing({
-  popularReviewCardArray,
-  recentReviewCardArray,
+  popularReviewCardData,
+  recentReviewCardData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
@@ -47,7 +47,7 @@ export default function Landing({
 
       <HeroSection />
 
-      <CardSection recent={recentReviewCardArray} populer={popularReviewCardArray} />
+      <CardSection recent={recentReviewCardData} populer={popularReviewCardData} />
 
       <TagSection />
 
@@ -81,6 +81,9 @@ const HeroSection = () => {
 };
 
 const CardSection = ({ recent, populer }: { recent: MultiReviewData[]; populer: MultiReviewData[] }) => {
+  const recentArray = recent ?? [];
+  const populerArray = populer ?? [];
+
   return (
     <>
       <section className="flex flex-col items-center text-center pt-48 pb-72 gap-8 bg-gray-10">
@@ -94,8 +97,8 @@ const CardSection = ({ recent, populer }: { recent: MultiReviewData[]; populer: 
 
       <section className="pb-129 bg-gray-10">
         <div className="flex flex-col gap-41">
-          <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recent} />
-          <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={populer} />
+          <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentArray} />
+          <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={populerArray} />
         </div>
       </section>
     </>
