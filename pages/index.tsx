@@ -1,6 +1,5 @@
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import { TagWithMonth } from "@/types/client.types";
-import { MultiReviewData } from "@/types/server.types";
 import Clickable from "@/components/atoms/Clickable";
 import Footer from "@/components/atoms/Footer";
 import MultiReviewCardSlider from "@/components/molecules/MultiReviewCardSlider";
@@ -12,13 +11,14 @@ import hero_sec from "@/public/images/hero-sec.png";
 import quill from "@/public/icons/quill.webp";
 import desktop from "@/public/images/desktopMock.png";
 import mobile from "@/public/images/mobileMock.webp";
-import desktopScreenShot from "@/public/images/DesktopScreenShot.png";
+import desktopScreenShot1 from "@/public/images/DesktopScreenShot1.png";
 import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { QueryClient, dehydrate } from "@tanstack/react-query";
+import { GetServerSidePropsContext } from "next";
+import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
+import { MultiReviewData } from "@/types/server.types";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -26,28 +26,25 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
     const queryClient = new QueryClient();
 
-    const { data: popularReviewCardData } = await queryClient.fetchQuery(getReviewCardArray("populer"));
-    const { data: recentReviewCardData } = await queryClient.fetchQuery(getReviewCardArray("recent"));
+    await queryClient.prefetchQuery(getReviewCardArray("populer"));
+    await queryClient.prefetchQuery(getReviewCardArray("recent"));
 
     return {
-      props: { popularReviewCardData, recentReviewCardData, dehydratedState: dehydrate(queryClient) },
+      props: { dehydratedState: dehydrate(queryClient) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function Landing({
-  popularReviewCardData,
-  recentReviewCardData,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Landing() {
   return (
     <>
       <Nav />
 
       <HeroSection />
 
-      <CardSection recent={recentReviewCardData} populer={popularReviewCardData} />
+      <CardSection />
 
       <TagSection />
 
@@ -80,9 +77,214 @@ const HeroSection = () => {
   );
 };
 
-const CardSection = ({ recent, populer }: { recent: MultiReviewData[]; populer: MultiReviewData[] }) => {
-  const recentArray = recent ?? [];
-  const populerArray = populer ?? [];
+const CardSection = () => {
+  // const { data: populerData } = useQuery(getReviewCardArray("populer"));
+  // const { data: recentData } = useQuery(getReviewCardArray("recent"));
+
+  // const populerReviewCardArray = populerData?.data ?? [];
+  // const recentReviewCardArray = recentData?.data ?? [];
+  const array: MultiReviewData[] = [
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+    {
+      reviewId: 1,
+      title: "제주제주제주빔",
+      tagValues: {
+        weather: "우천",
+      },
+      visitingTime: "1995-12-17T03:24:00",
+      nickName: "본롸",
+      stars: 4,
+    },
+  ];
 
   return (
     <>
@@ -97,8 +299,8 @@ const CardSection = ({ recent, populer }: { recent: MultiReviewData[]; populer: 
 
       <section className="pb-129 bg-gray-10">
         <div className="flex flex-col gap-41">
-          <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentArray} />
-          <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={populerArray} />
+          <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={array} />
+          <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={array} />
         </div>
       </section>
     </>
@@ -165,19 +367,19 @@ const TagSection = () => {
 
 const ServiceExplainSection = () => {
   return (
-    <section>
-      <div className="bg-gray-10 flex items-center">
-        <div className="w-1/2 h-652 overflow-hidden relative">
-          <Image className="absolute right-0 min-w-882" src={desktopScreenShot2} alt="" width={882} />
+    <section className="bg-gray-10 flex flex-col gap-140 pb-176 pt-148">
+      <div className="flex items-center">
+        <div className="w-1/2 h-626 overflow-hidden relative">
+          <Image className="absolute right-0 min-w-882" src={desktopScreenShot1} alt="" width={882} />
         </div>
 
         <div className="w-1/2 flex flex-col gap-24  bg-white shadow-main h-fit ml-80 pt-128 pb-109 pl-152 rounded-l-full">
           <div>
-            <p className="text-16 font-medium leading-24">태그 검색</p>
+            <p className="text-16 font-medium leading-24">마이 페이지</p>
             <p className="text-24 font-bold leading-36">
-              태그를 통해 다른 유저의 여행 리뷰를
+              지금까지 여행의 기록들을
               <br />
-              <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
+              <span className="text-primary">지도</span>로 이어보세요.
             </p>{" "}
           </div>
 
@@ -189,14 +391,14 @@ const ServiceExplainSection = () => {
         </div>
       </div>
 
-      <div className="bg-gray-10 flex items-center">
+      <div className="flex items-center">
         <div className="w-1/2 flex flex-col gap-24 bg-white shadow-main h-fit mr-80 pt-128 pb-109 pr-152 rounded-r-full text-right">
           <div>
-            <p className="text-16 font-medium leading-24">태그 검색</p>
+            <p className="text-16 font-medium leading-24">리뷰</p>
             <p className="text-24 font-bold leading-36">
-              태그를 통해 다른 유저의 여행 리뷰를
+              다른 유저의 <span className="text-primary">리뷰</span>를 저장하고
               <br />
-              <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
+              나의 여행에 참고해보세요.
             </p>
           </div>
 
@@ -207,8 +409,8 @@ const ServiceExplainSection = () => {
           </Link>
         </div>
 
-        <div className="w-1/2 h-652 overflow-hidden relative">
-          <Image className="absolute left-0 min-w-882" src={desktopScreenShot} alt="" width={882} />
+        <div className="w-1/2 h-626 overflow-hidden relative">
+          <Image className="absolute left-0 min-w-882" src={desktopScreenShot2} alt="" width={882} />
         </div>
       </div>
     </section>

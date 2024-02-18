@@ -18,6 +18,6 @@ export const getSpot = (spotId: string) => {
 export const getReviewCardArray = (order: string) => {
   return {
     queryKey: ["reviewCards", order],
-    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews?order=${order}` }),
+    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews` }),
   };
 };
