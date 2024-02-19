@@ -12,13 +12,7 @@ import { postReviews } from "@/apis/reviewPost";
 
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-
-//나중에 지우기
-const DevT: React.ElementType = dynamic(() => import("@hookform/devtools").then((module) => module.DevTool), {
-  ssr: false,
-});
 
 interface Props {
   spotId: string;
@@ -77,85 +71,81 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
     postReviewsMutate({ formData, spotId });
   }
 
-  //나중에 fragment dev 지우면 같이 지우기
   return (
-    <>
-      <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
-        <div className="flex gap-10 flex-col">
-          <input
-            {...title}
-            type="text"
-            id="title"
-            placeholder="제목을 작성해 주세요."
-            className="heading4 focus:outline-none text-black placeholder:text-gray-40 w-full"
-          />
-          {errors.title && <p className="text-error middle-text font-bold">{errors.title.message}</p>}
-        </div>
-        <div className="flex gap-10 flex-col">
-          <textarea
-            {...content}
-            className="border border-gray-20 w-full px-16 py-12 rounded-10 bg-white text-16 leading-24 font-regular focus:outline-none text-black h-350 placeholder:text-gray-40 resize-none"
-            placeholder="내용을 입력해주세요."
-          ></textarea>
-          {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
-        </div>
-        <div>
-          <ImagesInput fields={images.fields} append={images.append} remove={images.remove} />
-          {errors.images && <p className="text-error middle-text font-bold mt-10">이미지는 10개 이하로 가능합니다.</p>}
-        </div>
+    <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
+      <div className="flex gap-10 flex-col">
+        <input
+          {...title}
+          type="text"
+          id="title"
+          placeholder="제목을 작성해 주세요."
+          className="heading4 focus:outline-none text-black placeholder:text-gray-40 w-full"
+        />
+        {errors.title && <p className="text-error middle-text font-bold">{errors.title.message}</p>}
+      </div>
+      <div className="flex gap-10 flex-col">
+        <textarea
+          {...content}
+          className="border border-gray-20 w-full px-16 py-12 rounded-10 bg-white text-16 leading-24 font-regular focus:outline-none text-black h-350 placeholder:text-gray-40 resize-none"
+          placeholder="내용을 입력해주세요."
+        ></textarea>
+        {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
+      </div>
+      <div>
+        <ImagesInput fields={images.fields} append={images.append} remove={images.remove} />
+        {errors.images && <p className="text-error middle-text font-bold mt-10">이미지는 10개 이하로 가능합니다.</p>}
+      </div>
 
-        <ReviewOption>
-          <ReviewOption.section>
-            <ReviewOption.info>
-              <ReviewOption.title> 방문시간</ReviewOption.title>
-              <ReviewOption.description>방문하신 시간을 선택해주세요.</ReviewOption.description>
-            </ReviewOption.info>
-            <DatePicker onChange={visitingTime.onChange} />
-            {errors.visitingTime && <ReviewOption.error>{errors.visitingTime.message}</ReviewOption.error>}
-          </ReviewOption.section>
-          <ReviewOption.section>
-            <ReviewOption.info>
-              <ReviewOption.title> 별점</ReviewOption.title>
-              <ReviewOption.description>그곳의 만족도는 어느정도 인가요?</ReviewOption.description>
-            </ReviewOption.info>
-            <StarRate value={stars.value} onChange={stars.onChange} />
-          </ReviewOption.section>
-          <ReviewOption.section>
-            <ReviewOption.info>
-              <ReviewOption.title> 유형</ReviewOption.title>
-              <ReviewOption.description>어떤 타입의 여행지를 다녀오셨나요?</ReviewOption.description>
-            </ReviewOption.info>
-            <TagRadioButton onChange={placeType.onChange} name={placeType.name} tag="placeType" />
-          </ReviewOption.section>
-          <ReviewOption.section>
-            <ReviewOption.info>
-              <ReviewOption.title> 동행</ReviewOption.title>
-              <ReviewOption.description>누구와 함께 여행지를 다녀오셨나요?</ReviewOption.description>
-            </ReviewOption.info>
-            <TagRadioButton onChange={companion.onChange} name={companion.name} tag="companion" />
-          </ReviewOption.section>
-          <ReviewOption.section>
-            <ReviewOption.info>
-              <ReviewOption.title> 날씨</ReviewOption.title>
-              <ReviewOption.description>그날의 날씨는 어땠나요?</ReviewOption.description>
-            </ReviewOption.info>
-            <TagRadioButton onChange={weather.onChange} name={weather.name} tag="weather" />
-          </ReviewOption.section>
-        </ReviewOption>
-        <div className="flex gap-16 m-auto">
-          <button className="w-210 h-46" type="button" onClick={router.back}>
-            <Clickable color="white" size="medium">
-              취소
-            </Clickable>
-          </button>
-          <button className="w-210 h-46" type="submit">
-            <Clickable color="black" size="medium">
-              등록
-            </Clickable>
-          </button>
-        </div>
-      </form>
-      <DevT control={control} />
-    </>
+      <ReviewOption>
+        <ReviewOption.section>
+          <ReviewOption.info>
+            <ReviewOption.title> 방문시간</ReviewOption.title>
+            <ReviewOption.description>방문하신 시간을 선택해주세요.</ReviewOption.description>
+          </ReviewOption.info>
+          <DatePicker onChange={visitingTime.onChange} />
+          {errors.visitingTime && <ReviewOption.error>{errors.visitingTime.message}</ReviewOption.error>}
+        </ReviewOption.section>
+        <ReviewOption.section>
+          <ReviewOption.info>
+            <ReviewOption.title> 별점</ReviewOption.title>
+            <ReviewOption.description>그곳의 만족도는 어느정도 인가요?</ReviewOption.description>
+          </ReviewOption.info>
+          <StarRate value={stars.value} onChange={stars.onChange} />
+        </ReviewOption.section>
+        <ReviewOption.section>
+          <ReviewOption.info>
+            <ReviewOption.title> 유형</ReviewOption.title>
+            <ReviewOption.description>어떤 타입의 여행지를 다녀오셨나요?</ReviewOption.description>
+          </ReviewOption.info>
+          <TagRadioButton onChange={placeType.onChange} name={placeType.name} tag="placeType" />
+        </ReviewOption.section>
+        <ReviewOption.section>
+          <ReviewOption.info>
+            <ReviewOption.title> 동행</ReviewOption.title>
+            <ReviewOption.description>누구와 함께 여행지를 다녀오셨나요?</ReviewOption.description>
+          </ReviewOption.info>
+          <TagRadioButton onChange={companion.onChange} name={companion.name} tag="companion" />
+        </ReviewOption.section>
+        <ReviewOption.section>
+          <ReviewOption.info>
+            <ReviewOption.title> 날씨</ReviewOption.title>
+            <ReviewOption.description>그날의 날씨는 어땠나요?</ReviewOption.description>
+          </ReviewOption.info>
+          <TagRadioButton onChange={weather.onChange} name={weather.name} tag="weather" />
+        </ReviewOption.section>
+      </ReviewOption>
+      <div className="flex gap-16 m-auto">
+        <button className="w-210 h-46" type="button" onClick={router.back}>
+          <Clickable color="white" size="medium">
+            취소
+          </Clickable>
+        </button>
+        <button className="w-210 h-46" type="submit">
+          <Clickable color="black" size="medium">
+            등록
+          </Clickable>
+        </button>
+      </div>
+    </form>
   );
 }
