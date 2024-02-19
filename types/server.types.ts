@@ -14,6 +14,16 @@ export type SingleReviewData = {
   stars?: Stars;
 };
 
+export type MultiReviewData = {
+  reviewId: number;
+  title: string;
+  tagValues?: Tag;
+  nickName: string;
+  visitingTime: string;
+  imageUrls?: string[];
+  stars?: Stars;
+};
+
 export type SpotData = {
   averageStars: Stars;
 } & Destination;
