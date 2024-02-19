@@ -14,7 +14,7 @@ export default function Search() {
       <Nav />
       <SearchBar size="small" />
       <div className="mt-15 flex justify-center">
-        <div className="w-460 text-right">
+        <div className="w-460">
           <FilterDropdown />
         </div>
       </div>

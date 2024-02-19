@@ -6,12 +6,11 @@ import TagRadioButton from "./TagRadioButton";
 import Clickable from "../atoms/Clickable";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
+import filterObject from "@/utils/filterObject";
 
 interface query {
-  // searchValue: string;
   month?: "1월" | "2월" | "3월" | "4월" | "5월" | "6월" | "7월" | "8월" | "9월" | "10월" | "11월" | "12월";
   visitTime?: string;
-  // order: "popular" | "rating" | "recent";
   placeType?: "맛집" | "관광" | "휴양" | "명소";
   weather?: "맑음" | "흐림" | "우천" | "눈";
   companion?: "가족" | "친구" | "연인" | "혼자";
@@ -23,12 +22,11 @@ interface Props {
 
 export default function SearchForm({ closeDropdown }: Props) {
   const router = useRouter();
+  const { query: queryObj } = router;
 
   const defaultValues: query = {
-    // searchValue: "",
     month: undefined,
     visitTime: undefined,
-    // order: "recent",
     placeType: undefined,
     weather: undefined,
     companion: undefined,
@@ -56,9 +54,8 @@ export default function SearchForm({ closeDropdown }: Props) {
     control: control,
   });
   function handleSearch(data: query) {
-    const searchQuery = Object.entries(data).filter(([_, value]) => value !== undefined && value !== "");
-    const convertQuery = new URLSearchParams(searchQuery).toString();
-    router.push({ query: convertQuery });
+    const searchQuery = filterObject(data);
+    router.push({ query: { ...queryObj, ...searchQuery } });
     closeDropdown();
   }
   return (
@@ -70,41 +67,41 @@ export default function SearchForm({ closeDropdown }: Props) {
           </button>
         </div>
         <SearchOption.section>
+          <SearchOption.title>날짜</SearchOption.title>
           <SearchOption.info>
-            <SearchOption.title>날짜</SearchOption.title>
             <SearchOption.description>방문하신 날짜를 선택해주세요.</SearchOption.description>
+            <TagRadioButton onChange={month.onChange} name={month.name} tag="date" />
           </SearchOption.info>
-          <TagRadioButton onChange={month.onChange} name={month.name} tag="date" />
         </SearchOption.section>
         <SearchOption.section>
+          <SearchOption.title>방문시간</SearchOption.title>
           <SearchOption.info>
-            <SearchOption.title>방문시간</SearchOption.title>
             <SearchOption.description>방문하신 시간을 선택해주세요.</SearchOption.description>
+            <div onClick={(e: MouseEvent) => e.stopPropagation()}>
+              <TimePicker onChange={visitTime.onChange} />
+            </div>
           </SearchOption.info>
-          <div onClick={(e: MouseEvent) => e.stopPropagation()}>
-            <TimePicker onChange={visitTime.onChange} />
-          </div>
         </SearchOption.section>
         <SearchOption.section>
+          <SearchOption.title>유형</SearchOption.title>
           <SearchOption.info>
-            <SearchOption.title>유형</SearchOption.title>
             <SearchOption.description>어떤 타입의 여행지를 다녀오셨나요?</SearchOption.description>
+            <TagRadioButton onChange={placeType.onChange} name={placeType.name} tag="placeType" />
           </SearchOption.info>
-          <TagRadioButton onChange={placeType.onChange} name={placeType.name} tag="placeType" />
         </SearchOption.section>
         <SearchOption.section>
+          <SearchOption.title>동행</SearchOption.title>
           <SearchOption.info>
-            <SearchOption.title>동행</SearchOption.title>
             <SearchOption.description>누구와 함께 여행지를 다녀오셨나요?</SearchOption.description>
+            <TagRadioButton onChange={weather.onChange} name={weather.name} tag="weather" />
           </SearchOption.info>
-          <TagRadioButton onChange={weather.onChange} name={weather.name} tag="weather" />
         </SearchOption.section>
         <SearchOption.section>
+          <SearchOption.title>날씨</SearchOption.title>
           <SearchOption.info>
-            <SearchOption.title>날씨</SearchOption.title>
             <SearchOption.description>그날의 날씨는 어땠나요?</SearchOption.description>
+            <TagRadioButton onChange={companion.onChange} name={companion.name} tag="companion" />
           </SearchOption.info>
-          <TagRadioButton onChange={companion.onChange} name={companion.name} tag="companion" />
         </SearchOption.section>
         <div className="flex justify-end">
           <button type="submit">
