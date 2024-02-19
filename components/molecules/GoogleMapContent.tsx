@@ -1,13 +1,10 @@
 import useDrawGoogleMap from "@/hooks/useDrawGoogleMap";
+import { MapProps } from "@/types/client.types";
 import React from "react";
 
-export interface MapContentProps {
-  locationID: string;
-}
-
-export const GoogleMapContent = ({ locationID }: MapContentProps) => {
+export const GoogleMapContent = ({ locationIDList }: MapProps) => {
   // Google Map Reference
-  const googleMapRef = useDrawGoogleMap({ locationID });
+  const googleMapRef = useDrawGoogleMap({ locationIDList });
 
   return <div ref={googleMapRef} className="w-[792px] h-[430px]" />; // 구글 지도 컴포넌트
 };
