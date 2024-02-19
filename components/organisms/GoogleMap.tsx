@@ -2,12 +2,9 @@ import React from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Spinner from "@/components/atoms/Spinner";
 import GoogleMapContent from "@/components/molecules/GoogleMapContent";
+import { MapProps } from "@/types/client.types";
 
-interface MapProps {
-  locationID?: string; // Google Location ID to find
-}
-
-function GoogleMap({ locationID }: MapProps) {
+function GoogleMap({ locationIDList }: MapProps) {
   const apiKey = "AIzaSyCXXqxV548C4DL_qcOdDWIIqHvRwnl97rY";
 
   if (!apiKey) {
@@ -22,7 +19,7 @@ function GoogleMap({ locationID }: MapProps) {
   return (
     <Wrapper apiKey={apiKey} libraries={["places"]} render={render}>
       {" "}
-      <GoogleMapContent locationID={locationID || ""} />
+      <GoogleMapContent locationIDList={locationIDList || [""]} />
     </Wrapper>
   );
 }
