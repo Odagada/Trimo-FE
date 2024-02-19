@@ -5,14 +5,12 @@ import { useRouter } from "next/router";
 import useGetUserSocialInfo from "@/hooks/signup/useGetUserSocialInfo";
 import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
-import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import useManageUserLogin from "@/hooks/useManageUserLogin";
 
 function SignUp() {
   const router = useRouter();
   const { provider, code } = router.query;
-  const [cookie, setCookie] = useCookies(["userData"]);
 
   const { calculateStepArray, renderContentOnProgress } = useSignUp();
   const userSocialData = useGetUserSocialInfo({ code, provider });
