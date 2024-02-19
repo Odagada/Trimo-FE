@@ -5,17 +5,18 @@ import { Stars } from "@/types/client.types";
 interface Props {
   readOnly?: boolean;
   defaultRate?: number;
+  onChange: (arg: Stars) => void;
+  value: Stars;
 }
 
 const stars: Stars[] = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 
-export default function StarRate({ defaultRate = 0 }: Props) {
+export default function StarRate({ defaultRate = 0, value = 0, onChange }: Props) {
   const [rate, setRate] = useState(defaultRate);
-  const [select, setSelect] = useState(0);
 
-  const handleClick = (num: number) => {
+  const handleClick = (num: Stars) => {
     setRate(num);
-    setSelect(num);
+    onChange(num);
   };
 
   const handleMouseOver = (num: number) => {
@@ -23,7 +24,7 @@ export default function StarRate({ defaultRate = 0 }: Props) {
   };
 
   const handleMouseOut = () => {
-    setRate(select);
+    setRate(value as Stars);
   };
 
   return (

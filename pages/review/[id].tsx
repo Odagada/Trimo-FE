@@ -85,7 +85,7 @@ const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof get
 
         {/* map area */}
         <div className="mb-73">
-          <GoogleMap locationID={spotData?.data.placeId} />
+          <GoogleMap locationIDList={[spotData?.data.placeId!]} />
         </div>
         {/* tag and createdAt */}
         <div className="flex justify-between items-center mb-155">

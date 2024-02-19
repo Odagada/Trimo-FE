@@ -8,7 +8,7 @@ import { Stars } from "@/types/client.types";
 interface Props {
   isChecked: boolean;
   rate: Stars;
-  onClick: (num: number) => void;
+  onClick: (num: Stars) => void;
   onMouseOver: (num: number) => void;
   onMouseOut: () => void;
   halfStar: boolean;
@@ -33,6 +33,7 @@ export default function Star({ isChecked, onClick, rate, onMouseOver, onMouseOut
         onClick={() => {
           onClick(rate);
         }}
+        type="button"
       >
         {isChecked ? (
           <Image draggable={false} src={StarEmpty} alt="빈 별" style={{ maxWidth: "100vw" }} />
