@@ -2,16 +2,15 @@ import { ImageType } from "@/types/client.types";
 import Image from "next/image";
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
 import DeleteIcon from "../icons/DeleteIcon";
-import { FieldArrayWithId, UseFieldArrayAppend } from "react-hook-form";
+import { UseFieldArrayAppend } from "react-hook-form";
 import { Review } from "@/types/client.types";
 
 interface Props {
-  fields: FieldArrayWithId<Review, "images", "id">[];
   append: UseFieldArrayAppend<Review, "images">;
   remove: (index?: number | number[]) => void;
 }
 
-export default function ImagesInput({ fields, append, remove }: Props) {
+export default function ImagesInput({ append, remove }: Props) {
   const [isDragging, setIsDragging] = useState(false);
   const [showImages, setShowImages] = useState<ImageType[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);

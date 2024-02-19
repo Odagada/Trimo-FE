@@ -3,7 +3,7 @@ import fetcher from "./axios";
 
 //apiKey 수정하기
 const apiKey =
-  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dHR0QHR0dC50dHQiLCJpYXQiOjE3MDgzMjQ0MTQsImV4cCI6MTcwODMyODAxNH0.0sKspRy1TWDo0KqXBt5t55azCP0qVW5n8kK4LULtd8o";
+  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dHRAdHR0dC50dHQiLCJpYXQiOjE3MDgzMzY0NjUsImV4cCI6MTcwODM0MDA2NX0.fTk8_vcs2LjGhx7dqY5wSA9He6pNWyzQygiK-sJEkgU";
 
 export async function postSpots(postData: Destination) {
   const { data } = await fetcher<Destination>({

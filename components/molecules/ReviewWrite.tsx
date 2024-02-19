@@ -92,7 +92,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
         {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
       </div>
       <div>
-        <ImagesInput fields={images.fields} append={images.append} remove={images.remove} />
+        <ImagesInput append={images.append} remove={images.remove} />
         {errors.images && <p className="text-error middle-text font-bold mt-10">이미지는 10개 이하로 가능합니다.</p>}
       </div>
 

@@ -11,6 +11,11 @@ export type TagMonth = "1월" | "2월" | "3월" | "4월" | "5월" | "6월" | "7�
 export type TagWeather = "맑음" | "흐림" | "우천" | "눈" | "";
 export type TagPlaceType = "맛집" | "관광" | "휴양" | "명소" | "";
 export type TagCompanion = "가족" | "친구" | "연인" | "혼자" | "";
+export type Tag = {
+  weather?: TagWeather;
+  placeType?: TagPlaceType;
+  companion?: TagCompanion;
+};
 
 export type TagWithMonth = TagWeather | TagMonth | TagPlaceType | TagCompanion;
 
