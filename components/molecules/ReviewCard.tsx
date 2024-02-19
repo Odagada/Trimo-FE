@@ -1,24 +1,29 @@
-import { SingleReviewData } from "@/types/server.types";
+import { MultiReviewData } from "@/types/server.types";
 import SingleStarRate from "../atoms/SingleStarRate";
 import Image from "next/image";
 import NoImg from "@/public/images/no_image.webp";
 import calcData from "@/utils/calcDate";
 import ReviewCardTag from "../atoms/ReviewCardTag";
+import Link from "next/link";
 
 interface Props {
-  review: SingleReviewData;
+  review: MultiReviewData;
 }
 
 export default function ReviewCard({ review }: Props) {
-  const { stars, nickName, reviewId, tagValues, visitingTime } = review;
+  const { title, stars, nickName, reviewId, tagValues, visitingTime } = review;
   const { tagMonth } = calcData(visitingTime);
 
   return (
-    <div className="shadow-main rounded-10 w-282 h-330 flex flex-col items-center p-8 bg-white">
+    <Link
+      href={`/review/${reviewId}`}
+      className="shadow-main rounded-10 w-282 h-330 flex flex-col items-center p-8 bg-white select-none"
+    >
       <div className="h-240 relative w-full overflow-hidden">
         <Image
           src={NoImg}
           alt="카드 이미지"
+          draggable={false}
           fill
           style={{
             objectFit: "cover",
@@ -28,9 +33,7 @@ export default function ReviewCard({ review }: Props) {
       </div>
       <div className="w-250 flex flex-col gap-8 mt-8">
         <div className="flex items-center justify-between">
-          <h3 className="heading6 w-190 text-ellipsis whitespace-nowrap overflow-hidden">
-            제목 들어오는 곳입니다 긴이름
-          </h3>
+          <h3 className="heading6 w-190 text-ellipsis whitespace-nowrap overflow-hidden">{title}</h3>
           <span className="small-text w-54 text-ellipsis whitespace-nowrap overflow-hidden">by{nickName}</span>
         </div>
         <div className="small-text flex items-center justify-between">
@@ -44,6 +47,6 @@ export default function ReviewCard({ review }: Props) {
           <SingleStarRate rate={stars} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

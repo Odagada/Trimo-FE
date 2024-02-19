@@ -25,7 +25,7 @@ export default function OrderDropdown() {
         }}
       >
         <span>정렬</span>
-        <Image src={DropdownImg} alt="닫기" />
+        <Image draggable={false} src={DropdownImg} alt="닫기" />
       </button>
       {isOpen && (
         <div className="w-124 shadow-main rounded-10 px-6 py-8 ml-4" ref={popupRef}>

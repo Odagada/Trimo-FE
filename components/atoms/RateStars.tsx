@@ -12,11 +12,11 @@ const RateStars = ({ number }: { number: Stars }) => {
   return (
     <div className="flex">
       {[...Array(filledStars)].map((_, i) => (
-        <Image key={i} src={filled_star} alt="" width={16} height={16} />
+        <Image draggable={false} key={i} src={filled_star} alt="" width={16} height={16} />
       ))}
-      {halfStar && <Image src={half_star} alt="" width={16} height={16} />}
+      {halfStar && <Image draggable={false} src={half_star} alt="" width={16} height={16} />}
       {[...Array(emptyStars)].map((_, i) => (
-        <Image key={i} src={empty_star} alt="" width={16} height={16} />
+        <Image draggable={false} key={i} src={empty_star} alt="" width={16} height={16} />
       ))}
     </div>
   );
