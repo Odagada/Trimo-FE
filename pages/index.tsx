@@ -278,7 +278,7 @@ const RightNowSection = () => {
         지금 바로 작성해보세요!
       </p>
 
-      <Link href="/">
+      <Link href="/review">
         <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
           리뷰 작성하기
         </Clickable>
