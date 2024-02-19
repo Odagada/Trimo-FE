@@ -54,8 +54,8 @@ export default function SearchForm({ closeDropdown }: Props) {
     control: control,
   });
   function handleSearch(data: query) {
-    const searchQuery = filterObject(data);
-    router.push({ query: { ...queryObj, ...searchQuery } });
+    const filterQuery = filterObject(data);
+    router.push({ query: { searchValue: queryObj.searchValue, order: queryObj.order, ...filterQuery } });
     closeDropdown();
   }
   return (
