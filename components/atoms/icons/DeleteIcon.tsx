@@ -11,18 +11,10 @@ const sizes = {
 
 export default function DeleteIcon({ size = "small" }: Props) {
   return (
-    <svg
-      width="10"
-      height="10"
-      viewBox="0 0 10 10"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={sizes[size]}
-    >
-      <g id="error sign">
-        <path id="Vector 153" d="M0.757812 0.757812L9.24309 9.24309" stroke="#030303" strokeLinejoin="round" />
-        <path id="Vector 153_2" d="M0.757812 9.24219L9.24309 0.756906" stroke="#030303" strokeLinejoin="round" />
-      </g>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" fill="white" />
+      <path d="M7.75781 7.75781L16.2431 16.2431" stroke="#030303" strokeLinejoin="round" />
+      <path d="M7.75781 16.2422L16.2431 7.75691" stroke="#030303" strokeLinejoin="round" />
     </svg>
   );
 }
