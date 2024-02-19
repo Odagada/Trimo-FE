@@ -1,8 +1,7 @@
-import React from "react";
 import Image from "next/image";
 import useComponentPopup from "@/hooks/useComponentPopup";
 import FilterImg from "@/public/icons/filter.svg";
-import DeleteIcon from "@/components/atoms/icons/DeleteIcon";
+import SearchForm from "./SearchFrom";
 
 export default function FilterDropdown() {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
@@ -24,14 +23,10 @@ export default function FilterDropdown() {
       <div className="absolute left-0 w-screen">
         {isOpen && (
           <div
-            className="w-617 left-1/2 shadow-main rounded-30 absolute z-10 px-20 pt-16 pb-24 mt-12 -translate-x-1/2 bg-white"
+            className="left-1/2 shadow-main rounded-30 absolute z-10 -translate-x-1/2 bg-white top-12"
             ref={popupRef}
           >
-            <div className="flex justify-end">
-              <button onClick={closeDropdown}>
-                <DeleteIcon size="large" />
-              </button>
-            </div>
+            <SearchForm closeDropdown={closeDropdown} />
           </div>
         )}
       </div>

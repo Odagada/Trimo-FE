@@ -4,23 +4,31 @@ import DeleteIcon from "../atoms/icons/DeleteIcon";
 import TimePicker from "../atoms/TimePicker";
 import TagRadioButton from "./TagRadioButton";
 import Clickable from "../atoms/Clickable";
+import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 
 interface query {
-  searchValue: string;
+  // searchValue: string;
   month?: "1월" | "2월" | "3월" | "4월" | "5월" | "6월" | "7월" | "8월" | "9월" | "10월" | "11월" | "12월";
   visitTime?: string;
-  order: "popular" | "rating" | "recent";
+  // order: "popular" | "rating" | "recent";
   placeType?: "맛집" | "관광" | "휴양" | "명소";
   weather?: "맑음" | "흐림" | "우천" | "눈";
   companion?: "가족" | "친구" | "연인" | "혼자";
 }
 
-export default function SearchForm() {
+interface Props {
+  closeDropdown: () => void;
+}
+
+export default function SearchForm({ closeDropdown }: Props) {
+  const router = useRouter();
+
   const defaultValues: query = {
-    searchValue: "",
+    // searchValue: "",
     month: undefined,
     visitTime: undefined,
-    order: "recent",
+    // order: "recent",
     placeType: undefined,
     weather: undefined,
     companion: undefined,
@@ -47,13 +55,20 @@ export default function SearchForm() {
     name: "companion",
     control: control,
   });
-  function handleSearch(data: query) {}
+  function handleSearch(data: query) {
+    const searchQuery = Object.entries(data).filter(([_, value]) => value !== undefined && value !== "");
+    const convertQuery = new URLSearchParams(searchQuery).toString();
+    router.push({ query: convertQuery });
+    closeDropdown();
+  }
   return (
     <form onSubmit={handleSubmit(handleSearch)}>
       <SearchOption>
-        <button className="flex justify-end" type="button">
-          <DeleteIcon />
-        </button>
+        <div className="flex justify-end">
+          <button onClick={closeDropdown} type="button">
+            <DeleteIcon size="large" />
+          </button>
+        </div>
         <SearchOption.section>
           <SearchOption.info>
             <SearchOption.title>날짜</SearchOption.title>
@@ -66,7 +81,9 @@ export default function SearchForm() {
             <SearchOption.title>방문시간</SearchOption.title>
             <SearchOption.description>방문하신 시간을 선택해주세요.</SearchOption.description>
           </SearchOption.info>
-          <TimePicker onChange={visitTime.onChange} />
+          <div onClick={(e: MouseEvent) => e.stopPropagation()}>
+            <TimePicker onChange={visitTime.onChange} />
+          </div>
         </SearchOption.section>
         <SearchOption.section>
           <SearchOption.info>
@@ -89,11 +106,13 @@ export default function SearchForm() {
           </SearchOption.info>
           <TagRadioButton onChange={companion.onChange} name={companion.name} tag="companion" />
         </SearchOption.section>
-        <button className="flex justify-end" type="submit">
-          <Clickable size="small" shape="capsule">
-            확인
-          </Clickable>
-        </button>
+        <div className="flex justify-end">
+          <button type="submit">
+            <Clickable size="small" shape="capsule">
+              확인
+            </Clickable>
+          </button>
+        </div>
       </SearchOption>
     </form>
   );

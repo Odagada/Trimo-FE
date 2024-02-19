@@ -22,12 +22,6 @@ export default function Search() {
         <OrderDropdown />
         <SearchList />
       </div>
-      <button
-        onClick={() => router.push({ query: { order: query.order, searchValue: "소격동" } })}
-        className="w-300 bg-gray-10 h-48 rounded-full"
-      >
-        소격동
-      </button>
       <Footer />
     </div>
   );

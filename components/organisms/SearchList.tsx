@@ -13,7 +13,9 @@ export default function SearchList() {
 
   useEffect(() => {
     //검색 api 실행
-    setSearchQuery(JSON.stringify(query));
+    const convertQuery = new URLSearchParams(query as any).toString();
+    console.log(convertQuery);
+    setSearchQuery(convertQuery);
   }, [query]);
 
   return (

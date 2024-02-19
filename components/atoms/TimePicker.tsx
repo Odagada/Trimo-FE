@@ -19,6 +19,7 @@ export default function TimePicker({ onChange }: { onChange: (arg: string) => vo
               <Datepicker.Item
                 key={item.key}
                 item={item}
+                type="button"
                 action="close"
                 className="flex justify-center items-center h-10 hover:text-gray-20"
               >

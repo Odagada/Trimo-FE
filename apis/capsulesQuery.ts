@@ -19,6 +19,10 @@ export const getSpot = (spotId: string) => {
 export const getReviewList = (query: string) => {
   return {
     queryKey: ["reviewList", query],
-    queryFn: () => fetcher<SingleReviewData[]>({ method: "get", url: "main/reviews" }),
+    queryFn: () =>
+      fetcher<SingleReviewData[]>({
+        method: "get",
+        url: `main/reviews/specifics?${query}`,
+      }),
   };
 };
