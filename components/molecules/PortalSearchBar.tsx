@@ -1,10 +1,10 @@
 import { createPortal } from "react-dom";
-import { ReactNode, useLayoutEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 const PortalSearchBar = ({ switcher, children }: { switcher: boolean | undefined; children: ReactNode }) => {
   const [mounted, setMounted] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
 

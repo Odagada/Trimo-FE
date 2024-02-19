@@ -19,6 +19,7 @@ import { GetServerSidePropsContext } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { MultiReviewData } from "@/types/server.types";
+import { useEffect, useState } from "react";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -288,7 +289,7 @@ const CardSection = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center text-center pt-48 pb-72 gap-8 bg-gray-10">
+      <section className="flex flex-col items-center text-center pt-48 pb-72 gap-8 bg-gray-10" id="cardSection">
         <p className="text-16 font-medium leading-36">그 여행지, 실제 후기는 어떨까?</p>
         <p className="text-28 font-bold leading-42">
           이미 다녀온 유저의 리뷰를 한곳에 모아
@@ -366,6 +367,21 @@ const TagSection = () => {
 };
 
 const ServiceExplainSection = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const cardSection = document.getElementById("cardSection") as HTMLSpanElement;
+  const cardSectionTop = cardSection.offsetTop;
+
+  const handleClick = () => {
+    scrollTo({ top: cardSectionTop, behavior: "smooth" });
+  };
+
   return (
     <section className="bg-gray-10 flex flex-col gap-140 pb-176 pt-148">
       <div className="flex items-center">
@@ -385,14 +401,14 @@ const ServiceExplainSection = () => {
 
           <Link href="/">
             <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
-              리뷰 작성하기
+              나의 리뷰보기
             </Clickable>
           </Link>
         </div>
       </div>
 
       <div className="flex items-center">
-        <div className="w-1/2 flex flex-col gap-24 bg-white shadow-main h-fit mr-80 pt-128 pb-109 pr-152 rounded-r-full text-right">
+        <div className="w-1/2 flex flex-col items-end gap-24 bg-white shadow-main h-fit mr-80 pt-128 pb-109 pr-152 rounded-r-full text-right">
           <div>
             <p className="text-16 font-medium leading-24">리뷰</p>
             <p className="text-24 font-bold leading-36">
@@ -402,11 +418,11 @@ const ServiceExplainSection = () => {
             </p>
           </div>
 
-          <Link href="/">
+          <button type="button" onClick={handleClick}>
             <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
-              리뷰 작성하기
+              리뷰 둘러보기
             </Clickable>
-          </Link>
+          </button>
         </div>
 
         <div className="w-1/2 h-626 overflow-hidden relative">
