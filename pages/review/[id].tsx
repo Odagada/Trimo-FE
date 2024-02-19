@@ -29,78 +29,113 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   }
 };
 
-const ReadReview = () => {
+export default function ReadReview() {
+  const { reviewData } = useDestructureReviewData();
+
+  return (
+    <>
+      <Nav />
+      <ImageCarouselSection />
+
+      {/* main text area */}
+      <section className="max-w-800 w-full px-4 mx-auto">
+        <ReviewTitleSection />
+
+        {/* text area */}
+        <p className="text-18 leading-42 text-justify mb-20 whitespace-pre-wrap">{reviewData?.data.content}</p>
+
+        {/* map area */}
+        <MapNTag />
+      </section>
+
+      <Footer />
+    </>
+  );
+}
+
+const useDestructureReviewData = () => {
   const router = useRouter();
   const { id } = router.query;
   const reviewId = Number(id);
 
   const { data: reviewData } = useQuery(getReview(reviewId));
 
+  const imageUrlArray = reviewData?.data.images ?? [];
+  const placeId = reviewData?.data.placeId ?? "";
+
   const travelDate = reviewData?.data.visitingTime ?? "";
   const createDate = reviewData?.data.createdAt ?? "";
-  const imageUrlArray = reviewData?.data.images ?? [];
 
-  const date = calcData(travelDate);
-  const { dateString: createAt } = calcData(createDate);
+  const { tagMonth, dateString, timeString } = calcData(travelDate);
+  const { dateString: createdAt } = calcData(createDate);
   const reviewTag = reviewData?.data.tagValues ?? {};
-  const tag: TagWithMonth[] = [date.tagMonth, ...Object.values(reviewTag)];
+  const tag: TagWithMonth[] = [tagMonth, ...Object.values(reviewTag)];
+
+  return { reviewData, imageUrlArray, tag, placeId, createdAt, dateString, timeString };
+};
+
+const ImageCarouselSection = () => {
+  const { imageUrlArray } = useDestructureReviewData();
 
   return (
+    <section className="mb-50 select-none">
+      {imageUrlArray.length !== 0 ? (
+        <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
+      ) : (
+        <div className="relative bg-gray-40 h-[40vh] w-full flex items-center justify-center">
+          <Image draggable={false} src={noImage} alt="" fill className="object-contain" />
+        </div>
+      )}
+    </section>
+  );
+};
+
+const ReviewTitleSection = () => {
+  const { reviewData, dateString, timeString } = useDestructureReviewData();
+  return (
     <>
-      <Nav />
-      <div className="mb-50 select-none">
-        {imageUrlArray.length !== 0 ? (
-          <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
-        ) : (
-          <div className="relative bg-gray-40 h-[40vh] w-full flex items-center justify-center">
-            <Image draggable={false} src={noImage} alt="" fill className="object-contain" />
-          </div>
-        )}
+      {/* title area */}
+      <h2 className="mb-12 flex gap-15 items-baseline">
+        <span className="heading1">{reviewData?.data.title}</span>
+
+        <span className="text-18 text-medium leading-15">{`by ${reviewData?.data.nickName}`}</span>
+      </h2>
+
+      {/* subTitle? */}
+      <div className="flex mb-30 items-center gap-10">
+        <h3 className="text-18 leading-15 text-gray-40">
+          {`${reviewData?.data.spotName} · ${dateString} · ${timeString}`}
+          {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
+        </h3>
+        {reviewData?.data.stars && <RateStars number={reviewData.data.stars} />}
       </div>
-
-      {/* main text area */}
-      <div className="max-w-800 w-full px-4 mx-auto">
-        {/* title area */}
-        <h2 className="mb-12 flex gap-15 items-baseline">
-          <span className="heading1">{reviewData?.data.title}</span>
-
-          <span className="text-18 text-medium leading-15">{`by ${reviewData?.data.nickName}`}</span>
-        </h2>
-
-        {/* subTitle? */}
-        <div className="flex mb-30 items-center gap-10">
-          <h3 className="text-18 leading-15 text-gray-40">
-            {`${reviewData?.data.spotName} · ${date.dateString} · ${date.timeString}`}
-            {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
-          </h3>
-          {reviewData?.data.stars && <RateStars number={reviewData.data.stars} />}
-        </div>
-
-        {/* text area */}
-        <p className="text-18 leading-42 text-justify mb-20 whitespace-pre-wrap">{reviewData?.data.content}</p>
-
-        {/* map area */}
-        <div className="mb-73">
-          <GoogleMap locationIDList={[reviewData?.data.placeId!]} />
-        </div>
-        {/* tag and createdAt */}
-        <div className="flex justify-between items-center mb-155">
-          <div className="flex gap-10">
-            {tag?.map((item, index) => {
-              return (
-                <Clickable key={index} color="white-" shape="capsule" size="small">
-                  <Emoji>{item}</Emoji>
-                </Clickable>
-              );
-            })}
-          </div>
-          <span className="text-16 leading-15 text-gray-40">{`작성일 : ${createAt}`}</span>
-        </div>
-      </div>
-
-      <Footer />
     </>
   );
 };
 
-export default ReadReview;
+const MapNTag = () => {
+  const { tag, placeId, createdAt } = useDestructureReviewData();
+
+  return (
+    <>
+      {" "}
+      {/* map area */}
+      <div className="mb-73">
+        <GoogleMap locationIDList={[placeId]} />
+      </div>
+      {/* tag and createdAt */}
+      <section className="flex justify-between items-center mb-155">
+        <div className="flex gap-10">
+          {tag?.map((item, index) => {
+            return (
+              <Clickable key={index} color="white-" shape="capsule" size="small">
+                <Emoji>{item}</Emoji>
+              </Clickable>
+            );
+          })}
+        </div>
+        <span className="text-16 leading-15 text-gray-40">{`작성일 : ${createdAt}`}</span>
+      </section>
+    </>
+  );
+};
