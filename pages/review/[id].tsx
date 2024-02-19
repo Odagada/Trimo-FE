@@ -1,4 +1,4 @@
-import { getReview, getSpot } from "@/apis/capsulesQuery";
+import { getReview } from "@/apis/capsulesQuery";
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import RateStars from "@/components/atoms/RateStars";
@@ -12,37 +12,33 @@ import { TagWithMonth } from "@/types/client.types";
 import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
 import GoogleMap from "@/components/organisms/GoogleMap";
+import { useRouter } from "next/router";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
-    // const accessToken = getAccessTokenFromCookie(context) as string;
     const reviewId = Number(context.params?.id);
-
     const queryClient = new QueryClient();
 
-    const { data: reviewData, status } = await queryClient.fetchQuery(getReview(reviewId));
-
-    const spotId = reviewData.spotId;
-
-    if (spotId) {
-      await queryClient.prefetchQuery(getSpot(spotId));
-    }
+    await queryClient.prefetchQuery(getReview(reviewId));
 
     return {
-      props: { reviewId, spotId, dehydratedState: dehydrate(queryClient) },
+      props: { dehydratedState: dehydrate(queryClient) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const ReadReview = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const reviewId = Number(id);
+
   const { data: reviewData } = useQuery(getReview(reviewId));
-  const { data: spotData } = useQuery(getSpot(spotId));
 
   const travelDate = reviewData?.data.visitingTime ?? "";
   const createDate = reviewData?.data.createdAt ?? "";
-  const imageUrlArray = reviewData?.data.imageUrls ?? [];
+  const imageUrlArray = reviewData?.data.images ?? [];
 
   const date = calcData(travelDate);
   const { dateString: createAt } = calcData(createDate);
@@ -68,13 +64,13 @@ const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof get
         <h2 className="mb-12 flex gap-15 items-baseline">
           <span className="heading1">{reviewData?.data.title}</span>
 
-          <span className="text-18 text-medium leading-15">{`by ${reviewData?.data.nickName ?? "본롸"}`}</span>
+          <span className="text-18 text-medium leading-15">{`by ${reviewData?.data.nickName}`}</span>
         </h2>
 
         {/* subTitle? */}
         <div className="flex mb-30 items-center gap-10">
           <h3 className="text-18 leading-15 text-gray-40">
-            {`${spotData?.data.name} · ${date.dateString} · ${date.timeString}`}
+            {`${reviewData?.data.spotName} · ${date.dateString} · ${date.timeString}`}
             {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
           </h3>
           {reviewData?.data.stars && <RateStars number={reviewData.data.stars} />}
@@ -85,7 +81,7 @@ const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof get
 
         {/* map area */}
         <div className="mb-73">
-          <GoogleMap locationIDList={[spotData?.data.placeId!]} />
+          <GoogleMap locationIDList={[reviewData?.data.placeId!]} />
         </div>
         {/* tag and createdAt */}
         <div className="flex justify-between items-center mb-155">
