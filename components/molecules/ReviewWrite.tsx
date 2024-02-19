@@ -42,7 +42,6 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
     setFocus,
     setError,
     formState: { errors },
-    clearErrors,
   } = useForm({
     defaultValues,
   });
@@ -67,17 +66,15 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
       return;
     }
     const formData = new FormData();
-    const render = new FileReader();
-    render.onload = function (e) {
-      const text = e.target?.result;
-      // console.log(text);
-    };
     const { images, ...reviewWriteRequest } = postData;
-    formData.append("reviewWriteRequest", new Blob([JSON.stringify(reviewWriteRequest)], { type: "application/json" }));
-    for (let key of formData.keys()) {
-      // console.log(key, ":", render.readAsText(formData.get(key)));
+    let key: keyof typeof reviewWriteRequest;
+    for (key in reviewWriteRequest) {
+      formData.append(key, reviewWriteRequest[key] as string);
     }
-    // postReviewsMutate({ postData, spotId });
+    images.map((value) => {
+      formData.append("images", value.file, value.file.name);
+    });
+    postReviewsMutate({ formData, spotId });
   }
 
   //나중에 fragment dev 지우면 같이 지우기
