@@ -10,16 +10,20 @@ interface Props {
   provider: string | undefined | string[];
 }
 function useGetUserSocialInfo({ code, provider }: Props) {
+  // function useGetUserSocialInfo(query: ParsedUrlQuery) {
   const router = useRouter();
   const [data, setData] = useState<UserSocialLoginData>();
 
   const { mutate, error } = useMutation({
     mutationFn: () =>
       axios.post(
-        `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}&state=null`
+        `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
+        // "http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/kakao?code=JJIgrs33RnABdHto9pvptjO8fyiDu8sAanPgoIZByNym_AW34M4BHrsGgO4KPXTZAAABjcCIJ7-GtS2__sNdBQ"
       ),
     onSuccess: (data: { data: UserSocialLoginData }) => {
       setData(data.data);
+
+      return data.data;
     },
     onError: (error) => {
       alert(`${error.message} ${SIGNUP_SERVER_ERROR} `);
