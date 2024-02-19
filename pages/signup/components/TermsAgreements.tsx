@@ -36,7 +36,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
 
       {TERMS.map((termContent, key) => {
         return (
-          <>
+          <div key={key}>
             <h5 className="mb-12">{termContent.title}</h5>
             <p className="w-675 h-200 rounded-[10px] border border-zinc-400 p-20 overflow-y-auto" key={key}>
               {termContent.content}
@@ -56,7 +56,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
               )}
               동의
             </label>
-          </>
+          </div>
         );
       })}
       <button className="w-full" onClick={validateTermCheck}>
