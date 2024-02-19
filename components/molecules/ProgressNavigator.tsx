@@ -13,12 +13,8 @@ function ProgressNavigator({ stepArray = [1, 0, 0] }: ProgressNavProps) {
     <div className="w-fit h-30 relative flex items-center">
       {stepArray.map((isOnstep, index) => (
         <>
-          {isOnstep ? (
-            <ProgressChip isOnProgress num={index + 1} key={index} />
-          ) : (
-            <ProgressChip num={index + 1} key={index} />
-          )}
-          {index + 1 < stepArray.length && <Line key={index} />}
+          {isOnstep ? <ProgressChip isOnProgress num={index + 1} /> : <ProgressChip num={index + 1} />}
+          {index + 1 < stepArray.length && <Line />}
         </>
       ))}
     </div>
