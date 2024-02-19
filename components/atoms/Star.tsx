@@ -36,11 +36,11 @@ export default function Star({ isChecked, onClick, rate, onMouseOver, onMouseOut
         type="button"
       >
         {isChecked ? (
-          <Image src={StarEmpty} alt="빈 별" style={{ maxWidth: "100vw" }} />
+          <Image draggable={false} src={StarEmpty} alt="빈 별" style={{ maxWidth: "100vw" }} />
         ) : halfStar ? (
-          <Image src={halfStarImg} alt="반 별" style={{ maxWidth: "100vw" }} />
+          <Image draggable={false} src={halfStarImg} alt="반 별" style={{ maxWidth: "100vw" }} />
         ) : (
-          <Image src={StarFull} alt="채워진 별" style={{ maxWidth: "100vw" }} />
+          <Image draggable={false} src={StarFull} alt="채워진 별" style={{ maxWidth: "100vw" }} />
         )}
       </button>
     </>

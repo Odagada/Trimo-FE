@@ -7,7 +7,7 @@ const Emoji = ({ children }: { children: TagWithMonth }) => {
   return (
     <>
       {children}
-      <span className="text-16 ml-1 font-[PretendardCancler]">{Emoji}</span>
+      <span className="ml-1 font-[PretendardCancler]">{Emoji}</span>
     </>
   );
 };

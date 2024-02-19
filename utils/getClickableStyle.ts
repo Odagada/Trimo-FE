@@ -14,6 +14,8 @@ export const getClickableColorValue = (color: ClickableColor) => {
       return "bg-naver text-white border border-naver";
     case "kakao":
       return "bg-kakao text-black border border-kakao";
+    case "primary":
+      return "bg-primary text-white border border-primary";
     default:
       return "";
   }
