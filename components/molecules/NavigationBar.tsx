@@ -9,6 +9,7 @@ import HeaderDropdown from "../atoms/Dropdowns/HeaderDropdown";
 interface NavProps {
   navStatus?: NavStatus;
   hasSearchBar?: boolean;
+  className?: string;
 }
 
 function Nav({ navStatus = "LoggedIn" }: NavProps) {

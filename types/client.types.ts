@@ -21,6 +21,10 @@ export type TagWithMonth = TagWeather | TagMonth | TagPlaceType | TagCompanion;
 
 export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
 
+export interface Children {
+  children: ReactNode;
+}
+
 export type InputProps = {
   id: string;
   type?: string;
@@ -43,6 +47,7 @@ export type WrapperProps = {
 export type InputWrapperProps = {
   children: ReactNode;
   className?: string;
+  divOptions?: string;
 } & WrapperProps;
 
 export type Destination = {
@@ -81,6 +86,31 @@ export type ImageType = {
 
 export type OrderValue = "인기순" | "평점순" | "최신순";
 
+export type UserAdditionalInfo = {
+  birthDate: string;
+  gender: string;
+  nickName: string;
+};
+
+export type UserSocialLoginData = {
+  id: number;
+  email: string;
+  nickName: string;
+  imageUrl: string;
+  role: string; //ROLE_USER, ROLE_GUEST
+  tokenType: string;
+  accessToken: string;
+};
+
+export type UserInfoType = {
+  email: string;
+  nickName: string;
+  imageUrl: string;
+  gender: string;
+  birthDate: string;
+  role: string;
+};
+export type birthdateValType = { value: number; label: number };
 export interface MapProps {
   locationIDList: string[];
 }

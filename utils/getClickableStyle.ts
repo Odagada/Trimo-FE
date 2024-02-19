@@ -5,7 +5,7 @@ export const getClickableColorValue = (color: ClickableColor) => {
     case "black":
       return "bg-black text-white border border-black";
     case "gray":
-      return "bg-gray-30 text-gray-40 border border-gray-40";
+      return "bg-gray-30 text-white border border-gray-40";
     case "white":
       return "bg-white text-black border border-gray-50";
     case "white-":
@@ -24,7 +24,7 @@ export const getClickableColorValue = (color: ClickableColor) => {
 export const getClickableSizeValue = (size: ClickableSize) => {
   switch (size) {
     case "large":
-      return "max-w-437 w-full font-bold leading-22 py-12";
+      return "max-w-550 w-full font-bold leading-22 py-12";
     case "medium":
       return "max-w-210 w-full font-bold leading-22 py-12";
     case "small":
