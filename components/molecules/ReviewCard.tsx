@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ReviewCard({ review }: Props) {
-  const { stars, nickName, reviewId, weather, companion, placeType, visitingTime } = review;
+  const { stars, nickName, reviewId, tagValues, visitingTime } = review;
   const { tagMonth } = calcData(visitingTime);
 
   return (
@@ -36,9 +36,10 @@ export default function ReviewCard({ review }: Props) {
         <div className="small-text flex items-center justify-between">
           <div className="flex gap-4">
             <div className="bg-gray-10 w-43 px-2 py-4 text-center rounded-full">{tagMonth}</div>
-            {weather && <ReviewCardTag value={weather} />}
-            {companion && <ReviewCardTag value={companion} />}
-            {placeType && <ReviewCardTag value={placeType} />}
+            {tagValues &&
+              Object.entries(tagValues).map(([key, value]: [string, string]) => (
+                <ReviewCardTag value={value} key={key + reviewId} />
+              ))}
           </div>
           <SingleStarRate rate={stars} />
         </div>
