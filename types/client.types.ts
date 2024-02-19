@@ -65,9 +65,12 @@ export type User = {
 export type Review = {
   title: string;
   content: string;
-  tagValues?: Tag;
+  weather: TagWeather;
+  companion: TagCompanion;
+  placeType: TagPlaceType;
   visitingTime: string;
-  stars?: Stars;
+  stars: Stars;
+  images: { file: File }[];
 };
 
 export type ImageType = {
