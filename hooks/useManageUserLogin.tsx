@@ -1,8 +1,9 @@
-import router from "next/router";
+import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 const useManageUserLogin = () => {
   const [cookie, setCookie, removeCookie] = useCookies(["userData"]);
+  const router = useRouter();
 
   const saveUserAccessToken = (data: string, message?: string) => {
     const loginTime = 3600; //1시간
