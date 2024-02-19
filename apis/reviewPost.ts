@@ -1,8 +1,9 @@
 import { Destination, Review } from "@/types/client.types";
 import fetcher from "./axios";
 
+//apiKey 수정하기
 const apiKey =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dHRAdHR0LnR0dCIsImlhdCI6MTcwODA5NjM5NywiZXhwIjoxNzA4MDk5OTk3fQ.thbCLb0KKbXAdRZZQuYFo2ei3PD_E3gL72kIZ5V1pNk";
+  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dHR0QHR0dC50dHQiLCJpYXQiOjE3MDgzMjQ0MTQsImV4cCI6MTcwODMyODAxNH0.0sKspRy1TWDo0KqXBt5t55azCP0qVW5n8kK4LULtd8o";
 
 export async function postSpots(postData: Destination) {
   const { data } = await fetcher<Destination>({
@@ -14,12 +15,12 @@ export async function postSpots(postData: Destination) {
   return data;
 }
 
-export async function postReviews({ postData, spotId }: { postData: Review; spotId: string }) {
+export async function postReviews({ formData, spotId }: { formData: FormData; spotId: string }) {
   const { data } = await fetcher<Review>({
     method: "post",
     url: `/users/spots/${spotId}/reviews`,
     headers: { Authorization: apiKey, "Content-Type": "multipart/form-data" },
-    data: postData,
+    data: formData,
   });
   return data;
 }
