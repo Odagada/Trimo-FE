@@ -15,20 +15,17 @@ import desktopScreenShot1 from "@/public/images/DesktopScreenShot1.png";
 import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
-import { GetServerSidePropsContext } from "next";
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import { QueryClient, dehydrate, useQueries, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { MultiReviewData } from "@/types/server.types";
 import { useEffect, useState } from "react";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps = async () => {
   try {
-    // const accessToken = getAccessTokenFromCookie(context) as string;\
-
     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery(getReviewCardArray("populer"));
-    await queryClient.prefetchQuery(getReviewCardArray("recent"));
+    await queryClient.prefetchQuery(getReviewCardArray("POPULAR"));
+    await queryClient.prefetchQuery(getReviewCardArray("RECENT"));
 
     return {
       props: { dehydratedState: dehydrate(queryClient) },
@@ -79,213 +76,11 @@ const HeroSection = () => {
 };
 
 const CardSection = () => {
-  // const { data: populerData } = useQuery(getReviewCardArray("populer"));
-  // const { data: recentData } = useQuery(getReviewCardArray("recent"));
+  const { data: recentData } = useQuery(getReviewCardArray("RECENT"));
+  const { data: populerData } = useQuery(getReviewCardArray("POPULAR"));
 
-  // const populerReviewCardArray = populerData?.data ?? [];
-  // const recentReviewCardArray = recentData?.data ?? [];
-  const array: MultiReviewData[] = [
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-    {
-      reviewId: 1,
-      title: "제주제주제주빔",
-      tagValues: {
-        weather: "우천",
-      },
-      visitingTime: "1995-12-17T03:24:00",
-      nickName: "본롸",
-      stars: 4,
-    },
-  ];
+  const recentReviewCardArray = recentData?.data ?? [];
+  const populerReviewCardArray = populerData?.data ?? [];
 
   return (
     <>
@@ -300,8 +95,12 @@ const CardSection = () => {
 
       <section className="pb-129 bg-gray-10">
         <div className="flex flex-col gap-41">
-          <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={array} />
-          <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={array} />
+          {recentReviewCardArray && (
+            <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentReviewCardArray} />
+          )}
+          {populerReviewCardArray && (
+            <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={populerReviewCardArray} />
+          )}
         </div>
       </section>
     </>
