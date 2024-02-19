@@ -9,7 +9,6 @@ const instance = axios.create({
 // 401 오류와 리프레시 토큰을 처리하는 요청 인터셉터
 instance.interceptors.request.use(
   (response) => response,
-
   async (error) => {
     const originalRequest = error.config;
 
@@ -26,12 +25,10 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
 export const request = <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T, any>> => {
   const client = instance;
   return client(config);
 };
-
 const fetcher = async <T>(config: AxiosRequestConfig) => {
   const response = await request<T>({ ...config });
   const { data, status }: { data: T; status: number } = response;
