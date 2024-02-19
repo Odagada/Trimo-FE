@@ -15,9 +15,8 @@ import desktopScreenShot1 from "@/public/images/DesktopScreenShot1.png";
 import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
-import { QueryClient, dehydrate, useQueries, useQuery } from "@tanstack/react-query";
+import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
-import { MultiReviewData } from "@/types/server.types";
 import { useEffect, useState } from "react";
 
 export const getServerSideProps = async () => {
