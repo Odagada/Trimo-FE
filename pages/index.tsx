@@ -194,7 +194,7 @@ const ServiceExplainSection = () => {
               지금까지 여행의 기록들을
               <br />
               <span className="text-primary">지도</span>로 이어보세요.
-            </p>{" "}
+            </p>
           </div>
 
           <Link href="/">

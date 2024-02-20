@@ -18,7 +18,6 @@ function GoogleMap({ locationIDList }: MapProps) {
 
   return (
     <Wrapper apiKey={apiKey} libraries={["places"]} render={render}>
-      {" "}
       <GoogleMapContent locationIDList={locationIDList || [""]} />
     </Wrapper>
   );
