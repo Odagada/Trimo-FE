@@ -1,9 +1,11 @@
 import { request } from "@/apis/axios";
 import { useMutation } from "@tanstack/react-query";
-import { UserAdditionalInfo, UserInfoType, birthdateValType } from "@/types/client.types";
+import { UserAdditionalInfo, UserInfoType } from "@/types/server.types";
+import { birthdateValType } from "@/types/client.types";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
 import { useRouter } from "next/router";
 import useManageUserLogin from "../useManageUserLogin";
+import formatDateToStr from "@/utils/formatDateToStr";
 
 interface SubmitAdditionalInfoProps extends SignupContentProps {
   userAccessToken: string;
@@ -27,11 +29,6 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
       nickName: data.nickName,
     };
     signUp(userSignUpData);
-  };
-
-  const formatDateToStr = (year: number, month: number, date: number) => {
-    const formateDate = String(year) + "-" + String(month).padStart(2, "0") + "-" + String(date).padStart(2, "0");
-    return formateDate;
   };
 
   const handleSignUp = async (userSignUpData: UserAdditionalInfo) => {
