@@ -17,7 +17,6 @@ export const getSpot = (spotId: string) => {
 };
 
 export const getReviewList = (query: string) => {
-  console.log("func: ", query);
   return {
     queryKey: ["reviewList", query],
     queryFn: () =>
