@@ -12,7 +12,7 @@ function InputWrapper({ title, htmlFor, className = "", errors, children, divOpt
       >
         {children}
       </label>
-      {errors && <div className="text-error absolute -bottom-26">{errors?.message}</div>}
+      {errors && <div className="text-error middle-text absolute -bottom-24 left-3">{errors?.message}</div>}
     </div>
   );
 }
