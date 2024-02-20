@@ -1,4 +1,4 @@
-import { getReviewList } from "@/apis/capsulesQuery";
+import { getSearchReview } from "@/apis/capsulesQuery";
 import { useQuery } from "@tanstack/react-query";
 import ReviewCard from "../molecules/ReviewCard";
 import { useRouter } from "next/router";
@@ -8,7 +8,7 @@ export default function SearchList() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const { query } = router;
-  const { data: reviewListData } = useQuery(getReviewList(searchQuery));
+  const { data: reviewListData } = useQuery(getSearchReview(searchQuery));
   const reviewList = reviewListData?.data;
 
   useEffect(() => {
