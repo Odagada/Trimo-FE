@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { UserAdditionalInfo, UserInfoType, birthdateValType } from "@/types/client.types";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
 import { useRouter } from "next/router";
-import useManageUserLogin from "../useManageUserLogin";
+import useManageUserAccessToken from "../useManageUserAccessToken";
 
 interface SubmitAdditionalInfoProps extends SignupContentProps {
   userAccessToken: string;
@@ -11,7 +11,7 @@ interface SubmitAdditionalInfoProps extends SignupContentProps {
 function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAdditionalInfoProps) {
   const router = useRouter();
 
-  const { saveUserAccessToken } = useManageUserLogin();
+  const { saveUserAccessToken } = useManageUserAccessToken();
 
   const onSubmit = (data: {
     nickName: string;
@@ -40,7 +40,7 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
       method: "post",
       data: userSignUpData,
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${userAccessToken}`,
         withCredentials: true,
       },
     });
@@ -51,7 +51,7 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
   const { mutate: signUp, error } = useMutation({
     mutationFn: handleSignUp,
     onSuccess: (data: UserInfoType) => {
-      saveUserAccessToken(userAccessToken);
+      saveUserAccessToken(userAccessToken, "정상적으로 회원 정보가 작성되었습니다.");
       progressStatus();
     },
     onError: (error) => {
