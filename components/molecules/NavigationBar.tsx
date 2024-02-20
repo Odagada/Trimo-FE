@@ -2,21 +2,26 @@ import Logo from "@/public/logos/navLogo.png";
 import Image from "next/image";
 import defaultProfile from "@/public/images/defaultProfile.png";
 import Link from "next/link";
-import { NavStatus } from "@/types/client.types";
 import useComponentPopup from "@/hooks/useComponentPopup";
 import HeaderDropdown from "../atoms/Dropdowns/HeaderDropdown";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 
 interface NavProps {
-  navStatus?: NavStatus;
+  isOnlyLogo?: boolean;
   hasSearchBar?: boolean;
   className?: string;
 }
 
-function Nav({ navStatus = "LoggedIn" }: NavProps) {
+function Nav({ isOnlyLogo = false }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
-  const renderNavbarLeftSide = (status: NavStatus) => {
-    switch (status) {
+  const { userAccessToken } = useManageUserAccessToken();
+
+  let navStatus = "onlyLogo";
+  if (!isOnlyLogo) navStatus = userAccessToken ? "LoggedIn" : "LoggedOut";
+
+  const renderNavbarLeftSide = () => {
+    switch (navStatus) {
       case "onlyLogo":
         return;
       case "LoggedIn":
@@ -49,7 +54,7 @@ function Nav({ navStatus = "LoggedIn" }: NavProps) {
           </Link>
         </h1>
         <span id="navSearchBar" className="h-50"></span>
-        {renderNavbarLeftSide(navStatus)}
+        {renderNavbarLeftSide()}
       </div>
     </nav>
   );

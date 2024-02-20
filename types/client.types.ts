@@ -19,8 +19,6 @@ export type Tag = {
 
 export type TagWithMonth = TagWeather | TagMonth | TagPlaceType | TagCompanion;
 
-export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
-
 export interface Children {
   children: ReactNode;
 }
@@ -109,6 +107,14 @@ export type UserInfoType = {
   gender: string;
   birthDate: string;
   role: string;
+};
+
+export type GetUserInfoType = {
+  userId: number;
+  nickName: string;
+  email: string;
+  gender: string;
+  age: number;
 };
 export type birthdateValType = { value: number; label: number };
 export interface MapProps {
