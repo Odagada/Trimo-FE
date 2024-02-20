@@ -12,6 +12,7 @@ import { TagWithMonth } from "@/types/client.types";
 import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
 import GoogleMap from "@/components/organisms/GoogleMap";
+import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -37,6 +38,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 
 const ReadReview = ({ reviewId, spotId }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  useRedirectBasedOnLoginStatus();
+
   const { data: reviewData } = useQuery(getReview(reviewId));
   const { data: spotData } = useQuery(getSpot(spotId));
 

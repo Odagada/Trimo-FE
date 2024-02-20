@@ -20,6 +20,7 @@ import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { MultiReviewData } from "@/types/server.types";
 import { useEffect, useState } from "react";
+import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -39,6 +40,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 
 export default function Landing() {
+  useRedirectBasedOnLoginStatus();
   return (
     <>
       <Nav />

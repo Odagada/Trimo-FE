@@ -6,7 +6,8 @@ import useGetUserSocialInfo from "@/hooks/signup/useGetUserSocialInfo";
 import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
 import { useEffect } from "react";
-import useManageUserLogin from "@/hooks/useManageUserLogin";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
 
 function SignUp() {
   const router = useRouter();
@@ -14,7 +15,7 @@ function SignUp() {
 
   const { calculateStepArray, renderContentOnProgress } = useSignUp();
   const userSocialData = useGetUserSocialInfo({ code, provider });
-  const { saveUserAccessToken } = useManageUserLogin();
+  const { saveUserAccessToken } = useManageUserAccessToken();
 
   useEffect(() => {
     if (userSocialData?.role === "ROLE_USER") {
@@ -27,7 +28,7 @@ function SignUp() {
 
   return (
     <div className="h-screen flex w-full flex-col mt-20 mb-20">
-      <Nav navStatus="LoggedOut" />
+      <Nav />
       <ShadowBox className="relative">
         <span className="text-20 font-bold text-center mb-15 mt-35">회원가입</span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>

@@ -7,11 +7,13 @@ import kakao from "@/public/images/icons/kakao.png";
 import google from "@/public/images/icons/google.png";
 import naver from "@/public/images/icons/naver.png";
 import ShadowBox from "@/components/atoms/ShadowBox";
+import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
 
 function Login() {
+  useRedirectBasedOnLoginStatus();
   return (
     <div className="h-screen flex w-full flex-col">
-      <Nav className="-mb-10" navStatus="LoggedOut" />
+      <Nav className="-mb-10" />
       <ShadowBox>
         <Image src={LogoGroup} width={550} height={165} alt="logo"></Image>
         <span className="mb-37">트리모에 오신 것을 환영합니다!</span>
