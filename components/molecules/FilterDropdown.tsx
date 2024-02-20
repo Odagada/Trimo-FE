@@ -17,7 +17,7 @@ export default function FilterDropdown() {
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <div className="flex-center w-16 h-16">
-          <Image src={FilterImg} alt="필터 이미지" />
+          <Image draggable={false} src={FilterImg} alt="필터 이미지" />
         </div>
       </button>
       <div className="absolute left-0 w-screen">

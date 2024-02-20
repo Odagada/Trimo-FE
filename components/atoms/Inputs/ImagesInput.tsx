@@ -97,7 +97,7 @@ export default function ImagesInput({ append, remove }: Props) {
             >
               <DeleteIcon />
             </button>
-            <Image src={el.url} alt={el.name} sizes="75px" fill style={{ objectFit: "cover" }} />
+            <Image draggable={false} src={el.url} alt={el.name} sizes="75px" fill style={{ objectFit: "cover" }} />
           </div>
         ))}
       </div>

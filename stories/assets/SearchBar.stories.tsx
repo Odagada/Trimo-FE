@@ -12,15 +12,8 @@ const searchBar = {
 export default searchBar;
 type Story = StoryObj<typeof searchBar>;
 
-export const WithoutInitialValue: Story = {
+export const LargeSearchBar: Story = {
   args: {
     size: "large",
-  },
-};
-
-export const WithInitialValue: Story = {
-  args: {
-    size: "large",
-    initialValue: "제주도",
   },
 };

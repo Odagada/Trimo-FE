@@ -1,22 +1,21 @@
-import { Destination } from "@/types/client.types";
-import { SingleReviewData } from "@/types/server.types";
+import { MultiReviewData, SingleReviewData, SpotData } from "@/types/server.types";
 import fetcher from "./axios";
 
 export const getReview = (reviewId: number) => {
   return {
     queryKey: ["review", reviewId],
-    queryFn: () => fetcher<SingleReviewData>({ method: "get", url: `/users/spots/reviews/${reviewId}` }),
+    queryFn: () => fetcher<SingleReviewData>({ method: "get", url: `/main/spots/reviews/${reviewId}` }),
   };
 };
 
 export const getSpot = (spotId: string) => {
   return {
     queryKey: ["spot", spotId],
-    queryFn: () => fetcher<Destination>({ method: "get", url: `users/spots/${spotId}` }),
+    queryFn: () => fetcher<SpotData>({ method: "get", url: `/main/spots/${spotId}` }),
   };
 };
 
-export const getReviewList = (query: string) => {
+export const getSearchReview = (query: string) => {
   return {
     queryKey: ["reviewList", query],
     queryFn: () =>
@@ -24,5 +23,12 @@ export const getReviewList = (query: string) => {
         method: "get",
         url: `main/reviews/specifics?${query}`,
       }),
+  };
+};
+
+export const getReviewCardArray = (order: string) => {
+  return {
+    queryKey: ["reviewCards", order],
+    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews` }),
   };
 };

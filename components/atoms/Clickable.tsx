@@ -20,10 +20,11 @@ const Clickable = ({
 
   return (
     <span
-      className={`${className}
+      className={`
         ${ClickableColor}
         ${shape === "square" ? "rounded-10" : "rounded-50"}
         ${ClickableSize}
+        ${className} 
         
         text-16 font-sans inline-block text-center`}
     >
