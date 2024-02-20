@@ -16,7 +16,13 @@ function useGetUserSocialInfo({ code, provider }: Props) {
   const { mutate, error } = useMutation({
     mutationFn: () =>
       axios.post(
-        `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
+        `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`,
+        { data: null },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+          },
+        }
       ),
     onSuccess: (data: { data: UserSocialLoginData }) => {
       setData(data.data);
