@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import { SIGNUP_SERVER_ERROR } from "@/constants/signupConstants";
-import { UserSocialLoginData } from "@/types/client.types";
+import { UserSocialLoginData } from "@/types/server.types";
 
 interface Props {
   code: string | undefined | string[];

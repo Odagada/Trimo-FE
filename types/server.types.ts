@@ -27,3 +27,28 @@ export type MultiReviewData = {
 export type SpotData = {
   averageStars: Stars;
 } & Destination;
+
+export type UserAdditionalInfo = {
+  birthDate: string;
+  gender: string;
+  nickName: string;
+};
+
+export type UserSocialLoginData = {
+  id: number;
+  email: string;
+  nickName: string;
+  imageUrl: string;
+  role: string; //ROLE_USER, ROLE_GUEST
+  tokenType: string;
+  accessToken: string;
+};
+
+export type UserInfoType = {
+  email: string;
+  nickName: string;
+  imageUrl: string;
+  gender: "남자" | "여자";
+  birthDate: string;
+  role: string;
+};

@@ -2,7 +2,7 @@ import { useState } from "react";
 import SuccessPage from "@/pages/signup/components/SignUpSuccess";
 import TermsAgreements from "@/pages/signup/components/TermsAgreements";
 import WriteAdditionalInfo from "@/pages/signup/components/WriteAdditionalInfo";
-import { UserSocialLoginData } from "@/types/client.types";
+import { UserSocialLoginData } from "@/types/server.types";
 
 function useSignUp() {
   const [signUpStatus, setSignUpStatus] = useState(0);
