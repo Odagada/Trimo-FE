@@ -1,17 +1,11 @@
 import { GetServerSidePropsContext } from "next";
+import * as cookie from "cookie";
 
 export const getAccessTokenFromCookie = (context: GetServerSidePropsContext) => {
-  const cookieString = context.req.headers.cookie;
+  if (!context.req.headers.cookie) return null;
+  const cookieString = cookie.parse(context.req.headers.cookie);
 
-  if (!cookieString) return null;
+  if (!cookieString.userAccessToken) return null;
 
-  const cookies = cookieString.split(";");
-  const accessTokenCookie = cookies.find((cookie) => cookie.trim().startsWith("accessToken="));
-
-  if (accessTokenCookie) {
-    const accessToken = accessTokenCookie.split("=")[1];
-    return accessToken;
-  }
-
-  return null;
+  return cookieString.userAccessToken;
 };
