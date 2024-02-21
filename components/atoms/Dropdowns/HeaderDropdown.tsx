@@ -20,7 +20,7 @@ export default forwardRef(function HeaderDropdown(_, ref: ForwardedRef<HTMLDivEl
   const handleLogout = () => {
     if (userAccessToken) {
       removeUserAccessToken();
-      router.push("/");
+      router.push("/search?searchValue=order=POPULAR");
     }
   };
 
