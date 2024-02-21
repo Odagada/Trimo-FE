@@ -15,12 +15,13 @@ import desktopScreenShot1 from "@/public/images/DesktopScreenShot1.png";
 import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { MultiReviewData } from "@/types/server.types";
 import { useEffect, useState } from "react";
 import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -31,19 +32,22 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     await queryClient.prefetchQuery(getReviewCardArray("populer"));
     await queryClient.prefetchQuery(getReviewCardArray("recent"));
 
+    const accessToken = await getAccessTokenFromCookie(context);
+    console.log(accessToken);
+
     return {
-      props: { dehydratedState: dehydrate(queryClient) },
+      props: { dehydratedState: dehydrate(queryClient), accessToken },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function Landing() {
-  useRedirectBasedOnLoginStatus();
+export default function Landing({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  // useRedirectBasedOnLoginStatus();
   return (
     <>
-      <Nav />
+      <Nav accessToken={accessToken} />
 
       <HeroSection />
 
