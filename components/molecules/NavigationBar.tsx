@@ -10,6 +10,7 @@ import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsT
 import * as cookie from "cookie";
 import { useEffect, useState } from "react";
 import useGetUserSocialInfo from "@/hooks/signup/useGetUserSocialInfo";
+import useGetUserInfo from "@/hooks/useGetUserInfo";
 
 interface NavProps {
   isOnlyLogo?: boolean;
@@ -24,6 +25,8 @@ function Nav({ isOnlyLogo = false, accessToken }: NavProps) {
 
   const [navStatus, setNavStatus] = useState<NavStatusType>();
 
+  const userData = useGetUserInfo(accessToken);
+
   useEffect(() => {
     if (!isOnlyLogo) accessToken ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
   }, [accessToken, isOnlyLogo]);
@@ -37,7 +40,7 @@ function Nav({ isOnlyLogo = false, accessToken }: NavProps) {
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
               <Image draggable={false} src={defaultProfile} width={22} height={22} alt="default user profile" />
-              <span className="text-16">닉네임</span>
+              <span className="text-16">{userData?.nickName}</span>
             </button>
             {isOpen && <HeaderDropdown ref={popupRef} />}
           </div>
