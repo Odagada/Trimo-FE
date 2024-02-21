@@ -16,7 +16,7 @@ import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { MultiReviewData } from "@/types/server.types";
 import { useEffect, useState } from "react";
@@ -24,15 +24,12 @@ import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
-    // const accessToken = getAccessTokenFromCookie(context) as string;\
-
     const queryClient = new QueryClient();
 
     await queryClient.prefetchQuery(getReviewCardArray("populer"));
     await queryClient.prefetchQuery(getReviewCardArray("recent"));
 
     const accessToken = await getAccessTokenFromCookie(context);
-    console.log(accessToken);
 
     return {
       props: { dehydratedState: dehydrate(queryClient), accessToken },
