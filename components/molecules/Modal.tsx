@@ -10,6 +10,7 @@ interface Props {
 }
 
 function Modal({ isOpen = false, title, description, buttonText = "확인", onClick, onClose }: Props) {
+  if (typeof document === "undefined") return;
   const portalDiv = document.querySelector("#modal");
 
   if (!portalDiv) return null;
