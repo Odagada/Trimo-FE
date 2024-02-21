@@ -16,11 +16,11 @@ interface NavProps {
   isOnlyLogo?: boolean;
   hasSearchBar?: boolean;
   className?: string;
-  accessToken: string | null | Record<string, string>;
+  accessToken?: string | null | Record<string, string>;
 }
 
 type NavStatusType = "onlyLogo" | "LoggedIn" | "LoggedOut";
-function Nav({ isOnlyLogo = false, accessToken }: NavProps) {
+function Nav({ isOnlyLogo = false, accessToken = null }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
   const [navStatus, setNavStatus] = useState<NavStatusType>();
