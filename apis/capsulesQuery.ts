@@ -23,6 +23,7 @@ export const getSearchReview = (query: string) => {
         method: "get",
         url: `main/reviews/specifics?${query}`,
       }),
+    enabled: query !== "",
   };
 };
 

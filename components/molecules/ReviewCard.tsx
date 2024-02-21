@@ -21,7 +21,7 @@ export default function ReviewCard({ review }: Props) {
     >
       <div className="h-240 relative w-full overflow-hidden">
         <Image
-          src={images ? images[0] : NoImg}
+          src={images.length !== 0 ? images[0] : NoImg}
           alt="카드 이미지"
           draggable={false}
           fill

@@ -1,10 +1,12 @@
 import { getSearchReview } from "@/apis/capsulesQuery";
 import { useQuery } from "@tanstack/react-query";
-import ReviewCard from "../molecules/ReviewCard";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ReviewList from "../molecules/ReviewList";
+import NoResult from "@/components/molecules/NoResult";
+import OrderDropdown from "@/components/atoms/Dropdowns/OrderDropdown";
 
-export default function SearchList() {
+export default function SearchContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const { query } = router;
@@ -14,16 +16,21 @@ export default function SearchList() {
   useEffect(() => {
     //검색 api 실행
     const convertQuery = new URLSearchParams(query as any).toString();
-    setSearchQuery(convertQuery);
+    if (query?.order !== undefined) {
+      setSearchQuery(convertQuery);
+    }
   }, [query]);
 
   return (
-    <div className="gap-x-24 gap-y-44 laptop:grid-cols-4 tablet:grid-cols-3 mobile:grid-cols-2 mt-13 grid w-full">
-      {reviewList?.length !== 0 ? (
-        reviewList?.map((el, idx) => <ReviewCard key={idx} review={el} />)
+    <>
+      {reviewList?.length !== 0 && reviewList !== undefined ? (
+        <div className="border-gray-30 mt-42 laptop:mx-120 pt-8 pb-12 border-t mx-20 tablet:mx-60">
+          <OrderDropdown />
+          <ReviewList data={reviewList} />
+        </div>
       ) : (
-        <div>검색 결과가 없을 때</div>
+        <NoResult />
       )}
-    </div>
+    </>
   );
 }

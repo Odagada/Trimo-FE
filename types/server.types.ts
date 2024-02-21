@@ -21,7 +21,7 @@ export type MultiReviewData = {
   tagValues?: Tag;
   nickName: string;
   visitingTime: string;
-  images?: string[];
+  images: string[];
   stars: Stars;
 };
 
