@@ -5,20 +5,28 @@ import Link from "next/link";
 import useComponentPopup from "@/hooks/useComponentPopup";
 import HeaderDropdown from "../atoms/Dropdowns/HeaderDropdown";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
+import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import * as cookie from "cookie";
+import { useEffect, useState } from "react";
+import useGetUserSocialInfo from "@/hooks/signup/useGetUserSocialInfo";
 
 interface NavProps {
   isOnlyLogo?: boolean;
   hasSearchBar?: boolean;
   className?: string;
+  accessToken: string | null | Record<string, string>;
 }
 
-function Nav({ isOnlyLogo = false }: NavProps) {
+type NavStatusType = "onlyLogo" | "LoggedIn" | "LoggedOut";
+function Nav({ isOnlyLogo = false, accessToken }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
-  const { userAccessToken } = useManageUserAccessToken();
+  const [navStatus, setNavStatus] = useState<NavStatusType>();
 
-  let navStatus = "onlyLogo";
-  if (!isOnlyLogo) navStatus = userAccessToken ? "LoggedIn" : "LoggedOut";
+  useEffect(() => {
+    if (!isOnlyLogo) accessToken ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
+  }, [accessToken, isOnlyLogo]);
 
   const renderNavbarLeftSide = () => {
     switch (navStatus) {
