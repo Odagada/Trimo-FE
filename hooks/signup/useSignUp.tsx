@@ -2,13 +2,13 @@ import { useState } from "react";
 import SuccessPage from "@/pages/signup/components/SignUpSuccess";
 import TermsAgreements from "@/pages/signup/components/TermsAgreements";
 import WriteAdditionalInfo from "@/pages/signup/components/WriteAdditionalInfo";
-import { UserSocialLoginData } from "@/types/client.types";
+import { LoginOauthType } from "@/types/client.types";
 
 function useSignUp() {
   const [signUpStatus, setSignUpStatus] = useState(0);
   const [nickname, setNickname] = useState("");
 
-  const renderContentOnProgress = (userData: UserSocialLoginData) => {
+  const renderContentOnProgress = (userData: LoginOauthType) => {
     switch (signUpStatus) {
       case 0:
         return <TermsAgreements progressStatus={progressStatus} />;

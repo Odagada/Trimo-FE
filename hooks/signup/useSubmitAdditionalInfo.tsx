@@ -1,6 +1,6 @@
 import { request } from "@/apis/axios";
 import { useMutation } from "@tanstack/react-query";
-import { UserAdditionalInfo, UserInfoType, birthdateValType } from "@/types/client.types";
+import { GuestUpdateType, GetGuestUpdateType, birthdateValType } from "@/types/client.types";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
 import { useRouter } from "next/router";
 import useManageUserAccessToken from "../useManageUserAccessToken";
@@ -34,7 +34,7 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
     return formateDate;
   };
 
-  const handleSignUp = async (userSignUpData: UserAdditionalInfo) => {
+  const handleSignUp = async (userSignUpData: GuestUpdateType) => {
     const signup = await request<any>({
       url: `/guest/update`,
       method: "post",
@@ -50,7 +50,7 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
 
   const { mutate: signUp, error } = useMutation({
     mutationFn: handleSignUp,
-    onSuccess: (data: UserInfoType) => {
+    onSuccess: (data: GetGuestUpdateType) => {
       saveUserAccessToken(userAccessToken, "정상적으로 회원 정보가 작성되었습니다.");
       progressStatus();
     },

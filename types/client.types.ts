@@ -61,9 +61,9 @@ export type Destination = {
 export type User = {
   userId: number;
   nickName: string;
-  email: string;
   gender: "female" | "male";
   age: number;
+  imageUrl: string;
 };
 
 export type Review = {
@@ -84,24 +84,13 @@ export type ImageType = {
 
 export type OrderValue = "인기순" | "평점순" | "최신순";
 
-export type UserAdditionalInfo = {
+export type GuestUpdateType = {
   birthDate: string;
   gender: string;
   nickName: string;
 };
 
-export type UserSocialLoginData = {
-  id: number;
-  email: string;
-  nickName: string;
-  imageUrl: string;
-  role: string; //ROLE_USER, ROLE_GUEST
-  tokenType: string;
-  accessToken: string;
-};
-
-export type UserInfoType = {
-  email: string;
+export type GetGuestUpdateType = {
   nickName: string;
   imageUrl: string;
   gender: string;
@@ -109,12 +98,21 @@ export type UserInfoType = {
   role: string;
 };
 
+export type LoginOauthType = {
+  id: number;
+  nickName: string;
+  imageUrl: string;
+  role: string; //ROLE_USER, ROLE_GUEST
+  tokenType: string;
+  accessToken: string;
+};
+
 export type GetUserInfoType = {
   userId: number;
   nickName: string;
-  email: string;
   gender: string;
   age: number;
+  imageUrl: string;
 };
 export type birthdateValType = { value: number; label: number };
 export interface MapProps {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import { SIGNUP_SERVER_ERROR } from "@/constants/signupConstants";
-import { UserSocialLoginData } from "@/types/client.types";
+import { LoginOauthType } from "@/types/client.types";
 
 interface Props {
   code: string | undefined | string[];
@@ -11,7 +11,7 @@ interface Props {
 }
 function useGetUserSocialInfo({ code, provider }: Props) {
   const router = useRouter();
-  const [data, setData] = useState<UserSocialLoginData>();
+  const [data, setData] = useState<LoginOauthType>();
 
   const { mutate, error } = useMutation({
     mutationFn: () =>
@@ -24,7 +24,7 @@ function useGetUserSocialInfo({ code, provider }: Props) {
           },
         }
       ),
-    onSuccess: (data: { data: UserSocialLoginData }) => {
+    onSuccess: (data: { data: LoginOauthType }) => {
       setData(data.data);
     },
     onError: (error) => {
@@ -39,7 +39,7 @@ function useGetUserSocialInfo({ code, provider }: Props) {
     mutate();
   }, [code]);
 
-  return data;
+  return { data };
 }
 
 export default useGetUserSocialInfo;
