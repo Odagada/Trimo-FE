@@ -1,58 +1,26 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import useManageUserAccessToken from "./useManageUserAccessToken";
-import { GetUserInfoType } from "@/types/client.types";
-import fetcher from "@/apis/axios";
+import { useCallback } from "react";
 
-export async function getUserInfo(userAccessToken: string) {
-  const { data } = await fetcher<GetUserInfoType>({
-    method: "get",
-    url: `/users/info`,
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      withCredentials: true,
-    },
-  });
-  return data;
+interface Props {
+  statusToBlock: "Login" | "Logout";
+  accessToken: string | null;
+  redirectUri?: string | null;
 }
 
-const useRedirectBasedOnLoginStatus = () => {
+function useRedirectBasedOnLoginStatus({ statusToBlock, accessToken, redirectUri = null }: Props) {
   const router = useRouter();
-  const { userAccessToken } = useManageUserAccessToken();
-  const checkLoggedIn = async () => {
-    if (!userAccessToken) return false;
-    try {
-      await getUserInfo(userAccessToken);
-      return true;
-    } catch {
-      return false;
+
+  const validateRedirection = useCallback(() => {
+    if (typeof window === "undefined") return;
+    if ((statusToBlock === "Login" && accessToken) || (statusToBlock === "Logout" && !accessToken)) {
+      redirectUri && router.push(redirectUri);
+      redirectUri || router.back();
+      // alert(statusToBlock === "Login" ? "이미 로그인 된 상태입니다." : "로그인 후 이용해주세요");
+      return;
     }
-  };
+  }, [accessToken, redirectUri, router, statusToBlock]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      switch (router.pathname) {
-        case "/":
-        case "/search":
-          break;
-        case "/login":
-        case "/signup/*":
-          if (await checkLoggedIn()) {
-            alert("이미 로그인한 상태입니다.");
-            router.push("/search");
-          }
-          break;
-        default:
-          if (!(await checkLoggedIn())) {
-            alert("로그인 후 이용해주세요.");
-            router.push("/login");
-          }
-      }
-    };
-    fetchData();
-  }, [router]);
-
-  return;
-};
+  validateRedirection();
+}
 
 export default useRedirectBasedOnLoginStatus;
