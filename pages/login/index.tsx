@@ -7,8 +7,24 @@ import kakao from "@/public/images/icons/kakao.png";
 import google from "@/public/images/icons/google.png";
 import naver from "@/public/images/icons/naver.png";
 import ShadowBox from "@/components/atoms/ShadowBox";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
+import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
 
-function Login() {
+export const getServerSideProps = (context: GetServerSidePropsContext) => {
+  try {
+    const accessToken = getAccessTokenFromCookie(context);
+
+    return {
+      props: { accessToken },
+    };
+  } catch {
+    return { notFound: true };
+  }
+};
+
+function Login({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  useRedirectBasedOnLoginStatus({ statusToBlock: "Login", accessToken });
   return (
     <div className="h-screen flex w-full flex-col">
       <Nav className="-mb-10" isOnlyLogo />

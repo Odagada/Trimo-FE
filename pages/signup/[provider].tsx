@@ -7,21 +7,39 @@ import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
 import { useEffect } from "react";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
+import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
 
-function SignUp() {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  try {
+    const accessToken = await getAccessTokenFromCookie(context);
+
+    return {
+      props: { accessToken },
+    };
+  } catch {
+    return { notFound: true };
+  }
+};
+
+function SignUp({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
   const { provider, code } = router.query;
 
+  useRedirectBasedOnLoginStatus({ statusToBlock: "Login", accessToken });
+
   const { calculateStepArray, renderContentOnProgress } = useSignUp();
-  const userSocialData = useGetUserSocialInfo({ code, provider });
+  const { data: userSocialData } = useGetUserSocialInfo({ code, provider });
   const { saveUserAccessToken } = useManageUserAccessToken();
 
   useEffect(() => {
     if (userSocialData?.role === "ROLE_USER") {
       saveUserAccessToken(
         userSocialData.accessToken,
-        `정상적으로 로그인 되었습니다!\n반갑습니다 ${userSocialData.nickName}님 😊`
+        `이미 가입된 회원입니다. ${userSocialData.nickName}으로 로그인합니다.`
       );
+      router.back();
     }
   }, [userSocialData]);
 
