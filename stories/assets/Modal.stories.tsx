@@ -3,7 +3,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import Modal from "@/components/molecules/Modal";
 
 export default {
-  title: "element/Modal",
+  title: "Component/Modal",
   component: Modal,
 } as Meta<typeof Modal>;
 
