@@ -7,7 +7,6 @@ import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
 import { useEffect } from "react";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
-import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
 
 function SignUp() {
   const router = useRouter();
