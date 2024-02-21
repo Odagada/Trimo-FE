@@ -20,7 +20,6 @@ export default forwardRef(function HeaderDropdown(_, ref: ForwardedRef<HTMLDivEl
   const handleLogout = () => {
     if (userAccessToken) {
       removeUserAccessToken();
-      alert("정상적으로 로그아웃 되었습니다. 렌딩페이지로 이동합니다.");
       router.push("/");
     }
   };
