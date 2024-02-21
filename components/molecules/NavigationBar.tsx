@@ -39,7 +39,13 @@ function Nav({ isOnlyLogo = false, accessToken = null }: NavProps) {
         return (
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-              <Image draggable={false} src={defaultProfile} width={22} height={22} alt="default user profile" />
+              <Image
+                draggable={false}
+                src={userData?.imageUrl || defaultProfile}
+                width={22}
+                height={22}
+                alt="default user profile"
+              />
               <span className="text-16">{userData?.nickName}</span>
             </button>
             {isOpen && <HeaderDropdown ref={popupRef} />}
