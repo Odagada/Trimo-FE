@@ -21,6 +21,7 @@ import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { MultiReviewData } from "@/types/server.types";
 import { useEffect, useState } from "react";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
+import { isLoggedIn } from "@/utils/validateByLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -32,17 +33,17 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const accessToken = await getAccessTokenFromCookie(context);
 
     return {
-      props: { dehydratedState: dehydrate(queryClient), accessToken },
+      props: { dehydratedState: dehydrate(queryClient), isLoggedIn: isLoggedIn(accessToken) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function Landing({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Landing({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
-      <Nav accessToken={accessToken} />
+      <Nav isLoggedIn={isLoggedIn} />
 
       <HeroSection />
 

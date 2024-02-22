@@ -1,8 +1,12 @@
 import fetcher from "@/apis/axios";
 import { User } from "@/types/client.types";
 import { useQuery } from "@tanstack/react-query";
+import useManageUserAccessToken from "./useManageUserAccessToken";
 
-function useGetUserInfo(userAccessToken: string | Record<string, string> | null) {
+function useGetUserInfo() {
+  const { userAccessToken } = useManageUserAccessToken();
+  // console.log(userAccessToken);
+
   const requestUserData = async () => {
     if (!userAccessToken) return null;
 

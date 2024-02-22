@@ -16,20 +16,20 @@ interface NavProps {
   isOnlyLogo?: boolean;
   hasSearchBar?: boolean;
   className?: string;
-  accessToken?: string | null | Record<string, string>;
+  isLoggedIn?: boolean;
 }
 
 type NavStatusType = "onlyLogo" | "LoggedIn" | "LoggedOut";
-function Nav({ isOnlyLogo = false, accessToken = null }: NavProps) {
+function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
   const [navStatus, setNavStatus] = useState<NavStatusType>();
 
-  const userData = useGetUserInfo(accessToken);
+  const userData = useGetUserInfo();
 
   useEffect(() => {
-    if (!isOnlyLogo) accessToken ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
-  }, [accessToken, isOnlyLogo]);
+    if (!isOnlyLogo) isLoggedIn ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
+  }, [isLoggedIn, isOnlyLogo]);
 
   const renderNavbarLeftSide = () => {
     switch (navStatus) {
