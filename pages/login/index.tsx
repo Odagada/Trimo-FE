@@ -9,13 +9,13 @@ import naver from "@/public/images/icons/naver.png";
 import ShadowBox from "@/components/atoms/ShadowBox";
 import { GetServerSidePropsContext } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { redirectByLoginStatus } from "@/utils/validateByLoginStatus";
+import { validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const accessToken = await getAccessTokenFromCookie(context);
 
-    const isRedirectNeeded = redirectByLoginStatus({
+    const isRedirectNeeded = validateRedirectionByLoginStatus({
       statusToBlock: "Login",
       redirectUri: "/search?searchValue=&order=POPULAR",
       accessToken,
