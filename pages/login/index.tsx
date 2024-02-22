@@ -17,14 +17,13 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
     const isRedirectNeeded = validateRedirectionByLoginStatus({
       statusToBlock: "Login",
-      redirectUri: "/search?searchValue=&order=POPULAR",
       accessToken,
     });
 
     if (isRedirectNeeded) {
       return {
         redirect: {
-          destination: "/",
+          destination: "/search?searchValue=&order=POPULAR",
           permanent: false,
         },
       };
