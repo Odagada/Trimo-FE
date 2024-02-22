@@ -3,21 +3,29 @@ import PlaceForm from "@/components/organisms/PlaceForm";
 import Footer from "@/components/atoms/Footer";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { isLoggedIn, redirectByLoginStatus } from "@/utils/validateByLoginStatus";
+import { isLoggedIn, validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const accessToken = await getAccessTokenFromCookie(context);
 
-    redirectByLoginStatus({
+    const isRedirectNeeded = validateRedirectionByLoginStatus({
       statusToBlock: "Logout",
-      redirectUri: "/search?searchValue=order=POPULAR",
       accessToken,
     });
 
-    return {
-      props: { isLoggedIn: isLoggedIn(accessToken) },
-    };
+    if (isRedirectNeeded) {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    } else {
+      return {
+        props: { isLoggedIn: isLoggedIn(accessToken) },
+      };
+    }
   } catch {
     return { notFound: true };
   }
