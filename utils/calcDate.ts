@@ -1,7 +1,7 @@
 import { TagMonth } from "@/types/client.types";
 
 const calcData = (date: string) => {
-  const targetDate = new Date(date);
+  const targetDate = new Date(+date);
 
   const year = targetDate.getFullYear();
   const month = ("0" + (targetDate.getMonth() + 1)).slice(-2);

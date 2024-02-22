@@ -4,7 +4,6 @@ import SearchBar from "@/components/atoms/Inputs/SearchBar";
 import FilterDropdown from "@/components/molecules/FilterDropdown";
 import Nav from "@/components/molecules/NavigationBar";
 import SearchContent from "@/components/organisms/SearchContent";
-import { useRouter } from "next/router";
 
 export default function Search() {
   return (

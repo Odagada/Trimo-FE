@@ -19,7 +19,7 @@ export const getSearchReview = (query: string) => {
   return {
     queryKey: ["reviewList", query],
     queryFn: () =>
-      fetcher<SingleReviewData[]>({
+      fetcher<MultiReviewData[]>({
         method: "get",
         url: `main/reviews/specifics?${query}`,
       }),

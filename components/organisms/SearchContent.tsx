@@ -10,6 +10,7 @@ export default function SearchContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const { query } = router;
+
   const { data: reviewListData } = useQuery(getSearchReview(searchQuery));
   const reviewList = reviewListData?.data;
 
@@ -21,6 +22,9 @@ export default function SearchContent() {
     }
   }, [query]);
 
+  if (query.order === undefined) {
+    return <></>;
+  }
   return (
     <>
       {reviewList?.length !== 0 && reviewList !== undefined ? (

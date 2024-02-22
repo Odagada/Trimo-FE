@@ -114,3 +114,5 @@ export type birthdateValType = { value: number; label: number };
 export interface MapProps {
   locationIDList: string[];
 }
+
+export type StringObj = { [key: string]: string };
