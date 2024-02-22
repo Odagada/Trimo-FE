@@ -1,6 +1,7 @@
 import { request } from "@/apis/axios";
 import { useMutation } from "@tanstack/react-query";
-import { GuestUpdateType, GetGuestUpdateType, birthdateValType } from "@/types/client.types";
+import { GuestUpdateType, GetGuestUpdateType } from "@/types/server.types";
+import { birthdateValType } from "@/types/client.types";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
 import { useRouter } from "next/router";
 import useManageUserAccessToken from "../useManageUserAccessToken";

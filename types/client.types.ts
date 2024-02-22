@@ -84,36 +84,6 @@ export type ImageType = {
 
 export type OrderValue = "인기순" | "평점순" | "최신순";
 
-export type GuestUpdateType = {
-  birthDate: string;
-  gender: string;
-  nickName: string;
-};
-
-export type GetGuestUpdateType = {
-  nickName: string;
-  imageUrl: string;
-  gender: string;
-  birthDate: string;
-  role: string;
-};
-
-export type LoginOauthType = {
-  id: number;
-  nickName: string;
-  imageUrl: string;
-  role: string; //ROLE_USER, ROLE_GUEST
-  tokenType: string;
-  accessToken: string;
-};
-
-export type GetUserInfoType = {
-  userId: number;
-  nickName: string;
-  gender: string;
-  age: number;
-  imageUrl: string;
-};
 export type birthdateValType = { value: number; label: number };
 export interface MapProps {
   locationIDList: string[];
