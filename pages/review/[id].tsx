@@ -118,7 +118,6 @@ const MapNTag = () => {
 
   return (
     <>
-      {" "}
       {/* map area */}
       <div className="mb-73">
         <GoogleMap locationIDList={[placeId]} />
