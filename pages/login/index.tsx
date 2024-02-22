@@ -9,22 +9,27 @@ import naver from "@/public/images/icons/naver.png";
 import ShadowBox from "@/components/atoms/ShadowBox";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
+import { redirectByLoginStatus } from "@/utils/validateByLoginStatus";
 
-export const getServerSideProps = (context: GetServerSidePropsContext) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
-    const accessToken = getAccessTokenFromCookie(context);
+    const accessToken = await getAccessTokenFromCookie(context);
+
+    redirectByLoginStatus({
+      statusToBlock: "Login",
+      redirectUri: "/search?searchValue=&order=POPULAR",
+      accessToken,
+    });
 
     return {
-      props: { accessToken },
+      props: {},
     };
   } catch {
     return { notFound: true };
   }
 };
 
-function Login({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  useRedirectBasedOnLoginStatus({ statusToBlock: "Login", accessToken });
+function Login() {
   return (
     <div className="h-screen flex w-full flex-col">
       <Nav className="-mb-10" isOnlyLogo />

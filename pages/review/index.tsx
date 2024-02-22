@@ -3,30 +3,30 @@ import PlaceForm from "@/components/organisms/PlaceForm";
 import Footer from "@/components/atoms/Footer";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import useRedirectBasedOnLoginStatus from "@/hooks/useRedirectBasedOnLoginStatus";
+import { isLoggedIn, redirectByLoginStatus } from "@/utils/validateByLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const accessToken = await getAccessTokenFromCookie(context);
 
+    redirectByLoginStatus({
+      statusToBlock: "Logout",
+      redirectUri: "/search?searchValue=order=POPULAR",
+      accessToken,
+    });
+
     return {
-      props: { accessToken },
+      props: { isLoggedIn: isLoggedIn(accessToken) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function ReviewWrite({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  useRedirectBasedOnLoginStatus({
-    statusToBlock: "Logout",
-    accessToken,
-    redirectUri: "/login",
-  });
-
+export default function ReviewWrite({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
-      <Nav />
+      <Nav isLoggedIn={isLoggedIn} />
       <PlaceForm />
       <Footer />
     </>
