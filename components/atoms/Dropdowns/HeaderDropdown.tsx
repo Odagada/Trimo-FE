@@ -1,10 +1,11 @@
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
-import { useRouter } from "next/router";
 import { ForwardedRef, forwardRef } from "react";
 
-export default forwardRef(function HeaderDropdown(_, ref: ForwardedRef<HTMLDivElement>) {
-  const router = useRouter();
-  const { userAccessToken, removeUserAccessToken } = useManageUserAccessToken();
+export default forwardRef(function HeaderDropdown(
+  { fetchUserData }: { fetchUserData: () => void },
+  ref: ForwardedRef<HTMLDivElement>
+) {
+  const { removeUserAccessToken, userAccessToken } = useManageUserAccessToken();
 
   const menus = [
     { text: "내 리뷰 작성", onClick: () => {} },
@@ -19,8 +20,8 @@ export default forwardRef(function HeaderDropdown(_, ref: ForwardedRef<HTMLDivEl
 
   const handleLogout = () => {
     if (userAccessToken) {
-      removeUserAccessToken();
-      router.push("/search?searchValue=order=POPULAR");
+      removeUserAccessToken({ redirectUri: "/search?searchValue=&order=POPULAR" });
+      fetchUserData();
     }
   };
 

@@ -4,13 +4,9 @@ import defaultProfile from "@/public/images/defaultProfile.png";
 import Link from "next/link";
 import useComponentPopup from "@/hooks/useComponentPopup";
 import HeaderDropdown from "../atoms/Dropdowns/HeaderDropdown";
-import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
-import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import * as cookie from "cookie";
 import { useEffect, useState } from "react";
-import useGetUserSocialInfo from "@/hooks/signup/useGetUserSocialInfo";
 import useGetUserInfo from "@/hooks/useGetUserInfo";
+import { User } from "@/types/client.types";
 
 interface NavProps {
   isOnlyLogo?: boolean;
@@ -24,13 +20,20 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
   const [navStatus, setNavStatus] = useState<NavStatusType>();
+  const [userData, setUserData] = useState<User | null>();
 
-  const userData = useGetUserInfo();
+  const { userDataRef, requestUserData } = useGetUserInfo();
+
+  const fetchUserData = async () => {
+    await requestUserData();
+    setUserData(userDataRef.current);
+  };
 
   useEffect(() => {
     if (!isOnlyLogo) isLoggedIn ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
-    renderNavbarLeftSide();
-  }, [isLoggedIn]);
+
+    fetchUserData();
+  }, [isLoggedIn, isOnlyLogo, navStatus, userDataRef]);
 
   const renderNavbarLeftSide = () => {
     switch (navStatus) {
@@ -49,7 +52,7 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
               />
               <span className="text-16">{userData?.nickName}</span>
             </button>
-            {isOpen && <HeaderDropdown ref={popupRef} />}
+            {isOpen && <HeaderDropdown ref={popupRef} fetchUserData={fetchUserData} />}
           </div>
         );
       case "LoggedOut":
