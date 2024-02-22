@@ -10,7 +10,6 @@ interface Props {
 
 export const redirectByLoginStatus = ({ statusToBlock, redirectUri, accessToken }: Props) => {
   if ((statusToBlock === "Login" && accessToken) || (statusToBlock === "Logout" && !accessToken)) {
-    // redirect("/");
     // alert(statusToBlock === "Login" ? "이미 로그인 된 상태입니다." : "로그인 후 이용해주세요");
     return true;
   }
