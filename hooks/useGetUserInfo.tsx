@@ -1,10 +1,11 @@
 import fetcher from "@/apis/axios";
 import { User } from "@/types/client.types";
-import { useQuery } from "@tanstack/react-query";
 import useManageUserAccessToken from "./useManageUserAccessToken";
+import { useRef } from "react";
 
 function useGetUserInfo() {
   const { userAccessToken } = useManageUserAccessToken();
+  const userDataRef = useRef<User | null>(null);
 
   const requestUserData = async () => {
     if (!userAccessToken) return null;
@@ -14,15 +15,11 @@ function useGetUserInfo() {
       url: "/user/info",
       headers: { Authorization: `Bearer ${userAccessToken}`, "Content-Type": "application/json" },
     });
-    return userData;
+
+    userDataRef.current = userData;
   };
 
-  const { data: userData } = useQuery({
-    queryKey: ["userData"],
-    queryFn: () => requestUserData(),
-  });
-
-  return userData;
+  return { userDataRef, requestUserData };
 }
 
 export default useGetUserInfo;
