@@ -37,9 +37,9 @@ function useGetUserSocialInfo({ code, provider }: Props) {
   useEffect(() => {
     if (!code) return;
     mutate();
-  }, [code]);
+  }, []);
 
-  return { data };
+  return data;
 }
 
 export default useGetUserSocialInfo;
