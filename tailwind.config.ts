@@ -58,6 +58,7 @@ const config: Config = {
       32: "3.2rem",
       36: "3.6rem",
       45: "4.5rem",
+      100: "10rem",
     },
     lineHeight: {
       12: "1.2rem",
@@ -73,6 +74,7 @@ const config: Config = {
       48: "4.8rem",
       54: "5.4rem",
       67.5: "6.75rem",
+      70: "7rem",
     },
     fontFamily: {
       sans: ["Pretendard"],

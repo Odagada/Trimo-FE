@@ -30,6 +30,6 @@ export const getSearchReview = (query: string) => {
 export const getReviewCardArray = (order: string) => {
   return {
     queryKey: ["reviewCards", order],
-    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews` }),
+    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews?order=${order}` }),
   };
 };

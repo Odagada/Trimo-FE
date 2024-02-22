@@ -19,7 +19,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const reviewId = Number(context.params?.id);
     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery(getReview(reviewId));
+    const check404 = await queryClient.fetchQuery(getReview(reviewId));
 
     return {
       props: { dehydratedState: dehydrate(queryClient) },
@@ -118,7 +118,6 @@ const MapNTag = () => {
 
   return (
     <>
-      {" "}
       {/* map area */}
       <div className="mb-73">
         <GoogleMap locationIDList={[placeId]} />

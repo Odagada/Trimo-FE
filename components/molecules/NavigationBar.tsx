@@ -41,7 +41,7 @@ function Nav({ navStatus = "LoggedIn" }: NavProps) {
   };
 
   return (
-    <nav className="h-fit mb-66 flex flex-col w-full">
+    <nav className="h-fit mb-74 flex flex-col w-full">
       <div className="z-50 h-fit py-12 px-121 fixed top-0 flex flex-wrap items-center justify-between w-full bg-white">
         <h1>
           <Link href="/">
