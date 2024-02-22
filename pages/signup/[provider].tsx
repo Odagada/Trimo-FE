@@ -1,18 +1,13 @@
 import ProgressNavigator from "@/components/molecules/ProgressNavigator";
 import ShadowBox from "@/components/atoms/ShadowBox";
 import Nav from "@/components/molecules/NavigationBar";
-import { useRouter } from "next/router";
-import useGetUserSocialInfo from "@/hooks/signup/useGetUserSocialInfo";
 import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
-import { useEffect } from "react";
-import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { redirectByLoginStatus } from "@/utils/validateByLoginStatus";
 import { QueryClient, dehydrate } from "@tanstack/react-query";
 import axios from "axios";
-import { redirect } from "next/navigation";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
