@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import searchIcon from "@/public/icons/search.svg";
 import { useRouter } from "next/router";
 
 const SearchBar = ({ size, className = "" }: { size: "large" | "small"; className?: string }) => {
   const router = useRouter();
   const { searchValue: initialValue } = router.query;
+  let { order } = router.query;
 
   // 검색 결과가 있을 때 계산된 값을 input에 주입
   const calculatedValue = useCallback(() => {
@@ -27,12 +28,19 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
     setValue(e.target.value);
   };
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (order === undefined) {
+      order = "POPULAR";
+    }
+
+    router.push({ pathname: "/search", query: { order: order, searchValue: value } });
+  };
+
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        router.push(`/search/${value}`);
-      }}
+      onSubmit={handleSubmit}
       className={`
       ${className}
       ${

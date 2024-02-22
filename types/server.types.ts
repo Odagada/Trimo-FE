@@ -6,12 +6,13 @@ export type SingleReviewData = {
   content: string;
   tagValues?: Tag;
   nickName: string;
-  spotId: string;
+  spotName: string;
+  placeId: string;
   createdAt: string;
   modifiedAt: string;
   visitingTime: string;
-  imageUrls?: string[];
-  stars?: Stars;
+  images?: string[];
+  stars: Stars;
 };
 
 export type MultiReviewData = {
@@ -20,8 +21,8 @@ export type MultiReviewData = {
   tagValues?: Tag;
   nickName: string;
   visitingTime: string;
-  imageUrls?: string[];
-  stars?: Stars;
+  image?: string;
+  stars: Stars;
 };
 
 export type SpotData = {

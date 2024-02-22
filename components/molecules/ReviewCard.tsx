@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ReviewCard({ review }: Props) {
-  const { title, stars, nickName, reviewId, tagValues, visitingTime } = review;
+  const { title, stars, nickName, reviewId, tagValues, image, visitingTime } = review;
   const { tagMonth } = calcData(visitingTime);
 
   return (
@@ -21,7 +21,7 @@ export default function ReviewCard({ review }: Props) {
     >
       <div className="h-240 relative w-full overflow-hidden">
         <Image
-          src={NoImg}
+          src={image ?? NoImg}
           alt="카드 이미지"
           draggable={false}
           fill
