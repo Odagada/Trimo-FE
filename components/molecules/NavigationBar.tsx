@@ -29,7 +29,8 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
 
   useEffect(() => {
     if (!isOnlyLogo) isLoggedIn ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
-  }, [isLoggedIn, isOnlyLogo]);
+    renderNavbarLeftSide();
+  }, [isLoggedIn]);
 
   const renderNavbarLeftSide = () => {
     switch (navStatus) {
