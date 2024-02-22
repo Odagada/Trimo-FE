@@ -22,13 +22,13 @@ export default function SearchContent() {
     }
   }, [query]);
 
-  if (query.order === undefined) {
+  if (reviewList === undefined) {
     return <></>;
   }
   return (
     <>
-      {reviewList?.length !== 0 && reviewList !== undefined ? (
-        <div className="border-gray-30 mt-42 laptop:mx-120 pt-8 pb-12 border-t mx-20 tablet:mx-60">
+      {reviewList?.length !== 0 ? (
+        <div className="border-gray-30 mt-42 laptop:mx-120 tablet:mx-60 pt-8 pb-12 mx-20 border-t">
           <OrderDropdown />
           <ReviewList data={reviewList} />
         </div>
