@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ReviewCard({ review }: Props) {
-  const { title, stars, nickName, reviewId, tagValues, visitingTime, image } = review;
+  const { title, stars, nickName, reviewId, tagValues, image, visitingTime } = review;
   const { tagMonth } = calcData(visitingTime);
 
   return (

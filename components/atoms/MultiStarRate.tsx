@@ -4,7 +4,7 @@ import filled_star from "@/public/icons/filled_star.svg";
 import empty_star from "@/public/icons/empty_star.svg";
 import Image from "next/image";
 
-const RateStars = ({ number }: { number: Stars }) => {
+const MultiStarRate = ({ number }: { number: Stars }) => {
   if (number === 0) return <></>;
 
   const filledStars = Math.floor(number);
@@ -24,4 +24,4 @@ const RateStars = ({ number }: { number: Stars }) => {
   );
 };
 
-export default RateStars;
+export default MultiStarRate;
