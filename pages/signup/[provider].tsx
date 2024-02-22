@@ -7,54 +7,57 @@ import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
 import { useEffect } from "react";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { redirectByLoginStatus } from "@/utils/validateByLoginStatus";
-import WriteAdditionalInfo from "./components/WriteAdditionalInfo";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
+import axios from "axios";
+import { redirect } from "next/navigation";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
+    const queryClient = new QueryClient();
+    const { provider, code } = context.query;
+
     const accessToken = await getAccessTokenFromCookie(context);
 
-    redirectByLoginStatus({
+    const userOAuthData = await axios.get(
+      `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
+    );
+
+    const isRedirectNeeded = redirectByLoginStatus({
       statusToBlock: "Login",
       redirectUri: "/search?searchValue=&order=POPULAR",
       accessToken,
     });
 
-    return {
-      props: {},
-    };
+    if (isRedirectNeeded) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    } else {
+      return {
+        props: { dehydratedState: dehydrate(queryClient), userOAuthData: userOAuthData.data },
+      };
+    }
   } catch {
     return { notFound: true };
   }
-};
+}
 
-function SignUp() {
-  const router = useRouter();
-  const { provider, code } = router.query;
-
-  const { calculateStepArray, renderContentOnProgress } = useSignUp();
-  const userSocialData = useGetUserSocialInfo({ code, provider });
-  const { saveUserAccessToken } = useManageUserAccessToken();
-
-  useEffect(() => {
-    if (userSocialData?.role === "ROLE_USER") {
-      saveUserAccessToken(
-        userSocialData.accessToken,
-        `이미 가입된 회원입니다. ${userSocialData.nickName}으로 로그인합니다.`
-      );
-      router.back();
-    }
-  }, [userSocialData]);
+function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { calculateStepArray, renderContentOnProgress } = useSignUp(userOAuthData);
 
   return (
-    <div className="h-screen flex w-full flex-col mt-20 mb-20">
+    <div className="h-screen flex w-full flex-col">
       <Nav isOnlyLogo />
       <ShadowBox className="relative">
         <span className="text-20 font-bold text-center mb-15 mt-35">회원가입</span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
-        {renderContentOnProgress(userSocialData!)}
+        {renderContentOnProgress()}
       </ShadowBox>
       <Footer />
     </div>
