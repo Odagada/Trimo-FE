@@ -13,15 +13,13 @@ const useManageUserAccessToken = () => {
       alert("세션이 만료되었습니다. 다시 로그인 해 주세요.");
       window.location.reload();
     }, loginTime * 1000);
-    message && setTimeout(() => alert(message), 1000);
+    message && setTimeout(() => alert(message), 1000); // 1초 뒤에 리다이렉트 된 후 alert 띄움
   };
 
-  const removeUserAccessToken = () => {
-    if (confirm("로그아웃 하시겠습니까?")) {
-      removeCookie("userAccessToken");
-      router.push("/");
-      alert("정상적으로 로그아웃 되었습니다!");
-    }
+  const removeUserAccessToken = ({ redirectUri }: { redirectUri: string }) => {
+    removeCookie("userAccessToken", { path: "/" });
+    alert("로그아웃 되었습니다!");
+    router.push(redirectUri);
   };
 
   const userAccessToken = cookie.userAccessToken;
