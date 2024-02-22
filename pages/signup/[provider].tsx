@@ -4,8 +4,6 @@ import Nav from "@/components/molecules/NavigationBar";
 import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { redirectByLoginStatus } from "@/utils/validateByLoginStatus";
 import { QueryClient, dehydrate } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -14,30 +12,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const queryClient = new QueryClient();
     const { provider, code } = context.query;
 
-    const accessToken = await getAccessTokenFromCookie(context);
-
     const userOAuthData = await axios.get(
       `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
     );
 
-    const isRedirectNeeded = redirectByLoginStatus({
-      statusToBlock: "Login",
-      redirectUri: "/search?searchValue=&order=POPULAR",
-      accessToken,
-    });
-
-    if (isRedirectNeeded) {
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false,
-        },
-      };
-    } else {
-      return {
-        props: { dehydratedState: dehydrate(queryClient), userOAuthData: userOAuthData.data },
-      };
-    }
+    return {
+      props: { dehydratedState: dehydrate(queryClient), userOAuthData: userOAuthData.data },
+    };
   } catch {
     return { notFound: true };
   }
