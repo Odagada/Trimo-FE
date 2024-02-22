@@ -52,7 +52,7 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
   const { mutate: signUp, error } = useMutation({
     mutationFn: handleSignUp,
     onSuccess: (data: GetGuestUpdateType) => {
-      saveUserAccessToken(userAccessToken, "정상적으로 회원 정보가 작성되었습니다.");
+      saveUserAccessToken(userAccessToken);
       progressStatus();
     },
     onError: (error) => {
