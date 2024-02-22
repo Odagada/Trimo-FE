@@ -5,14 +5,13 @@ import useManageUserAccessToken from "./useManageUserAccessToken";
 
 function useGetUserInfo() {
   const { userAccessToken } = useManageUserAccessToken();
-  // console.log(userAccessToken);
 
   const requestUserData = async () => {
     if (!userAccessToken) return null;
 
     const { data: userData } = await fetcher<User>({
       method: "get",
-      url: "/users/info",
+      url: "/user/info",
       headers: { Authorization: `Bearer ${userAccessToken}`, "Content-Type": "application/json" },
     });
     return userData;
