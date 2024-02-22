@@ -47,9 +47,9 @@ function useSignUp(userOAuthData: LoginOauthType) {
         userOAuthData.accessToken,
         `이미 가입된 회원입니다. ${userOAuthData.nickName}으로 로그인합니다.`
       );
-      router.back();
+      router.push("/search?searchValue=&order=POPULAR");
     }
-  }, [userOAuthData]);
+  }, []);
 
   return { calculateStepArray, renderContentOnProgress };
 }
