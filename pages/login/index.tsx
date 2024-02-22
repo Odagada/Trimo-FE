@@ -7,7 +7,7 @@ import kakao from "@/public/images/icons/kakao.png";
 import google from "@/public/images/icons/google.png";
 import naver from "@/public/images/icons/naver.png";
 import ShadowBox from "@/components/atoms/ShadowBox";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { redirectByLoginStatus } from "@/utils/validateByLoginStatus";
 
@@ -15,20 +15,28 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   try {
     const accessToken = await getAccessTokenFromCookie(context);
 
-    redirectByLoginStatus({
+    const isRedirectNeeded = redirectByLoginStatus({
       statusToBlock: "Login",
       redirectUri: "/search?searchValue=&order=POPULAR",
       accessToken,
     });
 
-    return {
-      props: {},
-    };
+    if (isRedirectNeeded) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    } else {
+      return {
+        props: {},
+      };
+    }
   } catch {
     return { notFound: true };
   }
 };
-
 function Login() {
   return (
     <div className="h-screen flex w-full flex-col">
