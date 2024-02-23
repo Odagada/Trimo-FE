@@ -8,7 +8,7 @@ const apiKey =
 export async function postSpots(postData: Destination) {
   const { data } = await fetcher<Destination>({
     method: "post",
-    url: "/users/spots",
+    url: "/user/spots",
     headers: { Authorization: apiKey, "Content-Type": "application/json" },
     data: postData,
   });
@@ -18,7 +18,7 @@ export async function postSpots(postData: Destination) {
 export async function postReviews({ formData, spotId }: { formData: FormData; spotId: string }) {
   const { data } = await fetcher<Review>({
     method: "post",
-    url: `/users/spots/${spotId}/reviews`,
+    url: `/user/spots/${spotId}/reviews`,
     headers: { Authorization: apiKey, "Content-Type": "multipart/form-data" },
     data: formData,
   });
