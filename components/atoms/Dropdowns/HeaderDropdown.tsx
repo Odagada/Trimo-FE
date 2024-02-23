@@ -19,7 +19,7 @@ export default forwardRef(function HeaderDropdown(
 
   const handleLogout = () => {
     if (userAccessToken) {
-      removeUserAccessToken({ redirectUri: "/search?searchValue=&order=POPULAR" });
+      removeUserAccessToken({ redirectUri: "/" });
       fetchUserData();
     }
   };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import SuccessPage from "@/pages/signup/components/SignUpSuccess";
 import TermsAgreements from "@/pages/signup/components/TermsAgreements";
 import WriteAdditionalInfo from "@/pages/signup/components/WriteAdditionalInfo";
@@ -41,13 +41,13 @@ function useSignUp(userOAuthData: LoginOauthType) {
 
   const progressStatus = () => setSignUpStatus((prev) => ++prev);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (userOAuthData?.role === "ROLE_USER") {
       saveUserAccessToken(
         userOAuthData.accessToken,
         `이미 가입된 회원입니다. ${userOAuthData.nickName}으로 로그인합니다.`
       );
-      router.push("/search?searchValue=&order=POPULAR");
+      router.push("/");
     }
   }, []);
 
