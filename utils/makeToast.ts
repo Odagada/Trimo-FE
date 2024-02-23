@@ -1,17 +1,23 @@
 import toast from "react-hot-toast";
 
-interface toastProps {
-  msg: string;
-  option?: null | "noIcon" | "isError";
-}
-
-const makeToast = ({ msg, option = null }: toastProps) => {
-  toast(msg, {
-    icon: option === "noIcon" ? null : option === "isError" ? "❌" : "✔️",
-    style: {
-      borderRadius: "999px",
-    },
-  });
+const makeToast = (msg: string, type?: "error" | "noIcon" | null) => {
+  return type === "noIcon"
+    ? toast(msg, {
+        style: {
+          borderRadius: "999px",
+        },
+      })
+    : type === "error"
+    ? toast.error(msg, {
+        style: {
+          borderRadius: "999px",
+        },
+      })
+    : toast.success(msg, {
+        style: {
+          borderRadius: "999px",
+        },
+      });
 };
 
 export default makeToast;

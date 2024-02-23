@@ -43,13 +43,16 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
         return (
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-              <Image
-                draggable={false}
-                src={userData?.imageUrl || defaultProfile}
-                width={22}
-                height={22}
-                alt="default user profile"
-              />
+              <div className="overflow-hidden w-25 h-25 rounded-full flex items-center">
+                <Image
+                  width={25}
+                  height={25}
+                  draggable={false}
+                  src={userData?.imageUrl || defaultProfile}
+                  objectFit="cover"
+                  alt="default user profile"
+                />
+              </div>
               <span className="text-16">{userData?.nickName}</span>
             </button>
             {isOpen && <HeaderDropdown ref={popupRef} fetchUserData={fetchUserData} />}
