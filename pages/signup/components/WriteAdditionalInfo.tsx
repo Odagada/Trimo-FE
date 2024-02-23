@@ -35,7 +35,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
     availableBirthdateList,
   } = useRegisterDropdown();
 
-  const { validateNickname, data } = useValidateNickname();
+  const { validateNickname, data: isNicknameValid } = useValidateNickname();
 
   return (
     <>
@@ -53,16 +53,14 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               {...register("nickName", {
                 required: true,
                 maxLength: { value: 5, message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG },
-                validate: () =>
-                  data?.status === null || (data?.status === 200 ? true : INPUT_VALIDATION_MESSAGE.NICKNAME_DUPLICATED),
               })}
               id="title"
               placeholder="닉네임"
             />
 
-            {data?.status === 200 && <Image src={check} width={20} height={20} alt="nickname validated" />}
+            {isNicknameValid && <Image src={check} width={20} height={20} alt="nickname validated" />}
           </InputWrapper>
-          <button onClick={() => validateNickname(getValues("nickName"))}>
+          <button onClick={() => validateNickname(getValues("nickName"))} type="button">
             <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
               중복확인
             </Clickable>
@@ -179,7 +177,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
         <button
           type="submit"
           className="w-full mt-20"
-          disabled={!formState.isValid}
+          disabled={!formState.isValid || isNicknameValid}
           onClick={() => setNickname(getValues("nickName"))}
         >
           <Clickable size="large" className="w-full" color={formState.isValid ? "black" : "gray"}>
