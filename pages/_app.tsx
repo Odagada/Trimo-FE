@@ -1,8 +1,11 @@
 import "@/styles/globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "@/public/font/font.css";
+import "@/styles/ImagesCarousel.css";
+import { HydrationBoundary, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
 import { useState } from "react";
+import { CookiesProvider } from "react-cookie";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -15,9 +18,14 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       })
   );
+
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />;
+      <CookiesProvider>
+        <HydrationBoundary state={pageProps.dehydratedState}>
+          <Component {...pageProps} />
+        </HydrationBoundary>
+      </CookiesProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
