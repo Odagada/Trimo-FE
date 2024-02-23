@@ -54,7 +54,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
               ) : (
                 <Image src={notChecked} alt="checked" width={20} height={20} className="absolute" />
               )}
-              동의
+              이용약관에 동의 합니다.
             </label>
           </div>
         );

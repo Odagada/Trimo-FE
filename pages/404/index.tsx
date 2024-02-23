@@ -6,7 +6,7 @@ import Link from "next/link";
 function NotFoundPage() {
   return (
     <>
-      <Nav />
+      <Nav isOnlyLogo />
       <main className="flex flex-col items-center text-center mt-200 mb-142">
         <h2 className="text-100 font-bold leading-70">404</h2>
         <p className="text-36 font-bold leading-54 text-gray-30 mb-64">Not Found</p>

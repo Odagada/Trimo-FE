@@ -15,29 +15,34 @@ import desktopScreenShot1 from "@/public/images/DesktopScreenShot1.png";
 import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { useEffect, useState } from "react";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
+import { isLoggedIn } from "@/utils/validateByLoginStatus";
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const queryClient = new QueryClient();
 
     await queryClient.prefetchQuery(getReviewCardArray("POPULAR"));
     await queryClient.prefetchQuery(getReviewCardArray("RECENT"));
 
+    const accessToken = await getAccessTokenFromCookie(context);
+
     return {
-      props: { dehydratedState: dehydrate(queryClient) },
+      props: { dehydratedState: dehydrate(queryClient), isLoggedIn: isLoggedIn(accessToken) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function Landing() {
+export default function Landing({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
-      <Nav />
+      <Nav isLoggedIn={isLoggedIn} />
 
       <HeroSection />
 
