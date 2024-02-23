@@ -23,7 +23,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     if (isRedirectNeeded) {
       return {
         redirect: {
-          destination: "/search?searchValue=&order=POPULAR",
+          destination: "/",
           permanent: false,
         },
       };
