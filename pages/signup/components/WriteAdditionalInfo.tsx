@@ -58,7 +58,9 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               placeholder="닉네임"
             />
 
-            {isNicknameValid && <Image src={check} width={20} height={20} alt="nickname validated" />}
+            {isNicknameValid?.data && isNicknameValid.status === 200 && (
+              <Image src={check} width={20} height={20} alt="nickname validated" />
+            )}
           </InputWrapper>
           <button onClick={() => validateNickname(getValues("nickName"))} type="button">
             <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
@@ -177,10 +179,14 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
         <button
           type="submit"
           className="w-full mt-20"
-          disabled={!formState.isValid || isNicknameValid}
+          disabled={!formState.isValid || !isNicknameValid?.data || isNicknameValid.status !== 200}
           onClick={() => setNickname(getValues("nickName"))}
         >
-          <Clickable size="large" className="w-full" color={formState.isValid ? "black" : "gray"}>
+          <Clickable
+            size="large"
+            className="w-full"
+            color={formState.isValid && isNicknameValid?.data && isNicknameValid.status ? "black" : "gray"}
+          >
             확인
           </Clickable>
         </button>

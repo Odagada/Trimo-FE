@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import makeToast from "@/utils/makeToast";
 
 function useValidateNickname() {
-  const [data, setData] = useState(false);
+  const [data, setData] = useState<{ data: boolean; status: number }>();
   const [nickname, setNickname] = useState("");
 
   const validateNickname = (nickname: string) => {
@@ -24,7 +24,7 @@ function useValidateNickname() {
       data.data
         ? makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_VALIDATED}`)
         : makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_NOT_VALIDATED}`, "error");
-      setData(data.data);
+      setData(data);
     },
     onError: (error) => makeToast(error.message, "error"),
   });
