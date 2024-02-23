@@ -43,10 +43,7 @@ function useSignUp(userOAuthData: LoginOauthType) {
 
   useLayoutEffect(() => {
     if (userOAuthData?.role === "ROLE_USER") {
-      saveUserAccessToken(
-        userOAuthData.accessToken,
-        `이미 가입된 회원입니다. ${userOAuthData.nickName}으로 로그인합니다! 🤗`
-      );
+      saveUserAccessToken(userOAuthData.accessToken, `${userOAuthData.nickName}으로 로그인 되었습니다! 🤗`);
       router.push("/");
     }
   }, []);
