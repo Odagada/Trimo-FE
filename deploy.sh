@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/ubuntu/trimo-Fe
+cd /home/ubuntu/Trimo-FE
 git pull origin main
 sudo npm install
 sudo npm run build
