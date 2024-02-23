@@ -28,7 +28,7 @@ export default function SearchContent() {
   return (
     <>
       {reviewList?.length !== 0 ? (
-        <div className="border-gray-30 mt-42 laptop:mx-120 tablet:mx-60 pt-8 pb-12 mx-20 border-t">
+        <div className="border-gray-30 mt-42 laptop:mx-120 tablet:mx-60 min-h-600 pt-8 pb-12 mx-20 border-t">
           <OrderDropdown />
           <ReviewList data={reviewList} />
         </div>
