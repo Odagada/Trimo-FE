@@ -5,6 +5,7 @@ import { birthdateValType } from "@/types/client.types";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
 import { useRouter } from "next/router";
 import useManageUserAccessToken from "../useManageUserAccessToken";
+import makeToast from "@/utils/makeToast";
 
 interface SubmitAdditionalInfoProps extends SignupContentProps {
   userAccessToken: string;
@@ -56,7 +57,7 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
       progressStatus();
     },
     onError: (error) => {
-      alert(error);
+      makeToast(error.message, "error");
       router.push("/login");
     },
   });

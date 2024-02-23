@@ -1,5 +1,5 @@
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
-import formatDateTime from "@/utils/formatDateTime";
+import formatTime from "@/utils/formatTime";
 import DeleteIcon from "./icons/DeleteIcon";
 
 interface Props {
@@ -25,9 +25,14 @@ export default function DatePicker({ onChange, value }: Props) {
     } else date = undefined;
     return date;
   }
-  valueToDate(value);
+
+  function handleDate(date: Date | null) {
+    if (date === undefined || date === null) return onChange(undefined);
+    const { formatFull } = formatTime(date);
+    onChange(formatFull);
+  }
   return (
-    <Datepicker onChange={(value) => onChange(formatDateTime(value as Date))} value={valueToDate(value)}>
+    <Datepicker onChange={handleDate} value={valueToDate(value)}>
       <div className="relative">
         <Datepicker.Input
           format="yyyy/MM/dd HH:mm"
