@@ -14,7 +14,7 @@ type Story = StoryObj<typeof navbar>;
 
 export const NavbarStatus: Story = {
   args: {
-    navStatus: "LoggedOut",
+    isOnlyLogo: false,
     hasSearchBar: false,
   },
 };

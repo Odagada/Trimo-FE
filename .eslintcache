@@ -24,617 +24,631 @@
     "/Users/kiyeon/workspace/arky02/part4/components/atoms/ReviewOption.tsx": "22",
     "/Users/kiyeon/workspace/arky02/part4/components/atoms/SearchOption.tsx": "23",
     "/Users/kiyeon/workspace/arky02/part4/components/atoms/ShadowBox.tsx": "24",
-    "/Users/kiyeon/workspace/arky02/part4/components/atoms/SingleStarRate.tsx": "25",
-    "/Users/kiyeon/workspace/arky02/part4/components/atoms/Spinner.tsx": "26",
-    "/Users/kiyeon/workspace/arky02/part4/components/atoms/Star.tsx": "27",
-    "/Users/kiyeon/workspace/arky02/part4/components/atoms/TimePicker.tsx": "28",
-    "/Users/kiyeon/workspace/arky02/part4/components/atoms/icons/DeleteIcon.tsx": "29",
-    "/Users/kiyeon/workspace/arky02/part4/components/atoms/useGetForm.tsx": "30",
-    "/Users/kiyeon/workspace/arky02/part4/components/icons/Star.tsx": "31",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/FilterDropdown.tsx": "32",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/GoogleAutoComplete.tsx": "33",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/GoogleMapContent.tsx": "34",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/NavigationBar.tsx": "35",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/ProgressNavigator.tsx": "36",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/ReviewCard.tsx": "37",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/ReviewWrite.tsx": "38",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/SearchFrom.tsx": "39",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/StarRate.tsx": "40",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/TagRadioButton.tsx": "41",
-    "/Users/kiyeon/workspace/arky02/part4/components/organisms/GoogleMap.tsx": "42",
-    "/Users/kiyeon/workspace/arky02/part4/components/organisms/PlaceForm.tsx": "43",
-    "/Users/kiyeon/workspace/arky02/part4/constants/signupConstants.tsx": "44",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useGetUserSocialInfo.tsx": "45",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useHandleTermsCheck.tsx": "46",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useRegisterDropdowns.tsx": "47",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useSignUp.tsx": "48",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useSubmitAdditionalInfo.tsx": "49",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useValidateNickname.tsx": "50",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/useComponentPopup.tsx": "51",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/useDrawGoogleMap.tsx": "52",
-    "/Users/kiyeon/workspace/arky02/part4/hooks/useManageUserLogin.tsx": "53",
-    "/Users/kiyeon/workspace/arky02/part4/next-env.d.ts": "54",
-    "/Users/kiyeon/workspace/arky02/part4/next.config.js": "55",
-    "/Users/kiyeon/workspace/arky02/part4/pages/404/index.tsx": "56",
-    "/Users/kiyeon/workspace/arky02/part4/pages/_app.tsx": "57",
-    "/Users/kiyeon/workspace/arky02/part4/pages/_document.tsx": "58",
-    "/Users/kiyeon/workspace/arky02/part4/pages/index.tsx": "59",
-    "/Users/kiyeon/workspace/arky02/part4/pages/login/index.tsx": "60",
-    "/Users/kiyeon/workspace/arky02/part4/pages/review/[id].tsx": "61",
-    "/Users/kiyeon/workspace/arky02/part4/pages/review/index.tsx": "62",
-    "/Users/kiyeon/workspace/arky02/part4/pages/signup/[provider].tsx": "63",
-    "/Users/kiyeon/workspace/arky02/part4/pages/signup/components/SignUpSuccess.tsx": "64",
-    "/Users/kiyeon/workspace/arky02/part4/pages/signup/components/TermsAgreements.tsx": "65",
-    "/Users/kiyeon/workspace/arky02/part4/pages/signup/components/WriteAdditionalInfo.tsx": "66",
-    "/Users/kiyeon/workspace/arky02/part4/pages/test.tsx": "67",
-    "/Users/kiyeon/workspace/arky02/part4/postcss.config.js": "68",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/Clickable.stories.tsx": "69",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/Design.stories.tsx": "70",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/Dropdowns.stories.tsx": "71",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/FilterDropdown.stories.tsx": "72",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/HeaderDropdown.stories.tsx": "73",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/ImageFiles.stories.ts": "74",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/NavigationBar.stories.tsx": "75",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/ReviewCard.stories.tsx": "76",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/SearchBar.stories.tsx": "77",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/SingleStarRate.stories.ts": "78",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/StarRate.stories.tsx": "79",
-    "/Users/kiyeon/workspace/arky02/part4/stories/assets/TimePicker.stories.tsx": "80",
-    "/Users/kiyeon/workspace/arky02/part4/tailwind.config.ts": "81",
-    "/Users/kiyeon/workspace/arky02/part4/types/client.types.ts": "82",
-    "/Users/kiyeon/workspace/arky02/part4/types/server.types.ts": "83",
-    "/Users/kiyeon/workspace/arky02/part4/utils/calcDate.ts": "84",
-    "/Users/kiyeon/workspace/arky02/part4/utils/formatDateTime.ts": "85",
-    "/Users/kiyeon/workspace/arky02/part4/utils/getAccessTokenFormCookie.ts": "86",
-    "/Users/kiyeon/workspace/arky02/part4/utils/getClickableStyle.ts": "87",
-    "/Users/kiyeon/workspace/arky02/part4/utils/getEmoji.ts": "88",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/MultiReviewCardSlider.tsx": "89",
-    "/Users/kiyeon/workspace/arky02/part4/components/molecules/PortalSearchBar.tsx": "90"
+    "/Users/kiyeon/workspace/arky02/part4/components/atoms/Spinner.tsx": "25",
+    "/Users/kiyeon/workspace/arky02/part4/components/atoms/Star.tsx": "26",
+    "/Users/kiyeon/workspace/arky02/part4/components/atoms/TimePicker.tsx": "27",
+    "/Users/kiyeon/workspace/arky02/part4/components/atoms/icons/DeleteIcon.tsx": "28",
+    "/Users/kiyeon/workspace/arky02/part4/components/atoms/useGetForm.tsx": "29",
+    "/Users/kiyeon/workspace/arky02/part4/components/icons/Star.tsx": "30",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/FilterDropdown.tsx": "31",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/GoogleAutoComplete.tsx": "32",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/GoogleMapContent.tsx": "33",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/NavigationBar.tsx": "34",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/ProgressNavigator.tsx": "35",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/ReviewCard.tsx": "36",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/ReviewWrite.tsx": "37",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/SearchFrom.tsx": "38",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/StarRate.tsx": "39",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/TagRadioButton.tsx": "40",
+    "/Users/kiyeon/workspace/arky02/part4/components/organisms/GoogleMap.tsx": "41",
+    "/Users/kiyeon/workspace/arky02/part4/components/organisms/PlaceForm.tsx": "42",
+    "/Users/kiyeon/workspace/arky02/part4/constants/signupConstants.tsx": "43",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useGetUserSocialInfo.tsx": "44",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useHandleTermsCheck.tsx": "45",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useRegisterDropdowns.tsx": "46",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useSignUp.tsx": "47",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useSubmitAdditionalInfo.tsx": "48",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useValidateNickname.tsx": "49",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/useComponentPopup.tsx": "50",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/useDrawGoogleMap.tsx": "51",
+    "/Users/kiyeon/workspace/arky02/part4/next-env.d.ts": "52",
+    "/Users/kiyeon/workspace/arky02/part4/next.config.js": "53",
+    "/Users/kiyeon/workspace/arky02/part4/pages/404/index.tsx": "54",
+    "/Users/kiyeon/workspace/arky02/part4/pages/_app.tsx": "55",
+    "/Users/kiyeon/workspace/arky02/part4/pages/_document.tsx": "56",
+    "/Users/kiyeon/workspace/arky02/part4/pages/index.tsx": "57",
+    "/Users/kiyeon/workspace/arky02/part4/pages/login/index.tsx": "58",
+    "/Users/kiyeon/workspace/arky02/part4/pages/review/[id].tsx": "59",
+    "/Users/kiyeon/workspace/arky02/part4/pages/review/index.tsx": "60",
+    "/Users/kiyeon/workspace/arky02/part4/pages/signup/[provider].tsx": "61",
+    "/Users/kiyeon/workspace/arky02/part4/pages/signup/components/SignUpSuccess.tsx": "62",
+    "/Users/kiyeon/workspace/arky02/part4/pages/signup/components/TermsAgreements.tsx": "63",
+    "/Users/kiyeon/workspace/arky02/part4/pages/signup/components/WriteAdditionalInfo.tsx": "64",
+    "/Users/kiyeon/workspace/arky02/part4/pages/test.tsx": "65",
+    "/Users/kiyeon/workspace/arky02/part4/postcss.config.js": "66",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/Clickable.stories.tsx": "67",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/Design.stories.tsx": "68",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/Dropdowns.stories.tsx": "69",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/FilterDropdown.stories.tsx": "70",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/HeaderDropdown.stories.tsx": "71",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/ImageFiles.stories.ts": "72",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/NavigationBar.stories.tsx": "73",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/ReviewCard.stories.tsx": "74",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/SearchBar.stories.tsx": "75",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/SingleStarRate.stories.ts": "76",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/StarRate.stories.tsx": "77",
+    "/Users/kiyeon/workspace/arky02/part4/stories/assets/TimePicker.stories.tsx": "78",
+    "/Users/kiyeon/workspace/arky02/part4/tailwind.config.ts": "79",
+    "/Users/kiyeon/workspace/arky02/part4/types/client.types.ts": "80",
+    "/Users/kiyeon/workspace/arky02/part4/types/server.types.ts": "81",
+    "/Users/kiyeon/workspace/arky02/part4/utils/calcDate.ts": "82",
+    "/Users/kiyeon/workspace/arky02/part4/utils/formatDateTime.ts": "83",
+    "/Users/kiyeon/workspace/arky02/part4/utils/getAccessTokenFormCookie.ts": "84",
+    "/Users/kiyeon/workspace/arky02/part4/utils/getClickableStyle.ts": "85",
+    "/Users/kiyeon/workspace/arky02/part4/utils/getEmoji.ts": "86",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/MultiReviewCardSlider.tsx": "87",
+    "/Users/kiyeon/workspace/arky02/part4/components/molecules/PortalSearchBar.tsx": "88",
+    "/Users/kiyeon/workspace/arky02/part4/components/atoms/MultiStarRate.tsx": "89",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/useGetUserInfo.tsx": "90",
+    "/Users/kiyeon/workspace/arky02/part4/hooks/useManageUserAccessToken.tsx": "91",
+    "/Users/kiyeon/workspace/arky02/part4/utils/validateByLoginStatus.ts": "92"
   },
   {
     "size": 1268,
-    "mtime": 1708339716606,
-    "results": "91",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 710,
-    "mtime": 1708339720970,
+    "mtime": 1708602490040,
     "results": "93",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 879,
-    "mtime": 1708338572853,
-    "results": "94",
-    "hashOfConfig": "92"
+    "size": 725,
+    "mtime": 1708606063512,
+    "results": "95",
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 877,
+    "mtime": 1708603976793,
+    "results": "96",
+    "hashOfConfig": "94"
   },
   {
     "size": 983,
     "mtime": 1708148125808,
-    "results": "95",
-    "hashOfConfig": "92"
+    "results": "97",
+    "hashOfConfig": "94"
   },
   {
     "size": 870,
-    "mtime": 1708339716606,
-    "results": "96",
-    "hashOfConfig": "92"
+    "mtime": 1708428820807,
+    "results": "98",
+    "hashOfConfig": "94"
   },
   {
     "size": 4179,
     "mtime": 1708338572854,
-    "results": "97",
-    "hashOfConfig": "92"
+    "results": "99",
+    "hashOfConfig": "94"
   },
   {
     "size": 267,
     "mtime": 1707363877220,
-    "results": "98",
-    "hashOfConfig": "92"
+    "results": "100",
+    "hashOfConfig": "94"
   },
   {
-    "size": 695,
-    "mtime": 1707845542901,
-    "results": "99",
-    "hashOfConfig": "92"
+    "size": 1136,
+    "mtime": 1708600531680,
+    "results": "101",
+    "hashOfConfig": "94"
   },
   {
     "size": 1429,
     "mtime": 1708339720970,
-    "results": "100",
-    "hashOfConfig": "92"
+    "results": "102",
+    "hashOfConfig": "94"
   },
   {
     "size": 337,
     "mtime": 1708339720970,
-    "results": "101",
-    "hashOfConfig": "92"
+    "results": "103",
+    "hashOfConfig": "94"
   },
   {
     "size": 693,
     "mtime": 1708339720970,
-    "results": "102",
-    "hashOfConfig": "92"
+    "results": "104",
+    "hashOfConfig": "94"
   },
   {
     "size": 1404,
     "mtime": 1708109864087,
-    "results": "103",
-    "hashOfConfig": "92"
+    "results": "105",
+    "hashOfConfig": "94"
   },
   {
     "size": 3362,
     "mtime": 1708339720971,
-    "results": "104",
-    "hashOfConfig": "92"
+    "results": "106",
+    "hashOfConfig": "94"
   },
   {
     "size": 642,
     "mtime": 1707459605388,
-    "results": "105",
-    "hashOfConfig": "92"
+    "results": "107",
+    "hashOfConfig": "94"
   },
   {
     "size": 784,
-    "mtime": 1708339716608,
-    "results": "106",
-    "hashOfConfig": "92"
+    "mtime": 1708534206631,
+    "results": "108",
+    "hashOfConfig": "94"
   },
   {
-    "size": 1991,
-    "mtime": 1708339720971,
-    "results": "107",
-    "hashOfConfig": "92"
+    "size": 2185,
+    "mtime": 1708591563940,
+    "results": "109",
+    "hashOfConfig": "94"
   },
   {
     "size": 658,
     "mtime": 1707459605389,
-    "results": "108",
-    "hashOfConfig": "92"
+    "results": "110",
+    "hashOfConfig": "94"
   },
   {
     "size": 829,
     "mtime": 1708338572855,
-    "results": "109",
-    "hashOfConfig": "92"
+    "results": "111",
+    "hashOfConfig": "94"
   },
   {
     "size": 466,
-    "mtime": 1708339716608,
-    "results": "110",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 917,
-    "mtime": 1708339720972,
-    "results": "111",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 256,
-    "mtime": 1708109864087,
+    "mtime": 1708428820808,
     "results": "112",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 1041,
-    "mtime": 1708338572855,
-    "results": "113",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 1094,
-    "mtime": 1708158934259,
-    "results": "114",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 431,
-    "mtime": 1708339716609,
-    "results": "115",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 436,
     "mtime": 1708339720972,
+    "results": "113",
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 256,
+    "mtime": 1708109864087,
+    "results": "114",
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 1041,
+    "mtime": 1708338572855,
+    "results": "115",
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 1094,
+    "mtime": 1708158934259,
     "results": "116",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 431,
+    "mtime": 1708428820808,
+    "results": "117",
+    "hashOfConfig": "94"
   },
   {
     "size": 295,
     "mtime": 1707459942777,
-    "results": "117",
-    "hashOfConfig": "92"
+    "results": "118",
+    "hashOfConfig": "94"
   },
   {
     "size": 1459,
     "mtime": 1708339720972,
-    "results": "118",
-    "hashOfConfig": "92"
+    "results": "119",
+    "hashOfConfig": "94"
   },
   {
     "size": 1239,
     "mtime": 1708158934259,
-    "results": "119",
-    "hashOfConfig": "92"
+    "results": "120",
+    "hashOfConfig": "94"
   },
   {
     "size": 579,
     "mtime": 1708338572855,
-    "results": "120",
-    "hashOfConfig": "92"
+    "results": "121",
+    "hashOfConfig": "94"
   },
   {
     "size": 1380,
     "mtime": 1708338572855,
-    "results": "121",
-    "hashOfConfig": "92"
+    "results": "122",
+    "hashOfConfig": "94"
   },
   {
     "size": 500,
     "mtime": 1707845542902,
-    "results": "122",
-    "hashOfConfig": "92"
+    "results": "123",
+    "hashOfConfig": "94"
   },
   {
     "size": 1457,
     "mtime": 1708339720972,
-    "results": "123",
-    "hashOfConfig": "92"
+    "results": "124",
+    "hashOfConfig": "94"
   },
   {
     "size": 1693,
     "mtime": 1708338572856,
-    "results": "124",
-    "hashOfConfig": "92"
+    "results": "125",
+    "hashOfConfig": "94"
   },
   {
     "size": 426,
     "mtime": 1708338572856,
-    "results": "125",
-    "hashOfConfig": "92"
+    "results": "126",
+    "hashOfConfig": "94"
   },
   {
-    "size": 1879,
-    "mtime": 1708339782024,
-    "results": "126",
-    "hashOfConfig": "92"
+    "size": 2744,
+    "mtime": 1708605961673,
+    "results": "127",
+    "hashOfConfig": "94"
   },
   {
     "size": 611,
-    "mtime": 1708339716611,
-    "results": "127",
-    "hashOfConfig": "92"
+    "mtime": 1708428820809,
+    "results": "128",
+    "hashOfConfig": "94"
   },
   {
-    "size": 1864,
-    "mtime": 1708339720973,
-    "results": "128",
-    "hashOfConfig": "92"
+    "size": 1880,
+    "mtime": 1708591563941,
+    "results": "129",
+    "hashOfConfig": "94"
   },
   {
     "size": 5712,
     "mtime": 1708338572856,
-    "results": "129",
-    "hashOfConfig": "92"
+    "results": "130",
+    "hashOfConfig": "94"
   },
   {
     "size": 3813,
     "mtime": 1708158934259,
-    "results": "130",
-    "hashOfConfig": "92"
+    "results": "131",
+    "hashOfConfig": "94"
   },
   {
     "size": 1013,
     "mtime": 1708338572856,
-    "results": "131",
-    "hashOfConfig": "92"
+    "results": "132",
+    "hashOfConfig": "94"
   },
   {
     "size": 2285,
     "mtime": 1708158934259,
-    "results": "132",
-    "hashOfConfig": "92"
+    "results": "133",
+    "hashOfConfig": "94"
   },
   {
-    "size": 929,
-    "mtime": 1708338572857,
-    "results": "133",
-    "hashOfConfig": "92"
+    "size": 917,
+    "mtime": 1708591563941,
+    "results": "134",
+    "hashOfConfig": "94"
   },
   {
     "size": 543,
     "mtime": 1708338572857,
-    "results": "134",
-    "hashOfConfig": "92"
+    "results": "135",
+    "hashOfConfig": "94"
   },
   {
     "size": 2625,
-    "mtime": 1708339716611,
-    "results": "135",
-    "hashOfConfig": "92"
+    "mtime": 1708428820809,
+    "results": "136",
+    "hashOfConfig": "94"
   },
   {
-    "size": 1118,
-    "mtime": 1708339716612,
-    "results": "136",
-    "hashOfConfig": "92"
+    "size": 1261,
+    "mtime": 1708601676626,
+    "results": "137",
+    "hashOfConfig": "94"
   },
   {
     "size": 1117,
-    "mtime": 1708339716612,
-    "results": "137",
-    "hashOfConfig": "92"
+    "mtime": 1708428820810,
+    "results": "138",
+    "hashOfConfig": "94"
   },
   {
     "size": 1758,
-    "mtime": 1708339716612,
-    "results": "138",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 1328,
-    "mtime": 1708339716613,
+    "mtime": 1708428820810,
     "results": "139",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 2055,
-    "mtime": 1708339716613,
+    "size": 1826,
+    "mtime": 1708603783009,
     "results": "140",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 2157,
+    "mtime": 1708602538347,
+    "results": "141",
+    "hashOfConfig": "94"
   },
   {
     "size": 1038,
-    "mtime": 1708339716614,
-    "results": "141",
-    "hashOfConfig": "92"
+    "mtime": 1708602475365,
+    "results": "142",
+    "hashOfConfig": "94"
   },
   {
     "size": 689,
     "mtime": 1707845542904,
-    "results": "142",
-    "hashOfConfig": "92"
+    "results": "143",
+    "hashOfConfig": "94"
   },
   {
     "size": 995,
     "mtime": 1708338698528,
-    "results": "143",
-    "hashOfConfig": "92"
-  },
-  {
-    "size": 1117,
-    "mtime": 1708339716618,
     "results": "144",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 201,
     "mtime": 1705557606879,
     "results": "145",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 301,
     "mtime": 1707884214979,
     "results": "146",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 92,
-    "mtime": 1706087734670,
+    "size": 1075,
+    "mtime": 1708591563942,
     "results": "147",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 964,
-    "mtime": 1708339716623,
+    "size": 965,
+    "mtime": 1708591563942,
     "results": "148",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 233,
-    "mtime": 1708109864089,
+    "mtime": 1708593660688,
     "results": "149",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 13837,
-    "mtime": 1708339720973,
+    "size": 9957,
+    "mtime": 1708606182637,
     "results": "150",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 2631,
-    "mtime": 1708339716624,
+    "size": 3393,
+    "mtime": 1708606495561,
     "results": "151",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 4112,
-    "mtime": 1708339720974,
+    "size": 4513,
+    "mtime": 1708591563942,
     "results": "152",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 287,
-    "mtime": 1708338572858,
+    "size": 1044,
+    "mtime": 1708600531686,
     "results": "153",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 1505,
-    "mtime": 1708339716624,
+    "size": 2089,
+    "mtime": 1708606298750,
     "results": "154",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 884,
-    "mtime": 1708339716625,
+    "size": 890,
+    "mtime": 1708603540207,
     "results": "155",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 2538,
-    "mtime": 1708339716625,
+    "size": 2565,
+    "mtime": 1708600531687,
     "results": "156",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 6594,
-    "mtime": 1708339716626,
+    "mtime": 1708435140785,
     "results": "157",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 1906,
-    "mtime": 1708339402336,
+    "size": 4522,
+    "mtime": 1708600330843,
     "results": "158",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 83,
     "mtime": 1706768269882,
     "results": "159",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 443,
     "mtime": 1707363877228,
     "results": "160",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 363,
     "mtime": 1707363877228,
     "results": "161",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 387,
     "mtime": 1707845542906,
     "results": "162",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 386,
     "mtime": 1707845542907,
     "results": "163",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 392,
     "mtime": 1707845542907,
     "results": "164",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 610,
     "mtime": 1708338572858,
     "results": "165",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 429,
-    "mtime": 1707459942783,
+    "size": 424,
+    "mtime": 1708600531688,
     "results": "166",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 708,
     "mtime": 1708339721040,
     "results": "167",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 418,
     "mtime": 1708339721040,
     "results": "168",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 438,
     "mtime": 1708109864091,
     "results": "169",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 469,
     "mtime": 1708338572858,
     "results": "170",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 382,
     "mtime": 1708158934259,
     "results": "171",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 2388,
-    "mtime": 1708339721041,
+    "size": 2426,
+    "mtime": 1708591563943,
     "results": "172",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 2716,
-    "mtime": 1708339716631,
+    "size": 2218,
+    "mtime": 1708601665110,
     "results": "173",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 559,
-    "mtime": 1708338572858,
+    "size": 1098,
+    "mtime": 1708601666794,
     "results": "174",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 668,
     "mtime": 1708109864092,
     "results": "175",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 380,
     "mtime": 1708338572859,
     "results": "176",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 491,
-    "mtime": 1708109864092,
+    "size": 374,
+    "mtime": 1708604250829,
     "results": "177",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 1074,
-    "mtime": 1708339721052,
+    "mtime": 1708428820826,
     "results": "178",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 982,
     "mtime": 1708109864104,
     "results": "179",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "size": 935,
-    "mtime": 1708339720973,
+    "size": 1335,
+    "mtime": 1708591563941,
     "results": "180",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
     "size": 673,
     "mtime": 1708339720973,
     "results": "181",
-    "hashOfConfig": "92"
+    "hashOfConfig": "94"
   },
   {
-    "filePath": "182",
-    "messages": "183",
-    "suppressedMessages": "184",
+    "size": 960,
+    "mtime": 1708591563951,
+    "results": "182",
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 765,
+    "mtime": 1708606323149,
+    "results": "183",
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 1135,
+    "mtime": 1708600531684,
+    "results": "184",
+    "hashOfConfig": "94"
+  },
+  {
+    "size": 690,
+    "mtime": 1708606417361,
+    "results": "185",
+    "hashOfConfig": "94"
+  },
+  {
+    "filePath": "186",
+    "messages": "187",
+    "suppressedMessages": "188",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -643,9 +657,9 @@
   },
   "17h6m8n",
   {
-    "filePath": "185",
-    "messages": "186",
-    "suppressedMessages": "187",
+    "filePath": "189",
+    "messages": "190",
+    "suppressedMessages": "191",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -653,9 +667,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "188",
-    "messages": "189",
-    "suppressedMessages": "190",
+    "filePath": "192",
+    "messages": "193",
+    "suppressedMessages": "194",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -663,9 +677,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "191",
-    "messages": "192",
-    "suppressedMessages": "193",
+    "filePath": "195",
+    "messages": "196",
+    "suppressedMessages": "197",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -673,9 +687,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "194",
-    "messages": "195",
-    "suppressedMessages": "196",
+    "filePath": "198",
+    "messages": "199",
+    "suppressedMessages": "200",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -683,9 +697,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "197",
-    "messages": "198",
-    "suppressedMessages": "199",
+    "filePath": "201",
+    "messages": "202",
+    "suppressedMessages": "203",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -693,9 +707,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "200",
-    "messages": "201",
-    "suppressedMessages": "202",
+    "filePath": "204",
+    "messages": "205",
+    "suppressedMessages": "206",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -703,9 +717,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "203",
-    "messages": "204",
-    "suppressedMessages": "205",
+    "filePath": "207",
+    "messages": "208",
+    "suppressedMessages": "209",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -713,9 +727,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "206",
-    "messages": "207",
-    "suppressedMessages": "208",
+    "filePath": "210",
+    "messages": "211",
+    "suppressedMessages": "212",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -723,9 +737,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "209",
-    "messages": "210",
-    "suppressedMessages": "211",
+    "filePath": "213",
+    "messages": "214",
+    "suppressedMessages": "215",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -733,9 +747,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "212",
-    "messages": "213",
-    "suppressedMessages": "214",
+    "filePath": "216",
+    "messages": "217",
+    "suppressedMessages": "218",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -743,9 +757,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "215",
-    "messages": "216",
-    "suppressedMessages": "217",
+    "filePath": "219",
+    "messages": "220",
+    "suppressedMessages": "221",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -753,9 +767,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "218",
-    "messages": "219",
-    "suppressedMessages": "220",
+    "filePath": "222",
+    "messages": "223",
+    "suppressedMessages": "224",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -763,9 +777,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "221",
-    "messages": "222",
-    "suppressedMessages": "223",
+    "filePath": "225",
+    "messages": "226",
+    "suppressedMessages": "227",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -773,9 +787,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "224",
-    "messages": "225",
-    "suppressedMessages": "226",
+    "filePath": "228",
+    "messages": "229",
+    "suppressedMessages": "230",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -783,9 +797,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "227",
-    "messages": "228",
-    "suppressedMessages": "229",
+    "filePath": "231",
+    "messages": "232",
+    "suppressedMessages": "233",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -793,9 +807,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "230",
-    "messages": "231",
-    "suppressedMessages": "232",
+    "filePath": "234",
+    "messages": "235",
+    "suppressedMessages": "236",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -803,9 +817,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "233",
-    "messages": "234",
-    "suppressedMessages": "235",
+    "filePath": "237",
+    "messages": "238",
+    "suppressedMessages": "239",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -813,9 +827,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "236",
-    "messages": "237",
-    "suppressedMessages": "238",
+    "filePath": "240",
+    "messages": "241",
+    "suppressedMessages": "242",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -823,9 +837,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "239",
-    "messages": "240",
-    "suppressedMessages": "241",
+    "filePath": "243",
+    "messages": "244",
+    "suppressedMessages": "245",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -833,9 +847,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "242",
-    "messages": "243",
-    "suppressedMessages": "244",
+    "filePath": "246",
+    "messages": "247",
+    "suppressedMessages": "248",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -843,9 +857,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "245",
-    "messages": "246",
-    "suppressedMessages": "247",
+    "filePath": "249",
+    "messages": "250",
+    "suppressedMessages": "251",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -853,9 +867,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "248",
-    "messages": "249",
-    "suppressedMessages": "250",
+    "filePath": "252",
+    "messages": "253",
+    "suppressedMessages": "254",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -863,9 +877,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "251",
-    "messages": "252",
-    "suppressedMessages": "253",
+    "filePath": "255",
+    "messages": "256",
+    "suppressedMessages": "257",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -873,9 +887,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "254",
-    "messages": "255",
-    "suppressedMessages": "256",
+    "filePath": "258",
+    "messages": "259",
+    "suppressedMessages": "260",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -883,9 +897,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "257",
-    "messages": "258",
-    "suppressedMessages": "259",
+    "filePath": "261",
+    "messages": "262",
+    "suppressedMessages": "263",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -893,9 +907,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "260",
-    "messages": "261",
-    "suppressedMessages": "262",
+    "filePath": "264",
+    "messages": "265",
+    "suppressedMessages": "266",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -903,9 +917,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "263",
-    "messages": "264",
-    "suppressedMessages": "265",
+    "filePath": "267",
+    "messages": "268",
+    "suppressedMessages": "269",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -913,9 +927,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "266",
-    "messages": "267",
-    "suppressedMessages": "268",
+    "filePath": "270",
+    "messages": "271",
+    "suppressedMessages": "272",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -923,9 +937,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "269",
-    "messages": "270",
-    "suppressedMessages": "271",
+    "filePath": "273",
+    "messages": "274",
+    "suppressedMessages": "275",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -933,9 +947,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "272",
-    "messages": "273",
-    "suppressedMessages": "274",
+    "filePath": "276",
+    "messages": "277",
+    "suppressedMessages": "278",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -943,9 +957,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "275",
-    "messages": "276",
-    "suppressedMessages": "277",
+    "filePath": "279",
+    "messages": "280",
+    "suppressedMessages": "281",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -953,9 +967,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "278",
-    "messages": "279",
-    "suppressedMessages": "280",
+    "filePath": "282",
+    "messages": "283",
+    "suppressedMessages": "284",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -963,119 +977,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "281",
-    "messages": "282",
-    "suppressedMessages": "283",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "284",
-    "messages": "285",
-    "suppressedMessages": "286",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "287",
-    "messages": "288",
-    "suppressedMessages": "289",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "290",
-    "messages": "291",
-    "suppressedMessages": "292",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "293",
-    "messages": "294",
-    "suppressedMessages": "295",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "296",
-    "messages": "297",
-    "suppressedMessages": "298",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "299",
-    "messages": "300",
-    "suppressedMessages": "301",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "302",
-    "messages": "303",
-    "suppressedMessages": "304",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "305",
-    "messages": "306",
-    "suppressedMessages": "307",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "308",
-    "messages": "309",
-    "suppressedMessages": "310",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "311",
-    "messages": "312",
-    "suppressedMessages": "313",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "314",
-    "messages": "315",
-    "suppressedMessages": "316",
+    "filePath": "285",
+    "messages": "286",
+    "suppressedMessages": "287",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 1,
@@ -1084,9 +988,9 @@
     "source": null
   },
   {
-    "filePath": "317",
-    "messages": "318",
-    "suppressedMessages": "319",
+    "filePath": "288",
+    "messages": "289",
+    "suppressedMessages": "290",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1094,9 +998,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "320",
-    "messages": "321",
-    "suppressedMessages": "322",
+    "filePath": "291",
+    "messages": "292",
+    "suppressedMessages": "293",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1104,9 +1008,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "323",
-    "messages": "324",
-    "suppressedMessages": "325",
+    "filePath": "294",
+    "messages": "295",
+    "suppressedMessages": "296",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1114,9 +1018,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "326",
-    "messages": "327",
-    "suppressedMessages": "328",
+    "filePath": "297",
+    "messages": "298",
+    "suppressedMessages": "299",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1124,9 +1028,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "329",
-    "messages": "330",
-    "suppressedMessages": "331",
+    "filePath": "300",
+    "messages": "301",
+    "suppressedMessages": "302",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1134,9 +1038,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "332",
-    "messages": "333",
-    "suppressedMessages": "334",
+    "filePath": "303",
+    "messages": "304",
+    "suppressedMessages": "305",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1144,9 +1048,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "335",
-    "messages": "336",
-    "suppressedMessages": "337",
+    "filePath": "306",
+    "messages": "307",
+    "suppressedMessages": "308",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1154,9 +1058,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "338",
-    "messages": "339",
-    "suppressedMessages": "340",
+    "filePath": "309",
+    "messages": "310",
+    "suppressedMessages": "311",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1164,9 +1068,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "341",
-    "messages": "342",
-    "suppressedMessages": "343",
+    "filePath": "312",
+    "messages": "313",
+    "suppressedMessages": "314",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1174,89 +1078,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "344",
-    "messages": "345",
-    "suppressedMessages": "346",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "347",
-    "messages": "348",
-    "suppressedMessages": "349",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "350",
-    "messages": "351",
-    "suppressedMessages": "352",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "353",
-    "messages": "354",
-    "suppressedMessages": "355",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "356",
-    "messages": "357",
-    "suppressedMessages": "358",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "359",
-    "messages": "360",
-    "suppressedMessages": "361",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "362",
-    "messages": "363",
-    "suppressedMessages": "364",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "365",
-    "messages": "366",
-    "suppressedMessages": "367",
-    "errorCount": 0,
-    "fatalErrorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0
-  },
-  {
-    "filePath": "368",
-    "messages": "369",
-    "suppressedMessages": "370",
+    "filePath": "315",
+    "messages": "316",
+    "suppressedMessages": "317",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 1,
@@ -1265,9 +1089,9 @@
     "source": null
   },
   {
-    "filePath": "371",
-    "messages": "372",
-    "suppressedMessages": "373",
+    "filePath": "318",
+    "messages": "319",
+    "suppressedMessages": "320",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1275,9 +1099,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "374",
-    "messages": "375",
-    "suppressedMessages": "376",
+    "filePath": "321",
+    "messages": "322",
+    "suppressedMessages": "323",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1285,9 +1109,20 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "377",
-    "messages": "378",
-    "suppressedMessages": "379",
+    "filePath": "324",
+    "messages": "325",
+    "suppressedMessages": "326",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 1,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": null
+  },
+  {
+    "filePath": "327",
+    "messages": "328",
+    "suppressedMessages": "329",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1295,9 +1130,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "380",
-    "messages": "381",
-    "suppressedMessages": "382",
+    "filePath": "330",
+    "messages": "331",
+    "suppressedMessages": "332",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1305,9 +1140,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "383",
-    "messages": "384",
-    "suppressedMessages": "385",
+    "filePath": "333",
+    "messages": "334",
+    "suppressedMessages": "335",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1315,9 +1150,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "386",
-    "messages": "387",
-    "suppressedMessages": "388",
+    "filePath": "336",
+    "messages": "337",
+    "suppressedMessages": "338",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1325,9 +1160,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "389",
-    "messages": "390",
-    "suppressedMessages": "391",
+    "filePath": "339",
+    "messages": "340",
+    "suppressedMessages": "341",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1335,9 +1170,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "392",
-    "messages": "393",
-    "suppressedMessages": "394",
+    "filePath": "342",
+    "messages": "343",
+    "suppressedMessages": "344",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1345,9 +1180,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "395",
-    "messages": "396",
-    "suppressedMessages": "397",
+    "filePath": "345",
+    "messages": "346",
+    "suppressedMessages": "347",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1355,9 +1190,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "398",
-    "messages": "399",
-    "suppressedMessages": "400",
+    "filePath": "348",
+    "messages": "349",
+    "suppressedMessages": "350",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1365,9 +1200,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "401",
-    "messages": "402",
-    "suppressedMessages": "403",
+    "filePath": "351",
+    "messages": "352",
+    "suppressedMessages": "353",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1375,9 +1210,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "404",
-    "messages": "405",
-    "suppressedMessages": "406",
+    "filePath": "354",
+    "messages": "355",
+    "suppressedMessages": "356",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1385,9 +1220,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "407",
-    "messages": "408",
-    "suppressedMessages": "409",
+    "filePath": "357",
+    "messages": "358",
+    "suppressedMessages": "359",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1395,9 +1230,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "410",
-    "messages": "411",
-    "suppressedMessages": "412",
+    "filePath": "360",
+    "messages": "361",
+    "suppressedMessages": "362",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1405,9 +1240,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "413",
-    "messages": "414",
-    "suppressedMessages": "415",
+    "filePath": "363",
+    "messages": "364",
+    "suppressedMessages": "365",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1415,9 +1250,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "416",
-    "messages": "417",
-    "suppressedMessages": "418",
+    "filePath": "366",
+    "messages": "367",
+    "suppressedMessages": "368",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1425,9 +1260,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "419",
-    "messages": "420",
-    "suppressedMessages": "421",
+    "filePath": "369",
+    "messages": "370",
+    "suppressedMessages": "371",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1435,9 +1270,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "422",
-    "messages": "423",
-    "suppressedMessages": "424",
+    "filePath": "372",
+    "messages": "373",
+    "suppressedMessages": "374",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1445,9 +1280,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "425",
-    "messages": "426",
-    "suppressedMessages": "427",
+    "filePath": "375",
+    "messages": "376",
+    "suppressedMessages": "377",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1455,9 +1290,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "428",
-    "messages": "429",
-    "suppressedMessages": "430",
+    "filePath": "378",
+    "messages": "379",
+    "suppressedMessages": "380",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1465,9 +1300,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "431",
-    "messages": "432",
-    "suppressedMessages": "433",
+    "filePath": "381",
+    "messages": "382",
+    "suppressedMessages": "383",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1475,9 +1310,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "434",
-    "messages": "435",
-    "suppressedMessages": "436",
+    "filePath": "384",
+    "messages": "385",
+    "suppressedMessages": "386",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1485,9 +1320,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "437",
-    "messages": "438",
-    "suppressedMessages": "439",
+    "filePath": "387",
+    "messages": "388",
+    "suppressedMessages": "389",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1495,9 +1330,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "440",
-    "messages": "441",
-    "suppressedMessages": "442",
+    "filePath": "390",
+    "messages": "391",
+    "suppressedMessages": "392",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1505,9 +1340,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "443",
-    "messages": "444",
-    "suppressedMessages": "445",
+    "filePath": "393",
+    "messages": "394",
+    "suppressedMessages": "395",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1515,9 +1350,9 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "446",
-    "messages": "447",
-    "suppressedMessages": "448",
+    "filePath": "396",
+    "messages": "397",
+    "suppressedMessages": "398",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1525,9 +1360,209 @@
     "fixableWarningCount": 0
   },
   {
-    "filePath": "449",
-    "messages": "450",
-    "suppressedMessages": "451",
+    "filePath": "399",
+    "messages": "400",
+    "suppressedMessages": "401",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "402",
+    "messages": "403",
+    "suppressedMessages": "404",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "405",
+    "messages": "406",
+    "suppressedMessages": "407",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "408",
+    "messages": "409",
+    "suppressedMessages": "410",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "411",
+    "messages": "412",
+    "suppressedMessages": "413",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "414",
+    "messages": "415",
+    "suppressedMessages": "416",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "417",
+    "messages": "418",
+    "suppressedMessages": "419",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "420",
+    "messages": "421",
+    "suppressedMessages": "422",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "423",
+    "messages": "424",
+    "suppressedMessages": "425",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "426",
+    "messages": "427",
+    "suppressedMessages": "428",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "429",
+    "messages": "430",
+    "suppressedMessages": "431",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "432",
+    "messages": "433",
+    "suppressedMessages": "434",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "435",
+    "messages": "436",
+    "suppressedMessages": "437",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "438",
+    "messages": "439",
+    "suppressedMessages": "440",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "441",
+    "messages": "442",
+    "suppressedMessages": "443",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "444",
+    "messages": "445",
+    "suppressedMessages": "446",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "447",
+    "messages": "448",
+    "suppressedMessages": "449",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "450",
+    "messages": "451",
+    "suppressedMessages": "452",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "453",
+    "messages": "454",
+    "suppressedMessages": "455",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "456",
+    "messages": "457",
+    "suppressedMessages": "458",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "459",
+    "messages": "460",
+    "suppressedMessages": "461",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -1606,9 +1641,6 @@
   "/Users/kiyeon/workspace/arky02/part4/components/atoms/ShadowBox.tsx",
   [],
   [],
-  "/Users/kiyeon/workspace/arky02/part4/components/atoms/SingleStarRate.tsx",
-  [],
-  [],
   "/Users/kiyeon/workspace/arky02/part4/components/atoms/Spinner.tsx",
   [],
   [],
@@ -1637,7 +1669,9 @@
   [],
   [],
   "/Users/kiyeon/workspace/arky02/part4/components/molecules/NavigationBar.tsx",
-  [],
+  [
+    "462"
+  ],
   [],
   "/Users/kiyeon/workspace/arky02/part4/components/molecules/ProgressNavigator.tsx",
   [],
@@ -1668,7 +1702,7 @@
   [],
   "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useGetUserSocialInfo.tsx",
   [
-    "452"
+    "463"
   ],
   [],
   "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useHandleTermsCheck.tsx",
@@ -1678,7 +1712,9 @@
   [],
   [],
   "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useSignUp.tsx",
-  [],
+  [
+    "464"
+  ],
   [],
   "/Users/kiyeon/workspace/arky02/part4/hooks/signup/useSubmitAdditionalInfo.tsx",
   [],
@@ -1690,9 +1726,6 @@
   [],
   [],
   "/Users/kiyeon/workspace/arky02/part4/hooks/useDrawGoogleMap.tsx",
-  [],
-  [],
-  "/Users/kiyeon/workspace/arky02/part4/hooks/useManageUserLogin.tsx",
   [],
   [],
   "/Users/kiyeon/workspace/arky02/part4/next-env.d.ts",
@@ -1723,9 +1756,7 @@
   [],
   [],
   "/Users/kiyeon/workspace/arky02/part4/pages/signup/[provider].tsx",
-  [
-    "453"
-  ],
+  [],
   [],
   "/Users/kiyeon/workspace/arky02/part4/pages/signup/components/SignUpSuccess.tsx",
   [],
@@ -1808,64 +1839,105 @@
   "/Users/kiyeon/workspace/arky02/part4/components/molecules/PortalSearchBar.tsx",
   [],
   [],
+  "/Users/kiyeon/workspace/arky02/part4/components/atoms/MultiStarRate.tsx",
+  [],
+  [],
+  "/Users/kiyeon/workspace/arky02/part4/hooks/useGetUserInfo.tsx",
+  [],
+  [],
+  "/Users/kiyeon/workspace/arky02/part4/hooks/useManageUserAccessToken.tsx",
+  [],
+  [],
+  "/Users/kiyeon/workspace/arky02/part4/utils/validateByLoginStatus.ts",
+  [],
+  [],
   {
-    "ruleId": "454",
+    "ruleId": "465",
     "severity": 1,
-    "message": "455",
-    "line": 34,
+    "message": "466",
+    "line": 33,
     "column": 6,
-    "nodeType": "456",
-    "endLine": 34,
-    "endColumn": 12,
-    "suggestions": "457"
+    "nodeType": "467",
+    "endLine": 33,
+    "endColumn": 18,
+    "suggestions": "468"
   },
   {
-    "ruleId": "454",
+    "ruleId": "465",
     "severity": 1,
-    "message": "458",
-    "line": 26,
+    "message": "469",
+    "line": 40,
     "column": 6,
-    "nodeType": "456",
-    "endLine": 26,
-    "endColumn": 22,
-    "suggestions": "459"
+    "nodeType": "467",
+    "endLine": 40,
+    "endColumn": 12,
+    "suggestions": "470"
+  },
+  {
+    "ruleId": "465",
+    "severity": 1,
+    "message": "471",
+    "line": 52,
+    "column": 6,
+    "nodeType": "467",
+    "endLine": 52,
+    "endColumn": 21,
+    "suggestions": "472"
   },
   "react-hooks/exhaustive-deps",
-  "React Hook useEffect has a missing dependency: 'mutate'. Either include it or remove the dependency array.",
+  "React Hook useEffect has missing dependencies: 'isOnlyLogo' and 'renderNavbarLeftSide'. Either include them or remove the dependency array.",
   "ArrayExpression",
   [
-    "460"
+    "473"
   ],
-  "React Hook useEffect has a missing dependency: 'saveUserAccessToken'. Either include it or remove the dependency array.",
+  "React Hook useEffect has a missing dependency: 'mutate'. Either include it or remove the dependency array.",
   [
-    "461"
+    "474"
+  ],
+  "React Hook useEffect has missing dependencies: 'router' and 'saveUserAccessToken'. Either include them or remove the dependency array.",
+  [
+    "475"
   ],
   {
-    "desc": "462",
-    "fix": "463"
+    "desc": "476",
+    "fix": "477"
   },
   {
-    "desc": "464",
-    "fix": "465"
+    "desc": "478",
+    "fix": "479"
+  },
+  {
+    "desc": "480",
+    "fix": "481"
+  },
+  "Update the dependencies array to be: [isLoggedIn, isOnlyLogo, renderNavbarLeftSide]",
+  {
+    "range": "482",
+    "text": "483"
   },
   "Update the dependencies array to be: [code, mutate]",
   {
-    "range": "466",
-    "text": "467"
+    "range": "484",
+    "text": "485"
   },
-  "Update the dependencies array to be: [saveUserAccessToken, userSocialData]",
+  "Update the dependencies array to be: [router, saveUserAccessToken, userOAuthData]",
   {
-    "range": "468",
-    "text": "469"
+    "range": "486",
+    "text": "487"
   },
   [
-    1053,
-    1059
+    1318,
+    1330
+  ],
+  "[isLoggedIn, isOnlyLogo, renderNavbarLeftSide]",
+  [
+    1196,
+    1202
   ],
   "[code, mutate]",
   [
-    997,
-    1013
+    1684,
+    1699
   ],
-  "[saveUserAccessToken, userSocialData]"
+  "[router, saveUserAccessToken, userOAuthData]"
 ]

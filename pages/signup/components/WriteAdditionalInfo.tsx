@@ -54,7 +54,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
                 required: true,
                 maxLength: { value: 5, message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG },
                 validate: () =>
-                  data?.status === null || data?.status === 200 ? true : INPUT_VALIDATION_MESSAGE.NICKNAME_DUPLICATED,
+                  data?.status === null || (data?.status === 200 ? true : INPUT_VALIDATION_MESSAGE.NICKNAME_DUPLICATED),
               })}
               id="title"
               placeholder="닉네임"
