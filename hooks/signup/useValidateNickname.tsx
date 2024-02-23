@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import makeToast from "@/utils/makeToast";
 
 function useValidateNickname() {
-  const [data, setData] = useState<{ data: boolean; status: number | null }>({ data: false, status: null });
+  const [data, setData] = useState(false);
   const [nickname, setNickname] = useState("");
 
   const validateNickname = (nickname: string) => {
@@ -21,8 +21,10 @@ function useValidateNickname() {
     mutationFn: () =>
       axios.post(`http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/nickname?nickName=${nickname}`),
     onSuccess: (data: { data: boolean; status: number }) => {
-      makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_VALIDATED}`);
-      setData(data);
+      data.data
+        ? makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_VALIDATED}`)
+        : makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_NOT_VALIDATED}`, "error");
+      setData(data.data);
     },
     onError: (error) => makeToast(error.message, "error"),
   });
