@@ -2,31 +2,57 @@ import Logo from "@/public/logos/navLogo.png";
 import Image from "next/image";
 import defaultProfile from "@/public/images/defaultProfile.png";
 import Link from "next/link";
-import { NavStatus } from "@/types/client.types";
 import useComponentPopup from "@/hooks/useComponentPopup";
 import HeaderDropdown from "../atoms/Dropdowns/HeaderDropdown";
+import { useEffect, useState } from "react";
+import useGetUserInfo from "@/hooks/useGetUserInfo";
+import { User } from "@/types/client.types";
 
 interface NavProps {
-  navStatus?: NavStatus;
+  isOnlyLogo?: boolean;
   hasSearchBar?: boolean;
   className?: string;
+  isLoggedIn?: boolean;
 }
 
-function Nav({ navStatus = "LoggedIn" }: NavProps) {
+type NavStatusType = "onlyLogo" | "LoggedIn" | "LoggedOut";
+function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
-  const renderNavbarLeftSide = (status: NavStatus) => {
-    switch (status) {
+  const [navStatus, setNavStatus] = useState<NavStatusType>();
+  const [userData, setUserData] = useState<User | null>();
+
+  const { userDataRef, requestUserData } = useGetUserInfo();
+
+  const fetchUserData = async () => {
+    await requestUserData();
+    setUserData(userDataRef.current);
+  };
+
+  useEffect(() => {
+    if (!isOnlyLogo) isLoggedIn ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
+
+    fetchUserData();
+  }, [isLoggedIn, isOnlyLogo, navStatus, userDataRef]);
+
+  const renderNavbarLeftSide = () => {
+    switch (navStatus) {
       case "onlyLogo":
         return;
       case "LoggedIn":
         return (
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-              <Image draggable={false} src={defaultProfile} width={22} height={22} alt="default user profile" />
-              <span className="text-16">닉네임</span>
+              <Image
+                draggable={false}
+                src={userData?.imageUrl || defaultProfile}
+                width={22}
+                height={22}
+                alt="default user profile"
+              />
+              <span className="text-16">{userData?.nickName}</span>
             </button>
-            {isOpen && <HeaderDropdown ref={popupRef} />}
+            {isOpen && <HeaderDropdown ref={popupRef} fetchUserData={fetchUserData} />}
           </div>
         );
       case "LoggedOut":
@@ -49,7 +75,7 @@ function Nav({ navStatus = "LoggedIn" }: NavProps) {
           </Link>
         </h1>
         <span id="navSearchBar" className="h-50"></span>
-        {renderNavbarLeftSide(navStatus)}
+        {renderNavbarLeftSide()}
       </div>
     </nav>
   );

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import { SIGNUP_SERVER_ERROR } from "@/constants/signupConstants";
-import { UserSocialLoginData } from "@/types/client.types";
+import { LoginOauthType } from "@/types/server.types";
 
 interface Props {
   code: string | undefined | string[];
@@ -11,14 +11,20 @@ interface Props {
 }
 function useGetUserSocialInfo({ code, provider }: Props) {
   const router = useRouter();
-  const [data, setData] = useState<UserSocialLoginData>();
+  const [data, setData] = useState<LoginOauthType>();
 
   const { mutate, error } = useMutation({
     mutationFn: () =>
       axios.post(
-        `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
+        `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`,
+        { data: null },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+          },
+        }
       ),
-    onSuccess: (data: { data: UserSocialLoginData }) => {
+    onSuccess: (data: { data: LoginOauthType }) => {
       setData(data.data);
     },
     onError: (error) => {
