@@ -1,13 +1,13 @@
 import Clickable from "../atoms/Clickable";
 import DatePicker from "../atoms/DatePicker";
 import ImagesInput from "../atoms/Inputs/ImagesInput";
-import useGetControl from "../atoms/useGetForm";
 import { ReviewOption } from "../atoms/ReviewOption";
+import useGetForm from "@/hooks/useGetFormField.tsx";
 
 import TagRadioButton from "./TagRadioButton";
 import StarRate from "./StarRate";
 
-import { Review, Stars } from "@/types/client.types";
+import { Review } from "@/types/client.types";
 import { postReviews } from "@/apis/reviewPost";
 
 import { useMutation } from "@tanstack/react-query";
@@ -41,7 +41,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
   });
   const router = useRouter();
 
-  const { title, content, placeType, companion, weather, visitingTime, stars, images } = useGetControl(control);
+  const { title, content, placeType, companion, weather, visitingTime, stars, images } = useGetForm(control);
 
   const { mutate: postReviewsMutate } = useMutation({
     mutationFn: postReviews,
@@ -102,7 +102,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
             <ReviewOption.title> 방문시간</ReviewOption.title>
             <ReviewOption.description>방문하신 시간을 선택해주세요.</ReviewOption.description>
           </ReviewOption.info>
-          <DatePicker onChange={visitingTime.onChange} />
+          <DatePicker onChange={visitingTime.onChange} value={visitingTime.value} />
           {errors.visitingTime && <ReviewOption.error>{errors.visitingTime.message}</ReviewOption.error>}
         </ReviewOption.section>
         <ReviewOption.section>
@@ -117,21 +117,21 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
             <ReviewOption.title> 유형</ReviewOption.title>
             <ReviewOption.description>어떤 타입의 여행지를 다녀오셨나요?</ReviewOption.description>
           </ReviewOption.info>
-          <TagRadioButton onChange={placeType.onChange} name={placeType.name} tag="placeType" />
+          <TagRadioButton onChange={placeType.onChange} tag="placeType" value={placeType.value} />
         </ReviewOption.section>
         <ReviewOption.section>
           <ReviewOption.info>
             <ReviewOption.title> 동행</ReviewOption.title>
             <ReviewOption.description>누구와 함께 여행지를 다녀오셨나요?</ReviewOption.description>
           </ReviewOption.info>
-          <TagRadioButton onChange={companion.onChange} name={companion.name} tag="companion" />
+          <TagRadioButton onChange={companion.onChange} tag="companion" value={companion.value} />
         </ReviewOption.section>
         <ReviewOption.section>
           <ReviewOption.info>
             <ReviewOption.title> 날씨</ReviewOption.title>
             <ReviewOption.description>그날의 날씨는 어땠나요?</ReviewOption.description>
           </ReviewOption.info>
-          <TagRadioButton onChange={weather.onChange} name={weather.name} tag="weather" />
+          <TagRadioButton onChange={weather.onChange} tag="weather" value={weather.value} />
         </ReviewOption.section>
       </ReviewOption>
       <div className="flex gap-16 m-auto">

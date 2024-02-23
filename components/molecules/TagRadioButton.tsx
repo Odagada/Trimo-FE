@@ -1,17 +1,14 @@
-import { ChangeEvent, Fragment, useState } from "react";
 import Clickable from "../atoms/Clickable";
 import Emoji from "../atoms/Emoji";
 import { TagWithMonth } from "@/types/client.types";
 
 interface TagRadioButtonProps {
-  onChange: (arg: string) => void;
-  name: string;
+  onChange: (arg: string | undefined) => void;
   tag: "placeType" | "weather" | "companion" | "date";
+  value: string | undefined;
 }
 
-export default function TagRadioButton({ onChange, name, tag = "placeType" }: TagRadioButtonProps) {
-  const [selectedType, setSelectedType] = useState(`${name}disable`);
-
+export default function TagRadioButton({ onChange, tag = "placeType", value }: TagRadioButtonProps) {
   let items: TagWithMonth[] = [];
 
   switch (tag) {
@@ -31,45 +28,28 @@ export default function TagRadioButton({ onChange, name, tag = "placeType" }: Ta
       break;
   }
 
-  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedType(event.target.id);
-    onChange(event.target.value);
+  const handleRadioChange = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const select = event.currentTarget.id;
+    if (select === value) {
+      onChange(undefined);
+      return;
+    }
+    onChange(select);
   };
 
   return (
-    <div className="flex gap-12 flex-wrap">
+    <div
+      className={`${
+        tag === "date" ? "grid grid-cols-6 grid-rows-2 gap-12 justify-items-start" : "flex gap-12 flex-wrap"
+      }`}
+    >
       {items.map((item, index) => (
-        <Fragment key={index}>
-          <input
-            type="radio"
-            id={item}
-            name={name}
-            onChange={handleRadioChange}
-            checked={selectedType === item}
-            className="hidden"
-            value={item}
-          />
-          <label htmlFor={item} className="cursor-pointer">
-            <Clickable color={selectedType === item ? "black" : "white-"} size="small" shape="capsule">
-              <Emoji>{item}</Emoji>
-            </Clickable>
-          </label>
-        </Fragment>
+        <button type="button" onClick={handleRadioChange} key={index} id={item}>
+          <Clickable color={value === item ? "black" : "white-"} size="small" shape="capsule">
+            <Emoji>{item}</Emoji>
+          </Clickable>
+        </button>
       ))}
-      <input
-        type="radio"
-        id={`${name}disable`}
-        name={name}
-        onChange={handleRadioChange}
-        checked={selectedType === `${name}disable`}
-        className="hidden"
-        value=""
-      />
-      <label htmlFor={`${name}disable`} className="cursor-pointer">
-        <Clickable color={selectedType === `${name}disable` ? "black" : "white-"} size="small" shape="capsule">
-          <span>선택 안함</span>
-        </Clickable>
-      </label>
     </div>
   );
 }
