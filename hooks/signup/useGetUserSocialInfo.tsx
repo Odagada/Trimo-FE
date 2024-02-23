@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import { SIGNUP_SERVER_ERROR } from "@/constants/signupConstants";
 import { LoginOauthType } from "@/types/server.types";
+import makeToast from "@/utils/makeToast";
 
 interface Props {
   code: string | undefined | string[];
@@ -28,7 +29,7 @@ function useGetUserSocialInfo({ code, provider }: Props) {
       setData(data.data);
     },
     onError: (error) => {
-      alert(`${error.message} ${SIGNUP_SERVER_ERROR} `);
+      makeToast(`${error.message} ${SIGNUP_SERVER_ERROR}`, "error");
       router.push("/login");
     },
     onSettled: () => {},

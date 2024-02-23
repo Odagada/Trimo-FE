@@ -45,7 +45,7 @@ function useSignUp(userOAuthData: LoginOauthType) {
     if (userOAuthData?.role === "ROLE_USER") {
       saveUserAccessToken(
         userOAuthData.accessToken,
-        `이미 가입된 회원입니다. ${userOAuthData.nickName}으로 로그인합니다.`
+        `이미 가입된 회원입니다. ${userOAuthData.nickName}으로 로그인합니다! 🤗`
       );
       router.push("/");
     }
