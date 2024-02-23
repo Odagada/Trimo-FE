@@ -6,8 +6,8 @@ import ReviewList from "../molecules/ReviewList";
 import NoResult from "@/components/molecules/NoResult";
 import OrderDropdown from "@/components/atoms/Dropdowns/OrderDropdown";
 
-export default function SearchContent() {
-  const [searchQuery, setSearchQuery] = useState("");
+export default function SearchContent({ queryStr }: { queryStr: string }) {
+  const [searchQuery, setSearchQuery] = useState(queryStr);
   const router = useRouter();
   const { query } = router;
 
