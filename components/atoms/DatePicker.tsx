@@ -1,13 +1,45 @@
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
 import formatDateTime from "@/utils/formatDateTime";
+import DeleteIcon from "./icons/DeleteIcon";
 
-export default function DatePicker({ onChange }: { onChange: (arg: string) => void }) {
+interface Props {
+  onChange: (arg: string | undefined) => void;
+  value: string | undefined;
+}
+
+export default function DatePicker({ onChange, value }: Props) {
+  function valueToDate(value: string | undefined) {
+    let date: Date | undefined;
+    function deleteZero(value: string) {
+      let valueToNumber: number = Number(value);
+      if (value[0] === "0") valueToNumber = Number(value.slice(1, 2));
+      return valueToNumber;
+    }
+    if (value) {
+      const year = Number(value?.slice(0, 4));
+      const month = deleteZero(value?.slice(4, 6)) - 1;
+      const days = deleteZero(value?.slice(6, 8));
+      const hours = deleteZero(value?.slice(8, 10));
+      const minute = deleteZero(value?.slice(10, 12));
+      date = new Date(year, month, days, hours, minute);
+    } else date = undefined;
+    return date;
+  }
+  valueToDate(value);
   return (
-    <Datepicker onChange={(value) => onChange(formatDateTime(value as Date))}>
-      <Datepicker.Input
-        format="yyyy/MM/dd HH:mm"
-        className="flex w-160 h-36 border border-gray30 rounded-10 middle-text"
-      />
+    <Datepicker onChange={(value) => onChange(formatDateTime(value as Date))} value={valueToDate(value)}>
+      <div className="relative">
+        <Datepicker.Input
+          format="yyyy/MM/dd HH:mm"
+          className="flex w-160 h-36 border border-gray30 rounded-10 middle-text font-bold pl-12"
+        />
+        {value && (
+          <button type="button" className="absolute inset-y-3 right-3" onClick={() => onChange(undefined)}>
+            <DeleteIcon />
+          </button>
+        )}
+      </div>
+
       <Datepicker.Picker defaultType="day" className="rounded-10 bg-white w-300 heading5 p-10 border z-20">
         {({ monthName, hour, minute, year }) => (
           <>
