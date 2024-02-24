@@ -26,6 +26,8 @@ export const Review: Story = {
       nickName: "test11@gmail.com",
       visitingTime: "2023-01-17T12:30:00",
       stars: 5,
+      image:
+        "https://i.namu.wiki/i/GSI7uVe89-gloLIdXTnnvklvRPaIhI-4nQH-r1ajStN6VfghnXFbA3RxhEWCFfdSw6krlR-yKaelAifKIPZQxw.webp",
     },
   },
 };

@@ -1,28 +1,25 @@
 import fetcher from "@/apis/axios";
-import useManageUserLogin from "@/hooks/useManageUserLogin";
 import { User } from "@/types/client.types";
-import { useQuery } from "@tanstack/react-query";
-
-const requestUserData = async (userAccessToken: string) => {
-  const { data: userData } = await fetcher<User>({
-    method: "get",
-    url: "/users/info",
-    headers: { Authorization: `Bearer ${userAccessToken}`, "Content-Type": "application/json" },
-  });
-  return userData;
-};
+import useManageUserAccessToken from "./useManageUserAccessToken";
+import { useRef } from "react";
 
 function useGetUserInfo() {
-  const { userAccessToken } = useManageUserLogin();
+  const { userAccessToken } = useManageUserAccessToken();
+  const userDataRef = useRef<User | null>(null);
 
-  if (userAccessToken) throw Error("로그인 되어있지 않습니다.");
+  const requestUserData = async () => {
+    if (!userAccessToken) return null;
 
-  const { data: userData } = useQuery({
-    queryKey: ["userData"],
-    queryFn: () => requestUserData(userAccessToken),
-  });
+    const { data: userData } = await fetcher<User>({
+      method: "get",
+      url: "/user/info",
+      headers: { Authorization: `Bearer ${userAccessToken}`, "Content-Type": "application/json" },
+    });
 
-  return userData;
+    userDataRef.current = userData;
+  };
+
+  return { userDataRef, requestUserData };
 }
 
 export default useGetUserInfo;

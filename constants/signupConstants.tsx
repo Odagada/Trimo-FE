@@ -28,6 +28,7 @@ export const INPUT_VALIDATION_MESSAGE = {
   TERM_ALL_CHECKED: "모든 약관에 동의하셨습니다.",
   NO_NICKNAME: "닉네임을 입력 해 주세요.",
   NICKNAME_VALIDATED: "은(는) 사용 가능한 닉네임입니다!",
+  NICKNAME_NOT_VALIDATED: "은(는) 이미 가입되어 있는 닉네임입니다!",
   NICKNAME_DUPLICATED: "중복되지 않은 닉네임을 입력 해 주세요.",
   NICKNAME_TOO_LONG: "5자 이하의 닉네임을 입력 해 주세요.",
 };

@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import SuccessPage from "@/pages/signup/components/SignUpSuccess";
 import TermsAgreements from "@/pages/signup/components/TermsAgreements";
 import WriteAdditionalInfo from "@/pages/signup/components/WriteAdditionalInfo";
-import { UserSocialLoginData } from "@/types/server.types";
+import { LoginOauthType } from "@/types/server.types";
+import useManageUserAccessToken from "../useManageUserAccessToken";
+import { useRouter } from "next/router";
 
-function useSignUp() {
+function useSignUp(userOAuthData: LoginOauthType) {
   const [signUpStatus, setSignUpStatus] = useState(0);
   const [nickname, setNickname] = useState("");
 
-  const renderContentOnProgress = (userData: UserSocialLoginData) => {
+  const { saveUserAccessToken } = useManageUserAccessToken();
+  const router = useRouter();
+
+  const renderContentOnProgress = () => {
     switch (signUpStatus) {
       case 0:
         return <TermsAgreements progressStatus={progressStatus} />;
@@ -17,7 +22,7 @@ function useSignUp() {
           <WriteAdditionalInfo
             progressStatus={progressStatus}
             setNickname={setUserNickname}
-            userAccessToken={userData.accessToken}
+            userAccessToken={userOAuthData.accessToken}
           />
         );
       case 2:
@@ -35,6 +40,13 @@ function useSignUp() {
   const setUserNickname = (nickname: string) => setNickname(nickname);
 
   const progressStatus = () => setSignUpStatus((prev) => ++prev);
+
+  useEffect(() => {
+    if (userOAuthData?.role === "ROLE_USER") {
+      saveUserAccessToken(userOAuthData.accessToken, `${userOAuthData.nickName}으로 로그인 되었습니다! 🤗`);
+      router.push("/");
+    }
+  }, []);
 
   return { calculateStepArray, renderContentOnProgress };
 }

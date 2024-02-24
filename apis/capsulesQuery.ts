@@ -15,9 +15,21 @@ export const getSpot = (spotId: string) => {
   };
 };
 
+export const getSearchReview = (query: string) => {
+  return {
+    queryKey: ["reviewList", query],
+    queryFn: () =>
+      fetcher<MultiReviewData[]>({
+        method: "get",
+        url: `main/reviews/specifics?${query}`,
+      }),
+    enabled: query !== "",
+  };
+};
+
 export const getReviewCardArray = (order: string) => {
   return {
     queryKey: ["reviewCards", order],
-    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews` }),
+    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews?order=${order}` }),
   };
 };

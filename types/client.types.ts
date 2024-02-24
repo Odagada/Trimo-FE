@@ -19,8 +19,6 @@ export type Tag = {
 
 export type TagWithMonth = TagWeather | TagMonth | TagPlaceType | TagCompanion;
 
-export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
-
 export interface Children {
   children: ReactNode;
 }
@@ -66,6 +64,7 @@ export type User = {
   email: string;
   gender: "남자" | "여자";
   age: number;
+  imageUrl: string;
 };
 
 export type Review = {
@@ -90,3 +89,5 @@ export type birthdateValType = { value: number; label: number };
 export interface MapProps {
   locationIDList: string[];
 }
+
+export type StringObj = { [key: string]: string };

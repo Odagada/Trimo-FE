@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TERMS, INPUT_VALIDATION_MESSAGE } from "@/constants/signupConstants";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
+import makeToast from "@/utils/makeToast";
 
 function useHandleTermsCheck({ progressStatus }: SignupContentProps) {
   const [checkedTerms, setCheckedTerms] = useState<number[]>([]);
@@ -23,10 +24,10 @@ function useHandleTermsCheck({ progressStatus }: SignupContentProps) {
 
   const validateTermCheck = () => {
     if (checkedTerms.length !== TERMS.length) {
-      alert(INPUT_VALIDATION_MESSAGE.TERM_NOT_ALL_CHECKED);
+      makeToast(INPUT_VALIDATION_MESSAGE.TERM_NOT_ALL_CHECKED, "error");
       return;
     }
-    alert(INPUT_VALIDATION_MESSAGE.TERM_ALL_CHECKED);
+    makeToast(INPUT_VALIDATION_MESSAGE.TERM_ALL_CHECKED);
     progressStatus();
   };
 

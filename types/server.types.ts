@@ -6,12 +6,13 @@ export type SingleReviewData = {
   content: string;
   tagValues?: Tag;
   nickName: string;
-  spotId: string;
+  spotName: string;
+  placeId: string;
   createdAt: string;
   modifiedAt: string;
   visitingTime: string;
-  imageUrls?: string[];
-  stars?: Stars;
+  images?: string[];
+  stars: Stars;
 };
 
 export type MultiReviewData = {
@@ -20,23 +21,30 @@ export type MultiReviewData = {
   tagValues?: Tag;
   nickName: string;
   visitingTime: string;
-  imageUrls?: string[];
-  stars?: Stars;
+  image: string | null;
+  stars: Stars;
 };
 
 export type SpotData = {
   averageStars: Stars;
 } & Destination;
 
-export type UserAdditionalInfo = {
+export type GuestUpdateType = {
   birthDate: string;
   gender: string;
   nickName: string;
 };
 
-export type UserSocialLoginData = {
+export type GetGuestUpdateType = {
+  nickName: string;
+  imageUrl: string;
+  gender: string;
+  birthDate: string;
+  role: string;
+};
+
+export type LoginOauthType = {
   id: number;
-  email: string;
   nickName: string;
   imageUrl: string;
   role: string; //ROLE_USER, ROLE_GUEST
@@ -44,11 +52,10 @@ export type UserSocialLoginData = {
   accessToken: string;
 };
 
-export type UserInfoType = {
-  email: string;
+export type GetUserInfoType = {
+  userId: number;
   nickName: string;
+  gender: string;
+  age: number;
   imageUrl: string;
-  gender: "남자" | "여자";
-  birthDate: string;
-  role: string;
 };
