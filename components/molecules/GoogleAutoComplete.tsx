@@ -6,9 +6,10 @@ interface Props {
   setSpotId: React.Dispatch<React.SetStateAction<string>>;
   spotError: string;
   setSpotError: React.Dispatch<React.SetStateAction<string>>;
+  formatAddress?: string | undefined;
 }
 
-export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError }: Props) {
+export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError, formatAddress = "" }: Props) {
   const { mutate: postSpotsMutate } = useMutation({
     mutationFn: postSpots,
     onSuccess(data) {
@@ -19,6 +20,7 @@ export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError 
       setSpotError("장소를 다시 입력해주세요");
     },
   });
+
   async function handlePlace(place: google.maps.places.PlaceResult) {
     const { name, place_id, formatted_address, geometry } = place;
     let latitude = "";
@@ -47,6 +49,7 @@ export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError 
         }}
         placeholder="어느곳을 다녀오셨나요?"
         className="focus:outline-none w-full heading4"
+        defaultValue={formatAddress}
       />
       {spotError !== "" && <p className="text-error middle-text font-bold mt-10">{spotError}</p>}
     </div>

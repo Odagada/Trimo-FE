@@ -1,12 +1,12 @@
 import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
-import PlaceForm from "@/components/organisms/PlaceForm";
+import EditForm from "@/components/organisms/EditForm";
 
 export default function reviewEdit() {
   return (
     <>
       <Nav />
-      <PlaceForm />
+      <EditForm />
       <Footer />
     </>
   );
