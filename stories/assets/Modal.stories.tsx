@@ -18,10 +18,18 @@ const Template: StoryFn<typeof Modal> = (args) => {
   );
 };
 
-export const ModalStory = Template.bind({});
-ModalStory.args = {
+export const SingleButtonModal = Template.bind({});
+SingleButtonModal.args = {
   isOpen: false,
   title: "모달 제목",
   description: "모달 설명입니다!!",
   buttonText: "확인",
+};
+
+export const DualButtonModal = Template.bind({});
+DualButtonModal.args = {
+  isOpen: false,
+  title: "모달 제목",
+  description: "모달 설명입니다!!",
+  buttonText: ["확인", "취소"],
 };
