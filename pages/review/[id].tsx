@@ -1,10 +1,10 @@
 import { getReview } from "@/apis/capsulesQuery";
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
-import RateStars from "@/components/atoms/RateStars";
+import MultiStarRate from "@/components/atoms/MultiStarRate";
 import calcData from "@/utils/calcDate";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
 import Emoji from "@/components/atoms/Emoji";
@@ -19,7 +19,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const reviewId = Number(context.params?.id);
     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery(getReview(reviewId));
+    const check404 = await queryClient.fetchQuery(getReview(reviewId));
 
     return {
       props: { dehydratedState: dehydrate(queryClient) },
@@ -107,7 +107,7 @@ const ReviewTitleSection = () => {
           {`${reviewData?.data.spotName} · ${dateString} · ${timeString}`}
           {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
         </h3>
-        {reviewData?.data.stars && <RateStars number={reviewData.data.stars} />}
+        {reviewData?.data.stars && <MultiStarRate number={reviewData.data.stars} />}
       </div>
     </>
   );
@@ -118,7 +118,6 @@ const MapNTag = () => {
 
   return (
     <>
-      {" "}
       {/* map area */}
       <div className="mb-73">
         <GoogleMap locationIDList={[placeId]} />

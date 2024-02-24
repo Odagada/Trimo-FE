@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
 import { useState } from "react";
 import { CookiesProvider } from "react-cookie";
+import { Toaster } from "react-hot-toast";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -18,11 +19,13 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       })
   );
+
   return (
     <QueryClientProvider client={queryClient}>
       <CookiesProvider>
         <HydrationBoundary state={pageProps.dehydratedState}>
           <Component {...pageProps} />
+          <Toaster containerStyle={{ fontSize: "15px", fontWeight: "600" }} />
         </HydrationBoundary>
       </CookiesProvider>
       <ReactQueryDevtools initialIsOpen={false} />

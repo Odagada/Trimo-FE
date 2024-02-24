@@ -19,8 +19,6 @@ export type Tag = {
 
 export type TagWithMonth = TagWeather | TagMonth | TagPlaceType | TagCompanion;
 
-export type NavStatus = "LoggedIn" | "LoggedOut" | "onlyLogo";
-
 export interface Children {
   children: ReactNode;
 }
@@ -63,9 +61,9 @@ export type Destination = {
 export type User = {
   userId: number;
   nickName: string;
-  email: string;
   gender: "female" | "male";
   age: number;
+  imageUrl: string;
 };
 
 export type Review = {
@@ -86,31 +84,9 @@ export type ImageType = {
 
 export type OrderValue = "인기순" | "평점순" | "최신순";
 
-export type UserAdditionalInfo = {
-  birthDate: string;
-  gender: string;
-  nickName: string;
-};
-
-export type UserSocialLoginData = {
-  id: number;
-  email: string;
-  nickName: string;
-  imageUrl: string;
-  role: string; //ROLE_USER, ROLE_GUEST
-  tokenType: string;
-  accessToken: string;
-};
-
-export type UserInfoType = {
-  email: string;
-  nickName: string;
-  imageUrl: string;
-  gender: string;
-  birthDate: string;
-  role: string;
-};
 export type birthdateValType = { value: number; label: number };
 export interface MapProps {
   locationIDList: string[];
 }
+
+export type StringObj = { [key: string]: string };
