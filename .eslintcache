@@ -1867,5 +1867,5 @@
     997,
     1013
   ],
-  "[saveUserAccessToken, userSocialData]"
+  "[router, saveUserAccessToken, userOAuthData.accessToken, userOAuthData.nickName, userOAuthData?.role]"
 ]
