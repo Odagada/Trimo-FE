@@ -1,37 +1,39 @@
 import ProgressNavigator from "@/components/molecules/ProgressNavigator";
 import ShadowBox from "@/components/atoms/ShadowBox";
 import Nav from "@/components/molecules/NavigationBar";
-import { useRouter } from "next/router";
-import useGetUserSocialInfo from "@/hooks/signup/useGetUserSocialInfo";
 import useSignUp from "@/hooks/signup/useSignUp";
 import Footer from "@/components/atoms/Footer";
-import { useEffect } from "react";
-import useManageUserLogin from "@/hooks/useManageUserLogin";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
+import axios from "axios";
 
-function SignUp() {
-  const router = useRouter();
-  const { provider, code } = router.query;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  try {
+    const queryClient = new QueryClient();
+    const { provider, code } = context.query;
 
-  const { calculateStepArray, renderContentOnProgress } = useSignUp();
-  const userSocialData = useGetUserSocialInfo({ code, provider });
-  const { saveUserAccessToken } = useManageUserLogin();
+    const userOAuthData = await axios.get(
+      `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
+    );
 
-  useEffect(() => {
-    if (userSocialData?.role === "ROLE_USER") {
-      saveUserAccessToken(
-        userSocialData.accessToken,
-        `정상적으로 로그인 되었습니다!\n반갑습니다 ${userSocialData.nickName}님 😊`
-      );
-    }
-  }, [userSocialData]);
+    return {
+      props: { dehydratedState: dehydrate(queryClient), userOAuthData: userOAuthData.data },
+    };
+  } catch {
+    return { notFound: true };
+  }
+}
+
+function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { calculateStepArray, renderContentOnProgress } = useSignUp(userOAuthData);
 
   return (
-    <div className="h-screen flex w-full flex-col mt-20 mb-20">
-      <Nav navStatus="LoggedOut" />
+    <div className="h-screen flex w-full flex-col">
+      <Nav isOnlyLogo />
       <ShadowBox className="relative">
         <span className="text-20 font-bold text-center mb-15 mt-35">회원가입</span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
-        {renderContentOnProgress(userSocialData!)}
+        {renderContentOnProgress()}
       </ShadowBox>
       <Footer />
     </div>
