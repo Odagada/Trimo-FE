@@ -40,14 +40,18 @@ export default function SearchForm({ closeDropdown }: Props) {
   useEffect(() => {
     Object.entries(queryObj).forEach((data) => {
       const key = data[0] as "month" | "visitingTime" | "placeType" | "weather" | "companion";
-      const value = data[1] as string;
+      let value = data[1] as string;
+      if (key === "month") {
+        value = value + "월";
+      }
       setValue(key, value);
     });
   }, [queryObj, setValue]);
 
   function handleSearch(data: query) {
     const searchQuery = filterObject(data);
-    router.push({ query: { ...queryObj, ...searchQuery } });
+    const { searchValue, order } = queryObj;
+    router.push({ query: { searchValue, order, ...searchQuery } });
     closeDropdown();
   }
   return (
@@ -97,7 +101,7 @@ export default function SearchForm({ closeDropdown }: Props) {
         </SearchOption.section>
         <div className="flex justify-end gap-12">
           <button type="button" onClick={() => reset()}>
-            <Clickable size="small" shape="capsule" color="white" className="flex justify-end item-center gap-10">
+            <Clickable size="small" shape="capsule" color="white" className="item-center flex justify-end gap-10">
               <span className="font-bold">초기화</span>
               <Image src={resetIcon} alt="resetIcon" />
             </Clickable>
