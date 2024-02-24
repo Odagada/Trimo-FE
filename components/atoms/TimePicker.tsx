@@ -1,6 +1,6 @@
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
 import DeleteIcon from "./icons/DeleteIcon";
-import formatHours from "@/utils/formatHours";
+import formatTime from "@/utils/formatTime";
 
 interface Props {
   onChange: (arg: string | undefined) => void;
@@ -15,8 +15,14 @@ export default function TimePicker({ onChange, value }: Props) {
     return date;
   }
 
+  function handleTime(date: Date | null) {
+    if (date === undefined || date === null) return onChange(undefined);
+    const { formatHours } = formatTime(date);
+    onChange(formatHours);
+  }
+
   return (
-    <Datepicker onChange={(date) => onChange(formatHours(date as Date))} value={valueToDateHours(value)}>
+    <Datepicker onChange={handleTime} value={valueToDateHours(value)}>
       <div className="relative">
         <Datepicker.Input
           format="HH aa"

@@ -13,6 +13,7 @@ import { postReviews } from "@/apis/reviewPost";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 
 interface Props {
   spotId: string;
@@ -40,6 +41,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
     defaultValues,
   });
   const router = useRouter();
+  const { userAccessToken: apiKey } = useManageUserAccessToken();
 
   const { title, content, placeType, companion, weather, visitingTime, stars, images } = useGetForm(control);
 
@@ -68,7 +70,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
     images.map((value) => {
       formData.append("images", value.file, value.file.name);
     });
-    postReviewsMutate({ formData, spotId });
+    postReviewsMutate({ formData, spotId, apiKey });
   }
 
   return (
