@@ -4,7 +4,7 @@ interface Props {
   isOpen: boolean;
   title: string;
   description: string;
-  buttonText?: string;
+  buttonText?: string | string[];
   onClick: () => void;
   onClose: () => void;
 }
@@ -14,6 +14,8 @@ function Modal({ isOpen = false, title, description, buttonText = "확인", onCl
   const portalDiv = document.querySelector("#modal");
 
   if (!portalDiv) return null;
+
+  const hasCancelBtn = typeof buttonText !== "string";
 
   const onConfirmClick = () => {
     onClick();
@@ -27,9 +29,16 @@ function Modal({ isOpen = false, title, description, buttonText = "확인", onCl
         <div className="bg-white z-100 w-440 h-220 fixed pb-58 flex flex-col justify-center items-center -translate-x-1/2 -translate-y-1/2 z-[100] shadow-main gap-5 rounded-[15px] left-1/2 top-1/2">
           <span className="text-zinc-800 text-lg font-bold ">{title}</span>
           {description}
-          <button className="w-full h-60 fixed top-162 bg-black text-white rounded-b-[15px]" onClick={onConfirmClick}>
-            {buttonText}
-          </button>
+          <div className="flex w-full fixed h-60 top-162 rounded-b-[15px] overflow-hidden">
+            {hasCancelBtn && (
+              <button className="w-full top-162 bg-gray-20 text-black" onClick={onClose}>
+                {buttonText[1]}
+              </button>
+            )}
+            <button className={`w-full bg-black text-white`} onClick={onConfirmClick}>
+              {hasCancelBtn ? buttonText[0] : buttonText}
+            </button>
+          </div>
         </div>
       </div>,
       portalDiv
