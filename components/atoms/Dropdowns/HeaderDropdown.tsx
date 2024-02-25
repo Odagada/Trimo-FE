@@ -6,9 +6,9 @@ const menuClass = "w-full flex-center h-26 hover:bg-gray-10 rounded-5";
 
 const menus = [
   { text: "리뷰 작성", href: "/review" },
-  { text: "나의 리뷰", href: "" },
+  { text: "나의 리뷰", href: "/mypage" },
   { text: "관심 리스트", href: "" },
-  { text: "프로필 수정", href: "/profile" },
+  { text: "프로필 수정", href: "/mypage/edit" },
 ];
 
 export default forwardRef(function HeaderDropdown(
