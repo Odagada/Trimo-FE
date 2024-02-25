@@ -7,6 +7,7 @@ import type { AppProps } from "next/app";
 import { useState } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
+import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -21,14 +22,34 @@ export default function App({ Component, pageProps }: AppProps) {
   );
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <CookiesProvider>
-        <HydrationBoundary state={pageProps.dehydratedState}>
-          <Component {...pageProps} />
-          <Toaster containerStyle={{ fontSize: "15px", fontWeight: "600" }} />
-        </HydrationBoundary>
-      </CookiesProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <>
+      <Head>
+        <title>TRIMO</title>
+        <meta name="description" content="쉽고 간편한 여행 리뷰, 지금 바로 작성해보세요!" />
+        <link rel="icon" href="/logos/TRIMO.svg" />
+        {/* og */}
+        <meta property="og:url" content="https://www.trimo.kr/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="TRIMO" />
+        <meta property="og:description" content="쉽고 간편한 여행 리뷰, 지금 바로 작성해보세요!" />
+        <meta property="og:image" content="" />
+        {/* twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="trimo.kr" />
+        <meta property="twitter:url" content="https://www.trimo.kr/" />
+        <meta name="twitter:title" content="TRIMO" />
+        <meta name="twitter:description" content="쉽고 간편한 여행 리뷰, 지금 바로 작성해보세요!" />
+        <meta name="twitter:image" content="" />
+      </Head>
+      <QueryClientProvider client={queryClient}>
+        <CookiesProvider>
+          <HydrationBoundary state={pageProps.dehydratedState}>
+            <Component {...pageProps} />
+            <Toaster containerStyle={{ fontSize: "15px", fontWeight: "600" }} />
+          </HydrationBoundary>
+        </CookiesProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </>
   );
 }
