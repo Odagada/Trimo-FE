@@ -10,7 +10,11 @@ const filterObject = (obj: any) => {
   let newObj: stringObj = {};
   for (const key in obj) {
     if (obj[key] !== "" && obj[key] !== undefined) {
-      newObj[key] = obj[key];
+      if (key === "month") {
+        newObj[key] = obj[key].replace("월", "");
+      } else {
+        newObj[key] = obj[key];
+      }
     }
   }
   return newObj;

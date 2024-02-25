@@ -96,6 +96,12 @@ const config: Config = {
     boxShadow: {
       main: "0px 4px 10px 0px rgba(0, 0, 0, 0.10)",
     },
+    screens: {
+      desktop: "1440px",
+      laptop: "1200px",
+      tablet: "768px",
+      mobile: "360px",
+    },
     extend: {
       animation: {
         marquee: "marquee 50s linear infinite",

@@ -37,8 +37,11 @@ body {
   .body1 {
     @apply text-20 leading-30 font-medium;
   }
-  .body1 {
+  .body2 {
     @apply text-20 leading-28;
+  }
+  .body3 {
+    @apply text-18 leading-27;
   }
   .p-text {
     @apply leading-24;
