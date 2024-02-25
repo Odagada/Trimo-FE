@@ -1,4 +1,4 @@
-import { MultiReviewData, SingleReviewData, SpotData } from "@/types/server.types";
+import { GetMyPlacesType, MultiReviewData, SingleReviewData, SpotData } from "@/types/server.types";
 import fetcher from "./axios";
 
 export const getReview = (reviewId: number) => {
@@ -31,5 +31,30 @@ export const getReviewCardArray = (order: string) => {
   return {
     queryKey: ["reviewCards", order],
     queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews?order=${order}` }),
+  };
+};
+
+export const getMyPlaces = (accessToken: string) => {
+  return {
+    queryKey: ["myPlace", accessToken],
+    queryFn: () =>
+      fetcher<GetMyPlacesType>({
+        method: "get",
+        url: "/user/me/places",
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }),
+  };
+};
+
+export const getFilteredMyPlaces = (accessToken: string, query: string | null) => {
+  return {
+    queryKey: ["myFilteredPlace", accessToken, query],
+    queryFn: () =>
+      fetcher<MultiReviewData[]>({
+        method: "get",
+        url: `/user/me/reviews?${query}`,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }),
+    enabled: query !== null,
   };
 };
