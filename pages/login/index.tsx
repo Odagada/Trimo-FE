@@ -46,7 +46,7 @@ function Login() {
         <div className="flex flex-col gap-10 w-437">
           <Link
             href={
-              "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=zPNfUhg8Ln9dvOUlf7ae&redirect_uri=http://localhost:3000/signup/naver"
+              "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=zPNfUhg8Ln9dvOUlf7ae&redirect_uri=https://www.trimo.kr/signup/naver"
             }
           >
             <Clickable
@@ -60,7 +60,7 @@ function Login() {
           </Link>
           <Link
             href={
-              "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=a8944263d97958802c0a6c200e8cf7e8&redirect_uri=http://localhost:3000/signup/kakao"
+              "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=a8944263d97958802c0a6c200e8cf7e8&redirect_uri=https://www.trimo.kr/signup/kakao"
             }
           >
             <Clickable color="kakao" size="large" className="flex w-550 gap-12 items-center px-28 font-medium ">
@@ -70,7 +70,7 @@ function Login() {
           </Link>
           <Link
             href={
-              "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&client_id=730856835844-o09fr02aksdpk7givfn8hkrgpe21jej8.apps.googleusercontent.com&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fgoogle"
+              "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&client_id=730856835844-o09fr02aksdpk7givfn8hkrgpe21jej8.apps.googleusercontent.com&response_type=code&redirect_uri=https%3A%2F%2Fwww.trimo.kr%2Fsignup%2Fgoogle"
             }
           >
             <Clickable color="white" size="large" className="flex w-550 gap-12 items-center px-28 font-medium">
