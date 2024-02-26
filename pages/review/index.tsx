@@ -1,9 +1,9 @@
 import Nav from "@/components/molecules/NavigationBar";
 import PlaceForm from "@/components/organisms/PlaceForm";
 import Footer from "@/components/atoms/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { isLoggedIn, validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
+import { validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -23,7 +23,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       };
     } else {
       return {
-        props: { isLoggedIn: isLoggedIn(accessToken) },
+        props: {},
       };
     }
   } catch {
@@ -31,10 +31,10 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   }
 };
 
-export default function ReviewWrite({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function ReviewWrite() {
   return (
     <>
-      <Nav isLoggedIn={isLoggedIn} />
+      <Nav />
       <PlaceForm />
       <Footer />
     </>

@@ -15,12 +15,10 @@ import desktopScreenShot1 from "@/public/images/DesktopScreenShot1.png";
 import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { useEffect, useState } from "react";
-import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { isLoggedIn } from "@/utils/validateByLoginStatus";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -29,20 +27,18 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     await queryClient.prefetchQuery(getReviewCardArray("POPULAR"));
     await queryClient.prefetchQuery(getReviewCardArray("RECENT"));
 
-    const accessToken = await getAccessTokenFromCookie(context);
-
     return {
-      props: { dehydratedState: dehydrate(queryClient), isLoggedIn: isLoggedIn(accessToken) },
+      props: { dehydratedState: dehydrate(queryClient) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function Landing({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Landing() {
   return (
     <>
-      <Nav isLoggedIn={isLoggedIn} />
+      <Nav />
 
       <HeroSection />
 
