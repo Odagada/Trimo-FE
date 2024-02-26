@@ -48,7 +48,9 @@ const config: Config = {
     },
     fontSize: {
       8: "0.8rem",
+      10: "1rem",
       12: "1.2rem",
+      11: "1.1rem",
       14: "1.4rem",
       16: "1.6rem",
       18: "1.8rem",
@@ -64,6 +66,7 @@ const config: Config = {
       12: "1.2rem",
       15: "1.5rem",
       18: "1.8rem",
+      20: "2rem",
       21: "2.1rem",
       24: "2.4rem",
       27: "2.7rem",
