@@ -9,6 +9,7 @@ import Image from "next/image";
 import useRegisterDropdown from "@/hooks/signup/useRegisterDropdowns";
 import { SignupContentProps } from "./TermsAgreements";
 import { INPUT_VALIDATION_MESSAGE } from "@/constants/signupConstants";
+import { useEffect, useState } from "react";
 
 interface Props extends SignupContentProps {
   setNickname: (value: string) => void;
@@ -16,6 +17,7 @@ interface Props extends SignupContentProps {
 }
 
 function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: Props) {
+  const [isNicknameFormValid, setIsNicknameFormValid] = useState<boolean>(false);
   const { onSubmit } = useSubmitAdditionalInfo({ progressStatus, userAccessToken });
 
   const {
@@ -37,6 +39,11 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
 
   const { validateNickname, data: isNicknameValid } = useValidateNickname();
 
+  useEffect(() => {
+    if (isNicknameValid?.data && isNicknameValid.status === 200) setIsNicknameFormValid(true);
+    else setIsNicknameFormValid(false);
+  }, [isNicknameValid]);
+
   return (
     <>
       <div className="flex flex-col"></div>
@@ -56,11 +63,10 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               })}
               id="title"
               placeholder="닉네임"
+              onChange={async () => setIsNicknameFormValid(false)}
             />
 
-            {isNicknameValid?.data && isNicknameValid.status === 200 && (
-              <Image src={check} width={20} height={20} alt="nickname validated" />
-            )}
+            {isNicknameFormValid && <Image src={check} width={20} height={20} alt="nickname validated" />}
           </InputWrapper>
           <button onClick={() => validateNickname(getValues("nickName"))} type="button">
             <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
@@ -179,13 +185,13 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
         <button
           type="submit"
           className="w-full mt-20"
-          disabled={!formState.isValid || !isNicknameValid?.data || isNicknameValid.status !== 200}
+          disabled={!formState.isValid || !isNicknameFormValid}
           onClick={() => setNickname(getValues("nickName"))}
         >
           <Clickable
             size="large"
             className="w-full"
-            color={formState.isValid && isNicknameValid?.data && isNicknameValid.status ? "black" : "gray"}
+            color={formState.isValid && isNicknameFormValid ? "black" : "gray"}
           >
             확인
           </Clickable>
