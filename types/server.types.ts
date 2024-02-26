@@ -21,8 +21,8 @@ export type MultiReviewData = {
   tagValues?: Tag;
   nickName: string;
   visitingTime: string;
-  image: string | null;
   stars: Stars;
+  image: string | null;
 };
 
 export type SpotData = {
@@ -58,4 +58,22 @@ export type GetUserInfoType = {
   gender: string;
   age: number;
   imageUrl: string;
+};
+
+export type UserUpdateType = {
+  nickName: string;
+  birthDate: string;
+  gender: string;
+};
+
+export type GetUserUpdateType = {
+  nickName: string;
+  imageUrl: string;
+  gender: string;
+  age: number;
+  role: string;
+};
+
+export type GetMyPlacesType = {
+  placeIds: string[];
 };
