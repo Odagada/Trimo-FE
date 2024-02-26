@@ -4,8 +4,8 @@ import InputWrapper from "@/components/atoms/Inputs/InputWapper";
 import { INPUT_VALIDATION_MESSAGE } from "@/constants/signupConstants";
 import useRegisterDropdown from "@/hooks/signup/useRegisterDropdowns";
 import useValidateNickname from "@/hooks/signup/useValidateNickname";
-import useManageUserLogin from "@/hooks/useManageUserLogin";
-import { UserAdditionalInfo, UserInfoType } from "@/types/server.types";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import { GetUserUpdateType, UserUpdateType } from "@/types/server.types";
 import { birthdateValType } from "@/types/client.types";
 import Image from "next/image";
 import check from "@/public/images/icons/blackCheck.svg";
@@ -13,11 +13,10 @@ import Clickable from "@/components/atoms/Clickable";
 import Select from "react-select";
 import formatDateToStr from "@/utils/formatDateToStr";
 import useGetUserInfo from "@/hooks/useGetUserInfo";
+import { useEffect, useState } from "react";
 
-type age = { age: number };
-
-async function updateUserInfo(postData: UserAdditionalInfo, accessToken: string) {
-  const { data } = await fetcher<Omit<UserInfoType, "birthDate"> & age>({
+async function updateUserInfo(postData: UserUpdateType, accessToken: string) {
+  const { data } = await fetcher<GetUserUpdateType>({
     method: "post",
     url: "/users/update",
     headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -27,24 +26,32 @@ async function updateUserInfo(postData: UserAdditionalInfo, accessToken: string)
 }
 
 const UpdateUserInfoForm = () => {
-  const { userAccessToken } = useManageUserLogin();
+  const birthdate = "2024-02-24";
+  const formatBD = birthdate.split("-");
 
-  const userData = useGetUserInfo();
+  const { userAccessToken } = useManageUserAccessToken();
+  const { userDataRef, requestUserData } = useGetUserInfo();
+  const [isNicknameFormValid, setIsNicknameFormValid] = useState<boolean>(false);
+
+  const [userNickname, setUserNickname] = useState<string>();
 
   const onSubmit = (data: {
     nickName: string;
-    birthdate: birthdateValType | null;
-    birthmonth: birthdateValType | null;
-    birthyear: birthdateValType | null;
+    birthdate: birthdateValType | null | number;
+    birthmonth: birthdateValType | null | number;
+    birthyear: birthdateValType | null | number;
     gender: string;
   }) => {
+    if (typeof data.birthyear === "number" || typeof data.birthmonth === "number" || typeof data.birthdate === "number")
+      return;
     const userBirthdate = formatDateToStr(data.birthyear?.value!, data.birthmonth?.value!, data.birthdate?.value!);
+
     const userData = {
       nickName: data.nickName,
       birthDate: userBirthdate,
       gender: data.gender,
     };
-    console.log(userData);
+
     // updateUserInfo(userData, userAccessToken);
   };
 
@@ -63,9 +70,24 @@ const UpdateUserInfoForm = () => {
     restField2,
     restField3,
     availableBirthdateList,
-  } = useRegisterDropdown();
+  } = useRegisterDropdown([2002, 2, 18]);
 
-  const { validateNickname, data } = useValidateNickname();
+  const { validateNickname, data: isNicknameValid } = useValidateNickname();
+
+  const fetchUserData = async () => {
+    await requestUserData();
+    setUserNickname(String(userDataRef.current?.nickName));
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    if (getValues("nickName") === userNickname || (isNicknameValid?.data && isNicknameValid.status === 200))
+      setIsNicknameFormValid(true);
+    else setIsNicknameFormValid(false);
+  }, [getValues, isNicknameValid, userNickname]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
@@ -78,8 +100,7 @@ const UpdateUserInfoForm = () => {
               htmlFor="title"
               title="닉네임 변경"
             >
-              {/* <div>{userData.nickName}</div> */}
-              <div>{"이름입력"}</div>
+              <div>{userNickname}</div>
             </InputWrapper>
             <InputWrapper
               className="py-17 border-gray-400"
@@ -92,17 +113,20 @@ const UpdateUserInfoForm = () => {
                 {...register("nickName", {
                   required: true,
                   maxLength: { value: 5, message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG },
-                  validate: () =>
-                    data?.status === null || data?.status === 200 ? true : INPUT_VALIDATION_MESSAGE.NICKNAME_DUPLICATED,
                 })}
                 id="title"
                 placeholder="닉네임"
+                onChange={async () => setIsNicknameFormValid(false)}
               />
 
-              {data?.status === 200 && <Image src={check} width={20} height={20} alt="nickname validated" />}
+              {isNicknameFormValid && <Image src={check} width={20} height={20} alt="nickname validated" />}
             </InputWrapper>
           </div>
-          <button onClick={() => validateNickname(getValues("nickName"))}>
+          <button
+            onClick={() => {
+              getValues("nickName") === userNickname || validateNickname(getValues("nickName"));
+            }}
+          >
             <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
               중복확인
             </Clickable>
@@ -215,8 +239,8 @@ const UpdateUserInfoForm = () => {
         </div>
       </InputWrapper>
 
-      <button type="submit" className="w-full mt-20" disabled={!formState.isValid}>
-        <Clickable size="large" className="w-full" color={formState.isValid ? "black" : "gray"}>
+      <button type="submit" className="w-full mt-20" disabled={!formState.isValid || !isNicknameFormValid}>
+        <Clickable size="large" className="w-full" color={formState.isValid && isNicknameFormValid ? "black" : "gray"}>
           확인
         </Clickable>
       </button>
