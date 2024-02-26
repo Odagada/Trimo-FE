@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>TRIMO</title>
         <meta name="description" content="쉽고 간편한 여행 리뷰, 지금 바로 작성해보세요!" />
-        <link rel="icon" href="/logos/TRIMO.svg" />
+        <link rel="icon" href="/icons/favicon.png" />
         {/* og */}
         <meta property="og:url" content="https://www.trimo.kr/" />
         <meta property="og:type" content="website" />
