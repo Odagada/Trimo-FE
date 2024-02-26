@@ -1,9 +1,9 @@
-import { getReview } from "@/apis/capsulesQuery";
+import { deleteReviewlikes, getReview, getReviewLikes, postReviewLikes } from "@/apis/capsulesQuery";
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import MultiStarRate from "@/components/atoms/MultiStarRate";
 import calcData from "@/utils/calcDate";
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import { QueryClient, dehydrate, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
@@ -13,13 +13,17 @@ import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
 import GoogleMap from "@/components/organisms/GoogleMap";
 import { useRouter } from "next/router";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
+import { SingleReviewLikes } from "@/types/server.types";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
+    const accessToken = getAccessTokenFromCookie(context) ?? "";
     const reviewId = Number(context.params?.id);
     const queryClient = new QueryClient();
 
     const check404 = await queryClient.fetchQuery(getReview(reviewId));
+    await queryClient.prefetchQuery(getReviewLikes(reviewId, accessToken));
 
     return {
       props: { dehydratedState: dehydrate(queryClient) },
@@ -92,6 +96,51 @@ const ImageCarouselSection = () => {
 
 const ReviewTitleSection = () => {
   const { reviewData, dateString, timeString } = useDestructureReviewData();
+
+  const queryClient = useQueryClient();
+
+  const likesMutation = useMutation({
+    mutationFn: async ({
+      reviewId,
+      accessToken,
+      userAction,
+    }: {
+      reviewId: number;
+      accessToken: string;
+      userAction: "like" | "unlike";
+    }) => {
+      if (userAction === "like") {
+        postReviewLikes(reviewId, accessToken);
+      } else {
+        deleteReviewlikes(reviewId, accessToken);
+      }
+    },
+    onMutate: async ({ reviewId, userAction }) => {
+      // 쿼리 취소
+      await queryClient.cancelQueries({ queryKey: ["review", "likes", reviewId] });
+
+      // 쿼리 데이터 백업
+      const prevLikeState = queryClient.getQueryData(["review", "likes", reviewId]);
+
+      // 쿼리 데이터 수정
+      queryClient.setQueryData(["review", "likes", reviewId], ({ likeCount, isLiked }: SingleReviewLikes) => {
+        if (userAction === "like") {
+          likeCount++;
+          isLiked = true;
+
+          return { likeCount, isLiked };
+        } else {
+          likeCount--;
+          isLiked = false;
+
+          return { likeCount, isLiked };
+        }
+      });
+
+      return { prevLikeState };
+    },
+  });
+
   return (
     <>
       {/* title area */}

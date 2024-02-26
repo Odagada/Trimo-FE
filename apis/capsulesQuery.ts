@@ -1,4 +1,4 @@
-import { MultiReviewData, SingleReviewData, SpotData } from "@/types/server.types";
+import { MultiReviewData, SingleReviewData, SingleReviewLikes, SpotData } from "@/types/server.types";
 import fetcher from "./axios";
 
 export const getReview = (reviewId: number) => {
@@ -32,4 +32,32 @@ export const getReviewCardArray = (order: string) => {
     queryKey: ["reviewCards", order],
     queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews?order=${order}` }),
   };
+};
+
+export const getReviewLikes = (reviewId: number, accessToken: string) => {
+  return {
+    queryKey: ["review", "likes", reviewId],
+    queryFn: () =>
+      fetcher<SingleReviewLikes>({
+        method: "post",
+        url: `/user/reviews/like/${reviewId}`,
+        headers: { Authorization: accessToken },
+      }),
+  };
+};
+
+export const postReviewLikes = (reviewId: number, accessToken: string) => {
+  fetcher({
+    method: "post",
+    url: `/user/reviews/like/${reviewId}`,
+    headers: { Authorization: accessToken },
+  });
+};
+
+export const deleteReviewlikes = (reviewId: number, accessToken: string) => {
+  fetcher({
+    method: "delete",
+    url: `/user/reviews/like/${reviewId}`,
+    headers: { Authorization: accessToken },
+  });
 };

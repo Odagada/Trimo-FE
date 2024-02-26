@@ -1,28 +1,30 @@
 import { Destination, Stars, Tag } from "./client.types";
 
-export type SingleReviewData = {
+type ReviewData = {
   reviewId: number;
   title: string;
-  content: string;
   tagValues?: Tag;
   nickName: string;
+  visitingTime: string;
+  stars: Stars;
+};
+
+export type SingleReviewData = {
+  content: string;
   spotName: string;
   placeId: string;
   createdAt: string;
   modifiedAt: string;
-  visitingTime: string;
   images?: string[];
-  stars: Stars;
-};
+} & ReviewData;
 
 export type MultiReviewData = {
-  reviewId: number;
-  title: string;
-  tagValues?: Tag;
-  nickName: string;
-  visitingTime: string;
   image: string | null;
-  stars: Stars;
+};
+
+export type SingleReviewLikes = {
+  likeCount: number;
+  isLiked?: boolean;
 };
 
 export type SpotData = {
