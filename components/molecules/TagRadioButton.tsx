@@ -6,9 +6,10 @@ interface TagRadioButtonProps {
   onChange: (arg: string | undefined) => void;
   tag: "placeType" | "weather" | "companion" | "date";
   value: string | undefined;
+  isSmall?: boolean;
 }
 
-export default function TagRadioButton({ onChange, tag = "placeType", value }: TagRadioButtonProps) {
+export default function TagRadioButton({ onChange, tag = "placeType", value, isSmall = false }: TagRadioButtonProps) {
   let items: TagWithMonth[] = [];
 
   switch (tag) {
@@ -40,7 +41,13 @@ export default function TagRadioButton({ onChange, tag = "placeType", value }: T
   return (
     <div
       className={`${
-        tag === "date" ? "grid grid-cols-6 grid-rows-2 gap-12 justify-items-start" : "flex gap-12 flex-wrap"
+        tag === "date"
+          ? `grid ${
+              isSmall
+                ? "grid-cols-4 grid-rows-3 gap-10 justify-items-center"
+                : "grid-cols-6 grid-rows-2 gap-12 justify-items-start"
+            } `
+          : "flex gap-12 flex-wrap"
       }`}
     >
       {items.map((item, index) => (
