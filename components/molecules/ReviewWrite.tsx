@@ -14,14 +14,16 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import { SingleReviewData } from "@/types/server.types";
 
 interface Props {
   spotId: string;
   setSpotError: React.Dispatch<React.SetStateAction<string>>;
+  review?: SingleReviewData | undefined;
 }
 
-export default function ReviewFrom({ spotId, setSpotError }: Props) {
-  const defaultValues: Review = {
+export default function ReviewFrom({ spotId, setSpotError, review }: Props) {
+  let defaultValues: Review = {
     title: "",
     content: "",
     weather: "",
@@ -31,11 +33,22 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
     stars: 0,
     images: [],
   };
+  if (review !== undefined) {
+    defaultValues.title = review.title;
+    defaultValues.content = review.content;
+    defaultValues.weather = review.tagValues?.weather;
+    defaultValues.companion = review.tagValues?.companion;
+    defaultValues.placeType = review.tagValues?.placeType;
+    defaultValues.visitingTime = review.visitingTime;
+    defaultValues.stars = review.stars;
+  }
+
   const {
     control,
     handleSubmit,
     setFocus,
     setError,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -112,7 +125,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
             <ReviewOption.title> 별점</ReviewOption.title>
             <ReviewOption.description>그곳의 만족도는 어느정도 인가요?</ReviewOption.description>
           </ReviewOption.info>
-          <StarRate value={stars.value} onChange={stars.onChange} />
+          <StarRate value={stars.value} onChange={stars.onChange} defaultRate={getValues("stars")} />
         </ReviewOption.section>
         <ReviewOption.section>
           <ReviewOption.info>
