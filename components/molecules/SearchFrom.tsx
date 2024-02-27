@@ -63,41 +63,41 @@ export default function SearchForm({ closeDropdown }: Props) {
           </button>
         </div>
         <SearchOption.section>
-          <SearchOption.title>날짜</SearchOption.title>
           <SearchOption.info>
+            <SearchOption.title>날짜</SearchOption.title>
             <SearchOption.description>방문하신 날짜를 선택해주세요.</SearchOption.description>
-            <TagRadioButton onChange={month.onChange} tag="date" value={month.value} />
           </SearchOption.info>
+          <TagRadioButton onChange={month.onChange} tag="date" value={month.value} />
         </SearchOption.section>
         <SearchOption.section>
-          <SearchOption.title>방문시간</SearchOption.title>
           <SearchOption.info>
+            <SearchOption.title>방문시간</SearchOption.title>
             <SearchOption.description>방문하신 시간을 선택해주세요.</SearchOption.description>
-            <div onClick={(e: MouseEvent) => e.stopPropagation()}>
-              <TimePicker onChange={visitingTime.onChange} value={visitingTime.value} />
-            </div>
           </SearchOption.info>
+          <div onClick={(e: MouseEvent) => e.stopPropagation()} className="flex justify-center items-center">
+            <TimePicker onChange={visitingTime.onChange} value={visitingTime.value} />
+          </div>
         </SearchOption.section>
         <SearchOption.section>
-          <SearchOption.title>유형</SearchOption.title>
           <SearchOption.info>
+            <SearchOption.title>유형</SearchOption.title>
             <SearchOption.description>어떤 타입의 여행지를 다녀오셨나요?</SearchOption.description>
-            <TagRadioButton onChange={placeType.onChange} tag="placeType" value={placeType.value} />
           </SearchOption.info>
+          <TagRadioButton onChange={placeType.onChange} tag="placeType" value={placeType.value} />
         </SearchOption.section>
         <SearchOption.section>
-          <SearchOption.title>동행</SearchOption.title>
           <SearchOption.info>
+            <SearchOption.title>동행</SearchOption.title>
             <SearchOption.description>누구와 함께 여행지를 다녀오셨나요?</SearchOption.description>
-            <TagRadioButton onChange={companion.onChange} tag="companion" value={companion.value} />
           </SearchOption.info>
+          <TagRadioButton onChange={companion.onChange} tag="companion" value={companion.value} />
         </SearchOption.section>
         <SearchOption.section>
-          <SearchOption.title>날씨</SearchOption.title>
           <SearchOption.info>
+            <SearchOption.title>날씨</SearchOption.title>
             <SearchOption.description>그날의 날씨는 어땠나요?</SearchOption.description>
-            <TagRadioButton onChange={weather.onChange} tag="weather" value={weather.value} />
           </SearchOption.info>
+          <TagRadioButton onChange={weather.onChange} tag="weather" value={weather.value} />
         </SearchOption.section>
         <div className="flex justify-end gap-12">
           <button type="button" onClick={() => reset()}>
