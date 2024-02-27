@@ -64,6 +64,7 @@ export type User = {
   gender: "female" | "male";
   age: number;
   imageUrl: string;
+  birthdate: string;
 };
 
 export type Review = {

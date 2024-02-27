@@ -20,11 +20,14 @@ export type SingleReviewData = {
 
 export type MultiReviewData = {
   image: string | null;
+} & ReviewData;
+
+export type ReviewLikeCount = {
+  likeCount: number;
 };
 
-export type SingleReviewLikes = {
-  likeCount: number;
-  isLiked?: boolean;
+export type ReviewIsLiked = {
+  isLiked: boolean;
 };
 
 export type SpotData = {
