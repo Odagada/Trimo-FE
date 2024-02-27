@@ -12,9 +12,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const queryClient = new QueryClient();
     const { provider, code } = context.query;
 
-    const userOAuthData = await axios.get(
-      `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
-    );
+    const userOAuthData = await axios.get(`https://www.trimoserver.com/login/oauth/${provider}?code=${code}`);
 
     return {
       props: { dehydratedState: dehydrate(queryClient), userOAuthData: userOAuthData.data },
@@ -28,10 +26,10 @@ function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerS
   const { calculateStepArray, renderContentOnProgress } = useSignUp(userOAuthData);
 
   return (
-    <div className="h-screen flex w-full flex-col">
+    <div className="flex flex-col w-full h-screen">
       <Nav isOnlyLogo />
       <ShadowBox className="relative">
-        <span className="text-20 font-bold text-center mb-15 mt-35">회원가입</span>
+        <span className="text-20 mb-15 mt-35 font-bold text-center">회원가입</span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
         {renderContentOnProgress()}
       </ShadowBox>
