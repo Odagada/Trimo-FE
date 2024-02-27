@@ -25,7 +25,7 @@ const FilterOptionsButtons = ({ placeId }: { placeId: string[] }) => {
   });
 
   return (
-    <div className="flex mb-20 justify-between">
+    <div className="flex mb-20 maxTablet:mb-10 justify-between">
       <div className="flex">
         {Object.keys(filterOptions).map((optionText, index) => (
           <>
@@ -76,7 +76,7 @@ const FilterOptionsButtons = ({ placeId }: { placeId: string[] }) => {
           </>
         ))}
       </div>
-      <div className="flex gap-16">
+      <div className="flex gap-16 maxTablet:gap-250 maxTablet:absolute maxTablet:bottom-90">
         <button
           onClick={() => {
             setReviewLayoutPageNum((prev) => (prev === 0 ? prev : --prev));
