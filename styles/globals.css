@@ -44,7 +44,7 @@ body {
     @apply text-18 leading-27;
   }
   .p-text {
-    @apply leading-24;
+    @apply text-16 leading-24;
   }
   .middle-text {
     @apply text-14 leading-21;
