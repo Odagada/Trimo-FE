@@ -126,13 +126,17 @@ function MyPage() {
   return (
     <div className="h-screen flex w-full flex-col justify-center -mt-25">
       <Nav />
-      <main className="flex justify-center items-center gap-25">
+      <main className="flex justify-center items-center gap-25 flex-col-reverse desktop:flex-row mt-300 desktop:mt-0 maxTablet:-mt-140">
         <section className="flex flex-col">
           <FilterOptionsButtons placeId={placeId} />
           <ReviewGridLayout />
         </section>
         <section className="mt-63">
-          <GoogleMap locationIDList={placeId} size="w-600 h-660"></GoogleMap>
+          <GoogleMap
+            locationIDList={placeId}
+            // size="mobile:w-320 mobile:h-230 tablet:h-400 tablet:w-560  desktop:w-600 desktop:h-660"
+            size="maxDesktop:w-560 maxDesktop:h-400 maxTablet:w-320 maxTablet:h-230 w-600 h-660"
+          ></GoogleMap>
         </section>
       </main>
     </div>
