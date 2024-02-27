@@ -1,4 +1,4 @@
-import { useIntersectionObserver } from "@uidotdev/usehooks";
+import { useIntersectionObserver, useWindowSize } from "@uidotdev/usehooks";
 import { TagWithMonth } from "@/types/client.types";
 import Clickable from "@/components/atoms/Clickable";
 import Footer from "@/components/atoms/Footer";
@@ -63,6 +63,7 @@ export default function Landing({ isLoggedIn }: InferGetServerSidePropsType<type
 
 const HeroSection = () => {
   const [ref, entry] = useIntersectionObserver();
+  const { width } = useWindowSize();
 
   return (
     <section className="pt-88 pb-122">
@@ -71,8 +72,8 @@ const HeroSection = () => {
       </div>
       <div id="heroSecSearchBar" className="h-65">
         <span ref={ref}></span>
-        <PortalSearchBar switcher={entry?.isIntersecting}>
-          <SearchBar size={entry?.isIntersecting ? "large" : "small"} />
+        <PortalSearchBar switcher={width <= 865 || entry?.isIntersecting}>
+          <SearchBar size={width <= 768 || entry?.isIntersecting ? "large" : "small"} />
         </PortalSearchBar>
       </div>
     </section>
