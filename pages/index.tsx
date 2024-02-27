@@ -66,7 +66,7 @@ const HeroSection = () => {
   const { width } = useWindowSize();
 
   return (
-    <section className="pt-88 pb-122 px-24">
+    <section className="tablet:pt-88 pt-36 tablet:pb-130 pb-56 px-24">
       <div className="relative max-w-914 mx-auto aspect-[914/275]">
         <Image className="object-cover" draggable={false} fill src={hero_sec} alt="" />
       </div>
