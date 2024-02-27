@@ -38,9 +38,15 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
         return (
           <div key={key}>
             <h5 className="mb-12">{termContent.title}</h5>
-            <p className="w-675 h-200 rounded-[10px] border border-zinc-400 p-20 overflow-y-auto" key={key}>
+            <pre
+              className={`w-675 ${
+                key === 0 ? "h-200" : "h-280"
+              } font-small rounded-[10px] border border-zinc-400 p-20 overflow-y-auto`}
+              style={{ fontSize: 12 }}
+              key={key}
+            >
               {termContent.content}
-            </p>
+            </pre>
             <label className="flex gap-12 m-10 mb-50 items-center">
               <input
                 type="checkbox"
@@ -54,7 +60,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
               ) : (
                 <Image src={notChecked} alt="checked" width={20} height={20} className="absolute" />
               )}
-              이용약관에 동의 합니다.
+              확인하였습니다.
             </label>
           </div>
         );
