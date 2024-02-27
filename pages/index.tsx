@@ -88,16 +88,21 @@ const CardSection = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center text-center pt-48 pb-72 gap-8 bg-gray-10" id="cardSection">
-        <p className="text-16 font-medium leading-36">그 여행지, 실제 후기는 어떨까?</p>
-        <p className="text-28 font-bold leading-42">
-          이미 다녀온 유저의 리뷰를 한곳에 모아
+      <section
+        className="flex flex-col items-center text-center pt-52 tablet:pb-26 pb-13 gap-8 bg-gray-10"
+        id="cardSection"
+      >
+        <p className="tablet:text-16 text-12 tablet:leading-24 leading-18 text-gray-50">
+          그 여행지, 실제 후기는 어떨까?
+        </p>
+        <p className="tablet:text-24 tablet:leading-36 mobile:text-16 mobile:leading-24 font-bold">
+          실시간으로 올라오는 유저의 리뷰를 참고해
           <br />
           <span className="text-primary">나만의 여행 계획</span>을 세워보세요.
         </p>
       </section>
 
-      <section className="pb-129 bg-gray-10">
+      <section className="pb-46 bg-gray-10">
         <div className="flex flex-col gap-41">
           {recentReviewCardArray && (
             <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentReviewCardArray} />
@@ -128,15 +133,15 @@ const TagSection = () => {
   ];
 
   const tagClassArray = [
-    "top-0 py-12 animate-marquee whitespace-nowrap",
-    "absolute top-0 py-12 animate-marquee2 whitespace-nowrap",
+    "top-0 tablet:py-12 pt-20 pb-27 animate-marquee whitespace-nowrap",
+    "absolute top-0 tablet:py-12 pt-20 pb-27 animate-marquee2 whitespace-nowrap",
   ];
 
   return (
-    <section className="bg-gray-60 text-center pt-60 pb-78">
-      <div className="flex flex-col gap-8 mb-60">
-        <p className="text-16 font-medium leading-36 text-white">태그 검색</p>
-        <p className="text-28 font-bold leading-42 text-white">
+    <section className="bg-gray-60 text-center tablet:pt-63 tablet:pb-89 pt-20">
+      <div className="flex flex-col gap-8 tablet:mb-60">
+        <p className="tablet:text-16 text-12 tablet:leading-24 leading-18 text-white">태그 검색</p>
+        <p className="tablet:text-24 tablet:leading-36 mobile:text-16 mobile:leading-24 font-bold text-white">
           태그를 통해 다른 유저의 여행 리뷰를
           <br />
           <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
@@ -151,7 +156,7 @@ const TagSection = () => {
               {tagArray.map((tag) => {
                 return (
                   <Clickable
-                    className="ml-17 text-28 py-8 px-25 leading-42"
+                    className="tablet:ml-17 ml-8 tablet:text-28 tablet:py-8 tablet:px-25 tablet:leading-42"
                     key={tag}
                     size="small"
                     shape="capsule"
