@@ -1,201 +1,152 @@
-import { getFilteredMyPlaces, getMyPlaces } from "@/apis/capsulesQuery";
-import Clickable from "@/components/atoms/Clickable";
-import Emoji from "@/components/atoms/Emoji";
-import Footer from "@/components/atoms/Footer";
-import DeleteIcon from "@/components/atoms/icons/DeleteIcon";
+import { getMyPlaces } from "@/apis/capsulesQuery";
 import Nav from "@/components/molecules/NavigationBar";
-import TagRadioButton from "@/components/molecules/TagRadioButton";
+import ReviewCard from "@/components/molecules/ReviewCard";
 import GoogleMap from "@/components/organisms/GoogleMap";
-import useComponentPopup from "@/hooks/useComponentPopup";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
-import { TagCompanion, TagMonth, TagPlaceType, TagWeather } from "@/types/client.types";
-import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
-import { GetServerSidePropsContext } from "next";
-import { useRouter } from "next/router";
-import { Dispatch, MutableRefObject, SetStateAction, useEffect, useReducer, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import FilterOptionsButtons from "@/components/atoms/FilterOptionButtons";
 
 // http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/user/me/reviews?weather=%EB%A7%91%EC%9D%8C&page=1
 // http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/user/me/reviews?weather=%ED%9D%90%EB%A6%BC&month=1&page=1'
 // 'http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/user/me/reviews?page=1'
 
-type filterOptionType = "날짜" | "유형" | "동행" | "날씨";
-type filterOptionEngType = "date" | "placeType" | "companion" | "weather";
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   try {
+//     const queryClient = new QueryClient();
+//     const accessToken = getAccessTokenFromCookie(context);
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  try {
-    const queryClient = new QueryClient();
-    const accessToken = getAccessTokenFromCookie(context);
+//     const isRedirectNeeded = validateRedirectionByLoginStatus({
+//       statusToBlock: "Logout",
+//       accessToken,
+//     });
 
-    const isRedirectNeeded = validateRedirectionByLoginStatus({
-      statusToBlock: "Logout",
-      accessToken,
-    });
+//     if (isRedirectNeeded) {
+//       return {
+//         redirect: {
+//           destination: "/login",
+//           permanent: false,
+//         },
+//       };
+//     } else {
+//       try {
+//         await queryClient.prefetchQuery(getMyPlaces(accessToken!));
+//       } catch {
+//         return { notFound: true };
+//       }
 
-    if (isRedirectNeeded) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-    } else {
-      try {
-        await queryClient.prefetchQuery(getMyPlaces(accessToken!));
-      } catch {
-        return { notFound: true };
-      }
+//       return { props: { dehydratedState: dehydrate(queryClient) } };
+//     }
+//   } catch {
+//     return { notFound: true };
+//   }
+// }
 
-      return { props: { dehydratedState: dehydrate(queryClient) } };
-    }
-  } catch {
-    return { notFound: true };
-  }
-}
+const placeId = ["ChIJ_TooXM3gAGARQR6hXH3QAQ8", "ChIJLREe-daMGGARptcB4hO92JQ"];
+
+const Reviews = [
+  {
+    reviewId: 0,
+    title: "도리포로가자",
+    tagValues: {
+      weather: "맑음",
+    },
+    nickName: "string",
+    visitingTime: "2024-01-01T07:30:00",
+    stars: 5,
+  },
+  {
+    reviewId: 1,
+    title: "dkdkdkdk",
+    tagValues: {
+      weather: "맑음",
+      placeType: "명소",
+    },
+    nickName: "string",
+    visitingTime: "2024-01-01T07:30:00",
+    stars: 5,
+  },
+  {
+    reviewId: 2,
+    title: "ㅇ나라얼ㄴㄹ",
+    tagValues: {
+      companion: "가족",
+    },
+    nickName: "string",
+    visitingTime: "2024-01-01T07:30:00",
+    stars: 5,
+  },
+  {
+    reviewId: 3,
+    title: "아아아아아어어",
+    tagValues: {
+      weather: "맑음",
+      placeType: "명소",
+      companion: "가족",
+    },
+    nickName: "string",
+    visitingTime: "2024-01-01T07:30:00",
+    stars: 5,
+  },
+
+  // {
+  //   reviewId: 0,
+  //   title: "도리포로가자",
+  //   tagValues: {
+  //     weather: "맑음",
+  //     placeType: "명소",
+  //     companion: "가족",
+  //   },
+  //   nickName: "string",
+  //   visitingTime: "2024-01-01T07:30:00",
+  //   stars: 5,
+  // },
+  // {
+  //   reviewId: 1,
+  //   title: "dkdkdkdk",
+  //   tagValues: {
+  //     weather: "맑음",
+  //     placeType: "명소",
+  //   },
+  //   nickName: "string",
+  //   visitingTime: "2024-01-01T07:30:00",
+  //   stars: 5,
+  // },
+];
+
 function MyPage() {
-  const filterOptions = {
-    날짜: "date",
-    유형: "placeType",
-    동행: "companion",
-    날씨: "weather",
-  };
-
-  const [checkedMenu, setCheckedMenu] = useState<string | null>();
-  const [checkedOptions, setCheckedOptions] = useState<{
-    날짜: TagMonth;
-    유형: TagPlaceType;
-    동행: TagCompanion;
-    날씨: TagWeather;
-  }>({ 날짜: "", 유형: "", 동행: "", 날씨: "" });
-
   const { userAccessToken } = useManageUserAccessToken();
   const { data } = useQuery(getMyPlaces(userAccessToken));
 
-  const [queryStr, setQueryStr] = useState<null | string>(null);
+  // console.log(data?.data.placeIds);
 
-  console.log(data?.data.placeIds);
+  // window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => this.setState({ matches: e.matches }))
 
-  const {
-    buttonRef: dateBtnRef,
-    popupRef: datePopupRef,
-    isOpen: dateIsOpen,
-    setIsOpen: dateSetIsOpen,
-  } = useComponentPopup();
-  const {
-    buttonRef: typeBtnRef,
-    popupRef: typePopupRef,
-    isOpen: typeIsOpen,
-    setIsOpen: typeSetIsOpen,
-  } = useComponentPopup();
-  const {
-    buttonRef: crewBtnRef,
-    popupRef: crewPopupRef,
-    isOpen: crewIsOpen,
-    setIsOpen: crewSetIsOpen,
-  } = useComponentPopup();
-  const {
-    buttonRef: weatherBtnRef,
-    popupRef: weatherPopupRef,
-    isOpen: weatherIsOpen,
-    setIsOpen: weatherSetIsOpen,
-  } = useComponentPopup();
-
-  const OptionPopups = [
-    { btnRef: dateBtnRef, popupRef: datePopupRef, isOpen: dateIsOpen, setIsOpen: dateSetIsOpen, popupLeft: 0 },
-    { btnRef: typeBtnRef, popupRef: typePopupRef, isOpen: typeIsOpen, setIsOpen: typeSetIsOpen, popupLeft: 20 },
-    { btnRef: crewBtnRef, popupRef: crewPopupRef, isOpen: crewIsOpen, setIsOpen: crewSetIsOpen, popupLeft: 40 },
-    {
-      btnRef: weatherBtnRef,
-      popupRef: weatherPopupRef,
-      isOpen: weatherIsOpen,
-      setIsOpen: weatherSetIsOpen,
-      popupLeft: 60,
-    },
-  ];
   // /api/user/me/reviews?page=1'
 
-  const { data: queryData } = useQuery(getFilteredMyPlaces(userAccessToken, queryStr));
-
-  useEffect(() => {
-    console.log(
-      `/user/me/reviews?${checkedOptions.날씨 && "weather=" + checkedOptions.날씨 + "&"}${
-        checkedOptions.동행 && "companion=" + checkedOptions.동행 + "&"
-      }${checkedOptions.유형 && "placeType=" + checkedOptions.유형 + "&"}${
-        checkedOptions.날짜 && "month=" + checkedOptions.날짜 + "&"
-      }page=${1}`
-    );
-    const query = `${checkedOptions.날씨 && "weather=" + checkedOptions.날씨 + "&"}${
-      checkedOptions.동행 && "companion=" + checkedOptions.동행 + "&"
-    }${checkedOptions.유형 && "placeType=" + checkedOptions.유형 + "&"}${
-      checkedOptions.날짜 && "month=" + checkedOptions.날짜 + "&"
-    }page=${1}`;
-    if (checkedOptions.날씨 || checkedOptions.날짜 || checkedOptions.동행 || checkedOptions.유형) setQueryStr(query);
-    else {
-      setQueryStr(null);
-    }
-  }, [checkedOptions]);
-
   return (
-    <>
+    <div className="h-screen flex w-full flex-col justify-center -mt-25">
       <Nav />
-      <div className="flex gap-12">
-        {Object.keys(filterOptions).map((optionText, index) => (
-          <>
-            <div className="relative">
-              {OptionPopups[index].isOpen && (
-                <div
-                  className={`${
-                    optionText === "날짜" ? "w-340 h-164 px-30" : "w-118 h-215 px-20"
-                  } shadow-main rounded-[15px] -left-20 top-40 absolute z-10 pt-19 mt-8 ml-4 bg-white`}
-                  ref={OptionPopups[index].popupRef}
-                >
-                  <button
-                    onClick={() => {
-                      OptionPopups[index].setIsOpen(false);
-                      setCheckedMenu(null);
-                    }}
-                    type="button"
-                    className={`absolute top-5 ${optionText === "날짜" ? "right-5" : "right-3"}`}
-                  >
-                    <DeleteIcon size="small" />
-                  </button>
-                  <TagRadioButton
-                    onChange={(e) => {
-                      if (typeof e === "undefined") e = "";
-                      setCheckedOptions((prev) => ({ ...prev, [optionText]: e }));
-                      console.log(checkedOptions);
-                    }}
-                    tag={filterOptions[optionText as filterOptionType] as filterOptionEngType}
-                    value={checkedOptions[optionText as filterOptionType]}
-                    isSmall
-                  ></TagRadioButton>
-                </div>
-              )}
-            </div>
-            <button
-              ref={OptionPopups[index].btnRef}
-              type="button"
-              onClick={() => {
-                setCheckedMenu(optionText);
-                OptionPopups[index].setIsOpen((prev) => !prev);
-              }}
-              key={index}
-            >
-              <Clickable color={checkedMenu === optionText ? "black" : "white-"} size="small" shape="capsule">
-                <Emoji>{optionText}</Emoji>
-              </Clickable>
-            </button>
-          </>
-        ))}
-      </div>
-      <GoogleMap locationIDList={data?.data.placeIds!}></GoogleMap>
-
-      <div>
-        <Footer />
-      </div>
-    </>
+      <main className="flex justify-center items-center gap-25">
+        <section className="flex flex-col">
+          <FilterOptionsButtons placeId={placeId} />
+          <ReviewGridLayout />
+        </section>
+        <section className="mt-63">
+          <GoogleMap locationIDList={placeId} size="w-600 h-660"></GoogleMap>
+        </section>
+      </main>
+    </div>
   );
 }
 
 export default MyPage;
+
+export const ReviewGridLayout = () => {
+  return (
+    <div className="grid  maxDesktop:grid-cols-2 grid-cols-3 grid-rows-2 w-fit gap-10 ">
+      {Reviews.map((review, index) => (
+        <ReviewCard review={review} key={index}></ReviewCard>
+      ))}
+    </div>
+  );
+};
