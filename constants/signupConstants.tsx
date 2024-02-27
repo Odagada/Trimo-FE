@@ -1,21 +1,15 @@
 export const TERMS = [
   {
     termNo: 0,
-    title: "개인정보처리방침",
+    title: "Welcome to TRIMO!",
     content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+      "환영합니다! 👏\n\n'TRIMO' 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다.\n\n본 약관은 다양한 TRIMO 서비스의 이용과 관련하여 TRIMO 서비스를 제공하는 ODAGADA(오다가다) 팀과\n이를 이용하는 TRIMO 서비스 회원(이하 ‘회원’)의 개인정보 처리 방침에 대한 내용이 들어있습니다.\n\n'TRIMO'는 회원님이 제공한 콘텐츠와 회원님의 정보를 소중히 다룰 것 입니다.",
   },
   {
     termNo: 1,
-    title: "서비스 이용약관",
+    title: "개인정보 처리 방침",
     content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
-  },
-  {
-    termNo: 2,
-    title: "고유식별 정보처리",
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+      "1. 개인정보의 처리 목적\n<TRIMO>(‘www.trimo.kt’이하 ‘트리모’)는 다음의 목적을 위하여 개인정보를 처리하고 있으며,\n다음의 목적 이외의 용도로는 이용하지 않습니다.\n– 서비스 제공에 따른 본인 식별. 인증, 회원자격 유지. 관리, 여행 리뷰의 작성자 정보(닉네임) 제공\n\n2. 개인정보의 처리 및 보유 기간\n① ‘TRIMO’는 법령에 따른 개인정보 보유․이용기간 내에서 개인정보를 처리․보유합니다.\n② 구체적인 개인정보 처리 및 보유 기간은 다음과 같습니다.\n– 고객 가입 및 관리 : 소셜 로그인(카카오, 구글, 'TRIMO')를 통한 회원가입 및 소셜 데이터를 통한 유저 관리\n– 보유 기간 : 사이트 탈퇴 시, 즉시 삭제\n\n3. 정보주체와 법정대리인의 권리·의무 및 그 행사방법 이용자는 개인정보주체로써 다음과 같은 권리를 행사할 수 있습니다.\n① 정보주체는 ‘TRIMO’ 에 대해 언제든지 다음 각 호의 개인정보 보호 관련 권리를 행사할 수 있습니다.\n1. 개인정보 열람요구\n2. 오류 등이 있을 경우 정정 요구\n3. 삭제요구\n4. 처리정지 요구\n\n4. 처리하는 개인정보의 항목 작성\n① ‘TRIMO’는 다음의 개인정보 항목을 처리하고 있습니다.\n\n<‘TRIMO’에서 수집하는 개인정보 항목>\n‘TRIMO’ 회원 가입 시, 제공 동의를 해주시는 개인정보 수집 항목입니다.\n\n■ 회원 가입 시\n– 필수항목 : 소셜 로그인: 프로필 사진 / 추가 정보 입력 페이지: 닉네임, 생년월일, 성별\n– 수집목적 : TRIMO 회원관리\n– 보유기간 : 회원 탈퇴 또는 동의철회 시 지체없이 파기\n\n5. 개인정보의 파기\n‘TRIMO’는 원칙적으로 개인정보 처리목적이 달성된 경우에는 지체없이 해당 개인정보를 파기합니다.\n파기의 절차, 기한 및 방법은 다음과 같습니다.\n\n- 이용자가 입력한 정보는 목적 달성 후 별도의 TRIMO 내부 DB에 옮겨져 내부 방침 및 기타 관련 법령에 따라\n일정기간 저장된 후 혹은 즉시 파기됩니다. 이 때, DB로 옮겨진 개인정보는 법률에 의한 경우가 아니고서는\n다른 목적으로 이용되지 않습니다.\n\n6. 개인정보 자동 수집 장치의 설치•운영 및 거부에 관한 사항\n① ‘TRIMO’는 서비스를 제공하기 위해 이용정보를 저장하고 수시로 불러오는 ‘쿠키(cookie)’를 사용합니다.\n② 쿠키는 웹사이트를 운영하는데 이용되는 서버(https)가 이용자의 컴퓨터 브라우저에게 보내는 소량의 정보이며\n이용자들의 PC 컴퓨터내의 하드디스크에 저장되기도 합니다.\n* 가. 쿠키의 사용 목적 : 유저 검증, 식별 및 해당 유저의 로그인 상태 검증\n* 나. 쿠키의 설치•운영 및 거부 : 웹브라우저 상단의 도구>인터넷 옵션>개인정보 메뉴의 옵션 설정을 통해\n쿠키 저장을 거부 할 수 있습니다.\n* 다. 쿠키 저장을 거부할 경우 TRIMO의 서비스 이용에 어려움이 발생할 수 있습니다.\n\n7. 개인정보 보호책임자 작성\n① ‘TRIMO’의 서비스(또는 사업)을 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만처리,\n피해구제 등에 관한 사항은 kyean07@naver.com으로 문의 부탁드립니다.\n‘TRIMO’는 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다.",
   },
 ];
 
@@ -25,7 +19,7 @@ export const SIGNUP_SUCCESS_MESSAGE = "님의 회원가입을 환영합니다.";
 
 export const INPUT_VALIDATION_MESSAGE = {
   TERM_NOT_ALL_CHECKED: "모든 약관에 동의하셔야 회원가입이 가능합니다.",
-  TERM_ALL_CHECKED: "모든 약관에 동의하셨습니다.",
+  TERM_ALL_CHECKED: "약관에 동의하셨습니다.",
   NO_NICKNAME: "닉네임을 입력 해 주세요.",
   NICKNAME_VALIDATED: "은(는) 사용 가능한 닉네임입니다!",
   NICKNAME_NOT_VALIDATED: "은(는) 이미 가입되어 있는 닉네임입니다!",
