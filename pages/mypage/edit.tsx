@@ -17,12 +17,11 @@ import UpdateUserInfoForm from "./component/UpdateUserInfoForm";
 
 function EditUserInfo() {
   return (
-    <div className="h-screen flex w-full flex-col ">
+    <div className="h-screen flex w-full flex-col -mt-25 ">
       <Nav />
       <ShadowBox>
         <UpdateUserInfoForm />
       </ShadowBox>
-      <Footer />
     </div>
   );
 }
