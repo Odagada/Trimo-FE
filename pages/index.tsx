@@ -104,7 +104,7 @@ const CardSection = () => {
       </section>
 
       <section className="pb-46 bg-gray-10">
-        <div className="flex flex-col gap-41">
+        <div className="flex flex-col tablet:gap-40 gap-24">
           {recentReviewCardArray && (
             <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentReviewCardArray} />
           )}

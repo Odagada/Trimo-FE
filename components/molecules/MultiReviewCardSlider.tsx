@@ -37,11 +37,11 @@ const MultiReviewCardSlider = ({
           align === "left" ? "flex-row" : "flex-row-reverse"
         } w-full flex tablet:gap-20 gap-9 overflow-x-auto overscroll-contain scrollbar-hide pb-10`}
       >
-        <div className="tablet:w-240 w-55"></div>
+        <div className="tablet:min-w-240 min-w-55"></div>
         {reviewCards.map((review, i) => {
           return <ReviewCard key={i} review={review} />;
         })}
-        <div className="tablet:w-240 w-55"></div>
+        <div className="tablet:min-w-240 min-w-55"></div>
       </div>
     </div>
   );
