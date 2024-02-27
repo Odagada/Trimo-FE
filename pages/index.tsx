@@ -66,14 +66,14 @@ const HeroSection = () => {
   const { width } = useWindowSize();
 
   return (
-    <section className="pt-88 pb-122">
-      <div className="relative w-914 h-275 mx-auto">
+    <section className="pt-88 pb-122 px-24">
+      <div className="relative max-w-914 mx-auto aspect-[914/275]">
         <Image className="object-cover" draggable={false} fill src={hero_sec} alt="" />
       </div>
-      <div id="heroSecSearchBar" className="h-65">
+      <div id="heroSecSearchBar" className="tablet:mt-55 mt-23">
         <span ref={ref}></span>
-        <PortalSearchBar switcher={width <= 865 || entry?.isIntersecting}>
-          <SearchBar size={width <= 768 || entry?.isIntersecting ? "large" : "small"} />
+        <PortalSearchBar switcher={width! <= 865 || entry?.isIntersecting}>
+          <SearchBar size={width! <= 768 || entry?.isIntersecting ? "large" : "small"} />
         </PortalSearchBar>
       </div>
     </section>
