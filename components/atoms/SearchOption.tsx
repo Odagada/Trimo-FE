@@ -9,14 +9,14 @@ function OptionDescription({ children }: { children: ReactNode }) {
 }
 
 function OptionInfo({ children }: { children: ReactNode }) {
-  return <div className="flex gap-12">{children}</div>;
+  return <div className="flex flex-col gap-12">{children}</div>;
 }
 function OptionError({ children }: { children: ReactNode }) {
   return <div className="text-error middle-text font-bold">{children}</div>;
 }
 
 function OptionSection({ children }: { children: ReactNode }) {
-  return <div className="">{children}</div>;
+  return <div className="flex gap-12 item-center">{children}</div>;
 }
 
 function OptionMain({ children }: { children: ReactNode }) {

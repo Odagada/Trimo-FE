@@ -151,7 +151,7 @@ const TagSection = () => {
                     key={tag}
                     size="small"
                     shape="capsule"
-                    color="white"
+                    color="white-"
                   >
                     <Emoji>{tag}</Emoji>
                   </Clickable>
