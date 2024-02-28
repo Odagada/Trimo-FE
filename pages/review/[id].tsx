@@ -106,10 +106,10 @@ const MainReviewSection = () => {
 
   const uploadPostMutation = useMutation({
     mutationFn: () =>
-      fetch(`https://trimoserver.com/api/user/reviews/${reviewId}`, {
+      fetcher({
         method: "DELETE",
-        headers: { Authorization: `bearer ${accessToken}` },
-        credentials: "include",
+        headers: { Authorization: `Bearer ${accessToken}` },
+        url: `/user/reviews/${reviewId}`,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["review"] });
@@ -117,14 +117,6 @@ const MainReviewSection = () => {
       router.push("/");
     },
   });
-
-  const handleReivewDelete = async () => {
-    await fetch(`https://trimoserver.com/api/user/reviews/${reviewId}`, {
-      method: "DELETE",
-      headers: { Authorization: `bearer ${accessToken}` },
-      credentials: "include",
-    });
-  };
 
   return (
     <>
@@ -169,7 +161,7 @@ const MainReviewSection = () => {
                 description="이 게시글을 삭제하시겠습니까?"
                 buttonText={["확인", "취소"]}
                 onClose={handleModalToggle}
-                onClick={handleReivewDelete}
+                onClick={uploadPostMutation.mutate}
               ></Modal>
             </>
           )}
