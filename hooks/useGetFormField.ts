@@ -6,7 +6,7 @@ export default function useGetForm(control: Control<Review>) {
   const { field: title } = useController({
     name: "title",
     control: control,
-    rules: { required: "제목을 입력해 주세요." },
+    rules: { required: "제목을 입력해 주세요.", maxLength: { value: 25, message: "25자 이하로 입력해 주세요" } },
   });
 
   const { field: content } = useController({

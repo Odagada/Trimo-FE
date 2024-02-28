@@ -2,7 +2,7 @@ import Clickable from "../atoms/Clickable";
 import DatePicker from "../atoms/DatePicker";
 import ImagesInput from "../atoms/Inputs/ImagesInput";
 import { ReviewOption } from "../atoms/ReviewOption";
-import useGetForm from "@/hooks/useGetFormField.tsx";
+import useGetForm from "@/hooks/useGetFormField";
 
 import TagRadioButton from "./TagRadioButton";
 import StarRate from "./StarRate";

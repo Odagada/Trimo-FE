@@ -1,13 +1,13 @@
 import Clickable from "../atoms/Clickable";
 import DatePicker from "../atoms/DatePicker";
-import ImagesInput from "../atoms/Inputs/ImagesInput";
 import { ReviewOption } from "../atoms/ReviewOption";
-import useGetForm from "@/hooks/useGetFormField.tsx";
+import useEditForm from "@/hooks/useGetEditField";
+import ImagesEditInput from "../atoms/Inputs/ImagesEditInput";
 
 import TagRadioButton from "./TagRadioButton";
 import StarRate from "./StarRate";
 
-import { Review, TagCompanion, TagPlaceType, TagWeather } from "@/types/client.types";
+import { EditReview, ImageType, Review, TagCompanion, TagPlaceType, TagWeather } from "@/types/client.types";
 import { postReviews } from "@/apis/reviewPost";
 
 import { useMutation } from "@tanstack/react-query";
@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
-  let defaultValues: Review = {
+  let defaultValues: EditReview = {
     title: "",
     content: "",
     weather: "",
@@ -33,6 +33,7 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
     visitingTime: "",
     stars: 0,
     images: [],
+    newImages: [],
   };
 
   const {
@@ -55,13 +56,19 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
       setValue("placeType", review.tagValues?.placeType as TagPlaceType);
       setValue("visitingTime", review.visitingTime);
       setValue("stars", review.stars);
+      let obj: ImageType[] = [];
+      review.images?.forEach((value, index) => {
+        obj[index] = { name: index.toString(), url: value };
+      });
+      setValue("images", obj);
     }
   }, [review]);
 
   const router = useRouter();
   const { userAccessToken: apiKey } = useManageUserAccessToken();
 
-  const { title, content, placeType, companion, weather, visitingTime, stars, images } = useGetForm(control);
+  const { title, content, placeType, companion, weather, visitingTime, stars, images, newImages } =
+    useEditForm(control);
 
   //   const { mutate: postReviewsMutate } = useMutation({
   //     mutationFn: postReviews,
@@ -73,7 +80,7 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
   //     },
   //   });
 
-  function postForm(postData: Review) {
+  function postForm(postData: EditReview) {
     //   if (spotId === "") {
     //     setSpotError("장소를 입력해주세요");
     //     setFocus("title");
@@ -113,7 +120,13 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
         {errors.content && <p className="middle-text mt-10 font-bold text-error">{errors.content.message}</p>}
       </div>
       <div>
-        <ImagesInput append={images.append} remove={images.remove} />
+        <ImagesEditInput
+          fileAppend={newImages.append}
+          fileRemove={newImages.remove}
+          showValue={images.fields}
+          showAppend={images.append}
+          showRemove={images.remove}
+        />
         {errors.images && <p className="middle-text mt-10 font-bold text-error">이미지는 10개 이하로 가능합니다.</p>}
       </div>
 
