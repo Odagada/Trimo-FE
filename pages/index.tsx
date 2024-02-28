@@ -198,12 +198,19 @@ const ServiceExplainSection = () => {
     <section className="flex flex-col gap-140 bg-gray-10 pb-176 pt-148">
       <div className="flex flex-col gap-24 tablet:gap:0 tablet:flex-row tablet:items-center">
         <div className="relative h-292 laptop:h-584 w-full tablet:w-1/2 overflow-hidden">
-          <Image className="absolute right-0 min-w-411 laptop:min-w-822" src={desktopScreenShot1} alt="" width={width! <= 768 ? 822 : 411} />
+          <Image
+            className="absolute mr-34 tablet:mr-16 right-0 max-w-411 laptop:min-w-822"
+            src={desktopScreenShot1}
+            alt=""
+            width={width! >= 768 ? 822 : 411}
+          />
         </div>
 
         <div className="ml-48 tablet:ml-80 flex h-fit w-[calc(100%-48px)] tablet:w-1/2 flex-col gap-12 tablet:gap-16 laptop:gap-24 rounded-l-full bg-white pl-76 py-44 tablet:py-48 tablet:pl-64 laptop:pb-109 laptop:pl-152 laptop:pt-128 shadow-main">
           <div>
-            <p className="text-12 leading-18 tablet:text-14 tablet:leading-21 laptop:text-16 font-medium laptop:leading-24">마이 페이지</p>
+            <p className="text-12 leading-18 tablet:text-14 tablet:leading-21 laptop:text-16 font-medium laptop:leading-24">
+              마이 페이지
+            </p>
             <p className="text-16 leading-24 tablet:text-18 tablet:leading-27 laptop:text-24 font-bold laptop:leading-36">
               지금까지 여행의 기록들을
               <br />
@@ -222,7 +229,9 @@ const ServiceExplainSection = () => {
       <div className="flex flex-col-reverse  gap-24 tablet:gap:0  tablet:flex-row tablet:items-center">
         <div className="mr-48 tablet:mr-80 flex h-fit w-[calc(100%-48px)] tablet:w-1/2 flex-col items-end gap-12 tablet:gap-16 laptop:gap-24 rounded-r-full bg-white pr-76 py-44 tablet:py-48 tablet:pr-64 laptop:pb-109 laptop:pr-152 laptop:pt-128 text-right shadow-main">
           <div>
-            <p className="text-12 leading-18 tablet:text-14 tablet:leading-21 laptop:text-16 font-medium laptop:leading-24">리뷰</p>
+            <p className="text-12 leading-18 tablet:text-14 tablet:leading-21 laptop:text-16 font-medium laptop:leading-24">
+              리뷰
+            </p>
             <p className="text-16 leading-24 tablet:text-18 tablet:leading-27 laptop:text-24 font-bold laptop:leading-36">
               다른 유저의 <span className="text-primary">리뷰</span>를 저장하고
               <br />
@@ -238,7 +247,12 @@ const ServiceExplainSection = () => {
         </div>
 
         <div className="relative h-292 laptop:h-584  w-full tablet:w-1/2 overflow-hidden">
-          <Image className="absolute left-0 min-w-411 laptop:min-w-822" src={desktopScreenShot2} alt="" width={width! <= 768 ? 822 : 411} />
+          <Image
+            className="absolute ml-34 tablet:ml-16 left-0 max-w-411 laptop:min-w-822"
+            src={desktopScreenShot2}
+            alt=""
+            width={width! >= 768 ? 822 : 411}
+          />
         </div>
       </div>
     </section>
