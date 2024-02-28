@@ -6,6 +6,7 @@ import DeleteIcon from "./icons/DeleteIcon";
 import Image from "next/image";
 import { useState } from "react";
 import arrow from "@/public/icons/carouselArrow.svg";
+import { useMediaQuery } from "react-responsive";
 
 type filterOptionType = "날짜" | "유형" | "동행" | "날씨";
 type filterOptionEngType = "date" | "placeType" | "companion" | "weather";
@@ -17,15 +18,20 @@ const filterOptions = {
   날씨: "weather",
 };
 
-const FilterOptionsButtons = ({ placeId }: { placeId: string[] }) => {
-  const [reviewLayoutPageNum, setReviewLayoutPageNum] = useState<number>(0);
+const FilterOptionsButtons = ({ placeId, setQuery }: { placeId: string[]; setQuery: (query: string) => void }) => {
+  const [reviewLayoutPageNum, setReviewLayoutPageNum] = useState<number>(1);
 
   const { OptionPopups, checkedMenu, setCheckedMenu, checkedOptions, setCheckedOptions } = useSearchFilterOptions({
     pageNum: reviewLayoutPageNum,
+    setQuery,
+  });
+
+  const isBelowDesktop = useMediaQuery({
+    query: "(max-width: 1440px)",
   });
 
   return (
-    <div className="flex mb-20 maxTablet:mb-10 justify-between">
+    <div className="mb-20 flex justify-between maxTablet:mb-10">
       <div className="flex">
         {Object.keys(filterOptions).map((optionText, index) => (
           <>
@@ -33,8 +39,8 @@ const FilterOptionsButtons = ({ placeId }: { placeId: string[] }) => {
               {OptionPopups[index].isOpen && (
                 <div
                   className={`${
-                    optionText === "날짜" ? "w-330 h-164 px-25 pt-15" : "w-110 h-215 px-16 pt-17"
-                  } shadow-main rounded-[15px] -left-18 top-40 absolute z-10 mt-8 ml-4 bg-white`}
+                    optionText === "날짜" ? "h-164 w-330 px-25 pt-15" : "h-215 w-110 px-16 pt-17"
+                  } absolute -left-18 top-40 z-10 ml-4 mt-8 rounded-[15px] bg-white shadow-main`}
                   ref={OptionPopups[index].popupRef}
                 >
                   <button
@@ -51,7 +57,6 @@ const FilterOptionsButtons = ({ placeId }: { placeId: string[] }) => {
                     onChange={(e) => {
                       if (typeof e === "undefined") e = "";
                       setCheckedOptions((prev) => ({ ...prev, [optionText]: e }));
-                      console.log(checkedOptions);
                     }}
                     tag={filterOptions[optionText as filterOptionType] as filterOptionEngType}
                     value={checkedOptions[optionText as filterOptionType]}
@@ -76,22 +81,26 @@ const FilterOptionsButtons = ({ placeId }: { placeId: string[] }) => {
           </>
         ))}
       </div>
-      <div className="flex gap-16 maxTablet:gap-250 maxTablet:absolute maxTablet:bottom-90">
+      <div className="flex gap-16 maxTablet:absolute maxTablet:bottom-135 maxTablet:gap-250">
         <button
           onClick={() => {
-            setReviewLayoutPageNum((prev) => (prev === 0 ? prev : --prev));
-            console.log(reviewLayoutPageNum);
+            setReviewLayoutPageNum((prev) => (prev === 1 ? prev : --prev));
           }}
         >
-          <Image src={arrow} width={34} height={34} alt="arrow" className="shadow-main rounded-full"></Image>
+          <Image src={arrow} width={34} height={34} alt="arrow" className="rounded-full shadow-main"></Image>
         </button>
         <button
           onClick={() => {
-            setReviewLayoutPageNum((prev) => (prev + 1 < placeId.length / 6 ? ++prev : prev));
-            console.log(reviewLayoutPageNum);
+            setReviewLayoutPageNum((prev) => (prev < placeId.length / (isBelowDesktop ? 4 : 6) ? ++prev : prev));
           }}
         >
-          <Image src={arrow} width={34} height={34} alt="arrow" className="shadow-main rounded-full rotate-180"></Image>
+          <Image
+            src={arrow}
+            width={34}
+            height={34}
+            alt="arrow"
+            className="rotate-180 rounded-full shadow-[0_-5px_15px_rgb(0,0,0,0.1)]"
+          ></Image>
         </button>
       </div>
     </div>
