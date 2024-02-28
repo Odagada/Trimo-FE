@@ -82,3 +82,8 @@ export type GetUserUpdateType = {
 export type GetMyPlacesType = {
   placeIds: string[];
 };
+
+export type reviewList = {
+  reviewList: MultiReviewData[];
+  totalCount: number;
+};

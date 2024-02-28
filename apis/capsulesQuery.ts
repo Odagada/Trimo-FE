@@ -1,4 +1,11 @@
-import { MultiReviewData, GetMyPlacesType, ReviewLikeCount, SingleReviewData, SpotData } from "@/types/server.types";
+import {
+  MultiReviewData,
+  ReviewLikeCount,
+  SingleReviewData,
+  SpotData,
+  reviewList,
+  GetMyPlacesType,
+} from "@/types/server.types";
 import fetcher from "./axios";
 import { User } from "@/types/client.types";
 
@@ -59,7 +66,7 @@ export const getSearchReview = (query: string) => {
   return {
     queryKey: ["reviewList", query],
     queryFn: () =>
-      fetcher<MultiReviewData[]>({
+      fetcher<reviewList>({
         method: "get",
         url: `main/reviews/specifics?${query}&page=1`,
       }),

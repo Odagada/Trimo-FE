@@ -2,13 +2,13 @@ import { getReviewCardArray } from "@/apis/capsulesQuery";
 import ReviewList from "@/components/molecules/ReviewList";
 import { useQuery } from "@tanstack/react-query";
 
-export default function NoResult() {
+export default function NoResult({ keyword }: { keyword: string | undefined }) {
   const { data: reviewData } = useQuery(getReviewCardArray("POPULAR"));
   const reviewList = reviewData?.data;
   return (
     <div>
       <div className="tablet:p-text mb-109 mt-36 text-center text-gray-40">
-        <div>(키워드) 에 대한 검색결과가 없습니다.</div>
+        <div>{`"${keyword}"`} 에 대한 검색결과가 없습니다.</div>
         <div>다른 키워드로 다시 검색해보세요.</div>
       </div>
       <div className="bg-gray-10 px-20 pb-28 pt-24 tablet:px-120">
