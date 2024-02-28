@@ -11,7 +11,9 @@ function NotFoundPage() {
         <h2 className="text-60 font-bold leading-30 tablet:leading-70 tablet:text-100 ">404</h2>
         <p className="tablet:text-36 font-bold leading-54 text-gray-30 mb-64">Not Found</p>
 
-        <h3 className=" text-18 tablet:text-28 font-bold leading-27 tablet:leading-42 mb-4 tablet:mb-8">죄송합니다. 페이지를 찾을 수 없습니다.</h3>
+        <h3 className=" text-18 tablet:text-28 font-bold leading-27 tablet:leading-42 mb-4 tablet:mb-8">
+          죄송합니다. 페이지를 찾을 수 없습니다.
+        </h3>
         <p className="text-12 leading-18 mb-40 tablet:text-16 tablet:leading-24 tablet:mb-28 text-gray-50">
           페이지의 주소가 잘못 입력 되었거나,
           <br />
