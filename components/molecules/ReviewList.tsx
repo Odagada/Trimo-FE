@@ -8,8 +8,7 @@ interface Props {
 
 export default function ReviewList({ data }: Props) {
   return (
-    // eslint-disable-next-line tailwindcss/classnames-order
-    <div className="desktop:grid-cols-4 mt-13 grid grid-cols-2 gap-x-24 gap-y-44 laptop:grid-cols-3">
+    <div className="mt-13 grid grid-cols-2 gap-x-24 gap-y-44 laptop:grid-cols-3 desktop:grid-cols-4">
       {data?.map((el, idx) => (
         <ReviewCard key={idx} review={el} />
       ))}
