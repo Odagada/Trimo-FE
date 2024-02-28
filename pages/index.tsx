@@ -247,33 +247,33 @@ const ServiceExplainSection = () => {
 const DeviceSection = () => {
   return (
     <section className="bg-gray-10 pb-52">
-      <div className="mx-auto flex flex-col gap-12 tablet:w-690 laptop:w-1038">
+      <div className="mx-auto flex flex-col gap-12 w-320 tablet:w-720 laptop:w-1038">
         <h3 className="leading-16 inline w-fit rounded-100 bg-white px-8 py-3 text-11 font-bold shadow-main tablet:px-15 tablet:py-8 tablet:text-18 tablet:leading-27">
           디바이스 지원
         </h3>
 
-        <div className="flex gap-8 tablet:gap-16 laptop:gap-24">
-          <div className=" h-194 w-159 overflow-hidden rounded-10 bg-gray-60 p-24 tablet:h-286 tablet:w-220 laptop:h-430 laptop:w-330 laptop:rounded-30">
-            <p className="text-right text-12 leading-18 text-gray-30">Mobile</p>
-            <Image className="mx-auto mt-33" src={mobile} alt="" width={237} />
+        <div className="flex flex-wrap gap-8 tablet:gap-21 laptop:gap-24">
+          <div className="h-194 w-156 order-2 tablet:order-1 overflow-hidden rounded-10 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 laptop:h-430 laptop:w-330 laptop:rounded-30 ">
+            <p className="text-right text-12 p-13 leading-18 text-gray-30 tablet:p-16 laptop:p-24">Mobile</p>
+            <Image className="mx-auto laptop:mt-33 tablet:mt-16 w-114 laptop:w-237 tablet:w-160" src={mobile} alt="" width={237} />
           </div>
 
-          <div className=" flex h-194 w-159 flex-col justify-between overflow-hidden rounded-10 bg-gray-60 p-8 tablet:h-286 tablet:w-220 tablet:p-16 laptop:h-430 laptop:w-330 laptop:rounded-30 laptop:p-24">
-            <p className="text-right text-24 font-bold leading-36 text-white">
+          <div className="flex flex-row-reverse tablet:flex-col order-1 tablet:order-2 justify-between h-148 w-320 overflow-hidden rounded-10 p-13 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 tablet:p-16 laptop:h-430 laptop:w-330 laptop:rounded-30 laptop:p-24">
+            <p className="text-right font-bold text-white text-18 leading-27 laptop:text-24 laptop:leading-36">
               언제 어디서나
               <br />
               <span className="text-primary">간편하게</span>
               <br />
               작성할 수 있어요
             </p>
-            <div className="flex h-120 w-120 items-center justify-center rounded-100 bg-primary">
-              <Image src={quill} alt="" width={47} height={45} />
+            <div className="flex items-center justify-center rounded-100 bg-primary w-56 h-56 tablet:w-84 tablet:h-84 laptop:h-120 laptop:w-120 ">
+              <Image className="w-21 tablet:w-32 laptop:w-47" src={quill} alt="" width={47} height={45} />
             </div>
           </div>
 
-          <div className="h-194 w-159 overflow-hidden rounded-10 bg-gray-60 p-24 tablet:h-286 tablet:w-220 laptop:h-430 laptop:w-330 laptop:rounded-30">
-            <p className="text-right text-12 leading-18 text-gray-30">Desktop</p>
-            <Image className="ml-61 mt-85" src={desktop} alt="" width={270} />
+          <div className="h-194 w-156 order-3 overflow-hidden rounded-10 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 laptop:h-430 laptop:w-330 laptop:rounded-30 ">
+            <p className="text-right text-12 p-13 leading-18 text-gray-30 tablet:p-16 laptop:p-24">Desktop</p>
+            <Image className="ml-29 mt-32 w-114 tablet:ml-41 tablet:mt-55 tablet:w-184 laptop:mt-84 laptop:ml-61 laptop:w-270" src={desktop} alt="" width={270} />
           </div>
         </div>
       </div>
@@ -283,15 +283,15 @@ const DeviceSection = () => {
 
 const RightNowSection = () => {
   return (
-    <section className="flex flex-col items-center gap-18 bg-gray-60 py-52 tablet:gap-24 tablet:py-92">
-      <p className="text-center text-18 font-bold leading-27 text-white tablet:text-28 tablet:leading-42">
+    <section className="flex flex-col items-center gap-12 bg-gray-60 py-52 laptop:gap-24 laptop:py-92">
+      <p className="text-center text-18 font-bold leading-27 text-white tablet:text-21 tablet:leading-30 laptop:text-28 laptop:leading-42">
         쉽고 간편한 여행 리뷰,
         <br />
         지금 바로 작성해보세요!
       </p>
 
       <Link href="/review">
-        <Clickable className="w-max px-12 py-5 tablet:px-20 tablet:py-12" color="primary" shape="square" size="medium">
+        <Clickable className="w-max text-12 leading-21 px-12 py-5 tablet:py-8 laptop:px-20 laptop:py-12" color="primary" shape="square" size="medium">
           리뷰 작성하기
         </Clickable>
       </Link>
