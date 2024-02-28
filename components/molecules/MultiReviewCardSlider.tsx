@@ -1,6 +1,7 @@
 import { MultiReviewData } from "@/types/server.types";
 import ReviewCard from "./ReviewCard";
 import { WheelEvent, useRef } from "react";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 const MultiReviewCardSlider = ({
   title,
@@ -11,16 +12,6 @@ const MultiReviewCardSlider = ({
   reviewCards: MultiReviewData[];
   align: "left" | "right";
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleWheelScroll = (event: WheelEvent<HTMLDivElement>) => {
-    const container = containerRef.current;
-    if (container) {
-      event.preventDefault();
-      container.scrollLeft += event.deltaY;
-    }
-  };
-
   return (
     <div className={`flex flex-col gap-12 ${align === "left" ? "items-start" : "items-end"}`}>
       <h3
@@ -30,18 +21,23 @@ const MultiReviewCardSlider = ({
       >
         {title}
       </h3>
+
       <div
-        ref={containerRef}
-        onWheel={handleWheelScroll}
         className={`${
           align === "left" ? "flex-row" : "flex-row-reverse"
-        } flex w-full gap-9 overflow-x-auto overscroll-contain pb-10 scrollbar-hide laptop:gap-24 tablet:gap-16`}
+        } flex w-full gap-9 pb-10 scrollbar-hide laptop:gap-24 tablet:gap-16`}
       >
-        <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
-        {reviewCards.map((review, i) => {
-          return <ReviewCard key={i} review={review} />;
-        })}
-        <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
+        <ScrollContainer
+          className={`${
+            align === "left" ? "flex-row" : "flex-row-reverse"
+          } scroll-container flex w-full gap-9 pb-10 scrollbar-hide laptop:gap-24 tablet:gap-16`}
+        >
+          <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
+          {reviewCards.map((review, i) => {
+            return <ReviewCard key={i} review={review} />;
+          })}
+          <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
+        </ScrollContainer>
       </div>
     </div>
   );
