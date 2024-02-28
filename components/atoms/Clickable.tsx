@@ -25,7 +25,7 @@ const Clickable = ({
         ${ClickableSize}
         ${className} 
         
-        text-16 font-sans inline-block text-center`}
+        inline-block text-center font-sans text-16`}
     >
       {children}
     </span>

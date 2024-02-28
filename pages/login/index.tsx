@@ -38,7 +38,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 function Login() {
   return (
-    <div className="h-screen flex w-full flex-col">
+    <div className="flex h-screen w-full flex-col">
       <Nav className="-mb-10" isOnlyLogo />
       <ShadowBox className="maxTablet:w-5/6 maxTablet:px-25 maxTablet:pb-35">
         <Image src={LogoGroup} width={550} height={165} alt="logo"></Image>

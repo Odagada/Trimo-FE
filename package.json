@@ -10,7 +10,8 @@
     "build-storybook": "storybook build",
     "postinstall": "husky install",
     "format": "prettier --cache --write .",
-    "lint": "eslint --cache ."
+    "lint": "eslint --cache '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@aliakbarazizi/headless-datepicker": "^2.0.2",
@@ -55,7 +56,8 @@
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-storybook": "^0.6.15",
-    "husky": "^8.0.3",
+    "eslint-plugin-tailwindcss": "^3.14.3",
+    "husky": "^8.0.0",
     "postcss": "^8",
     "sb": "^7.6.10",
     "storybook": "^7.6.10",

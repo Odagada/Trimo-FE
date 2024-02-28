@@ -65,8 +65,8 @@ const HeroSection = () => {
   const [ref, entry] = useIntersectionObserver();
 
   return (
-    <section className="pt-88 pb-122">
-      <div className="relative w-914 h-275 mx-auto">
+    <section className="pb-122 pt-88">
+      <div className="relative mx-auto h-275 w-914">
         <Image className="object-cover" draggable={false} fill src={hero_sec} alt="" />
       </div>
       <div id="heroSecSearchBar" className="h-65">
@@ -88,7 +88,7 @@ const CardSection = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center text-center pt-48 pb-72 gap-8 bg-gray-10" id="cardSection">
+      <section className="flex flex-col items-center gap-8 bg-gray-10 pb-72 pt-48 text-center" id="cardSection">
         <p className="text-16 font-medium leading-36">그 여행지, 실제 후기는 어떨까?</p>
         <p className="text-28 font-bold leading-42">
           이미 다녀온 유저의 리뷰를 한곳에 모아
@@ -97,7 +97,7 @@ const CardSection = () => {
         </p>
       </section>
 
-      <section className="pb-129 bg-gray-10">
+      <section className="bg-gray-10 pb-129">
         <div className="flex flex-col gap-41">
           {recentReviewCardArray && (
             <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentReviewCardArray} />
@@ -133,8 +133,8 @@ const TagSection = () => {
   ];
 
   return (
-    <section className="bg-gray-60 text-center pt-60 pb-78">
-      <div className="flex flex-col gap-8 mb-60">
+    <section className="bg-gray-60 pb-78 pt-60 text-center">
+      <div className="mb-60 flex flex-col gap-8">
         <p className="text-16 font-medium leading-36 text-white">태그 검색</p>
         <p className="text-28 font-bold leading-42 text-white">
           태그를 통해 다른 유저의 여행 리뷰를
@@ -144,14 +144,14 @@ const TagSection = () => {
       </div>
 
       {/* 태그 계속 흘러가는 부분 */}
-      <div className="relative overflow-x-hidden flex">
+      <div className="relative flex overflow-x-hidden">
         {tagClassArray.map((item, index) => {
           return (
             <div className={item} key={index}>
               {tagArray.map((tag) => {
                 return (
                   <Clickable
-                    className="ml-17 text-28 py-8 px-25 leading-42"
+                    className="ml-17 px-25 py-8 text-28 leading-42"
                     key={tag}
                     size="small"
                     shape="capsule"
@@ -186,13 +186,13 @@ const ServiceExplainSection = () => {
   };
 
   return (
-    <section className="bg-gray-10 flex flex-col gap-140 pb-176 pt-148">
+    <section className="flex flex-col gap-140 bg-gray-10 pb-176 pt-148">
       <div className="flex items-center">
-        <div className="w-1/2 h-626 overflow-hidden relative">
+        <div className="relative h-626 w-1/2 overflow-hidden">
           <Image className="absolute right-0 min-w-882" src={desktopScreenShot1} alt="" width={882} />
         </div>
 
-        <div className="w-1/2 flex flex-col gap-24  bg-white shadow-main h-fit ml-80 pt-128 pb-109 pl-152 rounded-l-full">
+        <div className="ml-80 flex h-fit w-1/2  flex-col gap-24 rounded-l-full bg-white pb-109 pl-152 pt-128 shadow-main">
           <div>
             <p className="text-16 font-medium leading-24">마이 페이지</p>
             <p className="text-24 font-bold leading-36">
@@ -211,7 +211,7 @@ const ServiceExplainSection = () => {
       </div>
 
       <div className="flex items-center">
-        <div className="w-1/2 flex flex-col items-end gap-24 bg-white shadow-main h-fit mr-80 pt-128 pb-109 pr-152 rounded-r-full text-right">
+        <div className="mr-80 flex h-fit w-1/2 flex-col items-end gap-24 rounded-r-full bg-white pb-109 pr-152 pt-128 text-right shadow-main">
           <div>
             <p className="text-16 font-medium leading-24">리뷰</p>
             <p className="text-24 font-bold leading-36">
@@ -228,7 +228,7 @@ const ServiceExplainSection = () => {
           </button>
         </div>
 
-        <div className="w-1/2 h-626 overflow-hidden relative">
+        <div className="relative h-626 w-1/2 overflow-hidden">
           <Image className="absolute left-0 min-w-882" src={desktopScreenShot2} alt="" width={882} />
         </div>
       </div>
@@ -239,32 +239,32 @@ const ServiceExplainSection = () => {
 const DeviceSection = () => {
   return (
     <section className="bg-gray-10 pb-52">
-      <div className="w-1038 flex flex-col gap-12 mx-auto">
-        <h3 className={`bg-white inline px-15 py-8 rounded-100 shadow-main w-fit text-18 font-bold leading-27`}>
+      <div className="mx-auto flex w-1038 flex-col gap-12">
+        <h3 className={`inline w-fit rounded-100 bg-white px-15 py-8 text-18 font-bold leading-27 shadow-main`}>
           디바이스 지원
         </h3>
 
-        <div className="gap-24 flex">
-          <div className="rounded-30 bg-gray-60 w-330 h-430 p-24 overflow-hidden">
-            <p className="text-right leading-18 text-12 text-gray-30">Mobile</p>
+        <div className="flex gap-24">
+          <div className="h-430 w-330 overflow-hidden rounded-30 bg-gray-60 p-24">
+            <p className="text-right text-12 leading-18 text-gray-30">Mobile</p>
             <Image className="mx-auto mt-33" src={mobile} alt="" width={237} />
           </div>
 
-          <div className="rounded-30 bg-gray-60 w-330 h-430 p-24 overflow-hidden flex flex-col justify-between">
-            <p className="text-right text-white font-bold text-24 leading-36">
+          <div className="flex h-430 w-330 flex-col justify-between overflow-hidden rounded-30 bg-gray-60 p-24">
+            <p className="text-right text-24 font-bold leading-36 text-white">
               언제 어디서나
               <br />
               <span className="text-primary">간편하게</span>
               <br />
               작성할 수 있어요
             </p>
-            <div className="rounded-100 flex items-center justify-center bg-primary w-120 h-120">
+            <div className="flex size-120 items-center justify-center rounded-100 bg-primary">
               <Image src={quill} alt="" width={47} height={45} />
             </div>
           </div>
 
-          <div className="rounded-30 bg-gray-60 w-330 h-430 p-24 overflow-hidden">
-            <p className="text-right leading-18 text-12 text-gray-30">Desktop</p>
+          <div className="h-430 w-330 overflow-hidden rounded-30 bg-gray-60 p-24">
+            <p className="text-right text-12 leading-18 text-gray-30">Desktop</p>
             <Image className="ml-61 mt-85" src={desktop} alt="" width={270} />
           </div>
         </div>
@@ -275,8 +275,8 @@ const DeviceSection = () => {
 
 const RightNowSection = () => {
   return (
-    <section className="flex flex-col py-92 bg-gray-60 items-center gap-24">
-      <p className="text-28 font-bold leading-42 text-center text-white">
+    <section className="flex flex-col items-center gap-24 bg-gray-60 py-92">
+      <p className="text-center text-28 font-bold leading-42 text-white">
         쉽고 간편한 여행 리뷰,
         <br />
         지금 바로 작성해보세요!

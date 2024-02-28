@@ -26,7 +26,7 @@ const MultiReviewCardSlider = ({
       <h3
         className={`${
           align === "left" ? "ml-260" : "mr-260"
-        } bg-white inline px-15 py-8 rounded-100 shadow-main w-fit text-18 font-bold leading-27`}
+        } inline w-fit rounded-100 bg-white px-15 py-8 text-18 font-bold leading-27 shadow-main`}
       >
         {title}
       </h3>
@@ -35,7 +35,7 @@ const MultiReviewCardSlider = ({
         onWheel={handleWheelScroll}
         className={`${
           align === "left" ? "flex-row" : "flex-row-reverse"
-        } w-full flex gap-20 px-260 overflow-x-auto overscroll-contain scrollbar-hide pb-10`}
+        } flex w-full gap-20 overflow-x-auto overscroll-contain px-260 pb-10 scrollbar-hide`}
       >
         {reviewCards.map((review, i) => {
           return <ReviewCard key={i} review={review} />;
