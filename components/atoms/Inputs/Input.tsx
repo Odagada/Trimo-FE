@@ -8,7 +8,7 @@ const Input = (
   return (
     <>
       <input
-        className="flex-1 text-left text-16 leading-24 font-regular focus:outline-none text-black placeholder:text-gray-40"
+        className="flex-1 text-left text-16 font-regular leading-24 text-black placeholder:text-gray-40 focus:outline-none"
         type={type}
         id={id}
         ref={ref}

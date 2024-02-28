@@ -40,7 +40,7 @@ export default function TagRadioButton({ onChange, tag = "placeType", value }: T
   return (
     <div
       className={`${
-        tag === "date" ? "grid grid-cols-6 grid-rows-2 gap-12 justify-items-start" : "flex gap-12 flex-wrap"
+        tag === "date" ? "grid grid-cols-6 grid-rows-2 justify-items-start gap-12" : "flex flex-wrap gap-12"
       }`}
     >
       {items.map((item, index) => (

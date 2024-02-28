@@ -43,7 +43,7 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
         return (
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-              <div className="overflow-hidden w-25 h-25 rounded-full flex items-center">
+              <div className="flex h-25 w-25 items-center overflow-hidden rounded-full">
                 <Image
                   width={25}
                   height={25}
@@ -60,7 +60,7 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
         );
       case "LoggedOut":
         return (
-          <div className="gap-28 flex">
+          <div className="flex gap-28">
             <Link href="/login" className="text-16">
               로그인
             </Link>
@@ -70,8 +70,8 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   };
 
   return (
-    <nav className="h-fit mb-74 flex flex-col w-full">
-      <div className="z-50 h-fit py-12 px-121 fixed top-0 flex flex-wrap items-center justify-between w-full bg-white">
+    <nav className="mb-74 flex h-fit w-full flex-col">
+      <div className="fixed top-0 z-50 flex h-fit w-full flex-wrap items-center justify-between bg-white px-121 py-12">
         <h1>
           <Link href="/">
             <Image draggable={false} src={Logo} alt="trimo logo" width={78} height={20} />

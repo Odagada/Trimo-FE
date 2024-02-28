@@ -36,7 +36,7 @@ export default function DatePicker({ onChange, value }: Props) {
       <div className="relative">
         <Datepicker.Input
           format="yyyy/MM/dd HH:mm"
-          className="flex w-160 h-36 border border-gray30 rounded-10 middle-text font-bold pl-12"
+          className="border-gray30 middle-text flex h-36 w-160 rounded-10 border pl-12 font-bold"
         />
         {value && (
           <button type="button" className="absolute inset-y-3 right-3" onClick={() => onChange(undefined)}>
@@ -45,14 +45,14 @@ export default function DatePicker({ onChange, value }: Props) {
         )}
       </div>
 
-      <Datepicker.Picker defaultType="day" className="rounded-10 bg-white w-300 heading5 p-10 border z-20">
+      <Datepicker.Picker defaultType="day" className="heading5 z-20 w-300 rounded-10 border bg-white p-10">
         {({ monthName, hour, minute, year }) => (
           <>
             <div className="flex w-full items-center justify-between space-x-6 py-2 rtl:space-x-reverse">
               <Datepicker.Button action="prev" className="middle-text" type="button">
                 &lt;
               </Datepicker.Button>
-              <div className="flex gap-10 middle-text">
+              <div className="middle-text flex gap-10">
                 <Datepicker.Button action="toggleHourPicker" type="button">
                   {("0" + hour).slice(-2) + ":" + ("0" + minute).slice(-2)}
                 </Datepicker.Button>
@@ -69,7 +69,7 @@ export default function DatePicker({ onChange, value }: Props) {
             </div>
             <Datepicker.Items
               className={({ type }) =>
-                `grid w-full auto-rows-max gap-16 overflow-y-auto scroll-smooth middle-text mt-10 ${
+                `middle-text mt-10 grid w-full auto-rows-max gap-16 overflow-y-auto scroll-smooth ${
                   type === "day" && "grid-cols-7"
                 } ${type === "month" && "grid-cols-3"} ${type === "year" && "max-h-[274px] grid-cols-4"}
                   `
@@ -80,7 +80,7 @@ export default function DatePicker({ onChange, value }: Props) {
                   <Datepicker.Item
                     key={item.key}
                     item={item}
-                    className="hover:bg-gray-20 rounded-full"
+                    className="rounded-full hover:bg-gray-20"
                     action={item.type === "day" ? "close" : item.type === "month" ? "showDay" : "showMonth"}
                   >
                     {item.isHeader ? item.text.substring(0, 2) : item.text}
@@ -88,15 +88,15 @@ export default function DatePicker({ onChange, value }: Props) {
                 ))
               }
             </Datepicker.Items>
-            <Datepicker.Picker className="flex max-h-80 heading5 bg-white border middle-text" id="HourPicker">
-              <Datepicker.Items type="hour" className="overflow-y-auto scroll-smooth p-16 space-y-20" disableAutoScroll>
+            <Datepicker.Picker className="heading5 middle-text flex max-h-80 border bg-white" id="HourPicker">
+              <Datepicker.Items type="hour" className="space-y-20 overflow-y-auto scroll-smooth p-16" disableAutoScroll>
                 {({ items }) =>
                   items.map((item) => (
                     <Datepicker.Item
                       key={item.key}
                       item={item}
                       action="close"
-                      className="flex justify-center items-center h-10 hover:text-gray-20"
+                      className="flex h-10 items-center justify-center hover:text-gray-20"
                     >
                       {("0" + item.text).slice(-2)}
                     </Datepicker.Item>
@@ -105,7 +105,7 @@ export default function DatePicker({ onChange, value }: Props) {
               </Datepicker.Items>
               <Datepicker.Items
                 type="minute"
-                className="overflow-y-auto scroll-smooth p-16 space-y-20"
+                className="space-y-20 overflow-y-auto scroll-smooth p-16"
                 disableAutoScroll
               >
                 {({ items }) =>
@@ -116,7 +116,7 @@ export default function DatePicker({ onChange, value }: Props) {
                           key={item.key}
                           item={item}
                           action="close"
-                          className="flex justify-center items-center h-10 hover:text-gray-20"
+                          className="flex h-10 items-center justify-center hover:text-gray-20"
                         >
                           {("0" + item.text).slice(-2)}
                         </Datepicker.Item>

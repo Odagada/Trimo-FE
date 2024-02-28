@@ -43,7 +43,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
         <div className="flex items-end">
           <InputWrapper
-            className="py-17 border-gray-400"
+            className="border-gray-400 py-17"
             divOptions="w-412"
             htmlFor="title"
             title="닉네임"
@@ -63,7 +63,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             )}
           </InputWrapper>
           <button onClick={() => validateNickname(getValues("nickName"))} type="button">
-            <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
+            <Clickable size="medium" className="ml-10 whitespace-nowrap px-30 py-17 font-medium">
               중복확인
             </Clickable>
           </button>
@@ -73,7 +73,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           htmlFor="birthdate"
           title="생년월일"
           errors={formState.errors.birthdate}
-          className="pl-0 pb-0 pr-0 pt-0 border-none"
+          className="border-none pb-0 pl-0 pr-0 pt-0"
         >
           <div className="flex gap-12">
             <Select
@@ -159,7 +159,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
                 type="radio"
                 value="남자"
                 {...register("gender", { required: true })}
-                className="h-18 w-18 border-0 accent-black mr-12"
+                className="mr-12 h-18 w-18 border-0 accent-black"
               />
               남성
             </label>
@@ -169,7 +169,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
                 type="radio"
                 value="여자"
                 {...register("gender", { required: true })}
-                className="h-18 w-18 border-0 accent-black mr-12"
+                className="mr-12 h-18 w-18 border-0 accent-black"
               />
               여성
             </label>
@@ -178,7 +178,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
 
         <button
           type="submit"
-          className="w-full mt-20"
+          className="mt-20 w-full"
           disabled={!formState.isValid || !isNicknameValid?.data || isNicknameValid.status !== 200}
           onClick={() => setNickname(getValues("nickName"))}
         >

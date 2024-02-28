@@ -4,9 +4,9 @@ interface ChipProps {
 }
 function ProgressChip({ num, isOnProgress = false }: ChipProps) {
   return isOnProgress ? (
-    <div className="w-[30px] h-[30px]  bg-black rounded-full text-center text-white py-3 text-16 text-bold">{num}</div>
+    <div className="text-bold h-[30px]  w-[30px] rounded-full bg-black py-3 text-center text-16 text-white">{num}</div>
   ) : (
-    <div className="w-[30px] h-[30px]  bg-white rounded-full border border-zinc-800 text-center py-2 text-16 text-bold">
+    <div className="border-zinc-800 text-bold  h-[30px] w-[30px] rounded-full border bg-white py-2 text-center text-16">
       {num}
     </div>
   );

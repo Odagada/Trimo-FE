@@ -59,7 +59,7 @@ export default function ImagesInput({ append, remove }: Props) {
   };
 
   return (
-    <div className="w-full middle-text">
+    <div className="middle-text w-full">
       <input
         type="file"
         id="imageUpload"
@@ -71,7 +71,7 @@ export default function ImagesInput({ append, remove }: Props) {
       />
       <button
         role="button"
-        className={`w-full h-131 flex justify-center items-center border rounded-10 border-black border-dashed ${
+        className={`flex h-131 w-full items-center justify-center rounded-10 border border-dashed border-black ${
           isDragging && "bg-gray-30"
         }`}
         onDragEnter={handleDragEnter}
@@ -87,11 +87,11 @@ export default function ImagesInput({ append, remove }: Props) {
           {isDragging ? "이곳에 드롭해주세요" : "클릭 혹은 파일을 드롭해주세요"}
         </div>
       </button>
-      <div className="grid w-full grid-cols-10 gap-8 mt-8">
+      <div className="mt-8 grid w-full grid-cols-10 gap-8">
         {showImages.map((el, idx) => (
-          <div className="aspect-square relative overflow-hidden rounded-lg" key={idx}>
+          <div className="rounded-lg relative aspect-square overflow-hidden" key={idx}>
             <button
-              className="h-24 w-24 absolute right-0 top-0 z-10 rounded-full bg-gray-900 flex items-center justify-center cursor-pointer text-white"
+              className="bg-gray-900 absolute right-0 top-0 z-10 flex h-24 w-24 cursor-pointer items-center justify-center rounded-full text-white"
               onClick={() => deleteFile(idx)}
               type="button"
             >

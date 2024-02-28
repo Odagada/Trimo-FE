@@ -74,7 +74,7 @@ export default function SearchForm({ closeDropdown }: Props) {
             <SearchOption.title>방문시간</SearchOption.title>
             <SearchOption.description>방문하신 시간을 선택해주세요.</SearchOption.description>
           </SearchOption.info>
-          <div onClick={(e: MouseEvent) => e.stopPropagation()} className="flex justify-center items-center">
+          <div onClick={(e: MouseEvent) => e.stopPropagation()} className="flex items-center justify-center">
             <TimePicker onChange={visitingTime.onChange} value={visitingTime.value} />
           </div>
         </SearchOption.section>

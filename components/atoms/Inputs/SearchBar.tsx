@@ -45,21 +45,21 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
         className={`
       ${className}
       ${
-        size === "large" ? "tablet:border-2 border border-black " : "w-460 border border-gray-50"
-      } rounded-100 flex items-center justify-center`}
+        size === "large" ? "border border-black tablet:border-2 " : "w-460 border border-gray-50"
+      } flex items-center justify-center rounded-100`}
       >
-        <div className={size === "large" ? "tablet:w-49 tablet:h-49 w-34 h-34" : "w-33 h-33"}></div>
+        <div className={size === "large" ? "h-34 w-34 tablet:h-49 tablet:w-49" : "h-33 w-33"}></div>
         <input
           value={value}
           onFocus={handleFocus}
           onChange={handleChange}
           placeholder="리뷰가 궁금한 여행지를 검색해보세요!"
-          className="flex-1 text-center tablet:text-16 tablet:leading-24 text-12 leading-18 font-regular focus:outline-none"
+          className="flex-1 text-center text-12 font-regular leading-18 focus:outline-none tablet:text-16 tablet:leading-24"
         />
         <button
           className={`${
-            size === "large" ? "tablet:w-49 tablet:h-49 w-34 h-34" : "w-33 h-33"
-          } bg-black rounded-100 tablet:m-6 m-2 flex items-center justify-center`}
+            size === "large" ? "h-34 w-34 tablet:h-49 tablet:w-49" : "h-33 w-33"
+          } m-2 flex items-center justify-center rounded-100 bg-black tablet:m-6`}
         >
           <Image
             draggable={false}
