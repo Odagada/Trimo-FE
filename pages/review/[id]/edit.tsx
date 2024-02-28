@@ -23,7 +23,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       };
     } else {
       return {
-        props: { },
+        props: {},
       };
     }
   } catch {
