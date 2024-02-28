@@ -89,7 +89,7 @@ export default function ImagesInput({ append, remove }: Props) {
         </div>
         <Image src={cameraIcon} alt="cameraIcon" className="tablet:hidden" />
       </button>
-      <div className="mt-8 tablet:grid w-full tablet:h-full tablet:grid-cols-10 gap-8 mobile:flex mobile:h-90 mobile:overflow-scroll">
+      <div className="mt-8 w-full gap-8 mobile:flex mobile:h-90 mobile:overflow-scroll tablet:grid tablet:h-full tablet:grid-cols-10">
         {showImages.map((el, idx) => (
           <div className="rounded-lg relative aspect-square max-w-90" key={idx}>
             <button
