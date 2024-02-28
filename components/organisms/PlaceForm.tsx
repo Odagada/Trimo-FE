@@ -8,7 +8,7 @@ export default function PlaceForm() {
   const [spotError, setSpotError] = useState("");
 
   return (
-    <div className="flex flex-col gap-28 px-120 pb-60 pt-96">
+    <div className="flex flex-col gap-28 px-20 pb-26 pt-48 tablet:px-120 tablet:pb-60 tablet:pt-96">
       <GoogleAutoComplete setSpotId={setSpotId} spotError={spotError} setSpotError={setSpotError} />
       <ReviewFrom spotId={spotId} setSpotError={setSpotError} />
     </div>

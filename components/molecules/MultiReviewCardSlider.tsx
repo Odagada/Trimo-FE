@@ -25,7 +25,7 @@ const MultiReviewCardSlider = ({
     <div className={`flex flex-col gap-12 ${align === "left" ? "items-start" : "items-end"}`}>
       <h3
         className={`${
-          align === "left" ? "ml-64 tablet:ml-122 laptop:ml-260" : "mr-64 tablet:mr-122 laptop:mr-260"
+          align === "left" ? "ml-64 laptop:ml-260 tablet:ml-122" : "mr-64 laptop:mr-260 tablet:mr-122"
         } leading-16 inline w-fit rounded-100 bg-white px-12 py-6 text-11 font-bold shadow-main laptop:px-15 laptop:py-8 laptop:text-14 laptop:leading-21`}
       >
         {title}
@@ -35,13 +35,13 @@ const MultiReviewCardSlider = ({
         onWheel={handleWheelScroll}
         className={`${
           align === "left" ? "flex-row" : "flex-row-reverse"
-        } flex w-full gap-9 overflow-x-auto overscroll-contain pb-10 scrollbar-hide tablet:gap-16 laptop:gap-24`}
+        } flex w-full gap-9 overflow-x-auto overscroll-contain pb-10 scrollbar-hide laptop:gap-24 tablet:gap-16`}
       >
-        <div className="min-w-55 tablet:min-w-105 laptop:min-w-236"></div>
+        <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
         {reviewCards.map((review, i) => {
           return <ReviewCard key={i} review={review} />;
         })}
-        <div className="min-w-55 tablet:min-w-105 laptop:min-w-236"></div>
+        <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
       </div>
     </div>
   );

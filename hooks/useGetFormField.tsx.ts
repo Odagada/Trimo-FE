@@ -52,5 +52,14 @@ export default function useGetForm(control: Control<Review>) {
     rules: { maxLength: 10 },
   });
 
-  return { title, content, placeType, companion, weather, visitingTime, stars, images };
+  return {
+    title,
+    content,
+    placeType,
+    companion,
+    weather,
+    visitingTime,
+    stars,
+    images,
+  };
 }

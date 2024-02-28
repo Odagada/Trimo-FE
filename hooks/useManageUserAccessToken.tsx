@@ -10,7 +10,12 @@ const useManageUserAccessToken = () => {
   const saveUserAccessToken = (data: string, message?: string) => {
     const loginTime = 3600; //1시간
     const expiration = new Date(Date.now() + loginTime * 1000);
-    setCookie("userAccessToken", data, { secure: false, sameSite: "lax", path: "/", expires: expiration });
+    setCookie("userAccessToken", data, {
+      secure: false,
+      sameSite: "lax",
+      path: "/",
+      expires: expiration,
+    });
     setTimeout(() => {
       makeToast("세션이 만료되었습니다. 다시 로그인 해 주세요.");
       window.location.reload();

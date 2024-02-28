@@ -13,7 +13,10 @@ function useGetUserInfo() {
     const { data: userData } = await fetcher<User>({
       method: "get",
       url: "/user/info",
-      headers: { Authorization: `Bearer ${userAccessToken}`, "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        "Content-Type": "application/json",
+      },
     });
 
     userDataRef.current = userData;
