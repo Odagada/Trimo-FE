@@ -2,7 +2,7 @@ import updateToken from "@/business/updateToken";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const instance = axios.create({
-  baseURL: "/api",
+  baseURL: "https://trimoserver.com/api",
   timeout: 5 * 1000,
   withCredentials: true,
 });
