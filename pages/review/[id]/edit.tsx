@@ -1,8 +1,8 @@
 import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
 import EditForm from "@/components/organisms/EditForm";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { isLoggedIn, validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
+import { GetServerSidePropsContext } from "next";
+import { validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
@@ -23,7 +23,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       };
     } else {
       return {
-        props: { isLoggedIn: isLoggedIn(accessToken) },
+        props: { },
       };
     }
   } catch {
@@ -31,10 +31,10 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   }
 };
 
-export default function reviewEdit({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function reviewEdit() {
   return (
     <>
-      <Nav isLoggedIn={isLoggedIn} />
+      <Nav />
       <EditForm />
       <Footer />
     </>
