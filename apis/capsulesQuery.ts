@@ -1,10 +1,50 @@
-import { MultiReviewData, SingleReviewData, SpotData } from "@/types/server.types";
+import { MultiReviewData, ReviewLikeCount, SingleReviewData, SpotData } from "@/types/server.types";
 import fetcher from "./axios";
+import { User } from "@/types/client.types";
+
+export const getUserInfo = (accessToken: string) => {
+  return {
+    queryKey: ["userInfo"],
+    queryFn: () =>
+      fetcher<User>({
+        method: "get",
+        url: `/user/info`,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }),
+  };
+};
 
 export const getReview = (reviewId: number) => {
   return {
     queryKey: ["review", reviewId],
-    queryFn: () => fetcher<SingleReviewData>({ method: "get", url: `/main/spots/reviews/${reviewId}` }),
+    queryFn: () =>
+      fetcher<SingleReviewData>({
+        method: "get",
+        url: `/main/spots/reviews/${reviewId}`,
+      }),
+  };
+};
+
+export const getReviewLikeCount = (reviewId: number) => {
+  return {
+    queryKey: ["reviewLikeCount", reviewId],
+    queryFn: () =>
+      fetcher<ReviewLikeCount>({
+        method: "get",
+        url: `/user/reviews/${reviewId}/like/count`,
+      }),
+  };
+};
+
+export const getReviewIsLiked = (accessToken: string, reviewId: number) => {
+  return {
+    queryKey: ["reviewIsLiked", reviewId],
+    queryFn: () =>
+      fetcher<ReviewLikeCount>({
+        method: "get",
+        url: `/user/reviews/${reviewId}/like`,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }),
   };
 };
 
@@ -30,6 +70,10 @@ export const getSearchReview = (query: string) => {
 export const getReviewCardArray = (order: string) => {
   return {
     queryKey: ["reviewCards", order],
-    queryFn: () => fetcher<MultiReviewData[]>({ method: "get", url: `/main/reviews?order=${order}` }),
+    queryFn: () =>
+      fetcher<MultiReviewData[]>({
+        method: "get",
+        url: `/main/reviews?order=${order}`,
+      }),
   };
 };
