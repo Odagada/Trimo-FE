@@ -90,13 +90,13 @@ const CardSection = () => {
   return (
     <>
       <section
-        className="flex flex-col items-center gap-8 bg-gray-10 py-20 text-center tablet:pt-36 tablet:pb-40 laptop:pt-40 laptop:pb-60"
+        className="flex flex-col items-center gap-8 bg-gray-10 py-20 text-center tablet:pb-40 tablet:pt-36 laptop:pb-60 laptop:pt-40"
         id="cardSection"
       >
         <p className="text-12 leading-18 text-gray-50 tablet:text-14 tablet:leading-21 laptop:text-16 laptop:leading-24">
           그 여행지, 실제 후기는 어떨까?
         </p>
-        <p className="font-bold text-16 leading-24 tablet:text-20 tablet:leading-30 laptop:text-24 laptop:leading-36">
+        <p className="text-16 font-bold leading-24 tablet:text-20 tablet:leading-30 laptop:text-24 laptop:leading-36">
           실시간으로 올라오는 유저의 리뷰를 참고해
           <br />
           <span className="text-primary">나만의 여행 계획</span>을 세워보세요.
@@ -139,10 +139,12 @@ const TagSection = () => {
   ];
 
   return (
-    <section className="bg-gray-60 py-20 tablet:py-36 text-center laptop:pb-89 laptop:pt-63">
-      <div className="flex flex-col gap-8 mb-20 tablet:mb-36 laptop:mb-60">
-        <p className="text-12 leading-18 text-white tablet:text-14 tablet:leading-21 laptop:text-16 laptop:leading-24">태그 검색</p>
-        <p className="font-bold text-16 leading-24 text-white tablet:text-20 tablet:leading-30 laptop:text-24 laptop:leading-36">
+    <section className="bg-gray-60 py-20 text-center tablet:py-36 laptop:pb-89 laptop:pt-63">
+      <div className="mb-20 flex flex-col gap-8 tablet:mb-36 laptop:mb-60">
+        <p className="text-12 leading-18 text-white tablet:text-14 tablet:leading-21 laptop:text-16 laptop:leading-24">
+          태그 검색
+        </p>
+        <p className="text-16 font-bold leading-24 text-white tablet:text-20 tablet:leading-30 laptop:text-24 laptop:leading-36">
           태그를 통해 다른 유저의 여행 리뷰를
           <br />
           <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
@@ -157,7 +159,7 @@ const TagSection = () => {
               {tagArray.map((tag) => {
                 return (
                   <Clickable
-                    className="ml-8 tablet:ml-16 tablet:px-20 tablet:py-8 tablet:text-22 tablet:leading-33 laptop:ml-18 laptop:px-26 laptop:py-9 laptop:text-28 laptop:leading-42"
+                    className="tablet:text-22 tablet:leading-33 ml-8 tablet:ml-16 tablet:px-20 tablet:py-8 laptop:ml-18 laptop:px-26 laptop:py-9 laptop:text-28 laptop:leading-42"
                     key={tag}
                     size="small"
                     shape="capsule"

@@ -58,7 +58,6 @@
     "husky": "^8.0.3",
     "postcss": "^8",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.11",
     "sb": "^7.6.10",
     "storybook": "^7.6.10",
     "tailwindcss": "^3.3.0",
