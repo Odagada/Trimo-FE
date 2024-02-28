@@ -7,9 +7,9 @@ import Clickable from "@/components/atoms/Clickable";
 function SuccessPage({ nickname }: { nickname: string }) {
   return (
     <div className="flex flex-col items-center">
-      <Image src={Camera} width={260} height={200} className="mt-46 mb-35" alt="signup success"></Image>
-      <div className="flex flex-col gap-15 mb-35 items-center">
-        <p className="font-bold text-28">{`${nickname}${SIGNUP_SUCCESS_MESSAGE}`}</p>
+      <Image src={Camera} width={260} height={200} className="mb-35 mt-46" alt="signup success"></Image>
+      <div className="mb-35 flex flex-col items-center gap-15">
+        <p className="text-28 font-bold">{`${nickname}${SIGNUP_SUCCESS_MESSAGE}`}</p>
         <span>{WELCOMING_MESSAGE}</span>
       </div>
       <Link href={"/"} className="w-full">

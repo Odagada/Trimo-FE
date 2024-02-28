@@ -38,11 +38,11 @@ export default function ReadReview() {
       <ImageCarouselSection />
 
       {/* main text area */}
-      <section className="max-w-800 w-full px-4 mx-auto">
+      <section className="mx-auto w-full max-w-800 px-4">
         <ReviewTitleSection />
 
         {/* text area */}
-        <p className="text-18 leading-42 text-justify mb-20 whitespace-pre-wrap">{reviewData?.data.content}</p>
+        <p className="mb-20 whitespace-pre-wrap text-justify text-18 leading-42">{reviewData?.data.content}</p>
 
         {/* map area */}
         <MapNTag />
@@ -82,7 +82,7 @@ const ImageCarouselSection = () => {
       {imageUrlArray.length !== 0 ? (
         <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
       ) : (
-        <div className="relative bg-gray-40 h-[40vh] w-full flex items-center justify-center">
+        <div className="relative flex h-[40vh] w-full items-center justify-center bg-gray-40">
           <Image draggable={false} src={noImage} alt="" fill className="object-contain" />
         </div>
       )}
@@ -95,14 +95,14 @@ const ReviewTitleSection = () => {
   return (
     <>
       {/* title area */}
-      <h2 className="mb-12 flex gap-15 items-baseline">
+      <h2 className="mb-12 flex items-baseline gap-15">
         <span className="heading1">{reviewData?.data.title}</span>
 
-        <span className="text-18 text-medium leading-15">{`by ${reviewData?.data.nickName}`}</span>
+        <span className="text-medium text-18 leading-15">{`by ${reviewData?.data.nickName}`}</span>
       </h2>
 
       {/* subTitle? */}
-      <div className="flex mb-30 items-center gap-10">
+      <div className="mb-30 flex items-center gap-10">
         <h3 className="text-18 leading-15 text-gray-40">
           {`${reviewData?.data.spotName} · ${dateString} · ${timeString}`}
           {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
@@ -123,7 +123,7 @@ const MapNTag = () => {
         <GoogleMap locationIDList={[placeId]} />
       </div>
       {/* tag and createdAt */}
-      <section className="flex justify-between items-center mb-155">
+      <section className="mb-155 flex items-center justify-between">
         <div className="flex gap-10">
           {tag?.map((item, index) => {
             return (

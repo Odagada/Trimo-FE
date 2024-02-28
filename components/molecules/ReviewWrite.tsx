@@ -75,27 +75,27 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
 
   return (
     <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
-      <div className="flex gap-10 flex-col">
+      <div className="flex flex-col gap-10">
         <input
           {...title}
           type="text"
           id="title"
           placeholder="제목을 작성해 주세요."
-          className="heading4 focus:outline-none text-black placeholder:text-gray-40 w-full"
+          className="heading4 w-full text-black placeholder:text-gray-40 focus:outline-none"
         />
-        {errors.title && <p className="text-error middle-text font-bold">{errors.title.message}</p>}
+        {errors.title && <p className="middle-text font-bold text-error">{errors.title.message}</p>}
       </div>
-      <div className="flex gap-10 flex-col">
+      <div className="flex flex-col gap-10">
         <textarea
           {...content}
-          className="border border-gray-20 w-full px-16 py-12 rounded-10 bg-white text-16 leading-24 font-regular focus:outline-none text-black h-350 placeholder:text-gray-40 resize-none"
+          className="h-350 w-full resize-none rounded-10 border border-gray-20 bg-white px-16 py-12 text-16 font-regular leading-24 text-black placeholder:text-gray-40 focus:outline-none"
           placeholder="내용을 입력해주세요."
         ></textarea>
-        {errors.content && <p className="text-error middle-text font-bold mt-10">{errors.content.message}</p>}
+        {errors.content && <p className="middle-text mt-10 font-bold text-error">{errors.content.message}</p>}
       </div>
       <div>
         <ImagesInput append={images.append} remove={images.remove} />
-        {errors.images && <p className="text-error middle-text font-bold mt-10">이미지는 10개 이하로 가능합니다.</p>}
+        {errors.images && <p className="middle-text mt-10 font-bold text-error">이미지는 10개 이하로 가능합니다.</p>}
       </div>
 
       <ReviewOption>
@@ -136,13 +136,13 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
           <TagRadioButton onChange={weather.onChange} tag="weather" value={weather.value} />
         </ReviewOption.section>
       </ReviewOption>
-      <div className="flex gap-16 m-auto">
-        <button className="w-210 h-46" type="button" onClick={router.back}>
+      <div className="m-auto flex gap-16">
+        <button className="h-46 w-210" type="button" onClick={router.back}>
           <Clickable color="white" size="medium">
             취소
           </Clickable>
         </button>
-        <button className="w-210 h-46" type="submit">
+        <button className="h-46 w-210" type="submit">
           <Clickable color="black" size="medium">
             등록
           </Clickable>
