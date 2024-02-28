@@ -64,3 +64,8 @@ export type GetUserInfoType = {
   age: number;
   imageUrl: string;
 };
+
+export type reviewList = {
+  reviewList: MultiReviewData[];
+  totalCount: number;
+};

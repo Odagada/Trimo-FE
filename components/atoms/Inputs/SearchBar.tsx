@@ -42,13 +42,13 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
   };
 
   return (
-    <div className={`${size === "large" ? "max-w-632 px-48" : ""} mx-auto`}>
+    <div className={`${size === "large" ? "max-w-632 px-48" : "max-w-460 grow px-24"} mx-auto`}>
       <form
         onSubmit={handleSubmit}
         className={`
       ${className}
       ${
-        size === "large" ? "border border-black tablet:border-2 " : "w-460 border border-gray-50"
+        size === "large" ? "border border-black tablet:border-2 " : "border border-gray-50"
       } flex items-center justify-center rounded-100`}
       >
         <div className={size === "large" ? "size-34 tablet:size-49" : "size-33"}></div>

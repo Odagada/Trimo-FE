@@ -29,7 +29,7 @@ export default function Search({ isLoggedIn, query }: InferGetServerSidePropsTyp
     <div className="flex min-h-screen flex-col justify-between">
       <div>
         <Nav isLoggedIn={isLoggedIn} />
-        <div className="pb-15 pt-23">
+        <div className="flex-center flex pb-15 pt-23">
           <SearchBar size="small" />
         </div>
         <div className="mt-15 flex justify-center">
