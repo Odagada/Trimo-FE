@@ -5,8 +5,6 @@ import empty_star from "@/public/icons/empty_star.svg";
 import Image from "next/image";
 
 const MultiStarRate = ({ number }: { number: Stars }) => {
-  console.log(number);
-
   if (number === 0) return <></>;
 
   const filledStars = Math.floor(number);
