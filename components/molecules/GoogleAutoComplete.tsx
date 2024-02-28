@@ -46,7 +46,7 @@ export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError 
           fields: ["name", "geometry.location", "place_id", "formatted_address"],
         }}
         placeholder="어느곳을 다녀오셨나요?"
-        className="heading4 w-full focus:outline-none"
+        className="tablet:heading4 w-full focus:outline-none heading5"
       />
       {spotError !== "" && <p className="middle-text mt-10 font-bold text-error">{spotError}</p>}
     </div>

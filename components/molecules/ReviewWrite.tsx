@@ -48,7 +48,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
   const { mutate: postReviewsMutate } = useMutation({
     mutationFn: postReviews,
     onSuccess() {
-      router.push("/search");
+      router.push("search?order=POPULAR&searchValue=");
     },
     onError() {
       setError("title", { message: "다시 시도해주세요." }, { shouldFocus: true }); // 오류메시지 어디다 띄울지?
@@ -81,7 +81,7 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
           type="text"
           id="title"
           placeholder="제목을 작성해 주세요."
-          className="heading4 w-full text-black placeholder:text-gray-40 focus:outline-none"
+          className="tablet:heading4 heading5 w-full text-black placeholder:text-gray-40 focus:outline-none"
         />
         {errors.title && <p className="middle-text font-bold text-error">{errors.title.message}</p>}
       </div>
@@ -136,14 +136,14 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
           <TagRadioButton onChange={weather.onChange} tag="weather" value={weather.value} />
         </ReviewOption.section>
       </ReviewOption>
-      <div className="m-auto flex gap-16">
-        <button className="h-46 w-210" type="button" onClick={router.back}>
+      <div className="m-auto flex gap-16 w-full justify-center">
+        <button className="h-46 w-210 tablet:block mobile:hidden" type="button" onClick={router.back}>
           <Clickable color="white" size="medium">
             취소
           </Clickable>
         </button>
-        <button className="h-46 w-210" type="submit">
-          <Clickable color="black" size="medium">
+        <button className="h-46 tablet:w-210 mobile:w-full" type="submit">
+          <Clickable color="black" size="medium" className="max-w-1000">
             등록
           </Clickable>
         </button>
