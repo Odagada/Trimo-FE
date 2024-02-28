@@ -137,13 +137,13 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
         </ReviewOption.section>
       </ReviewOption>
       <div className="m-auto flex w-full justify-center gap-16">
-        <button className="h-46 w-210 tablet:block mobile:hidden" type="button" onClick={router.back}>
+        <button className="h-46 w-210 tablet:block hidden" type="button" onClick={router.back}>
           <Clickable color="white" size="medium">
             취소
           </Clickable>
         </button>
-        <button className="h-46 tablet:w-210 mobile:w-full" type="submit">
-          <Clickable color="black" size="medium" className="max-w-1000">
+        <button className="h-46 tablet:w-210 w-full" type="submit">
+          <Clickable color="black" size="medium" className="max-w-none">
             등록
           </Clickable>
         </button>
