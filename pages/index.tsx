@@ -32,7 +32,10 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const accessToken = await getAccessTokenFromCookie(context);
 
     return {
-      props: { dehydratedState: dehydrate(queryClient), isLoggedIn: isLoggedIn(accessToken) },
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        isLoggedIn: isLoggedIn(accessToken),
+      },
     };
   } catch {
     return { notFound: true };

@@ -25,7 +25,10 @@ export default function OrderDropdown() {
 
   const handleClick = (el: OrderValue) => {
     //TODO:api 추가
-    router.push({ pathname: "/search", query: { ...query, order: transQuery[el] } });
+    router.push({
+      pathname: "/search",
+      query: { ...query, order: transQuery[el] },
+    });
     setCurrentOrder(el);
   };
 

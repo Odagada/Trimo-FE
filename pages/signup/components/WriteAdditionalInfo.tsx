@@ -16,7 +16,10 @@ interface Props extends SignupContentProps {
 }
 
 function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: Props) {
-  const { onSubmit } = useSubmitAdditionalInfo({ progressStatus, userAccessToken });
+  const { onSubmit } = useSubmitAdditionalInfo({
+    progressStatus,
+    userAccessToken,
+  });
 
   const {
     register,
@@ -52,7 +55,10 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             <Input
               {...register("nickName", {
                 required: true,
-                maxLength: { value: 5, message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG },
+                maxLength: {
+                  value: 5,
+                  message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG,
+                },
               })}
               id="title"
               placeholder="닉네임"
