@@ -179,6 +179,7 @@ const TagSection = () => {
 
 const ServiceExplainSection = () => {
   const [mounted, setMounted] = useState(false);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     setMounted(true);
@@ -195,15 +196,15 @@ const ServiceExplainSection = () => {
 
   return (
     <section className="flex flex-col gap-140 bg-gray-10 pb-176 pt-148">
-      <div className="flex items-center">
-        <div className="relative h-626 w-1/2 overflow-hidden">
-          <Image className="absolute right-0 min-w-882" src={desktopScreenShot1} alt="" width={882} />
+      <div className="flex flex-col gap-24 tablet:gap:0 tablet:flex-row tablet:items-center">
+        <div className="relative h-292 laptop:h-584 w-full tablet:w-1/2 overflow-hidden">
+          <Image className="absolute right-0 min-w-411 laptop:min-w-822" src={desktopScreenShot1} alt="" width={width! <= 768 ? 822 : 411} />
         </div>
 
-        <div className="ml-80 flex h-fit w-1/2  flex-col gap-24 rounded-l-full bg-white pb-109 pl-152 pt-128 shadow-main">
+        <div className="ml-48 tablet:ml-80 flex h-fit w-[calc(100%-48px)] tablet:w-1/2 flex-col gap-12 tablet:gap-16 laptop:gap-24 rounded-l-full bg-white pl-76 py-44 tablet:py-48 tablet:pl-64 laptop:pb-109 laptop:pl-152 laptop:pt-128 shadow-main">
           <div>
-            <p className="text-16 font-medium leading-24">마이 페이지</p>
-            <p className="text-24 font-bold leading-36">
+            <p className="text-12 leading-18 tablet:text-14 tablet:leading-21 laptop:text-16 font-medium laptop:leading-24">마이 페이지</p>
+            <p className="text-16 leading-24 tablet:text-18 tablet:leading-27 laptop:text-24 font-bold laptop:leading-36">
               지금까지 여행의 기록들을
               <br />
               <span className="text-primary">지도</span>로 이어보세요.
@@ -218,11 +219,11 @@ const ServiceExplainSection = () => {
         </div>
       </div>
 
-      <div className="flex items-center">
-        <div className="mr-80 flex h-fit w-1/2 flex-col items-end gap-24 rounded-r-full bg-white pb-109 pr-152 pt-128 text-right shadow-main">
+      <div className="flex flex-col-reverse  gap-24 tablet:gap:0  tablet:flex-row tablet:items-center">
+        <div className="mr-48 tablet:mr-80 flex h-fit w-[calc(100%-48px)] tablet:w-1/2 flex-col items-end gap-12 tablet:gap-16 laptop:gap-24 rounded-r-full bg-white pr-76 py-44 tablet:py-48 tablet:pr-64 laptop:pb-109 laptop:pr-152 laptop:pt-128 text-right shadow-main">
           <div>
-            <p className="text-16 font-medium leading-24">리뷰</p>
-            <p className="text-24 font-bold leading-36">
+            <p className="text-12 leading-18 tablet:text-14 tablet:leading-21 laptop:text-16 font-medium laptop:leading-24">리뷰</p>
+            <p className="text-16 leading-24 tablet:text-18 tablet:leading-27 laptop:text-24 font-bold laptop:leading-36">
               다른 유저의 <span className="text-primary">리뷰</span>를 저장하고
               <br />
               나의 여행에 참고해보세요.
@@ -236,8 +237,8 @@ const ServiceExplainSection = () => {
           </button>
         </div>
 
-        <div className="relative h-626 w-1/2 overflow-hidden">
-          <Image className="absolute left-0 min-w-882" src={desktopScreenShot2} alt="" width={882} />
+        <div className="relative h-292 laptop:h-584  w-full tablet:w-1/2 overflow-hidden">
+          <Image className="absolute left-0 min-w-411 laptop:min-w-822" src={desktopScreenShot2} alt="" width={width! <= 768 ? 822 : 411} />
         </div>
       </div>
     </section>
@@ -255,7 +256,12 @@ const DeviceSection = () => {
         <div className="flex flex-wrap gap-8 tablet:gap-21 laptop:gap-24">
           <div className="h-194 w-156 order-2 tablet:order-1 overflow-hidden rounded-10 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 laptop:h-430 laptop:w-330 laptop:rounded-30 ">
             <p className="text-right text-12 p-13 leading-18 text-gray-30 tablet:p-16 laptop:p-24">Mobile</p>
-            <Image className="mx-auto laptop:mt-33 tablet:mt-16 w-114 laptop:w-237 tablet:w-160" src={mobile} alt="" width={237} />
+            <Image
+              className="mx-auto laptop:mt-33 tablet:mt-16 w-114 laptop:w-237 tablet:w-160"
+              src={mobile}
+              alt=""
+              width={237}
+            />
           </div>
 
           <div className="flex flex-row-reverse tablet:flex-col order-1 tablet:order-2 justify-between h-148 w-320 overflow-hidden rounded-10 p-13 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 tablet:p-16 laptop:h-430 laptop:w-330 laptop:rounded-30 laptop:p-24">
@@ -273,7 +279,12 @@ const DeviceSection = () => {
 
           <div className="h-194 w-156 order-3 overflow-hidden rounded-10 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 laptop:h-430 laptop:w-330 laptop:rounded-30 ">
             <p className="text-right text-12 p-13 leading-18 text-gray-30 tablet:p-16 laptop:p-24">Desktop</p>
-            <Image className="ml-29 mt-32 w-114 tablet:ml-41 tablet:mt-55 tablet:w-184 laptop:mt-84 laptop:ml-61 laptop:w-270" src={desktop} alt="" width={270} />
+            <Image
+              className="ml-29 mt-32 w-114 tablet:ml-41 tablet:mt-55 tablet:w-184 laptop:mt-84 laptop:ml-61 laptop:w-270"
+              src={desktop}
+              alt=""
+              width={270}
+            />
           </div>
         </div>
       </div>
@@ -291,7 +302,12 @@ const RightNowSection = () => {
       </p>
 
       <Link href="/review">
-        <Clickable className="w-max text-12 leading-21 px-12 py-5 tablet:py-8 laptop:px-20 laptop:py-12" color="primary" shape="square" size="medium">
+        <Clickable
+          className="w-max text-12 leading-21 px-12 py-5 tablet:py-8 laptop:px-20 laptop:py-12"
+          color="primary"
+          shape="square"
+          size="medium"
+        >
           리뷰 작성하기
         </Clickable>
       </Link>
