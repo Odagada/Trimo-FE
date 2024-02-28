@@ -89,9 +89,9 @@ export default function ImagesInput({ append, remove }: Props) {
         </div>
         <Image src={cameraIcon} alt="cameraIcon" className="tablet:hidden" />
       </button>
-      <div className="mt-8 hidden w-full grid-cols-10 gap-8 tablet:grid">
+      <div className="mt-8 tablet:grid w-full tablet:h-full tablet:grid-cols-10 gap-8 mobile:flex mobile:h-90 mobile:overflow-scroll">
         {showImages.map((el, idx) => (
-          <div className="rounded-lg relative aspect-square overflow-hidden" key={idx}>
+          <div className="rounded-lg relative aspect-square max-w-90" key={idx}>
             <button
               className="bg-gray-900 absolute right-0 top-0 z-10 flex size-24 cursor-pointer items-center justify-center rounded-full text-white"
               onClick={() => deleteFile(idx)}
