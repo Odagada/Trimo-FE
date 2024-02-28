@@ -8,9 +8,9 @@ function SuccessPage({ nickname }: { nickname: string }) {
   return (
     <div className="flex flex-col items-center">
       <div className="maxTablet:w-165">
-        <Image src={Camera} width={260} height={200} className="mt-46 mb-35" alt="signup success"></Image>
+        <Image src={Camera} width={260} height={200} className="mb-35 mt-46" alt="signup success"></Image>
       </div>
-      <div className="flex flex-col gap-15 maxTablet:gap-5 mb-35 items-center">
+      <div className="mb-35 flex flex-col items-center gap-15 maxTablet:gap-5">
         <p className="font-bold tablet:text-28 maxTablet:text-18">{`${nickname}${SIGNUP_SUCCESS_MESSAGE}`}</p>
         <span className="maxTablet:text-12">{WELCOMING_MESSAGE}</span>
       </div>

@@ -4,11 +4,11 @@ interface ChipProps {
 }
 function ProgressChip({ num, isOnProgress = false }: ChipProps) {
   return isOnProgress ? (
-    <div className="flex justify-center items-center tablet:w-30 tablet:h-30 w-17 h-17 bg-black rounded-full text-white tablet:text-16 text-10 font-bold">
+    <div className="flex size-17 items-center justify-center rounded-full bg-black text-10 font-bold text-white tablet:size-30 tablet:text-16">
       {num}
     </div>
   ) : (
-    <div className="flex justify-center items-center tablet:w-30 tablet:h-30  w-17 h-17 border-[0.6px] bg-white rounded-full tablet:border border-zinc-800 tablet:text-16 text-10 font-bold">
+    <div className="border-zinc-800 flex size-17 items-center justify-center  rounded-full border-[0.6px] bg-white text-10 font-bold tablet:size-30 tablet:border tablet:text-16">
       {num}
     </div>
   );

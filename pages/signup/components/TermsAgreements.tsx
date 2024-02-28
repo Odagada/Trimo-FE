@@ -15,8 +15,8 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
   });
 
   return (
-    <div className="tablet:mt-50 mt-30 relative">
-      <div className="maxTablet:hidden absolute right-15 -top-23">
+    <div className="relative mt-30 tablet:mt-50">
+      <div className="absolute -top-23 right-15 maxTablet:hidden">
         <label className="flex gap-8">
           <input
             type="checkbox"
@@ -41,21 +41,21 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
             <pre
               className={`${
                 key === 0 && "maxTablet:hidden"
-              } maxTablet:hidden w-680 h-200 text-12 rounded-[10px] border border-zinc-400 p-20 overflow-y-auto overflow-x-hidden scrollbar-hide`}
+              } border-zinc-400 h-200 w-680 overflow-y-auto overflow-x-hidden rounded-[10px] border p-20 text-12 scrollbar-hide maxTablet:hidden`}
             >
               {termContent.content}
             </pre>
             <pre
               className={`${
                 key === 0 && "maxTablet:hidden"
-              } tablet:hidden w-290 h-350 text-10 rounded-[10px] border border-zinc-400 px-25 py-15 overflow-y-auto overflow-x-hidden scrollbar-hide`}
+              } border-zinc-400 h-350 w-290 overflow-y-auto overflow-x-hidden rounded-[10px] border px-25 py-15 text-10 scrollbar-hide tablet:hidden`}
             >
               {termContent.mobileContent}
             </pre>
             <label
               className={`${
                 key === 0 && "maxTablet:hidden"
-              } flex gap-10 tablet:m-9 maxTablet:mt-18 maxTablet:mb-15 tablet:mb-40 maxTablet:rounded-10 maxTablet:h-45 items-center text-14 maxTablet:bg-gray-10 maxTablet:w-full maxTablet:p-15`}
+              } flex items-center gap-10 text-14 tablet:m-9 tablet:mb-40 maxTablet:mb-15 maxTablet:mt-18 maxTablet:h-45 maxTablet:w-full maxTablet:rounded-10 maxTablet:bg-gray-10 maxTablet:p-15`}
             >
               <input
                 type="checkbox"

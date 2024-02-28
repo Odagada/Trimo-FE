@@ -43,7 +43,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30 maxTablet:gap-24">
         <div className="flex items-end gap-10">
           <InputWrapper
-            className="py-17 maxTablet:py-12 border-gray-400 maxTablet:w-full tablet:w-412"
+            className="border-gray-400 py-17 tablet:w-412 maxTablet:w-full maxTablet:py-12"
             divOptions="w-412 maxTablet:w-full"
             htmlFor="title"
             title="닉네임"
@@ -65,7 +65,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           <button onClick={() => validateNickname(getValues("nickName"))} type="button">
             <Clickable
               size="medium"
-              className="px-30 maxTablet:px-14 py-17 maxTablet:py-12  font-medium whitespace-nowrap maxTablet:text-14"
+              className="whitespace-nowrap px-30 py-17 font-medium  maxTablet:px-14 maxTablet:py-12 maxTablet:text-14"
             >
               중복확인
             </Clickable>
@@ -78,7 +78,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           errors={formState.errors.birthdate}
           className="border-none p-0"
         >
-          <div className="grid grid-cols-3 gap-12 maxTablet:text-14 tablet:h-60 h-50">
+          <div className="grid h-50 grid-cols-3 gap-12 tablet:h-60 maxTablet:text-14">
             <Select
               styles={{
                 control: (baseStyles, state) => ({

@@ -26,10 +26,10 @@ function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerS
   const { calculateStepArray, renderContentOnProgress } = useSignUp(userOAuthData);
 
   return (
-    <div className="flex flex-col w-full h-screen">
+    <div className="flex h-screen w-full flex-col">
       <Nav isOnlyLogo />
-      <ShadowBox className="relative my-32 maxTablet:my-20 maxTablet:pb-30 maxTablet:w-5/6 maxTablet:px-16 maxTablet:h-full">
-        <span className="tablet:text-20 text-16 tablet:mb-15 mb-8 tablet:mt-35 tablet:mt-28 mt-18 font-bold text-center">
+      <ShadowBox className="relative my-32 maxTablet:my-20 maxTablet:h-full maxTablet:w-5/6 maxTablet:px-16 maxTablet:pb-30">
+        <span className="mb-8 mt-18 text-center text-16 font-bold tablet:mb-15 tablet:mt-35 tablet:text-20">
           회원가입
         </span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
