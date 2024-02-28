@@ -90,13 +90,13 @@ export const getMyPlaces = (accessToken: string) => {
   };
 };
 
-export const getFilteredMyPlaces = (accessToken: string, query: string | null, page: number) => {
+export const getFilteredMyPlaces = (accessToken: string, query: string | null) => {
   return {
-    queryKey: ["myFilteredPlace", accessToken, query, page],
+    queryKey: ["myFilteredPlace", accessToken, query],
     queryFn: () =>
       fetcher<MultiReviewData[]>({
         method: "get",
-        url: `/user/me/reviews?${query}page=${page}`,
+        url: `/user/me/reviews?${query}`,
         headers: { Authorization: `Bearer ${accessToken}` },
       }),
     keepPreviousData: true,
