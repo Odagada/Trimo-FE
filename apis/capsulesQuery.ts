@@ -1,9 +1,4 @@
-import {
-  MultiReviewData,
-  ReviewLikeCount,
-  SingleReviewData,
-  SpotData,
-} from "@/types/server.types";
+import { MultiReviewData, ReviewLikeCount, SingleReviewData, SpotData } from "@/types/server.types";
 import fetcher from "./axios";
 import { User } from "@/types/client.types";
 
@@ -56,8 +51,7 @@ export const getReviewIsLiked = (accessToken: string, reviewId: number) => {
 export const getSpot = (spotId: string) => {
   return {
     queryKey: ["spot", spotId],
-    queryFn: () =>
-      fetcher<SpotData>({ method: "get", url: `/main/spots/${spotId}` }),
+    queryFn: () => fetcher<SpotData>({ method: "get", url: `/main/spots/${spotId}` }),
   };
 };
 
