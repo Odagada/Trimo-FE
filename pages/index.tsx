@@ -66,11 +66,11 @@ const HeroSection = () => {
   const { width } = useWindowSize();
 
   return (
-    <section className="px-24 pb-56 pt-36 tablet:pb-130 tablet:pt-88">
+    <section className="px-24 pb-56 pt-36 tablet:px-100 tablet:pb-68 tablet:pt-72 laptop:pb-130 laptop:pt-88">
       <div className="relative mx-auto aspect-[914/275] max-w-914">
         <Image className="object-cover" draggable={false} fill src={hero_sec} alt="" />
       </div>
-      <div id="heroSecSearchBar" className="mt-23 tablet:mt-55">
+      <div id="heroSecSearchBar" className="mt-23 tablet:mt-32 laptop:mt-55">
         <span ref={ref}></span>
         <PortalSearchBar switcher={width! <= 865 || entry?.isIntersecting}>
           <SearchBar size={width! <= 768 || entry?.isIntersecting ? "large" : "small"} />
@@ -90,13 +90,13 @@ const CardSection = () => {
   return (
     <>
       <section
-        className="flex flex-col items-center gap-8 bg-gray-10 pb-13 pt-52 text-center tablet:pb-26"
+        className="flex flex-col items-center gap-8 bg-gray-10 py-20 text-center tablet:pt-36 tablet:pb-40 laptop:pt-40 laptop:pb-60"
         id="cardSection"
       >
-        <p className="text-12 leading-18 text-gray-50 tablet:text-16 tablet:leading-24">
+        <p className="text-12 leading-18 text-gray-50 tablet:text-14 tablet:leading-21 laptop:text-16 laptop:leading-24">
           그 여행지, 실제 후기는 어떨까?
         </p>
-        <p className="font-bold mobile:text-16 mobile:leading-24 tablet:text-24 tablet:leading-36">
+        <p className="font-bold text-16 leading-24 tablet:text-20 tablet:leading-30 laptop:text-24 laptop:leading-36">
           실시간으로 올라오는 유저의 리뷰를 참고해
           <br />
           <span className="text-primary">나만의 여행 계획</span>을 세워보세요.
@@ -104,7 +104,7 @@ const CardSection = () => {
       </section>
 
       <section className="bg-gray-10 pb-46">
-        <div className="flex flex-col gap-24 tablet:gap-40">
+        <div className="flex flex-col gap-24 tablet:gap-32 laptop:gap-48">
           {recentReviewCardArray && (
             <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentReviewCardArray} />
           )}
@@ -134,15 +134,15 @@ const TagSection = () => {
   ];
 
   const tagClassArray = [
-    "top-0 tablet:py-12 pt-20 pb-27 animate-marquee whitespace-nowrap",
-    "absolute top-0 tablet:py-12 pt-20 pb-27 animate-marquee2 whitespace-nowrap",
+    "top-0 animate-marquee whitespace-nowrap",
+    "absolute top-0 animate-marquee2 whitespace-nowrap",
   ];
 
   return (
-    <section className="bg-gray-60 pt-20 text-center tablet:pb-89 tablet:pt-63">
-      <div className="flex flex-col gap-8 tablet:mb-60">
-        <p className="text-12 leading-18 text-white tablet:text-16 tablet:leading-24">태그 검색</p>
-        <p className="font-bold text-white mobile:text-16 mobile:leading-24 tablet:text-24 tablet:leading-36">
+    <section className="bg-gray-60 py-20 tablet:py-36 text-center laptop:pb-89 laptop:pt-63">
+      <div className="flex flex-col gap-8 mb-20 tablet:mb-36 laptop:mb-60">
+        <p className="text-12 leading-18 text-white tablet:text-14 tablet:leading-21 laptop:text-16 laptop:leading-24">태그 검색</p>
+        <p className="font-bold text-16 leading-24 text-white tablet:text-20 tablet:leading-30 laptop:text-24 laptop:leading-36">
           태그를 통해 다른 유저의 여행 리뷰를
           <br />
           <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
@@ -157,7 +157,7 @@ const TagSection = () => {
               {tagArray.map((tag) => {
                 return (
                   <Clickable
-                    className="ml-8 tablet:ml-17 tablet:px-25 tablet:py-8 tablet:text-28 tablet:leading-42"
+                    className="ml-8 tablet:ml-16 tablet:px-20 tablet:py-8 tablet:text-22 tablet:leading-33 laptop:ml-18 laptop:px-26 laptop:py-9 laptop:text-28 laptop:leading-42"
                     key={tag}
                     size="small"
                     shape="capsule"
@@ -269,7 +269,7 @@ const DeviceSection = () => {
             </div>
           </div>
 
-          <div className=" h-194 w-159 overflow-hidden rounded-10 bg-gray-60 p-24 tablet:h-286 tablet:w-220 laptop:h-430 laptop:w-330 laptop:rounded-30">
+          <div className="h-194 w-159 overflow-hidden rounded-10 bg-gray-60 p-24 tablet:h-286 tablet:w-220 laptop:h-430 laptop:w-330 laptop:rounded-30">
             <p className="text-right text-12 leading-18 text-gray-30">Desktop</p>
             <Image className="ml-61 mt-85" src={desktop} alt="" width={270} />
           </div>
