@@ -18,8 +18,7 @@ function useValidateNickname() {
   };
 
   const { mutate, error } = useMutation({
-    mutationFn: () =>
-      axios.post(`http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/nickname?nickName=${nickname}`),
+    mutationFn: () => axios.post(`https://trimoserver.com/api/nickname?nickName=${nickname}`),
     onSuccess: (data: { data: boolean; status: number }) => {
       data.data
         ? makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_VALIDATED}`)
