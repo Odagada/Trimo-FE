@@ -8,7 +8,7 @@ function InputWrapper({ title, htmlFor, className = "", errors, children, divOpt
         htmlFor={htmlFor}
         className={`${
           errors ? "border-error" : "border-gray-300 focus-within:border-primary-600"
-        }  item-center tab:px-16 tab:py-14maxTablet:text-14 flex w-full flex-row rounded-10 border border-solid bg-white px-16 py-12 ${className} `}
+        }  item-center tab:px-16 tab:py-14 maxTablet:text-14 flex w-full flex-row rounded-10 border border-solid bg-white px-16 py-12 ${className} `}
       >
         {children}
       </label>
