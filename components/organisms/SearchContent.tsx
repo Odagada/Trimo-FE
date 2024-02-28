@@ -32,7 +32,7 @@ export default function SearchContent({ queryStr }: { queryStr: string }) {
           </div>
         </div>
       ) : (
-        <NoResult keyword={query.searchValue} />
+        <NoResult keyword={query.searchValue as string} />
       )}
     </>
   );

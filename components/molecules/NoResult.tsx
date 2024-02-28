@@ -2,7 +2,7 @@ import { getReviewCardArray } from "@/apis/capsulesQuery";
 import ReviewList from "@/components/molecules/ReviewList";
 import { useQuery } from "@tanstack/react-query";
 
-export default function NoResult({ keyword }: { keyword: string }) {
+export default function NoResult({ keyword }: { keyword: string | undefined }) {
   const { data: reviewData } = useQuery(getReviewCardArray("POPULAR"));
   const reviewList = reviewData?.data;
   return (
