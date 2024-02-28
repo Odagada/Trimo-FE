@@ -230,7 +230,7 @@ const ServiceExplainSection = () => {
       </div>
 
       <div className="tablet:gap:0 flex  flex-col-reverse gap-24  tablet:flex-row tablet:items-center">
-        <div className="mr-48 flex h-fit w-[calc(100%-48px)] flex-col items-end gap-12 rounded-r-full bg-white pt-44 pb-44 pr-76 text-right shadow-main laptop:gap-24 laptop:pb-109 laptop:pr-152 laptop:pt-128 tablet:mr-80 tablet:w-1/2 tablet:gap-16 tablet:pt-48 tablet:pb-48 tablet:pr-64">
+        <div className="mr-48 flex h-fit w-[calc(100%-48px)] flex-col items-end gap-12 rounded-r-full bg-white py-44 pr-76 text-right shadow-main laptop:gap-24 laptop:pb-109 laptop:pr-152 laptop:pt-128 tablet:mr-80 tablet:w-1/2 tablet:gap-16 tablet:py-48 tablet:pr-64">
           <div>
             <p className="text-12 font-medium leading-18 laptop:text-16 laptop:leading-24 tablet:text-14 tablet:leading-21">
               리뷰
