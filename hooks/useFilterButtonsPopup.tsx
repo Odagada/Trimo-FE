@@ -2,10 +2,11 @@ import { TagCompanion, TagMonth, TagPlaceType, TagWeather } from "@/types/client
 import useComponentPopup from "./useComponentPopup";
 import { useEffect, useState } from "react";
 import useManageUserAccessToken from "./useManageUserAccessToken";
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { getFilteredMyPlaces } from "@/apis/capsulesQuery";
+import { useMediaQuery } from "react-responsive";
 
-const useSearchFilterOptions = ({ pageNum }: { pageNum: number }) => {
+const useSearchFilterOptions = ({ pageNum, setQuery }: { pageNum: number; setQuery: (query: string) => void }) => {
   const [checkedMenu, setCheckedMenu] = useState<string | null>();
   const [checkedOptions, setCheckedOptions] = useState<{
     날짜: TagMonth;
@@ -13,10 +14,19 @@ const useSearchFilterOptions = ({ pageNum }: { pageNum: number }) => {
     동행: TagCompanion;
     날씨: TagWeather;
   }>({ 날짜: "", 유형: "", 동행: "", 날씨: "" });
-  const [queryStr, setQueryStr] = useState<null | string>(null);
+  const [isMediaQueryChanged, setIsMediaQueryChange] = useState(false);
+
+  const queryClient = new QueryClient();
 
   const { userAccessToken } = useManageUserAccessToken();
-  const { data: queryData } = useQuery(getFilteredMyPlaces(userAccessToken, queryStr));
+
+  const isBelowDesktop = useMediaQuery(
+    {
+      query: "(max-width: 1440px)",
+    },
+    undefined,
+    () => setIsMediaQueryChange((prev) => !prev)
+  );
 
   const Dates = useComponentPopup();
   const Types = useComponentPopup();
@@ -55,23 +65,22 @@ const useSearchFilterOptions = ({ pageNum }: { pageNum: number }) => {
   ];
 
   useEffect(() => {
-    console.log(
-      `/user/me/reviews?${checkedOptions.날씨 && "weather=" + checkedOptions.날씨 + "&"}${
+    const calcQuery = (page: number) =>
+      `${checkedOptions.날씨 && "weather=" + checkedOptions.날씨 + "&"}${
         checkedOptions.동행 && "companion=" + checkedOptions.동행 + "&"
       }${checkedOptions.유형 && "placeType=" + checkedOptions.유형 + "&"}${
         checkedOptions.날짜 && "month=" + checkedOptions.날짜 + "&"
-      }page=${pageNum}`
-    );
-    const query = `${checkedOptions.날씨 && "weather=" + checkedOptions.날씨 + "&"}${
-      checkedOptions.동행 && "companion=" + checkedOptions.동행 + "&"
-    }${checkedOptions.유형 && "placeType=" + checkedOptions.유형 + "&"}${
-      checkedOptions.날짜 && "month=" + checkedOptions.날짜 + "&"
-    }page=${pageNum}`;
-    if (checkedOptions.날씨 || checkedOptions.날짜 || checkedOptions.동행 || checkedOptions.유형) setQueryStr(query);
-    else {
-      setQueryStr(null);
+      }page=${page}&size=${isBelowDesktop ? 4 : 6}`;
+
+    if (checkedOptions.날씨 || checkedOptions.날짜 || checkedOptions.동행 || checkedOptions.유형) {
+      setQuery(calcQuery(pageNum));
+      queryClient.prefetchQuery(getFilteredMyPlaces(userAccessToken, calcQuery(pageNum + 1)));
+    } else {
+      const calcNoFilterQuery = (page: number) => `page=${page}&size=${isBelowDesktop ? 4 : 6}`;
+      setQuery(calcNoFilterQuery(pageNum));
+      queryClient.prefetchQuery(getFilteredMyPlaces(userAccessToken, calcNoFilterQuery(pageNum + 1)));
     }
-  }, [checkedOptions, pageNum]);
+  }, [checkedOptions, pageNum, isMediaQueryChanged]);
   return { OptionPopups, checkedMenu, setCheckedMenu, checkedOptions, setCheckedOptions };
 };
 
