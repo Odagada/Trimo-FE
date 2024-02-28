@@ -8,8 +8,8 @@ interface Props {
 
 export default function SingleStarRate({ rate = 1 }: Props) {
   return (
-    <div className="text-11 text-gray-50 mobile:small-text flex items-center h-20 gap-1">
-      <div className="mobile:p-0 relative w-20 h-20 p-2">
+    <div className="mobile:small-text flex h-20 items-center gap-1 text-11 text-gray-50">
+      <div className="relative size-20 p-2 mobile:p-0">
         <Image draggable={false} src={Star} alt="별 점" />
       </div>
       {rate}

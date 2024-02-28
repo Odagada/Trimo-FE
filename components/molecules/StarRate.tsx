@@ -28,7 +28,7 @@ export default function StarRate({ defaultRate = 0, value = 0, onChange }: Props
   };
 
   return (
-    <div className="flex relative">
+    <div className="relative flex">
       {stars.map((el) => (
         <Star
           isChecked={el > rate}

@@ -5,12 +5,12 @@ interface ProgressNavProps {
 }
 
 function Line() {
-  return <div className="w-30 h-1 bg-black"></div>;
+  return <div className="h-1 w-30 bg-black"></div>;
 }
 
 function ProgressNavigator({ stepArray = [1, 0, 0] }: ProgressNavProps) {
   return (
-    <div className="w-fit h-30 relative flex items-center">
+    <div className="relative flex h-30 w-fit items-center">
       {stepArray.map((isOnstep, index) => (
         <>
           {isOnstep ? <ProgressChip isOnProgress num={index + 1} /> : <ProgressChip num={index + 1} />}

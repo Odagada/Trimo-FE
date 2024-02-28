@@ -25,13 +25,13 @@ function Modal({ isOpen = false, title, description, buttonText = "확인", onCl
   return isOpen ? (
     ReactDOM.createPortal(
       <div>
-        <div className="fixed w-full h-full bg-[rgba(0,0,0,0.2)] z-10 left-0 top-0" onClick={onClose}></div>
-        <div className="bg-white z-100 w-440 h-220 fixed pb-58 flex flex-col justify-center items-center -translate-x-1/2 -translate-y-1/2 z-[100] shadow-main gap-5 rounded-[15px] left-1/2 top-1/2">
+        <div className="fixed left-0 top-0 z-10 size-full bg-[rgba(0,0,0,0.2)]" onClick={onClose}></div>
+        <div className="z-100 fixed left-1/2 top-1/2 z-[100] flex h-220 w-440 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-5 rounded-[15px] bg-white pb-58 shadow-main">
           <span className="text-zinc-800 text-lg font-bold ">{title}</span>
           {description}
-          <div className="flex w-full fixed h-60 top-162 rounded-b-[15px] overflow-hidden">
+          <div className="fixed top-162 flex h-60 w-full overflow-hidden rounded-b-[15px]">
             {hasCancelBtn && (
-              <button className="w-full top-162 bg-gray-20 text-black" onClick={onClose}>
+              <button className="top-162 w-full bg-gray-20 text-black" onClick={onClose}>
                 {buttonText[1]}
               </button>
             )}
