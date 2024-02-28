@@ -286,7 +286,7 @@ const DeviceSection = () => {
               <br />
               작성할 수 있어요
             </p>
-            <div className="flex items-center justify-center rounded-100 bg-primary w-56 h-56 tablet:w-84 tablet:h-84 laptop:h-120 laptop:w-120 ">
+            <div className="flex self-end tablet:self-start items-center justify-center rounded-100 bg-primary w-56 h-56 tablet:w-84 tablet:h-84 laptop:h-120 laptop:w-120 ">
               <Image className="w-21 tablet:w-32 laptop:w-47" src={quill} alt="" width={47} height={45} />
             </div>
           </div>
@@ -294,7 +294,7 @@ const DeviceSection = () => {
           <div className="h-194 w-156 order-3 overflow-hidden rounded-10 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 laptop:h-430 laptop:w-330 laptop:rounded-30 ">
             <p className="text-right text-12 p-13 leading-18 text-gray-30 tablet:p-16 laptop:p-24">Desktop</p>
             <Image
-              className="ml-29 mt-32 w-114 tablet:ml-41 tablet:mt-55 tablet:w-184 laptop:mt-84 laptop:ml-61 laptop:w-270"
+              className="ml-42 mt-21 w-114 tablet:mt-55 tablet:w-184 laptop:mt-84 laptop:ml-61 laptop:w-270"
               src={desktop}
               alt=""
               width={270}
