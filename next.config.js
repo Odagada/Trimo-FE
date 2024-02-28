@@ -17,10 +17,10 @@ const nextConfig = {
     return [
       // Basic redirect
       {
-        source: '/api/:path*',
-        destination: 'https://www.trimoserver.com/api/:path*',
+        source: "/api/:path*",
+        destination: "https://trimoserver.com/api/:path*",
       },
-    ]   
+    ];
   },
 };
 
