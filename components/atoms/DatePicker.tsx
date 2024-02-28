@@ -69,7 +69,7 @@ export default function DatePicker({ onChange, value }: Props) {
             </div>
             <Datepicker.Items
               className={({ type }) =>
-                `grid w-full auto-rows-max gap-16 overflow-y-auto scroll-smooth middle-text mt-10 ${
+                `middle-text mt-10 grid w-full auto-rows-max gap-16 overflow-y-auto scroll-smooth ${
                   type === "day" && "grid-cols-7"
                 } ${type === "month" && "grid-cols-3"} ${type === "year" && "max-h-[274px] grid-cols-4"}
                   `

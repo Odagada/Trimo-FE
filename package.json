@@ -59,6 +59,7 @@
     "eslint-plugin-tailwindcss": "^3.14.3",
     "husky": "^8.0.0",
     "postcss": "^8",
+    "prettier": "^3.2.5",
     "sb": "^7.6.10",
     "storybook": "^7.6.10",
     "tailwindcss": "^3.3.0",
