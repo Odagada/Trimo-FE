@@ -118,6 +118,14 @@ const MainReviewSection = () => {
     },
   });
 
+  const handleReivewDelete = async () => {
+    await fetch(`https://trimoserver.com/api/user/reviews/${reviewId}`, {
+      method: "DELETE",
+      headers: { Authorization: `bearer ${accessToken}` },
+      credentials: "include",
+    });
+  };
+
   return (
     <>
       {/* title area */}
@@ -160,7 +168,7 @@ const MainReviewSection = () => {
                 title="삭제하기"
                 description="이 게시글을 삭제하시겠습니까?"
                 buttonText={["확인", "취소"]}
-                onClose={handleModalToggle}
+                onClose={handleReivewDelete}
                 onClick={uploadPostMutation.mutate}
               ></Modal>
             </>
