@@ -12,15 +12,6 @@ const MultiReviewCardSlider = ({
   reviewCards: MultiReviewData[];
   align: "left" | "right";
 }) => {
-  // const containerRef = useRef<HTMLDivElement>(null);
-
-  // const handleWheelScroll = (event: WheelEvent<HTMLDivElement>) => {
-  //   const container = containerRef.current;
-  //   if (container) {
-  //     event.preventDefault();
-  //     container.scrollLeft += event.deltaY;
-  //   }
-  // };
 
   return (
     <div className={`flex flex-col gap-12 ${align === "left" ? "items-start" : "items-end"}`}>
@@ -38,10 +29,9 @@ const MultiReviewCardSlider = ({
         } flex w-full gap-9 pb-10 scrollbar-hide laptop:gap-24 tablet:gap-16`}
       >
         <ScrollContainer
-          vertical={true}
-          className={`scroll-container ${
+          className={`${
             align === "left" ? "flex-row" : "flex-row-reverse"
-          } flex w-full gap-9 pb-10 scrollbar-hide laptop:gap-24 tablet:gap-16scroll-container`}
+          } tablet:gap-16 scroll-container flex w-full gap-9 pb-10 scrollbar-hide laptop:gap-24`}
         >
           <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
           {reviewCards.map((review, i) => {
