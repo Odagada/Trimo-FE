@@ -18,10 +18,12 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
   const onSubmit = (data: {
     nickName: string;
     gender: string;
-    birthdate: birthdateValType | null;
-    birthyear: birthdateValType | null;
-    birthmonth: birthdateValType | null;
+    birthdate: birthdateValType | null | number;
+    birthyear: birthdateValType | null | number;
+    birthmonth: birthdateValType | null | number;
   }) => {
+    if (typeof data.birthyear === "number" || typeof data.birthmonth === "number" || typeof data.birthdate === "number")
+      return;
     const userBirthdate = formatDateToStr(data.birthyear?.value!, data.birthmonth?.value!, data.birthdate?.value!);
     const userSignUpData = {
       birthDate: userBirthdate,
