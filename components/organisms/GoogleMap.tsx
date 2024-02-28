@@ -27,4 +27,4 @@ function GoogleMap({ locationIDList, size = "" }: GoogleMapProps) {
   );
 }
 
-export default GoogleMap;
+export default React.memo(GoogleMap);
