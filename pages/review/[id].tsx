@@ -105,13 +105,12 @@ const MainReviewSection = () => {
   const queryClient = useQueryClient();
 
   const uploadPostMutation = useMutation({
-    mutationFn: () => {
-      return fetcher({
+    mutationFn: () =>
+      fetcher({
         method: "delete",
         url: `/user/reviews/${reviewId}`,
         headers: { Authorization: `bearer ${accessToken}` },
-      });
-    },
+      }),
     onSuccess: () => {
       handleModalToggle();
       queryClient.invalidateQueries({ queryKey: ["review"] });
