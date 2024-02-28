@@ -15,7 +15,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const userOAuthData = await axios.get(`https://trimoserver.com/login/oauth/${provider}?code=${code}`);
 
     return {
-      props: { dehydratedState: dehydrate(queryClient), userOAuthData: userOAuthData.data },
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        userOAuthData: userOAuthData.data,
+      },
     };
   } catch {
     return { notFound: true };

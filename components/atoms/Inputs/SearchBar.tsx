@@ -35,7 +35,10 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
       order = "POPULAR";
     }
 
-    router.push({ pathname: "/search", query: { order: order, searchValue: value } });
+    router.push({
+      pathname: "/search",
+      query: { order: order, searchValue: value },
+    });
   };
 
   return (
