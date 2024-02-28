@@ -17,7 +17,7 @@ function useGetUserSocialInfo({ code, provider }: Props) {
   const { mutate, error } = useMutation({
     mutationFn: () =>
       axios.post(
-        `https://www.trimoserver.com/login/oauth/${provider}?code=${code}`,
+        `https://trimoserver.com/login/oauth/${provider}?code=${code}`,
         { data: null },
         {
           headers: {

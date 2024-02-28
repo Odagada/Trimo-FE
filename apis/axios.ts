@@ -4,6 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 const instance = axios.create({
   baseURL: "/api",
   timeout: 5 * 1000,
+  withCredentials: true,
 });
 
 // 401 오류와 리프레시 토큰을 처리하는 요청 인터셉터

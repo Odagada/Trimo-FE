@@ -44,7 +44,7 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
         return (
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-              <div className="overflow-hidden mobile:w-25 mobile:h-25 h-20 w-20 rounded-full flex items-center">
+              <div className="flex size-20 items-center overflow-hidden rounded-full tablet:size-25">
                 <Image
                   width={25}
                   height={25}
@@ -54,15 +54,15 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
                   alt="default user profile"
                 />
               </div>
-              <span className="mobile:text-16 text-12">{userData?.nickName}</span>
+              <span className="text-12 tablet:text-16">{userData?.nickName}</span>
             </button>
             {isOpen && <HeaderDropdown ref={popupRef} fetchUserData={fetchUserData} />}
           </div>
         );
       case "LoggedOut":
         return (
-          <div className="gap-28 flex">
-            <Link href="/login" className="mobile:text-16 text-12">
+          <div className="flex gap-28">
+            <Link href="/login" className="text-12 tablet:text-16">
               로그인
             </Link>
           </div>
@@ -71,10 +71,10 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   };
 
   return (
-    <nav className="h-fit mobile:mb-74 mb-50 flex flex-col w-full">
-      <div className="z-50 h-fit h-30 mobile:py-12 py-0 mobile:px-121 px-20 fixed top-0 flex flex-wrap items-center justify-between w-full bg-white">
+    <nav className="mb-50 flex h-fit w-full flex-col tablet:mb-74">
+      <div className="fixed top-0 z-50 flex h-fit w-full flex-wrap items-center justify-between bg-white px-20 py-0 tablet:px-121 tablet:py-12">
         <Link href="/">
-          <div className="mobile:w-78 mobile:h-20 w-50 h-24 flex items-center">
+          <div className="flex h-24 w-50 items-center tablet:h-20 tablet:w-78">
             <Image draggable={false} src={Logo} alt="trimo logo" width={78} height={20} />
           </div>
         </Link>

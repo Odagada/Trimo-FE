@@ -60,6 +60,7 @@ const config: Config = {
       32: "3.2rem",
       36: "3.6rem",
       45: "4.5rem",
+      60: "6rem",
       100: "10rem",
     },
     lineHeight: {
@@ -91,6 +92,7 @@ const config: Config = {
     borderRadius: {
       5: "0.5rem",
       10: "1rem",
+      20: "2rem",
       30: "3rem",
       50: "5rem",
       100: "10rem",
@@ -101,9 +103,13 @@ const config: Config = {
     },
     screens: {
       desktop: "1440px",
+      maxDesktop: { max: "1440px" },
       laptop: "1200px",
+      maxLaptop: { max: "1200px" },
       tablet: "768px",
+      maxTablet: { max: "768px" },
       mobile: "360px",
+      maxMobile: { max: "360px" },
     },
     extend: {
       animation: {
