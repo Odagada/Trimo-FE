@@ -16,9 +16,9 @@ export default function ReviewCard({ review }: Props) {
   return (
     <Link
       href={`/review/${reviewId}`}
-      className="shadow-main rounded-10 tablet:w-282 tablet:h-330 w-155 h-205 tablet:p-8 flex flex-col items-center flex-shrink-0 p-4 bg-white select-none"
+      className="flex h-205 w-155 shrink-0 select-none flex-col items-center rounded-10 bg-white p-4 shadow-main tablet:h-330 tablet:w-282 tablet:p-8"
     >
-      <div className="h-240 relative w-full overflow-hidden">
+      <div className="relative h-240 w-full overflow-hidden">
         <Image
           src={image ?? NoImg}
           alt="카드 이미지"
@@ -30,15 +30,15 @@ export default function ReviewCard({ review }: Props) {
           className="rounded-10"
         />
       </div>
-      <div className="grid w-full grid-cols-[auto_3.7rem] grid-rows-[2rem_2rem_2rem] p-4 pb-6 tablet:grid-rows-[2.8rem_2.6rem] tablet:grid-cols-[auto_4.8rem] tablet:gap-x-14 tablet:gap-y-8 items-center">
-        <h3 className="text-14 leading-20 text-ellipsis whitespace-nowrap tablet:heading6 tablet:col-span-1 col-span-2 overflow-hidden font-bold">
+      <div className="grid w-full grid-cols-[auto_3.7rem] grid-rows-[2rem_2rem_2rem] items-center p-4 pb-6 tablet:grid-cols-[auto_4.8rem] tablet:grid-rows-[2.8rem_2.6rem] tablet:gap-x-14 tablet:gap-y-8">
+        <h3 className="tablet:heading6 col-span-2 truncate text-14 font-bold leading-20 tablet:col-span-1">
           {title}
         </h3>
-        <div className="text-10 leading-20 text-ellipsis whitespace-nowrap tablet:small-text overflow-hidden">
+        <div className="tablet:small-text truncate text-10 leading-20">
           <span>by {nickName}</span>
         </div>
-        <div className="tablet:col-span-1 flex col-span-2 gap-4">
-          <div className="text-10 bg-gray-10 flex-center tablet:small-text tablet:w-43 tablet:py-4 w-32 rounded-full">
+        <div className="col-span-2 flex gap-4 tablet:col-span-1">
+          <div className="flex-center tablet:small-text w-32 rounded-full bg-gray-10 text-10 tablet:w-43 tablet:py-4">
             {tagMonth}
           </div>
           {tagValues &&
@@ -46,7 +46,7 @@ export default function ReviewCard({ review }: Props) {
               <ReviewCardTag value={value} key={key + reviewId} />
             ))}
         </div>
-        <div className="flex justify-end col-start-2 row-start-2">
+        <div className="col-start-2 row-start-2 flex justify-end">
           <SingleStarRate rate={stars} />
         </div>
       </div>

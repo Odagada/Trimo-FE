@@ -24,7 +24,7 @@ export default function Star({ isChecked, onClick, rate, onMouseOver, onMouseOut
   return (
     <>
       <button
-        className={`${halfStar ? "overflow-hidden relative z-10" : "translate-x-[-1.4rem]"} w-14 h-28`}
+        className={`${halfStar ? "relative z-10 overflow-hidden" : "translate-x-[-1.4rem]"} h-28 w-14`}
         onMouseOver={() => {
           onMouseOver(rate);
         }}
