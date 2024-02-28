@@ -2,7 +2,7 @@ import { getReview, getReviewIsLiked, getReviewLikeCount, getUserInfo } from "@/
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import MultiStarRate from "@/components/atoms/MultiStarRate";
-import { QueryClient, dehydrate, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, dehydrate, useMutation, useQueryClient } from "@tanstack/react-query";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
@@ -18,8 +18,11 @@ import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { useDestructureReviewData, useIsMine, useReviewId } from "@/hooks/useDestructureReviewData";
 import useAccessToken from "@/zustands/useAccessToken";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import makeToast from "@/utils/makeToast";
+import { useRouter } from "next/router";
+import Modal from "@/components/molecules/Modal";
+import fetcher from "@/apis/axios";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -87,18 +90,42 @@ const MainReviewSection = () => {
   const { reviewData, dateString, timeString } = useDestructureReviewData();
   const reviewId = useReviewId();
 
+  const router = useRouter();
+
   const { accessToken } = useAccessToken();
 
   const isMine = useIsMine(accessToken);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleModalToggle = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const queryClient = useQueryClient();
+
+  const uploadPostMutation = useMutation({
+    mutationFn: () =>
+      fetcher({
+        method: "delete",
+        url: `/user/reviews/${reviewId}`,
+        headers: { Authorization: `bearer ${accessToken}` },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["review"] });
+      makeToast("삭제가 완료되었습니다!");
+      router.push("/");
+    },
+  });
+
   return (
     <>
       {/* title area */}
-      <h2 className="tablet:mb-12 mb-4 flex justify-between">
-        <div className="flex items-baseline tablet:gap-20 gap-8">
+      <h2 className="mb-4 flex justify-between tablet:mb-12">
+        <div className="flex items-baseline gap-8 tablet:gap-20">
           <span className="tablet:heading1 text-24 font-bold leading-36">{reviewData?.data.title}</span>
 
-          <span className="text-medium text-12 tablet:text-18 leading-15">{`by ${reviewData?.data.nickName}`}</span>
+          <span className="text-medium text-12 leading-15 tablet:text-18">{`by ${reviewData?.data.nickName}`}</span>
         </div>
 
         <div className="flex items-center gap-5">
@@ -120,21 +147,30 @@ const MainReviewSection = () => {
 
           {true && (
             <>
-              <button type="button">
+              <button type="button" onClick={() => router.push(`/review/${reviewId}/edit`)}>
                 <Image src={Pen} alt="리뷰 수정" width={24} />
               </button>
 
-              <button type="button">
+              <button type="button" onClick={handleModalToggle}>
                 <Image src={Bin} alt="리뷰 삭제" width={24} />
               </button>
+
+              <Modal
+                isOpen={isOpen}
+                title="삭제하기"
+                description="이 게시글을 삭제하시겠습니까?"
+                buttonText={["확인", "취소"]}
+                onClose={handleModalToggle}
+                onClick={uploadPostMutation.mutate}
+              ></Modal>
             </>
           )}
         </div>
       </h2>
 
       {/* subTitle? */}
-      <div className="mb-30 flex tablet:flex-row flex-col tablet:items-center gap-10">
-        <h3 className="tablet:text-18 tablet:leading-27 text-12 leading-18 text-gray-40 ">
+      <div className="mb-30 flex flex-col gap-10 tablet:flex-row tablet:items-center">
+        <h3 className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27 ">
           {`${reviewData?.data.spotName} · ${dateString} · ${timeString}`}
           {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
         </h3>
@@ -155,11 +191,11 @@ const MapNTag = () => {
   return (
     <>
       {/* map area */}
-      <div className="tablet:mb-73 mb-12">
+      <div className="mb-12 tablet:mb-73">
         <GoogleMap locationIDList={[placeId]} />
       </div>
       {/* tag and createdAt */}
-      <section className="mb-155 flex tablet:flex-row flex-col tablet:items-center justify-between gap-24">
+      <section className="mb-155 flex flex-col justify-between gap-24 tablet:flex-row tablet:items-center">
         <div className="flex gap-10">
           {tag?.map((item, index) => {
             return (
