@@ -12,12 +12,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const queryClient = new QueryClient();
     const { provider, code } = context.query;
 
-    const userOAuthData = await axios.get(
-      `http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/login/oauth/${provider}?code=${code}`
-    );
+    const userOAuthData = await axios.get(`https://trimoserver.com/login/oauth/${provider}?code=${code}`);
 
     return {
-      props: { dehydratedState: dehydrate(queryClient), userOAuthData: userOAuthData.data },
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        userOAuthData: userOAuthData.data,
+      },
     };
   } catch {
     return { notFound: true };
@@ -28,10 +29,12 @@ function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerS
   const { calculateStepArray, renderContentOnProgress } = useSignUp(userOAuthData);
 
   return (
-    <div className="h-screen flex w-full flex-col">
+    <div className="flex h-screen w-full flex-col">
       <Nav isOnlyLogo />
-      <ShadowBox className="relative">
-        <span className="text-20 font-bold text-center mb-15 mt-35">회원가입</span>
+      <ShadowBox className="relative my-32 maxTablet:my-20 maxTablet:h-full maxTablet:w-5/6 maxTablet:px-16 maxTablet:pb-30">
+        <span className="mb-8 mt-18 text-center text-16 font-bold tablet:mb-15 tablet:mt-35 tablet:text-20">
+          회원가입
+        </span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
         {renderContentOnProgress()}
       </ShadowBox>

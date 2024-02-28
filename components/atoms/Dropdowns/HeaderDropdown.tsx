@@ -25,7 +25,7 @@ export default forwardRef(function HeaderDropdown(
   };
   return (
     <div
-      className="w-122 flex-center shadow-main rounded-10 text-15 leading-21 absolute right-0 flex flex-col gap-8 p-12 mt-12 bg-white"
+      className="flex-center text-15 absolute right-0 mt-12 flex w-122 flex-col gap-8 rounded-10 bg-white p-12 leading-21 shadow-main"
       ref={ref}
     >
       {menus.map((el, idx) => (

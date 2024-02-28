@@ -60,6 +60,7 @@ const config: Config = {
       32: "3.2rem",
       36: "3.6rem",
       45: "4.5rem",
+      60: "6rem",
       100: "10rem",
     },
     lineHeight: {
@@ -91,6 +92,7 @@ const config: Config = {
     borderRadius: {
       5: "0.5rem",
       10: "1rem",
+      20: "2rem",
       30: "3rem",
       50: "5rem",
       100: "10rem",

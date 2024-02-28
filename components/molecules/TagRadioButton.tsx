@@ -44,10 +44,10 @@ export default function TagRadioButton({ onChange, tag = "placeType", value, isS
         tag === "date"
           ? `grid ${
               isSmall
-                ? "grid-cols-4 grid-rows-3 gap-10 justify-items-center"
-                : "grid-cols-6 grid-rows-2 gap-12 justify-items-start"
+                ? "grid-cols-4 grid-rows-3 justify-items-center gap-10"
+                : "grid-cols-6 grid-rows-2 justify-items-start gap-12"
             } `
-          : "flex gap-12 flex-wrap"
+          : "flex flex-wrap gap-12"
       }`}
     >
       {items.map((item, index) => (

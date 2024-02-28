@@ -77,6 +77,7 @@ export type User = {
   gender: "남자" | "여자";
   age: number;
   imageUrl: string;
+  birthdate: string;
 };
 
 export type Review = {
