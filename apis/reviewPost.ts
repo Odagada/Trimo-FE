@@ -38,12 +38,12 @@ export async function editReviews({
   apiKey,
 }: {
   formData: FormData;
-  reviewId: string;
+  reviewId: number;
   apiKey: string;
 }) {
   const { data } = await fetcher<Review>({
     method: "put",
-    url: `/user/spots/reviews/${reviewId}]`,
+    url: `/user/spots/reviews/${reviewId}`,
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "multipart/form-data" },
     data: formData,
   });

@@ -8,7 +8,7 @@ import TagRadioButton from "./TagRadioButton";
 import StarRate from "./StarRate";
 
 import { EditReview, ImageType, Review, TagCompanion, TagPlaceType, TagWeather } from "@/types/client.types";
-import { postReviews } from "@/apis/reviewPost";
+import { editReviews } from "@/apis/reviewPost";
 
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -21,9 +21,10 @@ interface Props {
   spotId: string;
   setSpotError: React.Dispatch<React.SetStateAction<string>>;
   review: SingleReviewData | undefined;
+  reviewId: number;
 }
 
-export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
+export default function ReviewEdit({ spotId, setSpotError, review, reviewId }: Props) {
   let defaultValues: EditReview = {
     title: "",
     content: "",
@@ -34,6 +35,7 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
     stars: 0,
     images: [],
     newImages: [],
+    spotId: "",
   };
 
   const {
@@ -64,39 +66,54 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
     }
   }, [review]);
 
+  useEffect(() => {
+    setValue("spotId", spotId);
+  }, [spotId]);
+
   const router = useRouter();
   const { userAccessToken: apiKey } = useManageUserAccessToken();
 
   const { title, content, placeType, companion, weather, visitingTime, stars, images, newImages } =
     useEditForm(control);
 
-  //   const { mutate: postReviewsMutate } = useMutation({
-  //     mutationFn: postReviews,
-  //     onSuccess() {
-  //       router.push("/search");
-  //     },
-  //     onError() {
-  //       setError("title", { message: "다시 시도해주세요." }, { shouldFocus: true }); // 오류메시지 어디다 띄울지?
-  //     },
-  //   });
+  const { mutate: editReviewsMutate } = useMutation({
+    mutationFn: editReviews,
+    onSuccess() {
+      ///toast
+      //   router.push("/search");
+      alert("성공");
+    },
+    onError() {
+      ///toast
+      alert("실패");
+    },
+  });
 
   function postForm(postData: EditReview) {
-    //   if (spotId === "") {
-    //     setSpotError("장소를 입력해주세요");
-    //     setFocus("title");
-    //     return;
-    //   }
-    //   const formData = new FormData();
-    //   const { images, ...reviewWriteRequest } = postData;
-    //   let key: keyof typeof reviewWriteRequest;
-    //   for (key in reviewWriteRequest) {
-    //     formData.append(key, reviewWriteRequest[key] as string);
-    //   }
-    //   images.map((value) => {
-    //     formData.append("images", value.file, value.file.name);
-    //   });
-    //   // postReviewsMutate({ formData, spotId, apiKey });
-    console.log(postData);
+    if (spotId === "") {
+      setSpotError("장소를 입력해주세요");
+      setFocus("title");
+      return;
+    }
+    const formData = new FormData();
+    const { images, newImages, ...reviewWriteRequest } = postData;
+    let key: keyof typeof reviewWriteRequest;
+    for (key in reviewWriteRequest) {
+      formData.append(key, reviewWriteRequest[key] as string);
+    }
+    const overlappingNames = images
+      .map((image) => image.name)
+      .filter((name) => newImages.some((newImage) => newImage.file.name === name));
+
+    const filteredImages = images.filter((image) => !overlappingNames.includes(image.name));
+
+    filteredImages.map((value) => {
+      formData.append("images", value.url);
+    });
+    newImages.map((value) => {
+      formData.append("newImages", value.file, value.file.name);
+    });
+    editReviewsMutate({ formData, reviewId, apiKey });
   }
 
   return (
@@ -121,6 +138,7 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
       </div>
       <div>
         <ImagesEditInput
+          fileValue={newImages.fields}
           fileAppend={newImages.append}
           fileRemove={newImages.remove}
           showValue={images.fields}
@@ -168,14 +186,14 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
           <TagRadioButton onChange={weather.onChange} tag="weather" value={weather.value} />
         </ReviewOption.section>
       </ReviewOption>
-      <div className="m-auto flex gap-16">
-        <button className="h-46 w-210" type="button" onClick={router.back}>
+      <div className="m-auto flex w-full justify-center gap-16">
+        <button className="hidden h-46 w-210 tablet:block" type="button" onClick={router.back}>
           <Clickable color="white" size="medium">
             취소
           </Clickable>
         </button>
-        <button className="h-46 w-210" type="submit">
-          <Clickable color="black" size="medium">
+        <button className="h-46 w-full tablet:w-210" type="submit">
+          <Clickable color="black" size="medium" className="max-w-none">
             등록
           </Clickable>
         </button>

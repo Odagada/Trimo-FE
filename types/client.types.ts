@@ -88,6 +88,7 @@ export type EditReview = {
   stars: Stars;
   images: ImageType[];
   newImages: { file: File }[];
+  spotId: string;
 };
 
 export type ImageType = {

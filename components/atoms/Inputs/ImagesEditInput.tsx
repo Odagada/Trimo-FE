@@ -6,6 +6,7 @@ import { UseFieldArrayAppend } from "react-hook-form";
 import cameraIcon from "@/public/icons/cameraIcon.svg";
 
 interface Props {
+  fileValue: { file: File }[];
   fileAppend: UseFieldArrayAppend<EditReview, "newImages">;
   fileRemove: (index?: number | number[]) => void;
   showValue: ImageType[];
@@ -13,7 +14,14 @@ interface Props {
   showRemove: (index?: number | number[]) => void;
 }
 
-export default function ImagesEditInput({ fileAppend, fileRemove, showValue, showAppend, showRemove }: Props) {
+export default function ImagesEditInput({
+  fileValue,
+  fileAppend,
+  fileRemove,
+  showValue,
+  showAppend,
+  showRemove,
+}: Props) {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,7 +42,9 @@ export default function ImagesEditInput({ fileAppend, fileRemove, showValue, sho
 
   const deleteFile = (idx: number) => {
     showRemove(idx);
-    fileRemove(showValue.length - 1 - idx);
+    if (idx + fileValue.length - showValue.length >= 0) {
+      fileRemove(idx + fileValue.length - showValue.length);
+    }
   };
 
   const handleDragEnter = (e: DragEvent<HTMLElement>) => {
