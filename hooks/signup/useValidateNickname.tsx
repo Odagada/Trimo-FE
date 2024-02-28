@@ -18,11 +18,15 @@ function useValidateNickname() {
   };
 
   const { mutate, error } = useMutation({
-    mutationFn: () => axios.post(`https://trimoserver.com/api/nickname?nickName=${nickname}`),
+    mutationFn: () =>
+      axios.post(`https://trimoserver.com/api/nickname?nickName=${nickname}`),
     onSuccess: (data: { data: boolean; status: number }) => {
       data.data
         ? makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_VALIDATED}`)
-        : makeToast(`${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_NOT_VALIDATED}`, "error");
+        : makeToast(
+            `${nickname}${INPUT_VALIDATION_MESSAGE.NICKNAME_NOT_VALIDATED}`,
+            "error"
+          );
       setData(data);
     },
     onError: (error) => makeToast(error.message, "error"),

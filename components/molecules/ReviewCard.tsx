@@ -10,7 +10,8 @@ interface Props {
 }
 
 export default function ReviewCard({ review }: Props) {
-  const { title, stars, nickName, reviewId, tagValues, image, visitingTime } = review;
+  const { title, stars, nickName, reviewId, tagValues, image, visitingTime } =
+    review;
   const { tagMonth } = calcData(visitingTime);
 
   return (
@@ -31,7 +32,9 @@ export default function ReviewCard({ review }: Props) {
         />
       </div>
       <div className="grid w-full grid-cols-[auto_3.7rem] grid-rows-[2rem_2rem_2rem] items-center p-4 pb-6 tablet:grid-cols-[auto_4.8rem] tablet:grid-rows-[2.8rem_2.6rem] tablet:gap-x-14 tablet:gap-y-8">
-        <h3 className="tablet:heading6 col-span-2 truncate text-14 font-bold leading-20 tablet:col-span-1">{title}</h3>
+        <h3 className="tablet:heading6 col-span-2 truncate text-14 font-bold leading-20 tablet:col-span-1">
+          {title}
+        </h3>
         <div className="tablet:small-text truncate text-10 leading-20">
           <span>by {nickName}</span>
         </div>

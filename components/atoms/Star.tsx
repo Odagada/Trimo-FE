@@ -14,7 +14,14 @@ interface Props {
   halfStar: boolean;
 }
 
-export default function Star({ isChecked, onClick, rate, onMouseOver, onMouseOut, halfStar }: Props) {
+export default function Star({
+  isChecked,
+  onClick,
+  rate,
+  onMouseOver,
+  onMouseOut,
+  halfStar,
+}: Props) {
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter") {
       onClick(rate);
@@ -24,7 +31,9 @@ export default function Star({ isChecked, onClick, rate, onMouseOver, onMouseOut
   return (
     <>
       <button
-        className={`${halfStar ? "relative z-10 overflow-hidden" : "translate-x-[-1.4rem]"} h-28 w-14`}
+        className={`${
+          halfStar ? "relative z-10 overflow-hidden" : "translate-x-[-1.4rem]"
+        } h-28 w-14`}
         onMouseOver={() => {
           onMouseOver(rate);
         }}
@@ -36,11 +45,26 @@ export default function Star({ isChecked, onClick, rate, onMouseOver, onMouseOut
         type="button"
       >
         {isChecked ? (
-          <Image draggable={false} src={StarEmpty} alt="빈 별" style={{ maxWidth: "100vw" }} />
+          <Image
+            draggable={false}
+            src={StarEmpty}
+            alt="빈 별"
+            style={{ maxWidth: "100vw" }}
+          />
         ) : halfStar ? (
-          <Image draggable={false} src={halfStarImg} alt="반 별" style={{ maxWidth: "100vw" }} />
+          <Image
+            draggable={false}
+            src={halfStarImg}
+            alt="반 별"
+            style={{ maxWidth: "100vw" }}
+          />
         ) : (
-          <Image draggable={false} src={StarFull} alt="채워진 별" style={{ maxWidth: "100vw" }} />
+          <Image
+            draggable={false}
+            src={StarFull}
+            alt="채워진 별"
+            style={{ maxWidth: "100vw" }}
+          />
         )}
       </button>
     </>

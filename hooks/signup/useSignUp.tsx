@@ -43,7 +43,10 @@ function useSignUp(userOAuthData: LoginOauthType) {
 
   useEffect(() => {
     if (userOAuthData?.role === "ROLE_USER") {
-      saveUserAccessToken(userOAuthData.accessToken, `${userOAuthData.nickName}으로 로그인 되었습니다! 🤗`);
+      saveUserAccessToken(
+        userOAuthData.accessToken,
+        `${userOAuthData.nickName}으로 로그인 되었습니다! 🤗`
+      );
       router.push("/");
     }
   }, []);

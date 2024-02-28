@@ -10,7 +10,10 @@ import makeToast from "@/utils/makeToast";
 interface SubmitAdditionalInfoProps extends SignupContentProps {
   userAccessToken: string;
 }
-function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAdditionalInfoProps) {
+function useSubmitAdditionalInfo({
+  progressStatus,
+  userAccessToken,
+}: SubmitAdditionalInfoProps) {
   const router = useRouter();
 
   const { saveUserAccessToken } = useManageUserAccessToken();
@@ -22,7 +25,11 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
     birthyear: birthdateValType | null;
     birthmonth: birthdateValType | null;
   }) => {
-    const userBirthdate = formatDateToStr(data.birthyear?.value!, data.birthmonth?.value!, data.birthdate?.value!);
+    const userBirthdate = formatDateToStr(
+      data.birthyear?.value!,
+      data.birthmonth?.value!,
+      data.birthdate?.value!
+    );
     const userSignUpData = {
       birthDate: userBirthdate,
       gender: data.gender,
@@ -32,7 +39,12 @@ function useSubmitAdditionalInfo({ progressStatus, userAccessToken }: SubmitAddi
   };
 
   const formatDateToStr = (year: number, month: number, date: number) => {
-    const formateDate = String(year) + "-" + String(month).padStart(2, "0") + "-" + String(date).padStart(2, "0");
+    const formateDate =
+      String(year) +
+      "-" +
+      String(month).padStart(2, "0") +
+      "-" +
+      String(date).padStart(2, "0");
     return formateDate;
   };
 

@@ -8,7 +8,11 @@ interface Props {
   setSpotError: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError }: Props) {
+export default function GoogleAutoComplete({
+  setSpotId,
+  spotError,
+  setSpotError,
+}: Props) {
   const { mutate: postSpotsMutate } = useMutation({
     mutationFn: postSpots,
     onSuccess(data) {
@@ -43,12 +47,19 @@ export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError 
         onPlaceSelected={handlePlace}
         options={{
           types: [],
-          fields: ["name", "geometry.location", "place_id", "formatted_address"],
+          fields: [
+            "name",
+            "geometry.location",
+            "place_id",
+            "formatted_address",
+          ],
         }}
         placeholder="어느곳을 다녀오셨나요?"
         className="heading4 w-full focus:outline-none"
       />
-      {spotError !== "" && <p className="middle-text mt-10 font-bold text-error">{spotError}</p>}
+      {spotError !== "" && (
+        <p className="middle-text mt-10 font-bold text-error">{spotError}</p>
+      )}
     </div>
   );
 }

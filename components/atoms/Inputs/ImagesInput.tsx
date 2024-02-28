@@ -19,7 +19,10 @@ export default function ImagesInput({ append, remove }: Props) {
     if (files === null) return;
     for (let i = 0; i < files.length; i++) {
       if (!showImages.some((el) => el.name === files[i].name)) {
-        setShowImages((prev) => [...prev, { name: files[i].name, url: URL.createObjectURL(files[i]) }]);
+        setShowImages((prev) => [
+          ...prev,
+          { name: files[i].name, url: URL.createObjectURL(files[i]) },
+        ]);
         append({ file: files[i] });
       }
     }
@@ -89,7 +92,10 @@ export default function ImagesInput({ append, remove }: Props) {
       </button>
       <div className="mt-8 grid w-full grid-cols-10 gap-8">
         {showImages.map((el, idx) => (
-          <div className="rounded-lg relative aspect-square overflow-hidden" key={idx}>
+          <div
+            className="rounded-lg relative aspect-square overflow-hidden"
+            key={idx}
+          >
             <button
               className="bg-gray-900 absolute right-0 top-0 z-10 flex size-24 cursor-pointer items-center justify-center rounded-full text-white"
               onClick={() => deleteFile(idx)}
@@ -97,7 +103,14 @@ export default function ImagesInput({ append, remove }: Props) {
             >
               <DeleteIcon />
             </button>
-            <Image draggable={false} src={el.url} alt={el.name} sizes="75px" fill style={{ objectFit: "cover" }} />
+            <Image
+              draggable={false}
+              src={el.url}
+              alt={el.name}
+              sizes="75px"
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </div>
         ))}
       </div>

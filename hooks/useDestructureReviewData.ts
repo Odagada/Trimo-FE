@@ -40,5 +40,13 @@ export const useDestructureReviewData = () => {
   const reviewTag = reviewData?.data.tagValues ?? {};
   const tag: TagWithMonth[] = [tagMonth, ...Object.values(reviewTag)];
 
-  return { reviewData, imageUrlArray, tag, placeId, createdAt, dateString, timeString };
+  return {
+    reviewData,
+    imageUrlArray,
+    tag,
+    placeId,
+    createdAt,
+    dateString,
+    timeString,
+  };
 };

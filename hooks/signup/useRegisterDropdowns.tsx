@@ -6,7 +6,13 @@ function useRegisterDropdown() {
     mode: "onBlur",
     shouldFocusError: true,
     reValidateMode: "onChange",
-    defaultValues: { nickName: "", gender: "남자", birthyear: null, birthmonth: null, birthdate: null },
+    defaultValues: {
+      nickName: "",
+      gender: "남자",
+      birthyear: null,
+      birthmonth: null,
+      birthdate: null,
+    },
   });
 
   const {
@@ -14,7 +20,11 @@ function useRegisterDropdown() {
   } = useController({ name: "birthyear", control, rules: { required: true } });
 
   const {
-    field: { value: birthmonthVal, onChange: onBirthMonthChange, ...restField2 },
+    field: {
+      value: birthmonthVal,
+      onChange: onBirthMonthChange,
+      ...restField2
+    },
   } = useController({ name: "birthmonth", control, rules: { required: true } });
 
   const {

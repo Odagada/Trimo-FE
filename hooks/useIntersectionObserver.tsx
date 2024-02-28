@@ -13,7 +13,12 @@ interface Props {
   options?: Options;
 }
 
-export default function useInterSectionObserver({ target, onIntersect, options, size = "5" }: Props) {
+export default function useInterSectionObserver({
+  target,
+  onIntersect,
+  options,
+  size = "5",
+}: Props) {
   useEffect(() => {
     let observer: IntersectionObserver;
     if (target && target.current) {

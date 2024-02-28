@@ -23,7 +23,10 @@ export async function postReviews({
   const { data } = await fetcher<Review>({
     method: "post",
     url: `/user/spots/${spotId}/reviews`,
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "multipart/form-data" },
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "multipart/form-data",
+    },
     data: formData,
   });
   return data;

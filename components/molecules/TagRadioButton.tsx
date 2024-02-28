@@ -8,7 +8,11 @@ interface TagRadioButtonProps {
   value: string | undefined;
 }
 
-export default function TagRadioButton({ onChange, tag = "placeType", value }: TagRadioButtonProps) {
+export default function TagRadioButton({
+  onChange,
+  tag = "placeType",
+  value,
+}: TagRadioButtonProps) {
   let items: TagWithMonth[] = [];
 
   switch (tag) {
@@ -22,13 +26,28 @@ export default function TagRadioButton({ onChange, tag = "placeType", value }: T
       items = ["가족", "친구", "연인", "혼자"];
       break;
     case "date":
-      items = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+      items = [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ];
       break;
     default:
       break;
   }
 
-  const handleRadioChange = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleRadioChange = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
     const select = event.currentTarget.id;
     if (select === value) {
       onChange(undefined);
@@ -40,12 +59,18 @@ export default function TagRadioButton({ onChange, tag = "placeType", value }: T
   return (
     <div
       className={`${
-        tag === "date" ? "grid grid-cols-6 grid-rows-2 justify-items-start gap-12" : "flex flex-wrap gap-12"
+        tag === "date"
+          ? "grid grid-cols-6 grid-rows-2 justify-items-start gap-12"
+          : "flex flex-wrap gap-12"
       }`}
     >
       {items.map((item, index) => (
         <button type="button" onClick={handleRadioChange} key={index} id={item}>
-          <Clickable color={value === item ? "black" : "white-"} size="small" shape="capsule">
+          <Clickable
+            color={value === item ? "black" : "white-"}
+            size="small"
+            shape="capsule"
+          >
             <Emoji>{item}</Emoji>
           </Clickable>
         </button>

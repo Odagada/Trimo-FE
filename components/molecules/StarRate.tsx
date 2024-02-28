@@ -11,7 +11,11 @@ interface Props {
 
 const stars: Stars[] = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 
-export default function StarRate({ defaultRate = 0, value = 0, onChange }: Props) {
+export default function StarRate({
+  defaultRate = 0,
+  value = 0,
+  onChange,
+}: Props) {
   const [rate, setRate] = useState(defaultRate);
 
   const handleClick = (num: Stars) => {

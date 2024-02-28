@@ -15,8 +15,15 @@ interface Props extends SignupContentProps {
   userAccessToken: string;
 }
 
-function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: Props) {
-  const { onSubmit } = useSubmitAdditionalInfo({ progressStatus, userAccessToken });
+function WriteAdditionalInfo({
+  progressStatus,
+  setNickname,
+  userAccessToken,
+}: Props) {
+  const { onSubmit } = useSubmitAdditionalInfo({
+    progressStatus,
+    userAccessToken,
+  });
 
   const {
     register,
@@ -52,18 +59,32 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             <Input
               {...register("nickName", {
                 required: true,
-                maxLength: { value: 5, message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG },
+                maxLength: {
+                  value: 5,
+                  message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG,
+                },
               })}
               id="title"
               placeholder="닉네임"
             />
 
             {isNicknameValid?.data && isNicknameValid.status === 200 && (
-              <Image src={check} width={20} height={20} alt="nickname validated" />
+              <Image
+                src={check}
+                width={20}
+                height={20}
+                alt="nickname validated"
+              />
             )}
           </InputWrapper>
-          <button onClick={() => validateNickname(getValues("nickName"))} type="button">
-            <Clickable size="medium" className="ml-10 whitespace-nowrap px-30 py-17 font-medium">
+          <button
+            onClick={() => validateNickname(getValues("nickName"))}
+            type="button"
+          >
+            <Clickable
+              size="medium"
+              className="ml-10 whitespace-nowrap px-30 py-17 font-medium"
+            >
               중복확인
             </Clickable>
           </button>
@@ -91,7 +112,11 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               placeholder="출생년도"
               options={availableBirthdateList.yearList}
               value={
-                birthyearVal ? availableBirthdateList.yearList.find((x) => x.value === birthyearVal) : birthyearVal
+                birthyearVal
+                  ? availableBirthdateList.yearList.find(
+                      (x) => x.value === birthyearVal
+                    )
+                  : birthyearVal
               }
               onChange={(option) => onBirthYearChange(option)}
               components={{
@@ -114,7 +139,11 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               placeholder="월"
               options={availableBirthdateList.monthList}
               value={
-                birthmonthVal ? availableBirthdateList.monthList.find((x) => x.value === birthmonthVal) : birthmonthVal
+                birthmonthVal
+                  ? availableBirthdateList.monthList.find(
+                      (x) => x.value === birthmonthVal
+                    )
+                  : birthmonthVal
               }
               onChange={(option) => onBirthMonthChange(option)}
               components={{
@@ -136,7 +165,13 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               instanceId="date-select"
               placeholder="일"
               options={availableBirthdateList.dayList}
-              value={birthdateVal ? availableBirthdateList.dayList.find((x) => x.value === birthdateVal) : birthdateVal}
+              value={
+                birthdateVal
+                  ? availableBirthdateList.dayList.find(
+                      (x) => x.value === birthdateVal
+                    )
+                  : birthdateVal
+              }
               onChange={(option) => onBirthDateChange(option)}
               components={{
                 IndicatorSeparator: () => null,
@@ -179,13 +214,23 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
         <button
           type="submit"
           className="mt-20 w-full"
-          disabled={!formState.isValid || !isNicknameValid?.data || isNicknameValid.status !== 200}
+          disabled={
+            !formState.isValid ||
+            !isNicknameValid?.data ||
+            isNicknameValid.status !== 200
+          }
           onClick={() => setNickname(getValues("nickName"))}
         >
           <Clickable
             size="large"
             className="w-full"
-            color={formState.isValid && isNicknameValid?.data && isNicknameValid.status ? "black" : "gray"}
+            color={
+              formState.isValid &&
+              isNicknameValid?.data &&
+              isNicknameValid.status
+                ? "black"
+                : "gray"
+            }
           >
             확인
           </Clickable>

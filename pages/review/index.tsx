@@ -3,9 +3,14 @@ import PlaceForm from "@/components/organisms/PlaceForm";
 import Footer from "@/components/atoms/Footer";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { isLoggedIn, validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
+import {
+  isLoggedIn,
+  validateRedirectionByLoginStatus,
+} from "@/utils/validateByLoginStatus";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   try {
     const accessToken = await getAccessTokenFromCookie(context);
 
@@ -31,7 +36,9 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   }
 };
 
-export default function ReviewWrite({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function ReviewWrite({
+  isLoggedIn,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Nav isLoggedIn={isLoggedIn} />
