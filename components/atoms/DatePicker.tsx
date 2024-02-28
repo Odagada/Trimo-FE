@@ -33,7 +33,7 @@ export default function DatePicker({ onChange, value }: Props) {
   }
   return (
     <Datepicker onChange={handleDate} value={valueToDate(value)}>
-      <div className="relative">
+      <div className="relative w-160">
         <Datepicker.Input
           format="yyyy/MM/dd HH:mm"
           className="middle-text flex h-36 w-160 rounded-10 border border-gray-30 pl-12 font-bold"
