@@ -16,7 +16,7 @@ export default function ReviewCard({ review }: Props) {
   return (
     <Link
       href={`/review/${reviewId}`}
-      className="flex h-205 w-155 select-none flex-col items-center rounded-10 bg-white p-4 shadow-main tablet:h-330 tablet:w-282 tablet:p-8"
+      className="shadow-main rounded-10 tablet:w-282 tablet:h-330 w-155 h-205 tablet:p-8 flex flex-col items-center flex-shrink-0 p-4 bg-white select-none"
     >
       <div className="relative h-240 w-full overflow-hidden">
         <Image

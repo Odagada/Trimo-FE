@@ -16,6 +16,7 @@ interface NavProps {
 }
 
 type NavStatusType = "onlyLogo" | "LoggedIn" | "LoggedOut";
+
 function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
@@ -43,7 +44,7 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
         return (
           <div className="relative">
             <button className="flex items-center gap-12" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-              <div className="flex h-25 w-25 items-center overflow-hidden rounded-full">
+              <div className="overflow-hidden mobile:w-25 mobile:h-25 h-20 w-20 rounded-full flex items-center">
                 <Image
                   width={25}
                   height={25}
@@ -53,15 +54,15 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
                   alt="default user profile"
                 />
               </div>
-              <span className="text-16">{userData?.nickName}</span>
+              <span className="mobile:text-16 text-12">{userData?.nickName}</span>
             </button>
             {isOpen && <HeaderDropdown ref={popupRef} fetchUserData={fetchUserData} />}
           </div>
         );
       case "LoggedOut":
         return (
-          <div className="flex gap-28">
-            <Link href="/login" className="text-16">
+          <div className="gap-28 flex">
+            <Link href="/login" className="mobile:text-16 text-12">
               로그인
             </Link>
           </div>
@@ -70,13 +71,13 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   };
 
   return (
-    <nav className="mb-74 flex h-fit w-full flex-col">
-      <div className="fixed top-0 z-50 flex h-fit w-full flex-wrap items-center justify-between bg-white px-121 py-12">
-        <h1>
-          <Link href="/">
+    <nav className="h-fit mobile:mb-74 mb-50 flex flex-col w-full">
+      <div className="z-50 h-fit h-30 mobile:py-12 py-0 mobile:px-121 px-20 fixed top-0 flex flex-wrap items-center justify-between w-full bg-white">
+        <Link href="/">
+          <div className="mobile:w-78 mobile:h-20 w-50 h-24 flex items-center">
             <Image draggable={false} src={Logo} alt="trimo logo" width={78} height={20} />
-          </Link>
-        </h1>
+          </div>
+        </Link>
         <span id="navSearchBar" className="h-50"></span>
         {renderNavbarLeftSide()}
       </div>
