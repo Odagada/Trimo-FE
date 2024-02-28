@@ -7,7 +7,7 @@ import useGetForm from "@/hooks/useGetFormField.tsx";
 import TagRadioButton from "./TagRadioButton";
 import StarRate from "./StarRate";
 
-import { Review } from "@/types/client.types";
+import { Review, TagCompanion, TagPlaceType, TagWeather } from "@/types/client.types";
 import { postReviews } from "@/apis/reviewPost";
 
 import { useMutation } from "@tanstack/react-query";
@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 import { SingleReviewData } from "@/types/server.types";
+import { useEffect } from "react";
 
 interface Props {
   spotId: string;
@@ -33,26 +34,30 @@ export default function ReviewFrom({ spotId, setSpotError, review }: Props) {
     stars: 0,
     images: [],
   };
-  if (review !== undefined) {
-    defaultValues.title = review.title;
-    defaultValues.content = review.content;
-    defaultValues.weather = review.tagValues?.weather;
-    defaultValues.companion = review.tagValues?.companion;
-    defaultValues.placeType = review.tagValues?.placeType;
-    defaultValues.visitingTime = review.visitingTime;
-    defaultValues.stars = review.stars;
-  }
 
   const {
     control,
     handleSubmit,
     setFocus,
     setError,
-    getValues,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues,
   });
+
+  useEffect(() => {
+    if (review !== undefined) {
+      setValue("title", review.title);
+      setValue("content", review.content);
+      setValue("weather", review.tagValues?.weather as TagWeather);
+      setValue("companion", review.tagValues?.companion as TagCompanion);
+      setValue("placeType", review.tagValues?.placeType as TagPlaceType);
+      setValue("visitingTime", review.visitingTime);
+      setValue("stars", review.stars);
+    }
+  }, [review]);
+
   const router = useRouter();
   const { userAccessToken: apiKey } = useManageUserAccessToken();
 
@@ -83,7 +88,8 @@ export default function ReviewFrom({ spotId, setSpotError, review }: Props) {
     images.map((value) => {
       formData.append("images", value.file, value.file.name);
     });
-    postReviewsMutate({ formData, spotId, apiKey });
+    // postReviewsMutate({ formData, spotId, apiKey });
+    console.log(postData);
   }
 
   return (
@@ -125,7 +131,7 @@ export default function ReviewFrom({ spotId, setSpotError, review }: Props) {
             <ReviewOption.title> 별점</ReviewOption.title>
             <ReviewOption.description>그곳의 만족도는 어느정도 인가요?</ReviewOption.description>
           </ReviewOption.info>
-          <StarRate value={stars.value} onChange={stars.onChange} defaultRate={getValues("stars")} />
+          <StarRate value={stars.value} onChange={stars.onChange} />
         </ReviewOption.section>
         <ReviewOption.section>
           <ReviewOption.info>
