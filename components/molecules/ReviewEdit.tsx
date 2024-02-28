@@ -7,7 +7,7 @@ import ImagesEditInput from "../atoms/Inputs/ImagesEditInput";
 import TagRadioButton from "./TagRadioButton";
 import StarRate from "./StarRate";
 
-import { EditReview, ImageType, Review, TagCompanion, TagPlaceType, TagWeather } from "@/types/client.types";
+import { EditReview, ImageType, Review, Stars, TagCompanion, TagPlaceType, TagWeather } from "@/types/client.types";
 import { editReviews } from "@/apis/reviewPost";
 
 import { useMutation } from "@tanstack/react-query";
@@ -25,48 +25,30 @@ interface Props {
 }
 
 export default function ReviewEdit({ spotId, review, reviewId }: Props) {
+  let obj: ImageType[] = [];
+  review?.images?.forEach((value, index) => {
+    obj[index] = { name: index.toString(), url: value };
+  });
   let defaultValues: EditReview = {
-    title: "",
-    content: "",
-    weather: "",
-    companion: "",
-    placeType: "",
-    visitingTime: "",
-    stars: 0,
-    images: [],
+    title: review?.title as string,
+    content: review?.content as string,
+    weather: review?.tagValues?.weather as TagWeather,
+    companion: review?.tagValues?.companion as TagCompanion,
+    placeType: review?.tagValues?.placeType as TagPlaceType,
+    visitingTime: review?.visitingTime as string,
+    stars: review?.stars as Stars,
+    images: obj,
     newImages: [],
-    spotId: "",
+    spotId: spotId,
   };
 
   const {
     control,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues,
   });
-
-  useEffect(() => {
-    if (review !== undefined) {
-      setValue("title", review.title);
-      setValue("content", review.content);
-      setValue("weather", review.tagValues?.weather as TagWeather);
-      setValue("companion", review.tagValues?.companion as TagCompanion);
-      setValue("placeType", review.tagValues?.placeType as TagPlaceType);
-      setValue("visitingTime", review.visitingTime);
-      setValue("stars", review.stars);
-      let obj: ImageType[] = [];
-      review.images?.forEach((value, index) => {
-        obj[index] = { name: index.toString(), url: value };
-      });
-      setValue("images", obj);
-    }
-  }, [review]);
-
-  useEffect(() => {
-    setValue("spotId", spotId);
-  }, [spotId]);
 
   const router = useRouter();
   const { userAccessToken: apiKey } = useManageUserAccessToken();
