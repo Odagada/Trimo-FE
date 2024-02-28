@@ -168,8 +168,8 @@ const MainReviewSection = () => {
                 title="삭제하기"
                 description="이 게시글을 삭제하시겠습니까?"
                 buttonText={["확인", "취소"]}
-                onClose={handleReivewDelete}
-                onClick={uploadPostMutation.mutate}
+                onClose={handleModalToggle}
+                onClick={handleReivewDelete}
               ></Modal>
             </>
           )}
