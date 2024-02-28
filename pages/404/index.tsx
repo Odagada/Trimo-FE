@@ -8,12 +8,8 @@ function NotFoundPage() {
     <>
       <Nav isOnlyLogo />
       <main className="mb-608 mt-165 flex flex-col items-center text-center tablet:mb-142 tablet:mt-200">
-        <h2 className="text-60 font-bold leading-30 tablet:text-100 tablet:leading-70 ">
-          404
-        </h2>
-        <p className="mb-64 font-bold leading-54 text-gray-30 tablet:text-36">
-          Not Found
-        </p>
+        <h2 className="text-60 font-bold leading-30 tablet:text-100 tablet:leading-70 ">404</h2>
+        <p className="mb-64 font-bold leading-54 text-gray-30 tablet:text-36">Not Found</p>
 
         <h3 className=" mb-4 text-18 font-bold leading-27 tablet:mb-8 tablet:text-28 tablet:leading-42">
           죄송합니다. 페이지를 찾을 수 없습니다.

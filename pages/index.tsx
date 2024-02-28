@@ -22,9 +22,7 @@ import { useEffect, useState } from "react";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { isLoggedIn } from "@/utils/validateByLoginStatus";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const queryClient = new QueryClient();
 
@@ -44,9 +42,7 @@ export const getServerSideProps = async (
   }
 };
 
-export default function Landing({
-  isLoggedIn,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Landing({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Nav isLoggedIn={isLoggedIn} />
@@ -75,20 +71,12 @@ const HeroSection = () => {
   return (
     <section className="px-24 pb-56 pt-36 tablet:px-100 tablet:pb-68 tablet:pt-72 laptop:pb-130 laptop:pt-88">
       <div className="relative mx-auto aspect-[914/275] max-w-914">
-        <Image
-          className="object-cover"
-          draggable={false}
-          fill
-          src={hero_sec}
-          alt=""
-        />
+        <Image className="object-cover" draggable={false} fill src={hero_sec} alt="" />
       </div>
       <div id="heroSecSearchBar" className="mt-23 tablet:mt-32 laptop:mt-55">
         <span ref={ref}></span>
         <PortalSearchBar switcher={width! <= 865 || entry?.isIntersecting}>
-          <SearchBar
-            size={width! <= 768 || entry?.isIntersecting ? "large" : "small"}
-          />
+          <SearchBar size={width! <= 768 || entry?.isIntersecting ? "large" : "small"} />
         </PortalSearchBar>
       </div>
     </section>
@@ -121,18 +109,10 @@ const CardSection = () => {
       <section className="bg-gray-10 pb-46">
         <div className="flex flex-col gap-24 tablet:gap-32 laptop:gap-48">
           {recentReviewCardArray && (
-            <MultiReviewCardSlider
-              title="최신리뷰"
-              align="left"
-              reviewCards={recentReviewCardArray}
-            />
+            <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentReviewCardArray} />
           )}
           {populerReviewCardArray && (
-            <MultiReviewCardSlider
-              title="인기리뷰"
-              align="right"
-              reviewCards={populerReviewCardArray}
-            />
+            <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={populerReviewCardArray} />
           )}
         </div>
       </section>
@@ -170,8 +150,7 @@ const TagSection = () => {
         <p className="text-16 font-bold leading-24 text-white tablet:text-20 tablet:leading-30 laptop:text-24 laptop:leading-36">
           태그를 통해 다른 유저의 여행 리뷰를
           <br />
-          <span className="text-primary">쉽고 디테일</span>하게 검색할 수
-          있어요.
+          <span className="text-primary">쉽고 디테일</span>하게 검색할 수 있어요.
         </p>
       </div>
 
@@ -243,12 +222,7 @@ const ServiceExplainSection = () => {
           </div>
 
           <Link href="/">
-            <Clickable
-              className="w-max px-20"
-              color="primary"
-              shape="square"
-              size="medium"
-            >
+            <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
               나의 리뷰보기
             </Clickable>
           </Link>
@@ -269,12 +243,7 @@ const ServiceExplainSection = () => {
           </div>
 
           <button type="button" onClick={handleClick}>
-            <Clickable
-              className="w-max px-20"
-              color="primary"
-              shape="square"
-              size="medium"
-            >
+            <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
               리뷰 둘러보기
             </Clickable>
           </button>
@@ -303,9 +272,7 @@ const DeviceSection = () => {
 
         <div className="flex flex-wrap gap-8 tablet:gap-21 laptop:gap-24">
           <div className="order-2 h-194 w-156 overflow-hidden rounded-10 bg-gray-60 tablet:order-1 tablet:h-295 tablet:w-226 tablet:rounded-20 laptop:h-430 laptop:w-330 laptop:rounded-30 ">
-            <p className="p-13 text-right text-12 leading-18 text-gray-30 tablet:p-16 laptop:p-24">
-              Mobile
-            </p>
+            <p className="p-13 text-right text-12 leading-18 text-gray-30 tablet:p-16 laptop:p-24">Mobile</p>
             <Image
               className="mx-auto w-114 tablet:mt-16 tablet:w-160 laptop:mt-33 laptop:w-237"
               src={mobile}
@@ -323,20 +290,12 @@ const DeviceSection = () => {
               작성할 수 있어요
             </p>
             <div className="flex size-56 items-center justify-center self-end rounded-100 bg-primary tablet:size-84 tablet:self-start laptop:size-120 ">
-              <Image
-                className="w-21 tablet:w-32 laptop:w-47"
-                src={quill}
-                alt=""
-                width={47}
-                height={45}
-              />
+              <Image className="w-21 tablet:w-32 laptop:w-47" src={quill} alt="" width={47} height={45} />
             </div>
           </div>
 
           <div className="order-3 h-194 w-156 overflow-hidden rounded-10 bg-gray-60 tablet:h-295 tablet:w-226 tablet:rounded-20 laptop:h-430 laptop:w-330 laptop:rounded-30 ">
-            <p className="p-13 text-right text-12 leading-18 text-gray-30 tablet:p-16 laptop:p-24">
-              Desktop
-            </p>
+            <p className="p-13 text-right text-12 leading-18 text-gray-30 tablet:p-16 laptop:p-24">Desktop</p>
             <Image
               className="ml-42 mt-21 w-114 tablet:mt-55 tablet:w-184 laptop:ml-61 laptop:mt-84 laptop:w-270"
               src={desktop}

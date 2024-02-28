@@ -9,9 +9,7 @@ function OptionDescription({ children }: { children: ReactNode }) {
 }
 
 function OptionInfo({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex w-100 flex-col gap-10 break-keep">{children}</div>
-  );
+  return <div className="flex w-100 flex-col gap-10 break-keep">{children}</div>;
 }
 function OptionError({ children }: { children: ReactNode }) {
   return <div className="middle-text font-bold text-error">{children}</div>;

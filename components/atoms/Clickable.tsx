@@ -1,8 +1,4 @@
-import {
-  ClickableColor,
-  ClickableShape,
-  ClickableSize,
-} from "@/types/client.types";
+import { ClickableColor, ClickableShape, ClickableSize } from "@/types/client.types";
 import { ReactNode } from "react";
 
 const Clickable = ({

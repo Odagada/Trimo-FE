@@ -22,16 +22,10 @@ const MultiReviewCardSlider = ({
   };
 
   return (
-    <div
-      className={`flex flex-col gap-12 ${
-        align === "left" ? "items-start" : "items-end"
-      }`}
-    >
+    <div className={`flex flex-col gap-12 ${align === "left" ? "items-start" : "items-end"}`}>
       <h3
         className={`${
-          align === "left"
-            ? "ml-64 tablet:ml-122 laptop:ml-260"
-            : "mr-64 tablet:mr-122 laptop:mr-260"
+          align === "left" ? "ml-64 tablet:ml-122 laptop:ml-260" : "mr-64 tablet:mr-122 laptop:mr-260"
         } leading-16 inline w-fit rounded-100 bg-white px-12 py-6 text-11 font-bold shadow-main laptop:px-15 laptop:py-8 laptop:text-14 laptop:leading-21`}
       >
         {title}

@@ -3,13 +3,7 @@ import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import searchIcon from "@/public/icons/search.svg";
 import { useRouter } from "next/router";
 
-const SearchBar = ({
-  size,
-  className = "",
-}: {
-  size: "large" | "small";
-  className?: string;
-}) => {
+const SearchBar = ({ size, className = "" }: { size: "large" | "small"; className?: string }) => {
   const router = useRouter();
   const { searchValue: initialValue } = router.query;
   let { order } = router.query;
@@ -54,14 +48,10 @@ const SearchBar = ({
         className={`
       ${className}
       ${
-        size === "large"
-          ? "border border-black tablet:border-2 "
-          : "w-460 border border-gray-50"
+        size === "large" ? "border border-black tablet:border-2 " : "w-460 border border-gray-50"
       } flex items-center justify-center rounded-100`}
       >
-        <div
-          className={size === "large" ? "size-34 tablet:size-49" : "size-33"}
-        ></div>
+        <div className={size === "large" ? "size-34 tablet:size-49" : "size-33"}></div>
         <input
           value={value}
           onFocus={handleFocus}

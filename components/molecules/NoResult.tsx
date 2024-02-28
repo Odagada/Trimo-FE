@@ -13,9 +13,7 @@ export default function NoResult() {
       </div>
       <div className="bg-gray-10 px-20 pb-28 pt-24 tablet:px-120">
         <div className="tablet:heading6 heading7">이런 리뷰는 어떠세요?</div>
-        <div className="small-text mt-4 text-gray-40">
-          다른 유저들이 관심을 갖고 있는 리뷰에요.
-        </div>
+        <div className="small-text mt-4 text-gray-40">다른 유저들이 관심을 갖고 있는 리뷰에요.</div>
         {reviewList && (
           <div className="flex">
             <ReviewList data={reviewList} />

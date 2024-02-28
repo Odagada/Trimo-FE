@@ -29,24 +29,13 @@ export default function TimePicker({ onChange, value }: Props) {
           className="middle-text flex h-36 w-160 rounded-10 border border-gray-30 text-center font-bold"
         />
         {value && (
-          <button
-            type="button"
-            className="absolute inset-y-3 right-3"
-            onClick={() => onChange(undefined)}
-          >
+          <button type="button" className="absolute inset-y-3 right-3" onClick={() => onChange(undefined)}>
             <DeleteIcon />
           </button>
         )}
       </div>
-      <Datepicker.Picker
-        className="heading5 middle-text flex max-h-135 border bg-white"
-        id="HourPicker"
-      >
-        <Datepicker.Items
-          type="hour"
-          className="space-y-20 overflow-y-auto scroll-smooth p-16"
-          disableAutoScroll
-        >
+      <Datepicker.Picker className="heading5 middle-text flex max-h-135 border bg-white" id="HourPicker">
+        <Datepicker.Items type="hour" className="space-y-20 overflow-y-auto scroll-smooth p-16" disableAutoScroll>
           {({ items }) =>
             items.map((item) => (
               <Datepicker.Item

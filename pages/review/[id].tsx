@@ -1,9 +1,4 @@
-import {
-  getReview,
-  getReviewIsLiked,
-  getReviewLikeCount,
-  getUserInfo,
-} from "@/apis/capsulesQuery";
+import { getReview, getReviewIsLiked, getReviewLikeCount, getUserInfo } from "@/apis/capsulesQuery";
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import MultiStarRate from "@/components/atoms/MultiStarRate";
@@ -21,16 +16,11 @@ import Message from "@/public/icons/reviewControlIcon_Message.svg";
 import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import {
-  useDestructureReviewData,
-  useIsMine,
-} from "@/hooks/useDestructureReviewData";
+import { useDestructureReviewData, useIsMine } from "@/hooks/useDestructureReviewData";
 import useAccessToken from "@/zustands/useAccessToken";
 import { useEffect } from "react";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const accessToken = getAccessTokenFromCookie(context) ?? "";
     const reviewId = Number(context.params?.id);
@@ -52,9 +42,7 @@ export const getServerSideProps = async (
   }
 };
 
-export default function ReadReview({
-  accessToken,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function ReadReview({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { setAccessToken } = useAccessToken();
 
   useEffect(() => {
@@ -88,13 +76,7 @@ const ImageCarouselSection = () => {
         <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
       ) : (
         <div className="relative flex h-[40vh] w-full items-center justify-center bg-gray-40">
-          <Image
-            draggable={false}
-            src={noImage}
-            alt=""
-            fill
-            className="object-contain"
-          />
+          <Image draggable={false} src={noImage} alt="" fill className="object-contain" />
         </div>
       )}
     </section>
@@ -149,18 +131,13 @@ const MainReviewSection = () => {
       <div className="mb-30 flex items-center gap-10">
         <h3 className="text-18 leading-15 text-gray-40">
           {`${reviewData?.data.spotName} · ${dateString} · ${timeString}`}
-          {reviewData?.data.tagValues?.weather &&
-            ` · ${reviewData.data.tagValues.weather}`}
+          {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
         </h3>
-        {reviewData?.data.stars && (
-          <MultiStarRate number={reviewData.data.stars} />
-        )}
+        {reviewData?.data.stars && <MultiStarRate number={reviewData.data.stars} />}
       </div>
 
       {/* text area */}
-      <p className="mb-20 whitespace-pre-wrap text-justify text-18 leading-42">
-        {reviewData?.data.content}
-      </p>
+      <p className="mb-20 whitespace-pre-wrap text-justify text-18 leading-42">{reviewData?.data.content}</p>
     </>
   );
 };
@@ -179,12 +156,7 @@ const MapNTag = () => {
         <div className="flex gap-10">
           {tag?.map((item, index) => {
             return (
-              <Clickable
-                key={index}
-                color="white-"
-                shape="capsule"
-                size="small"
-              >
+              <Clickable key={index} color="white-" shape="capsule" size="small">
                 <Emoji>{item}</Emoji>
               </Clickable>
             );

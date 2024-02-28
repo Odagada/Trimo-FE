@@ -52,16 +52,11 @@ export default function OrderDropdown() {
         <Image draggable={false} src={DropdownImg} alt="닫기" />
       </button>
       {isOpen && (
-        <div
-          className="absolute z-10 ml-4 mt-8 w-124 rounded-10 bg-white px-6 py-8 shadow-main"
-          ref={popupRef}
-        >
+        <div className="absolute z-10 ml-4 mt-8 w-124 rounded-10 bg-white px-6 py-8 shadow-main" ref={popupRef}>
           {values.map((el) => (
             <button
               className={`h-27 w-full rounded-5 px-14 py-3 text-start ${
-                el === currentOrder
-                  ? "bg-gray-20 font-semiBold"
-                  : "hover:bg-gray-10 hover:font-semiBold "
+                el === currentOrder ? "bg-gray-20 font-semiBold" : "hover:bg-gray-10 hover:font-semiBold "
               }`}
               key={el}
               onClick={() => handleClick(el)}

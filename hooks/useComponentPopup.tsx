@@ -6,10 +6,7 @@ export default function useComponentPopup() {
   const popupRef = useRef<HTMLDivElement | null>(null);
 
   const handleClickOutside = (e: Event) => {
-    if (
-      !popupRef.current?.contains(e.target as Node) &&
-      !buttonRef.current?.contains(e.target as Node)
-    ) {
+    if (!popupRef.current?.contains(e.target as Node) && !buttonRef.current?.contains(e.target as Node)) {
       setIsOpen(false);
     }
   };

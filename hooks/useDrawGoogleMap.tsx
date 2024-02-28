@@ -15,8 +15,7 @@ const useDrawGoogleMap = ({ locationIDList }: MapProps) => {
     if (ref.current) {
       const map = new window.google.maps.Map(ref.current, {
         center: DEFAULT_CENTER,
-        zoom:
-          locationIDList.length > 1 ? MULTIPLE_MARKER_ZOOM : SINGLE_MARKER_ZOOM,
+        zoom: locationIDList.length > 1 ? MULTIPLE_MARKER_ZOOM : SINGLE_MARKER_ZOOM,
       });
 
       // Add Single Marker On the Google Map with Place ID

@@ -39,28 +39,17 @@ export default function DatePicker({ onChange, value }: Props) {
           className="middle-text flex h-36 w-160 rounded-10 border border-gray-30 pl-12 font-bold"
         />
         {value && (
-          <button
-            type="button"
-            className="absolute inset-y-3 right-3"
-            onClick={() => onChange(undefined)}
-          >
+          <button type="button" className="absolute inset-y-3 right-3" onClick={() => onChange(undefined)}>
             <DeleteIcon />
           </button>
         )}
       </div>
 
-      <Datepicker.Picker
-        defaultType="day"
-        className="heading5 z-20 w-300 rounded-10 border bg-white p-10"
-      >
+      <Datepicker.Picker defaultType="day" className="heading5 z-20 w-300 rounded-10 border bg-white p-10">
         {({ monthName, hour, minute, year }) => (
           <>
             <div className="flex w-full items-center justify-between space-x-6 py-2 rtl:space-x-reverse">
-              <Datepicker.Button
-                action="prev"
-                className="middle-text"
-                type="button"
-              >
+              <Datepicker.Button action="prev" className="middle-text" type="button">
                 &lt;
               </Datepicker.Button>
               <div className="middle-text flex gap-10">
@@ -74,11 +63,7 @@ export default function DatePicker({ onChange, value }: Props) {
                   {year}
                 </Datepicker.Button>
               </div>
-              <Datepicker.Button
-                action="next"
-                className="middle-text"
-                type="button"
-              >
+              <Datepicker.Button action="next" className="middle-text" type="button">
                 &gt;
               </Datepicker.Button>
             </div>
@@ -86,9 +71,7 @@ export default function DatePicker({ onChange, value }: Props) {
               className={({ type }) =>
                 `middle-text mt-10 grid w-full auto-rows-max gap-16 overflow-y-auto scroll-smooth ${
                   type === "day" && "grid-cols-7"
-                } ${type === "month" && "grid-cols-3"} ${
-                  type === "year" && "max-h-[274px] grid-cols-4"
-                }
+                } ${type === "month" && "grid-cols-3"} ${type === "year" && "max-h-[274px] grid-cols-4"}
                   `
               }
             >
@@ -98,28 +81,15 @@ export default function DatePicker({ onChange, value }: Props) {
                     key={item.key}
                     item={item}
                     className="rounded-full hover:bg-gray-20"
-                    action={
-                      item.type === "day"
-                        ? "close"
-                        : item.type === "month"
-                        ? "showDay"
-                        : "showMonth"
-                    }
+                    action={item.type === "day" ? "close" : item.type === "month" ? "showDay" : "showMonth"}
                   >
                     {item.isHeader ? item.text.substring(0, 2) : item.text}
                   </Datepicker.Item>
                 ))
               }
             </Datepicker.Items>
-            <Datepicker.Picker
-              className="heading5 middle-text flex max-h-80 border bg-white"
-              id="HourPicker"
-            >
-              <Datepicker.Items
-                type="hour"
-                className="space-y-20 overflow-y-auto scroll-smooth p-16"
-                disableAutoScroll
-              >
+            <Datepicker.Picker className="heading5 middle-text flex max-h-80 border bg-white" id="HourPicker">
+              <Datepicker.Items type="hour" className="space-y-20 overflow-y-auto scroll-smooth p-16" disableAutoScroll>
                 {({ items }) =>
                   items.map((item) => (
                     <Datepicker.Item
@@ -141,10 +111,7 @@ export default function DatePicker({ onChange, value }: Props) {
                 {({ items }) =>
                   items.map(
                     (item) =>
-                      (item.text === "0" ||
-                        item.text === "15" ||
-                        item.text === "30" ||
-                        item.text === "45") && (
+                      (item.text === "0" || item.text === "15" || item.text === "30" || item.text === "45") && (
                         <Datepicker.Item
                           key={item.key}
                           item={item}

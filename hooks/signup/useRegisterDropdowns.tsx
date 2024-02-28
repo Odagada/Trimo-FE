@@ -20,11 +20,7 @@ function useRegisterDropdown() {
   } = useController({ name: "birthyear", control, rules: { required: true } });
 
   const {
-    field: {
-      value: birthmonthVal,
-      onChange: onBirthMonthChange,
-      ...restField2
-    },
+    field: { value: birthmonthVal, onChange: onBirthMonthChange, ...restField2 },
   } = useController({ name: "birthmonth", control, rules: { required: true } });
 
   const {

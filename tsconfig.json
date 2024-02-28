@@ -17,11 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "components/atoms/GoogleMap.jsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/atoms/GoogleMap.jsx"],
   "exclude": ["node_modules"]
 }

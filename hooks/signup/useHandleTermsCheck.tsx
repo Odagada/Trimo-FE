@@ -10,9 +10,7 @@ function useHandleTermsCheck({ progressStatus }: SignupContentProps) {
     if (checked) {
       setCheckedTerms((prev) => [...prev, id]);
     } else {
-      setCheckedTerms(
-        checkedTerms.filter((notCheckedTerm) => notCheckedTerm !== id)
-      );
+      setCheckedTerms(checkedTerms.filter((notCheckedTerm) => notCheckedTerm !== id));
     }
   };
 

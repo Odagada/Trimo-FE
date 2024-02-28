@@ -9,9 +9,7 @@ import { isLoggedIn } from "@/utils/validateByLoginStatus";
 import { QueryClient } from "@tanstack/react-query";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const accessToken = await getAccessTokenFromCookie(context);
     const queryClient = new QueryClient();
@@ -26,10 +24,7 @@ export const getServerSideProps = async (
   }
 };
 
-export default function Search({
-  isLoggedIn,
-  query,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Search({ isLoggedIn, query }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className="flex min-h-screen flex-col justify-between">
       <div>

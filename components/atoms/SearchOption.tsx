@@ -5,11 +5,7 @@ function OptionTitle({ children }: { children: ReactNode }) {
 }
 
 function OptionDescription({ children }: { children: ReactNode }) {
-  return (
-    <div className="small-text mx-10 flex w-100 shrink-0 gap-22 text-start text-gray-40">
-      {children}
-    </div>
-  );
+  return <div className="small-text mx-10 flex w-100 shrink-0 gap-22 text-start text-gray-40">{children}</div>;
 }
 
 function OptionInfo({ children }: { children: ReactNode }) {
@@ -24,11 +20,7 @@ function OptionSection({ children }: { children: ReactNode }) {
 }
 
 function OptionMain({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex w-620 flex-col gap-35 rounded-30 bg-white px-20 pb-24 pt-16 shadow-main">
-      {children}
-    </div>
-  );
+  return <div className="flex w-620 flex-col gap-35 rounded-30 bg-white px-20 pb-24 pt-16 shadow-main">{children}</div>;
 }
 
 export const SearchOption = Object.assign(OptionMain, {
