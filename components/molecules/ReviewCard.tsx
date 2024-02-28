@@ -44,9 +44,11 @@ export default function ReviewCard({ review }: Props) {
               <ReviewCardTag value={value} key={key + reviewId} />
             ))}
         </div>
-        <div className="col-start-2 row-start-2 flex justify-end">
-          <SingleStarRate rate={stars} />
-        </div>
+        {stars !== 0 && (
+          <div className="col-start-2 row-start-2 flex justify-end">
+            <SingleStarRate rate={stars} />
+          </div>
+        )}
       </div>
     </Link>
   );

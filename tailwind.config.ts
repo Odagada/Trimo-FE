@@ -102,14 +102,14 @@ const config: Config = {
       main: "0px 4px 10px 0px rgba(0, 0, 0, 0.10)",
     },
     screens: {
-      desktop: "1440px",
       maxDesktop: { max: "1440px" },
-      laptop: "1200px",
       maxLaptop: { max: "1200px" },
-      tablet: "768px",
       maxTablet: { max: "768px" },
-      mobile: "360px",
       maxMobile: { max: "360px" },
+      mobile: "360px",
+      tablet: "768px",
+      laptop: "1200px",
+      desktop: "1440px",
     },
     extend: {
       animation: {

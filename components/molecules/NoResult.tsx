@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function NoResult({ keyword }: { keyword: string | undefined }) {
   const { data: reviewData } = useQuery(getReviewCardArray("POPULAR"));
-  const reviewList = reviewData?.data;
+  const reviewList = reviewData?.data.slice(0, 4);
   return (
     <div>
       <div className="tablet:p-text mb-109 mt-36 text-center text-gray-40">
