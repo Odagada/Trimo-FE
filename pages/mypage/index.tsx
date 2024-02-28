@@ -1,156 +1,68 @@
-import { getMyPlaces } from "@/apis/capsulesQuery";
+import { getFilteredMyPlaces, getMyPlaces } from "@/apis/capsulesQuery";
 import Nav from "@/components/molecules/NavigationBar";
-import ReviewCard from "@/components/molecules/ReviewCard";
 import GoogleMap from "@/components/organisms/GoogleMap";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
-import { useQuery } from "@tanstack/react-query";
-import FilterOptionsButtons from "@/components/atoms/FilterOptionButtons";
+import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import MyReviewGridLayout from "@/components/organisms/MyReviewGridLayout";
+import Clickable from "@/components/atoms/Clickable";
+import Link from "next/link";
+import { GetServerSidePropsContext } from "next";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 
-// http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/user/me/reviews?weather=%EB%A7%91%EC%9D%8C&page=1
-// http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/user/me/reviews?weather=%ED%9D%90%EB%A6%BC&month=1&page=1'
-// 'http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api/user/me/reviews?page=1'
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  try {
+    const queryClient = new QueryClient();
 
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   try {
-//     const queryClient = new QueryClient();
-//     const accessToken = getAccessTokenFromCookie(context);
+    const accessToken = getAccessTokenFromCookie(context) ?? "";
+    await queryClient.prefetchQuery(getMyPlaces(accessToken));
+    await queryClient.prefetchQuery(getFilteredMyPlaces(accessToken, "page=1&size=6"));
+    await queryClient.prefetchQuery(getFilteredMyPlaces(accessToken, "page=1&size=4"));
 
-//     const isRedirectNeeded = validateRedirectionByLoginStatus({
-//       statusToBlock: "Logout",
-//       accessToken,
-//     });
-
-//     if (isRedirectNeeded) {
-//       return {
-//         redirect: {
-//           destination: "/login",
-//           permanent: false,
-//         },
-//       };
-//     } else {
-//       try {
-//         await queryClient.prefetchQuery(getMyPlaces(accessToken!));
-//       } catch {
-//         return { notFound: true };
-//       }
-
-//       return { props: { dehydratedState: dehydrate(queryClient) } };
-//     }
-//   } catch {
-//     return { notFound: true };
-//   }
-// }
-
-const placeId = ["ChIJ_TooXM3gAGARQR6hXH3QAQ8", "ChIJLREe-daMGGARptcB4hO92JQ"];
-
-const Reviews = [
-  {
-    reviewId: 0,
-    title: "도리포로가자",
-    tagValues: {
-      weather: "맑음",
-    },
-    nickName: "string",
-    visitingTime: "2024-01-01T07:30:00",
-    stars: 5,
-  },
-  {
-    reviewId: 1,
-    title: "dkdkdkdk",
-    tagValues: {
-      weather: "맑음",
-      placeType: "명소",
-    },
-    nickName: "string",
-    visitingTime: "2024-01-01T07:30:00",
-    stars: 5,
-  },
-  {
-    reviewId: 2,
-    title: "ㅇ나라얼ㄴㄹ",
-    tagValues: {
-      companion: "가족",
-    },
-    nickName: "string",
-    visitingTime: "2024-01-01T07:30:00",
-    stars: 5,
-  },
-  {
-    reviewId: 3,
-    title: "아아아아아어어",
-    tagValues: {
-      weather: "맑음",
-      placeType: "명소",
-      companion: "가족",
-    },
-    nickName: "string",
-    visitingTime: "2024-01-01T07:30:00",
-    stars: 5,
-  },
-
-  // {
-  //   reviewId: 0,
-  //   title: "도리포로가자",
-  //   tagValues: {
-  //     weather: "맑음",
-  //     placeType: "명소",
-  //     companion: "가족",
-  //   },
-  //   nickName: "string",
-  //   visitingTime: "2024-01-01T07:30:00",
-  //   stars: 5,
-  // },
-  // {
-  //   reviewId: 1,
-  //   title: "dkdkdkdk",
-  //   tagValues: {
-  //     weather: "맑음",
-  //     placeType: "명소",
-  //   },
-  //   nickName: "string",
-  //   visitingTime: "2024-01-01T07:30:00",
-  //   stars: 5,
-  // },
-];
+    return {
+      props: { dehydratedState: dehydrate(queryClient) },
+    };
+  } catch {
+    return { notFound: true };
+  }
+};
 
 function MyPage() {
   const { userAccessToken } = useManageUserAccessToken();
-  const { data } = useQuery(getMyPlaces(userAccessToken));
 
-  // console.log(data?.data.placeIds);
-
-  // window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => this.setState({ matches: e.matches }))
-
-  // /api/user/me/reviews?page=1'
+  const { data: placeIds } = useQuery(getMyPlaces(userAccessToken));
 
   return (
-    <div className="h-screen flex w-full flex-col justify-center -mt-25">
+    <div className="my-25 flex h-screen w-full flex-col justify-center maxDesktop:my-0 maxDesktop:h-full">
       <Nav />
-      <main className="flex justify-center items-center gap-25 flex-col-reverse desktop:flex-row mt-300 desktop:mt-0 maxTablet:-mt-140">
-        <section className="flex flex-col">
-          <FilterOptionsButtons placeId={placeId} />
-          <ReviewGridLayout />
-        </section>
-        <section className="mt-63">
-          <GoogleMap
-            locationIDList={placeId}
-            // size="mobile:w-320 mobile:h-230 tablet:h-400 tablet:w-560  desktop:w-600 desktop:h-660"
-            size="maxDesktop:w-560 maxDesktop:h-400 maxTablet:w-320 maxTablet:h-230 w-600 h-660"
-          ></GoogleMap>
-        </section>
-      </main>
+      {placeIds?.data.placeIds.length! > 0 ? (
+        <main className="maxDesktop:flex-start flex flex-col-reverse items-center justify-center gap-25 pb-100 desktop:mt-0 desktop:flex-row">
+          <MyReviewGridLayout placeIds={placeIds?.data.placeIds ?? []} />
+          <section className="mt-63 maxDesktop:mt-10">
+            <GoogleMap
+              locationIDList={placeIds?.data.placeIds ?? []}
+              size="maxDesktop:w-560 maxDesktop:h-390 maxTablet:w-320 maxTablet:h-200 w-600 h-660"
+            />
+          </section>
+        </main>
+      ) : (
+        <NoReviews />
+      )}
     </div>
   );
 }
 
 export default MyPage;
 
-export const ReviewGridLayout = () => {
+export const NoReviews = () => {
   return (
-    <div className="grid  maxDesktop:grid-cols-2 grid-cols-3 grid-rows-2 w-fit gap-10 ">
-      {Reviews.map((review, index) => (
-        <ReviewCard review={review} key={index}></ReviewCard>
-      ))}
-    </div>
+    <main className="-mt-80 flex h-screen flex-col items-center justify-center gap-5 tablet:gap-30">
+      <h1 className="text-20 font-bold tablet:text-[40px]">작성된 리뷰가 없습니다. 😭</h1>
+      <h3 className="tablet:text-20"> 여행 리뷰를 작성하고 공유 해 보세요 ! </h3>
+      <Link className="mt-20 w-280 px-22 tablet:mt-10 tablet:w-500" href="/">
+        <Clickable size="large" color="black">
+          메인으로
+        </Clickable>
+      </Link>
+    </main>
   );
 };
