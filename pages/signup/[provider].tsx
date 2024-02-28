@@ -35,7 +35,7 @@ function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerS
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
         {renderContentOnProgress()}
       </ShadowBox>
-      <Footer className="maxTablet:hidden" />
+      <Footer />
     </div>
   );
 }
