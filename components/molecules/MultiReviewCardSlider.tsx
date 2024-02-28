@@ -12,7 +12,6 @@ const MultiReviewCardSlider = ({
   reviewCards: MultiReviewData[];
   align: "left" | "right";
 }) => {
-
   return (
     <div className={`flex flex-col gap-12 ${align === "left" ? "items-start" : "items-end"}`}>
       <h3
@@ -31,7 +30,7 @@ const MultiReviewCardSlider = ({
         <ScrollContainer
           className={`${
             align === "left" ? "flex-row" : "flex-row-reverse"
-          } tablet:gap-16 scroll-container flex w-full gap-9 pb-10 scrollbar-hide laptop:gap-24`}
+          } scroll-container flex w-full gap-9 pb-10 scrollbar-hide laptop:gap-24 tablet:gap-16`}
         >
           <div className="min-w-55 laptop:min-w-236 tablet:min-w-105"></div>
           {reviewCards.map((review, i) => {
