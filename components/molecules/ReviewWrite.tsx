@@ -14,13 +14,13 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import makeToast from "@/utils/makeToast";
 
 interface Props {
   spotId: string;
-  setSpotError: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ReviewWrite({ spotId, setSpotError }: Props) {
+export default function ReviewWrite({ spotId }: Props) {
   const defaultValues: Review = {
     title: "",
     content: "",
@@ -34,8 +34,6 @@ export default function ReviewWrite({ spotId, setSpotError }: Props) {
   const {
     control,
     handleSubmit,
-    setFocus,
-    setError,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -48,17 +46,17 @@ export default function ReviewWrite({ spotId, setSpotError }: Props) {
   const { mutate: postReviewsMutate } = useMutation({
     mutationFn: postReviews,
     onSuccess() {
+      makeToast("리뷰 생성에 성공했습니다");
       router.push("search?order=POPULAR&searchValue=");
     },
     onError() {
-      setError("title", { message: "다시 시도해주세요." }, { shouldFocus: true }); // 오류메시지 어디다 띄울지?
+      makeToast("리뷰 생성에 실패했습니다", "error");
     },
   });
 
   function postForm(postData: Review) {
     if (spotId === "") {
-      setSpotError("장소를 입력해주세요");
-      setFocus("title");
+      makeToast("장소를 입력해주세요", "error");
       return;
     }
     const formData = new FormData();

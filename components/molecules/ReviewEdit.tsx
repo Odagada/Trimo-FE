@@ -16,15 +16,15 @@ import { useRouter } from "next/router";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 import { SingleReviewData } from "@/types/server.types";
 import { useEffect } from "react";
+import makeToast from "@/utils/makeToast";
 
 interface Props {
   spotId: string;
-  setSpotError: React.Dispatch<React.SetStateAction<string>>;
   review: SingleReviewData | undefined;
   reviewId: number;
 }
 
-export default function ReviewEdit({ spotId, setSpotError, review, reviewId }: Props) {
+export default function ReviewEdit({ spotId, review, reviewId }: Props) {
   let defaultValues: EditReview = {
     title: "",
     content: "",
@@ -41,8 +41,6 @@ export default function ReviewEdit({ spotId, setSpotError, review, reviewId }: P
   const {
     control,
     handleSubmit,
-    setFocus,
-    setError,
     setValue,
     formState: { errors },
   } = useForm({
@@ -79,20 +77,17 @@ export default function ReviewEdit({ spotId, setSpotError, review, reviewId }: P
   const { mutate: editReviewsMutate } = useMutation({
     mutationFn: editReviews,
     onSuccess() {
-      ///toast
-      //   router.push("/search");
-      alert("성공");
+      makeToast("리뷰 수정에 성공했습니다");
+      router.push("search?order=POPULAR&searchValue=");
     },
     onError() {
-      ///toast
-      alert("실패");
+      makeToast("리뷰 수정에 실패했습니다", "error");
     },
   });
 
   function postForm(postData: EditReview) {
     if (spotId === "") {
-      setSpotError("장소를 입력해주세요");
-      setFocus("title");
+      makeToast("장소를 입력해주세요", "error");
       return;
     }
     const formData = new FormData();
