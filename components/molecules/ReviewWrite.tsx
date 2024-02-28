@@ -136,13 +136,13 @@ export default function ReviewFrom({ spotId, setSpotError }: Props) {
           <TagRadioButton onChange={weather.onChange} tag="weather" value={weather.value} />
         </ReviewOption.section>
       </ReviewOption>
-      <div className="m-auto flex gap-16 w-full justify-center">
-        <button className="h-46 w-210 tablet:block mobile:hidden" type="button" onClick={router.back}>
+      <div className="m-auto flex w-full justify-center gap-16">
+        <button className="h-46 w-210 mobile:hidden tablet:block" type="button" onClick={router.back}>
           <Clickable color="white" size="medium">
             취소
           </Clickable>
         </button>
-        <button className="h-46 tablet:w-210 mobile:w-full" type="submit">
+        <button className="h-46 mobile:w-full tablet:w-210" type="submit">
           <Clickable color="black" size="medium" className="max-w-1000">
             등록
           </Clickable>

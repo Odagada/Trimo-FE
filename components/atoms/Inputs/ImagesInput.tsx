@@ -60,7 +60,7 @@ export default function ImagesInput({ append, remove }: Props) {
   };
 
   return (
-    <div className="middle-text w-full flex flex-col mobile:items-end">
+    <div className="middle-text flex w-full flex-col mobile:items-end">
       <input
         type="file"
         id="imageUpload"
@@ -72,7 +72,7 @@ export default function ImagesInput({ append, remove }: Props) {
       />
       <button
         role="button"
-        className={`flex tablet:h-131 tablet:w-full mobile:w-fit items-center justify-center rounded-10 border tablet:border-dashed tablet:border-black mobile:border-gray-20 mobile:px-12 mobile:py-4 ${
+        className={`flex items-center justify-center rounded-10 border mobile:w-fit mobile:border-gray-20 mobile:px-12 mobile:py-4 tablet:h-131 tablet:w-full tablet:border-dashed tablet:border-black ${
           isDragging && "bg-gray-30"
         }`}
         onDragEnter={handleDragEnter}
@@ -84,12 +84,12 @@ export default function ImagesInput({ append, remove }: Props) {
         }}
         type="button"
       >
-        <div className="pointer-events-none tablet:block hidden">
+        <div className="pointer-events-none hidden tablet:block">
           {isDragging ? "이곳에 드롭해주세요" : "클릭 혹은 파일을 드롭해주세요"}
         </div>
         <Image src={cameraIcon} alt="cameraIcon" className="tablet:hidden" />
       </button>
-      <div className="mt-8 tablet:grid w-full grid-cols-10 gap-8 hidden">
+      <div className="mt-8 hidden w-full grid-cols-10 gap-8 tablet:grid">
         {showImages.map((el, idx) => (
           <div className="rounded-lg relative aspect-square overflow-hidden" key={idx}>
             <button

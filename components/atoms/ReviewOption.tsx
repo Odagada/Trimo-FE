@@ -9,18 +9,18 @@ function OptionDescription({ children }: { children: ReactNode }) {
 }
 
 function OptionInfo({ children }: { children: ReactNode }) {
-  return <div className="flex tablet:w-100 tablet:flex-col gap-10 break-keep items-center">{children}</div>;
+  return <div className="flex items-center gap-10 break-keep tablet:w-100 tablet:flex-col">{children}</div>;
 }
 function OptionError({ children }: { children: ReactNode }) {
   return <div className="middle-text font-bold text-error">{children}</div>;
 }
 
 function OptionSection({ children }: { children: ReactNode }) {
-  return <div className="flex tablet:flex-row mobile:flex-col tablet:items-end gap-10">{children}</div>;
+  return <div className="flex gap-10 mobile:flex-col tablet:flex-row tablet:items-end">{children}</div>;
 }
 
 function OptionMain({ children }: { children: ReactNode }) {
-  return <div className="tablet:grid tablet:grid-cols-2 tablet:gap-60 flex flex-col gap-37">{children}</div>;
+  return <div className="flex flex-col gap-37 tablet:grid tablet:grid-cols-2 tablet:gap-60">{children}</div>;
 }
 
 export const ReviewOption = Object.assign(OptionMain, {
