@@ -26,10 +26,10 @@ function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerS
   const { calculateStepArray, renderContentOnProgress } = useSignUp(userOAuthData);
 
   return (
-    <div className="flex flex-col w-full h-screen">
+    <div className="flex h-screen w-full flex-col">
       <Nav isOnlyLogo />
       <ShadowBox className="relative">
-        <span className="mb-15 mt-35 text-20 font-bold text-center">회원가입</span>
+        <span className="mb-15 mt-35 text-center text-20 font-bold">회원가입</span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
         {renderContentOnProgress()}
       </ShadowBox>
