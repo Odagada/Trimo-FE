@@ -9,7 +9,6 @@ import Image from "next/image";
 import useRegisterDropdown from "@/hooks/signup/useRegisterDropdowns";
 import { SignupContentProps } from "./TermsAgreements";
 import { INPUT_VALIDATION_MESSAGE } from "@/constants/signupConstants";
-import { useEffect, useState } from "react";
 
 interface Props extends SignupContentProps {
   setNickname: (value: string) => void;
@@ -41,11 +40,6 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
 
   const { validateNickname, data: isNicknameValid } = useValidateNickname();
 
-  useEffect(() => {
-    if (isNicknameValid?.data && isNicknameValid.status === 200) setIsNicknameFormValid(true);
-    else setIsNicknameFormValid(false);
-  }, [isNicknameValid]);
-
   return (
     <>
       <div className="flex flex-col"></div>
@@ -68,10 +62,11 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               })}
               id="title"
               placeholder="닉네임"
-              onChange={async () => setIsNicknameFormValid(false)}
             />
 
-            {isNicknameFormValid && <Image src={check} width={20} height={20} alt="nickname validated" />}
+            {isNicknameValid?.data && isNicknameValid.status === 200 && (
+              <Image src={check} width={20} height={20} alt="nickname validated" />
+            )}
           </InputWrapper>
           <button onClick={() => validateNickname(getValues("nickName"))} type="button">
             <Clickable
@@ -199,7 +194,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           <Clickable
             size="large"
             className="w-full"
-            color={formState.isValid && isNicknameFormValid ? "black" : "gray"}
+            color={formState.isValid && isNicknameValid?.data && isNicknameValid.status ? "black" : "gray"}
           >
             다음
           </Clickable>

@@ -103,29 +103,3 @@ export const getFilteredMyPlaces = (accessToken: string, query: string | null, p
     enabled: query !== null,
   };
 };
-
-export const getMyPlaces = (accessToken: string) => {
-  return {
-    queryKey: ["myPlace", accessToken],
-    queryFn: () =>
-      fetcher<GetMyPlacesType>({
-        method: "get",
-        url: "/user/me/places",
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }),
-  };
-};
-
-export const getFilteredMyPlaces = (accessToken: string, query: string | null, page: number) => {
-  return {
-    queryKey: ["myFilteredPlace", accessToken, query, page],
-    queryFn: () =>
-      fetcher<MultiReviewData[]>({
-        method: "get",
-        url: `/user/me/reviews?${query}page=${page}`,
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }),
-    keepPreviousData: true,
-    enabled: query !== null,
-  };
-};
