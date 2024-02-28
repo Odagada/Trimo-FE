@@ -80,7 +80,7 @@ function Nav({ isOnlyLogo = false }: NavProps) {
             <Image draggable={false} src={Logo} alt="trimo logo" width={78} height={20} />
           </div>
         </Link>
-        <span id="navSearchBar" className="h-50"></span>
+        <span id="navSearchBar" className="flex h-50 grow"></span>
         {renderNavbarLeftSide()}
       </div>
     </nav>

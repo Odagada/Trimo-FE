@@ -9,11 +9,11 @@ type Options = {
 interface Props {
   target: MutableRefObject<HTMLElement | null>;
   onIntersect: IntersectionObserverCallback;
-  size?: string;
+  page?: string;
   options?: Options;
 }
 
-export default function useInterSectionObserver({ target, onIntersect, options, size = "5" }: Props) {
+export default function useInterSectionObserver({ target, onIntersect, options, page = "1" }: Props) {
   useEffect(() => {
     let observer: IntersectionObserver;
     if (target && target.current) {
@@ -22,5 +22,5 @@ export default function useInterSectionObserver({ target, onIntersect, options, 
     }
     return () => observer && observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target, size]);
+  }, [target, page]);
 }
