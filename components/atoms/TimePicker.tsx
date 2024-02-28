@@ -26,7 +26,7 @@ export default function TimePicker({ onChange, value }: Props) {
       <div className="relative">
         <Datepicker.Input
           format="HH aa"
-          className="flex w-160 h-36 border border-gray30 rounded-10 middle-text text-center font-bold"
+          className="middle-text flex h-36 w-160 rounded-10 border border-gray-30 text-center font-bold"
         />
         {value && (
           <button type="button" className="absolute inset-y-3 right-3" onClick={() => onChange(undefined)}>
@@ -34,8 +34,8 @@ export default function TimePicker({ onChange, value }: Props) {
           </button>
         )}
       </div>
-      <Datepicker.Picker className="flex max-h-135 heading5 bg-white border middle-text" id="HourPicker">
-        <Datepicker.Items type="hour" className="overflow-y-auto scroll-smooth p-16 space-y-20" disableAutoScroll>
+      <Datepicker.Picker className="heading5 middle-text flex max-h-135 border bg-white" id="HourPicker">
+        <Datepicker.Items type="hour" className="space-y-20 overflow-y-auto scroll-smooth p-16" disableAutoScroll>
           {({ items }) =>
             items.map((item) => (
               <Datepicker.Item
@@ -43,7 +43,7 @@ export default function TimePicker({ onChange, value }: Props) {
                 item={item}
                 type="button"
                 action="close"
-                className="flex justify-center items-center h-10 hover:text-gray-20"
+                className="flex h-10 items-center justify-center hover:text-gray-20"
               >
                 {("0" + item.text).slice(-2)}
               </Datepicker.Item>

@@ -49,7 +49,7 @@ export const getSearchReview = (query: string) => {
     queryFn: () =>
       fetcher<MultiReviewData[]>({
         method: "get",
-        url: `main/reviews/specifics?${query}`,
+        url: `main/reviews/specifics?${query}&page=1`,
       }),
     enabled: query !== "",
   };

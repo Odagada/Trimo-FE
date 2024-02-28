@@ -16,9 +16,9 @@ export default function ReviewCard({ review }: Props) {
   return (
     <Link
       href={`/review/${reviewId}`}
-      className="shadow-main rounded-10 w-282 h-330 flex flex-col items-center p-8 bg-white select-none"
+      className="flex h-205 w-155 shrink-0 select-none flex-col items-center rounded-10 bg-white p-4 shadow-main tablet:h-330 tablet:w-282 tablet:p-8"
     >
-      <div className="h-240 relative w-full overflow-hidden">
+      <div className="relative h-240 w-full overflow-hidden">
         <Image
           src={image ?? NoImg}
           alt="카드 이미지"
@@ -30,19 +30,21 @@ export default function ReviewCard({ review }: Props) {
           className="rounded-10"
         />
       </div>
-      <div className="flex flex-col w-full gap-8 px-16 pb-12 mt-8">
-        <div className="flex items-center justify-between">
-          <h3 className="heading6 w-190 text-ellipsis whitespace-nowrap overflow-hidden">{title}</h3>
-          <span className="small-text w-54 text-ellipsis whitespace-nowrap overflow-hidden">by{nickName}</span>
+      <div className="grid w-full grid-cols-[auto_3.7rem] grid-rows-[2rem_2rem_2rem] items-center p-4 pb-6 tablet:grid-cols-[auto_4.8rem] tablet:grid-rows-[2.8rem_2.6rem] tablet:gap-x-14 tablet:gap-y-8">
+        <h3 className="tablet:heading6 col-span-2 truncate text-14 font-bold leading-20 tablet:col-span-1">{title}</h3>
+        <div className="tablet:small-text truncate text-10 leading-20">
+          <span>by {nickName}</span>
         </div>
-        <div className="small-text flex justify-between">
-          <div className="flex gap-4">
-            <div className="bg-gray-10 w-43 px-2 py-4 text-center rounded-full">{tagMonth}</div>
-            {tagValues &&
-              Object.entries(tagValues).map(([key, value]: [string, string]) => (
-                <ReviewCardTag value={value} key={key + reviewId} />
-              ))}
+        <div className="col-span-2 flex gap-4 tablet:col-span-1">
+          <div className="flex-center tablet:small-text w-32 rounded-full bg-gray-10 text-10 tablet:w-43 tablet:py-4">
+            {tagMonth}
           </div>
+          {tagValues &&
+            Object.entries(tagValues).map(([key, value]: [string, string]) => (
+              <ReviewCardTag value={value} key={key + reviewId} />
+            ))}
+        </div>
+        <div className="col-start-2 row-start-2 flex justify-end">
           <SingleStarRate rate={stars} />
         </div>
       </div>
