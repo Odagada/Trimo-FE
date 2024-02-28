@@ -13,6 +13,15 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      // Basic redirect
+      {
+        source: '/api/:path*',
+        destination: 'https://www.trimoserver.com/api/:path*',
+      },
+    ]   
+  },
 };
 
 module.exports = nextConfig;

@@ -4,7 +4,9 @@ Trimo은 사용자들이 여행 경험을 기록하고 공유하는 웹사이트
 
 ## 기술 스택
 
-##  팀원 소개
+![Static Badge](https://img.shields.io/badge/vercel-%23000?style=for-the-badge&logo=vercel&logoColor=%23FFf)
+
+## 👫 팀원 소개
 
 ## ⚡️ 주요 기능
 
@@ -23,4 +25,10 @@ Trimo은 사용자들이 여행 경험을 기록하고 공유하는 웹사이트
    git clone https://github.com/Odagada/Trimo-FE.git
    ```
 2. 필요한 패키지를 다운받습니다.
+   ```bash
+   npm install
+   ```
 3. 개발 모드를 실행합니다.
+   ```bash
+   npm run dev
+   ```
