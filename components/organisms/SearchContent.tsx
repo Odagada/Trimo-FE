@@ -12,7 +12,7 @@ export default function SearchContent({ queryStr }: { queryStr: string }) {
   const { query } = router;
 
   const { data: reviewListData } = useQuery(getSearchReview(searchQuery));
-  const reviewList = reviewListData?.data;
+  const reviewList = reviewListData?.data.reviewList;
 
   useEffect(() => {
     //검색 api 실행
@@ -22,12 +22,9 @@ export default function SearchContent({ queryStr }: { queryStr: string }) {
     }
   }, [query]);
 
-  if (reviewList === undefined) {
-    return <></>;
-  }
   return (
     <>
-      {reviewList?.length !== 0 ? (
+      {reviewListData?.status !== 204 && reviewList ? (
         <div className="mx-20 mt-42 min-h-600 border-t border-gray-30 pb-12 pt-8 laptop:mx-120 tablet:mx-60">
           <OrderDropdown />
           <div className="flex-center flex">
@@ -35,7 +32,7 @@ export default function SearchContent({ queryStr }: { queryStr: string }) {
           </div>
         </div>
       ) : (
-        <NoResult />
+        <NoResult keyword={query.searchValue} />
       )}
     </>
   );
