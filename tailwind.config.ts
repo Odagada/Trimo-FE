@@ -101,9 +101,13 @@ const config: Config = {
     },
     screens: {
       desktop: "1440px",
+      maxDesktop: { max: "1440px" },
       laptop: "1200px",
+      maxLaptop: { max: "1200px" },
       tablet: "768px",
+      maxTablet: { max: "768px" },
       mobile: "360px",
+      maxMobile: { max: "360px" },
     },
     extend: {
       animation: {
