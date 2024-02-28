@@ -16,7 +16,7 @@ function OptionError({ children }: { children: ReactNode }) {
 }
 
 function OptionSection({ children }: { children: ReactNode }) {
-  return <div className="flex gap-10 mobile:flex-col tablet:flex-row tablet:items-end">{children}</div>;
+  return <div className="flex gap-10 tablet:flex-row tablet:items-end mobile:flex-col">{children}</div>;
 }
 
 function OptionMain({ children }: { children: ReactNode }) {

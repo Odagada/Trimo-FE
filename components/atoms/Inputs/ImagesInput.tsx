@@ -72,7 +72,7 @@ export default function ImagesInput({ append, remove }: Props) {
       />
       <button
         role="button"
-        className={`flex items-center justify-center rounded-10 border mobile:w-fit mobile:border-gray-20 mobile:px-12 mobile:py-4 tablet:h-131 tablet:w-full tablet:border-dashed tablet:border-black ${
+        className={`flex items-center justify-center rounded-10 border tablet:h-131 tablet:w-full tablet:border-dashed tablet:border-black mobile:w-fit mobile:border-gray-20 mobile:px-12 mobile:py-4 ${
           isDragging && "bg-gray-30"
         }`}
         onDragEnter={handleDragEnter}
@@ -89,7 +89,7 @@ export default function ImagesInput({ append, remove }: Props) {
         </div>
         <Image src={cameraIcon} alt="cameraIcon" className="tablet:hidden" />
       </button>
-      <div className="mt-8 w-full gap-8 mobile:flex mobile:h-90 mobile:overflow-scroll tablet:grid tablet:h-full tablet:grid-cols-10">
+      <div className="mt-8 w-full gap-8 tablet:grid tablet:h-full tablet:grid-cols-10 mobile:flex mobile:h-90 mobile:overflow-scroll">
         {showImages.map((el, idx) => (
           <div className="rounded-lg relative aspect-square max-w-90" key={idx}>
             <button
