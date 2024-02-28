@@ -1,9 +1,9 @@
-import Nav from "@/components/molecules/NavigationBar";
-import WriteForm from "@/components/organisms/WriteForm";
 import Footer from "@/components/atoms/Footer";
+import Nav from "@/components/molecules/NavigationBar";
+import EditForm from "@/components/organisms/EditForm";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { isLoggedIn, validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus";
+import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -31,11 +31,11 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   }
 };
 
-export default function ReviewWrite({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function reviewEdit({ isLoggedIn }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Nav isLoggedIn={isLoggedIn} />
-      <WriteForm />
+      <EditForm />
       <Footer />
     </>
   );

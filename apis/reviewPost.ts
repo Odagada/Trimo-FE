@@ -31,3 +31,21 @@ export async function postReviews({
   });
   return data;
 }
+
+export async function editReviews({
+  formData,
+  reviewId,
+  apiKey,
+}: {
+  formData: FormData;
+  reviewId: number;
+  apiKey: string;
+}) {
+  const { data } = await fetcher<Review>({
+    method: "put",
+    url: `/user/spots/reviews/${reviewId}`,
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "multipart/form-data" },
+    data: formData,
+  });
+  return data;
+}

@@ -8,16 +8,16 @@ const makeToast = (msg: string, type?: "error" | "noIcon" | null) => {
         },
       })
     : type === "error"
-      ? toast.error(msg, {
-          style: {
-            borderRadius: "999px",
-          },
-        })
-      : toast.success(msg, {
-          style: {
-            borderRadius: "999px",
-          },
-        });
+    ? toast.error(msg, {
+        style: {
+          borderRadius: "999px",
+        },
+      })
+    : toast.success(msg, {
+        style: {
+          borderRadius: "999px",
+        },
+      });
 };
 
 export default makeToast;

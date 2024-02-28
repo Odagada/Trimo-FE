@@ -9,7 +9,7 @@ interface Props {
   isChecked: boolean;
   rate: Stars;
   onClick: (num: Stars) => void;
-  onMouseOver: (num: number) => void;
+  onMouseOver: (num: Stars) => void;
   onMouseOut: () => void;
   halfStar: boolean;
 }

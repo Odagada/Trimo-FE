@@ -1,24 +1,25 @@
 import ReactGoogleAutocomplete from "react-google-autocomplete";
 import { useMutation } from "@tanstack/react-query";
 import { postSpots } from "@/apis/reviewPost";
+import makeToast from "@/utils/makeToast";
 
 interface Props {
   setSpotId: React.Dispatch<React.SetStateAction<string>>;
-  spotError: string;
-  setSpotError: React.Dispatch<React.SetStateAction<string>>;
+  formatAddress?: string | undefined;
 }
 
-export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError }: Props) {
+export default function GoogleAutoComplete({ setSpotId, formatAddress = "" }: Props) {
   const { mutate: postSpotsMutate } = useMutation({
     mutationFn: postSpots,
     onSuccess(data) {
       setSpotId(data.placeId);
-      setSpotError("");
+      makeToast(`${data.name}을 다녀오셨군요!`);
     },
     onError() {
-      setSpotError("장소를 다시 입력해주세요");
+      makeToast("장소를 다시 입력해주세요", "error");
     },
   });
+
   async function handlePlace(place: google.maps.places.PlaceResult) {
     const { name, place_id, formatted_address, geometry } = place;
     let latitude = "";
@@ -47,8 +48,8 @@ export default function GoogleAutoComplete({ setSpotId, spotError, setSpotError 
         }}
         placeholder="어느곳을 다녀오셨나요?"
         className="tablet:heading4 heading5 w-full focus:outline-none"
+        defaultValue={formatAddress}
       />
-      {spotError !== "" && <p className="middle-text mt-10 font-bold text-error">{spotError}</p>}
     </div>
   );
 }

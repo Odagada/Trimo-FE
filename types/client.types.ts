@@ -78,6 +78,19 @@ export type Review = {
   images: { file: File }[];
 };
 
+export type EditReview = {
+  title: string;
+  content: string;
+  weather: TagWeather;
+  companion: TagCompanion;
+  placeType: TagPlaceType;
+  visitingTime: string;
+  stars: Stars;
+  images: ImageType[];
+  newImages: { file: File }[];
+  spotId: string;
+};
+
 export type ImageType = {
   name: string;
   url: string;

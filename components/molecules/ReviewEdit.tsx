@@ -1,27 +1,31 @@
 import Clickable from "../atoms/Clickable";
 import DatePicker from "../atoms/DatePicker";
-import ImagesInput from "../atoms/Inputs/ImagesInput";
 import { ReviewOption } from "../atoms/ReviewOption";
-import useGetForm from "@/hooks/useGetFormField";
+import useEditForm from "@/hooks/useGetEditField";
+import ImagesEditInput from "../atoms/Inputs/ImagesEditInput";
 
 import TagRadioButton from "./TagRadioButton";
 import StarRate from "./StarRate";
 
-import { Review } from "@/types/client.types";
-import { postReviews } from "@/apis/reviewPost";
+import { EditReview, ImageType, Review, TagCompanion, TagPlaceType, TagWeather } from "@/types/client.types";
+import { editReviews } from "@/apis/reviewPost";
 
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import { SingleReviewData } from "@/types/server.types";
+import { useEffect } from "react";
 import makeToast from "@/utils/makeToast";
 
 interface Props {
   spotId: string;
+  review: SingleReviewData | undefined;
+  reviewId: number;
 }
 
-export default function ReviewWrite({ spotId }: Props) {
-  const defaultValues: Review = {
+export default function ReviewEdit({ spotId, review, reviewId }: Props) {
+  let defaultValues: EditReview = {
     title: "",
     content: "",
     weather: "",
@@ -30,45 +34,81 @@ export default function ReviewWrite({ spotId }: Props) {
     visitingTime: "",
     stars: 0,
     images: [],
+    newImages: [],
+    spotId: "",
   };
+
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues,
   });
+
+  useEffect(() => {
+    if (review !== undefined) {
+      setValue("title", review.title);
+      setValue("content", review.content);
+      setValue("weather", review.tagValues?.weather as TagWeather);
+      setValue("companion", review.tagValues?.companion as TagCompanion);
+      setValue("placeType", review.tagValues?.placeType as TagPlaceType);
+      setValue("visitingTime", review.visitingTime);
+      setValue("stars", review.stars);
+      let obj: ImageType[] = [];
+      review.images?.forEach((value, index) => {
+        obj[index] = { name: index.toString(), url: value };
+      });
+      setValue("images", obj);
+    }
+  }, [review]);
+
+  useEffect(() => {
+    setValue("spotId", spotId);
+  }, [spotId]);
+
   const router = useRouter();
   const { userAccessToken: apiKey } = useManageUserAccessToken();
 
-  const { title, content, placeType, companion, weather, visitingTime, stars, images } = useGetForm(control);
+  const { title, content, placeType, companion, weather, visitingTime, stars, images, newImages } =
+    useEditForm(control);
 
-  const { mutate: postReviewsMutate } = useMutation({
-    mutationFn: postReviews,
+  const { mutate: editReviewsMutate } = useMutation({
+    mutationFn: editReviews,
     onSuccess() {
-      makeToast("리뷰 생성에 성공했습니다");
+      makeToast("리뷰 수정에 성공했습니다");
       router.push("search?order=POPULAR&searchValue=");
     },
     onError() {
-      makeToast("리뷰 생성에 실패했습니다", "error");
+      makeToast("리뷰 수정에 실패했습니다", "error");
     },
   });
 
-  function postForm(postData: Review) {
+  function postForm(postData: EditReview) {
     if (spotId === "") {
       makeToast("장소를 입력해주세요", "error");
       return;
     }
     const formData = new FormData();
-    const { images, ...reviewWriteRequest } = postData;
+    const { images, newImages, ...reviewWriteRequest } = postData;
     let key: keyof typeof reviewWriteRequest;
     for (key in reviewWriteRequest) {
       formData.append(key, reviewWriteRequest[key] as string);
     }
-    images.map((value) => {
-      formData.append("images", value.file, value.file.name);
+    const overlappingNames = images
+      .map((image) => image.name)
+      .filter((name) => newImages.some((newImage) => newImage.file.name === name));
+
+    const filteredImages = images.filter((image) => !overlappingNames.includes(image.name));
+
+    filteredImages.map((value) => {
+      formData.append("images", value.url);
     });
-    postReviewsMutate({ formData, spotId, apiKey });
+    newImages.map((value) => {
+      formData.append("newImages", value.file, value.file.name);
+    });
+    editReviewsMutate({ formData, reviewId, apiKey });
   }
 
   return (
@@ -79,7 +119,7 @@ export default function ReviewWrite({ spotId }: Props) {
           type="text"
           id="title"
           placeholder="제목을 작성해 주세요."
-          className="tablet:heading4 heading5 w-full text-black placeholder:text-gray-40 focus:outline-none"
+          className="heading4 w-full text-black placeholder:text-gray-40 focus:outline-none"
         />
         {errors.title && <p className="middle-text font-bold text-error">{errors.title.message}</p>}
       </div>
@@ -92,7 +132,14 @@ export default function ReviewWrite({ spotId }: Props) {
         {errors.content && <p className="middle-text mt-10 font-bold text-error">{errors.content.message}</p>}
       </div>
       <div>
-        <ImagesInput append={images.append} remove={images.remove} />
+        <ImagesEditInput
+          fileValue={newImages.fields}
+          fileAppend={newImages.append}
+          fileRemove={newImages.remove}
+          showValue={images.fields}
+          showAppend={images.append}
+          showRemove={images.remove}
+        />
         {errors.images && <p className="middle-text mt-10 font-bold text-error">이미지는 10개 이하로 가능합니다.</p>}
       </div>
 

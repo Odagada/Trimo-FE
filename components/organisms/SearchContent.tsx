@@ -25,7 +25,7 @@ export default function SearchContent({ queryStr }: { queryStr: string }) {
   return (
     <>
       {reviewListData?.status !== 204 && reviewList ? (
-        <div className="mx-20 mt-42 min-h-600 border-t border-gray-30 pb-12 pt-8 laptop:mx-120 tablet:mx-60">
+        <div className="mx-20 mt-42 min-h-600 border-t border-gray-30 pb-12 pt-8 tablet:mx-60 laptop:mx-120">
           <OrderDropdown />
           <div className="flex-center flex">
             <ReviewList data={reviewList} />
