@@ -28,12 +28,14 @@ function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerS
   return (
     <div className="flex flex-col w-full h-screen">
       <Nav isOnlyLogo />
-      <ShadowBox className="relative">
-        <span className="text-20 mb-15 mt-35 font-bold text-center">회원가입</span>
+      <ShadowBox className="relative my-32 maxTablet:my-20 maxTablet:pb-30 maxTablet:w-5/6 maxTablet:px-16 maxTablet:h-full">
+        <span className="tablet:text-20 text-16 tablet:mb-15 mb-8 tablet:mt-35 tablet:mt-28 mt-18 font-bold text-center">
+          회원가입
+        </span>
         <ProgressNavigator stepArray={calculateStepArray()}></ProgressNavigator>
         {renderContentOnProgress()}
       </ShadowBox>
-      <Footer />
+      <Footer className="maxTablet:hidden" />
     </div>
   );
 }

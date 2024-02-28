@@ -15,8 +15,8 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
   });
 
   return (
-    <div className="mt-60">
-      <div className="absolute right-62">
+    <div className="tablet:mt-50 mt-30 relative">
+      <div className="maxTablet:hidden absolute right-15 -top-23">
         <label className="flex gap-8">
           <input
             type="checkbox"
@@ -37,11 +37,26 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
       {TERMS.map((termContent, key) => {
         return (
           <div key={key}>
-            <h5 className="mb-12">{termContent.title}</h5>
-            <p className="w-675 h-200 rounded-[10px] border border-zinc-400 p-20 overflow-y-auto" key={key}>
+            <h5 className="mb-10 maxTablet:hidden">{termContent.title}</h5>
+            <pre
+              className={`${
+                key === 0 && "maxTablet:hidden"
+              } maxTablet:hidden w-680 h-200 text-12 rounded-[10px] border border-zinc-400 p-20 overflow-y-auto overflow-x-hidden scrollbar-hide`}
+            >
               {termContent.content}
-            </p>
-            <label className="flex gap-12 m-10 mb-50 items-center">
+            </pre>
+            <pre
+              className={`${
+                key === 0 && "maxTablet:hidden"
+              } tablet:hidden w-290 h-350 text-10 rounded-[10px] border border-zinc-400 px-25 py-15 overflow-y-auto overflow-x-hidden scrollbar-hide`}
+            >
+              {termContent.mobileContent}
+            </pre>
+            <label
+              className={`${
+                key === 0 && "maxTablet:hidden"
+              } flex gap-10 tablet:m-9 maxTablet:mt-18 maxTablet:mb-15 tablet:mb-40 maxTablet:rounded-10 maxTablet:h-45 items-center text-14 maxTablet:bg-gray-10 maxTablet:w-full maxTablet:p-15`}
+            >
               <input
                 type="checkbox"
                 value="term"
@@ -50,18 +65,18 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
                 checked={checkedTerms.includes(termContent.termNo)}
               />
               {checkedTerms.includes(termContent.termNo) ? (
-                <Image src={checked} alt="checked" width={20} height={20} className="absolute" />
+                <Image src={checked} alt="checked" width={17} height={17} className="absolute" />
               ) : (
-                <Image src={notChecked} alt="checked" width={20} height={20} className="absolute" />
+                <Image src={notChecked} alt="checked" width={17} height={17} className="absolute" />
               )}
-              이용약관에 동의 합니다.
+              {termContent.agreementText}
             </label>
           </div>
         );
       })}
       <button className="w-full" onClick={validateTermCheck}>
         <Clickable size="large" className="w-full">
-          확인
+          다음
         </Clickable>
       </button>
     </div>

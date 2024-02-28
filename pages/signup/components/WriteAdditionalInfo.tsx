@@ -40,11 +40,11 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
   return (
     <>
       <div className="flex flex-col"></div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
-        <div className="flex items-end">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30 maxTablet:gap-24">
+        <div className="flex items-end gap-10">
           <InputWrapper
-            className="py-17 border-gray-400"
-            divOptions="w-412"
+            className="py-17 maxTablet:py-12 border-gray-400 maxTablet:w-full tablet:w-412"
+            divOptions="w-412 maxTablet:w-full"
             htmlFor="title"
             title="닉네임"
             errors={formState.errors.nickName}
@@ -63,7 +63,10 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             )}
           </InputWrapper>
           <button onClick={() => validateNickname(getValues("nickName"))} type="button">
-            <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
+            <Clickable
+              size="medium"
+              className="px-30 maxTablet:px-14 py-17 maxTablet:py-12  font-medium whitespace-nowrap maxTablet:text-14"
+            >
               중복확인
             </Clickable>
           </button>
@@ -75,13 +78,13 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           errors={formState.errors.birthdate}
           className="pl-0 pb-0 pr-0 pt-0 border-none"
         >
-          <div className="flex gap-12">
+          <div className="grid grid-cols-3 gap-12 maxTablet:text-14 tablet:h-60 h-50">
             <Select
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  height: "60px",
-                  width: "175px",
+                  height: "100%",
+                  width: "100%",
                   whiteSpace: "nowrap",
                   paddingLeft: 8,
                   borderRadius: 10,
@@ -103,8 +106,8 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  height: "60px",
-                  width: "175px",
+                  height: "100%",
+                  width: "100%",
                   whiteSpace: "nowrap",
                   paddingLeft: 8,
                   borderRadius: 10,
@@ -126,8 +129,8 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  height: "60px",
-                  width: "175px",
+                  height: "100%",
+                  width: "100%",
                   whiteSpace: "nowrap",
                   paddingLeft: 8,
                   borderRadius: 10,
@@ -187,7 +190,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             className="w-full"
             color={formState.isValid && isNicknameValid?.data && isNicknameValid.status ? "black" : "gray"}
           >
-            확인
+            다음
           </Clickable>
         </button>
       </form>
