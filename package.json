@@ -10,7 +10,7 @@
     "build-storybook": "storybook build",
     "postinstall": "husky install",
     "format": "prettier --cache --write .",
-    "lint": "eslint --cache '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
+    "lint": "eslint --cache \"**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
     "prepare": "husky install"
   },
   "dependencies": {
