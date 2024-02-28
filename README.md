@@ -1,40 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trimo
 
-## Getting Started
+Trimo은 사용자들이 여행 경험을 기록하고 공유하는 웹사이트입니다. 여행지에 대한 리뷰를 작성하고 검색할 수 있어, 다양한 여행지에 대한 정보를 얻을 수 있습니다.
 
-First, run the development server:
+## 기술 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+##  팀원 소개
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚡️ 주요 기능
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- **여행 리뷰 작성**: 사용자는 로그인 후 여행 리뷰를 작성할 수 있습니다. 리뷰에는 날짜, 장소, 동행, 별점 등을 기록할 수 있습니다.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **검색 기능**: 여행지, 날짜, 사용자 등을 기준으로 리뷰를 검색할 수 있습니다. 다양한 필터링 옵션을 통해 원하는 정보를 쉽게 찾을 수 있습니다.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- **사용자 프로필**: 각 사용자는 자신의 프로필을 관리하고 작성한 리뷰를 모아볼 수 있습니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **관심 리스트**: 관심있는 리뷰를 정장하고 모아볼 수 있습니다.
 
-## Learn More
+## ⚙️ 시작해보기
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. 저장소를 클론합니다.
+   ```bash
+   git clone https://github.com/Odagada/Trimo-FE.git
+   ```
+2. 필요한 패키지를 다운받습니다.
+3. 개발 모드를 실행합니다.
