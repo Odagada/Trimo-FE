@@ -73,24 +73,24 @@ export default function ReviewEdit({ spotId, setSpotError, review }: Props) {
   //     },
   //   });
 
-  //   function postForm(postData: Review) {
-  //     if (spotId === "") {
-  //       setSpotError("장소를 입력해주세요");
-  //       setFocus("title");
-  //       return;
-  //     }
-  //     const formData = new FormData();
-  //     const { images, ...reviewWriteRequest } = postData;
-  //     let key: keyof typeof reviewWriteRequest;
-  //     for (key in reviewWriteRequest) {
-  //       formData.append(key, reviewWriteRequest[key] as string);
-  //     }
-  //     images.map((value) => {
-  //       formData.append("images", value.file, value.file.name);
-  //     });
-  //     // postReviewsMutate({ formData, spotId, apiKey });
-  //     console.log(postData);
-  //   }
+  function postForm(postData: Review) {
+    //   if (spotId === "") {
+    //     setSpotError("장소를 입력해주세요");
+    //     setFocus("title");
+    //     return;
+    //   }
+    //   const formData = new FormData();
+    //   const { images, ...reviewWriteRequest } = postData;
+    //   let key: keyof typeof reviewWriteRequest;
+    //   for (key in reviewWriteRequest) {
+    //     formData.append(key, reviewWriteRequest[key] as string);
+    //   }
+    //   images.map((value) => {
+    //     formData.append("images", value.file, value.file.name);
+    //   });
+    //   // postReviewsMutate({ formData, spotId, apiKey });
+    console.log(postData);
+  }
 
   return (
     <form className="flex flex-col gap-28" onSubmit={handleSubmit(postForm)}>
