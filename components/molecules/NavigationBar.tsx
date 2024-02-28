@@ -7,21 +7,23 @@ import HeaderDropdown from "../atoms/Dropdowns/HeaderDropdown";
 import { useEffect, useState } from "react";
 import useGetUserInfo from "@/hooks/useGetUserInfo";
 import { User } from "@/types/client.types";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 
 interface NavProps {
   isOnlyLogo?: boolean;
   hasSearchBar?: boolean;
   className?: string;
-  isLoggedIn?: boolean;
 }
 
 type NavStatusType = "onlyLogo" | "LoggedIn" | "LoggedOut";
 
-function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
+function Nav({ isOnlyLogo = false }: NavProps) {
   const { buttonRef, popupRef, isOpen, setIsOpen } = useComponentPopup();
 
   const [navStatus, setNavStatus] = useState<NavStatusType>();
   const [userData, setUserData] = useState<User | null>();
+
+  const { userAccessToken } = useManageUserAccessToken();
 
   const { userDataRef, requestUserData } = useGetUserInfo();
 
@@ -31,10 +33,10 @@ function Nav({ isOnlyLogo = false, isLoggedIn = false }: NavProps) {
   };
 
   useEffect(() => {
-    if (!isOnlyLogo) isLoggedIn ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
+    if (!isOnlyLogo) userAccessToken ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
 
     fetchUserData();
-  }, [isLoggedIn, isOnlyLogo, navStatus, userDataRef]);
+  }, [userAccessToken, isOnlyLogo, navStatus, userDataRef]);
 
   const renderNavbarLeftSide = () => {
     switch (navStatus) {

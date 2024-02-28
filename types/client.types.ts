@@ -7,7 +7,20 @@ export type ClickableColor = "primary" | "black" | "gray" | "white" | "white-" |
 export type ClickableShape = "square" | "capsule";
 export type ClickableSize = "large" | "medium" | "small";
 
-export type TagMonth = "1월" | "2월" | "3월" | "4월" | "5월" | "6월" | "7월" | "8월" | "9월" | "10월" | "11월" | "12월";
+export type TagMonth =
+  | "1월"
+  | "2월"
+  | "3월"
+  | "4월"
+  | "5월"
+  | "6월"
+  | "7월"
+  | "8월"
+  | "9월"
+  | "10월"
+  | "11월"
+  | "12월"
+  | "";
 export type TagWeather = "맑음" | "흐림" | "우천" | "눈" | "";
 export type TagPlaceType = "맛집" | "관광" | "휴양" | "명소" | "";
 export type TagCompanion = "가족" | "친구" | "연인" | "혼자" | "";
@@ -61,7 +74,7 @@ export type Destination = {
 export type User = {
   userId: number;
   nickName: string;
-  gender: "female" | "male";
+  gender: "남자" | "여자";
   age: number;
   imageUrl: string;
   birthdate: string;
@@ -76,6 +89,19 @@ export type Review = {
   visitingTime: string;
   stars: Stars;
   images: { file: File }[];
+};
+
+export type EditReview = {
+  title: string;
+  content: string;
+  weather: TagWeather;
+  companion: TagCompanion;
+  placeType: TagPlaceType;
+  visitingTime: string;
+  stars: Stars;
+  images: ImageType[];
+  newImages: { file: File }[];
+  spotId: string;
 };
 
 export type ImageType = {

@@ -65,6 +65,24 @@ export type GetUserInfoType = {
   imageUrl: string;
 };
 
+export type UserUpdateType = {
+  nickName: string;
+  birthDate: string;
+  gender: string;
+};
+
+export type GetUserUpdateType = {
+  nickName: string;
+  imageUrl: string;
+  gender: string;
+  age: number;
+  role: string;
+};
+
+export type GetMyPlacesType = {
+  placeIds: string[];
+};
+
 export type reviewList = {
   reviewList: MultiReviewData[];
   totalCount: number;

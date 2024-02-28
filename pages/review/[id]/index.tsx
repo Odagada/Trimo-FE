@@ -106,10 +106,10 @@ const MainReviewSection = () => {
 
   const uploadPostMutation = useMutation({
     mutationFn: () =>
-      fetch(`https://trimoserver.com/api/user/reviews/${reviewId}`, {
+      fetcher({
         method: "DELETE",
-        headers: { Authorization: `bearer ${accessToken}` },
-        credentials: "include",
+        headers: { Authorization: `Bearer ${accessToken}` },
+        url: `/user/reviews/${reviewId}`,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["review"] });
@@ -192,7 +192,7 @@ const MapNTag = () => {
     <>
       {/* map area */}
       <div className="mb-12 tablet:mb-73">
-        <GoogleMap locationIDList={[placeId]} />
+        <GoogleMap locationIDList={[placeId]} size="maxTablet:w-full maxTablet:h-250" />
       </div>
       {/* tag and createdAt */}
       <section className="mb-155 flex flex-col justify-between gap-24 tablet:flex-row tablet:items-center">
