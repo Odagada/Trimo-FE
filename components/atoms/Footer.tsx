@@ -1,9 +1,9 @@
 import logo from "@/public/logos/TRIMO.svg";
 import Image from "next/image";
 
-const Footer = ({ className = "" }: { className?: string }) => {
+const Footer = () => {
   return (
-    <div className={`${className} bg-gray-50 px-120 pb-44 pt-26`}>
+    <div className="bg-gray-50 px-24 py-20 tablet:px-64 tablet:pb-35 tablet:pt-24 laptop:px-120 laptop:pb-44 laptop:pt-26">
       <Image draggable={false} className="text-white" src={logo} alt="" width={62} height={30} />
       <div className="mt-8 ">
         <p className="text-12 leading-18 text-white">

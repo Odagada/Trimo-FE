@@ -39,36 +39,38 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={`
+    <div className={`${size === "large" ? "max-w-632 px-48" : ""} mx-auto`}>
+      <form
+        onSubmit={handleSubmit}
+        className={`
       ${className}
       ${
-        size === "large" ? "w-536 border-2 border-black " : "w-460 border border-gray-50"
-      } m-auto flex items-center justify-center rounded-100`}
-    >
-      <div className={size === "large" ? "size-49" : "size-33"}></div>
-      <input
-        value={value}
-        onFocus={handleFocus}
-        onChange={handleChange}
-        placeholder="리뷰가 궁금한 여행지를 검색해보세요!"
-        className="flex-1 text-center text-16 font-regular leading-24 focus:outline-none"
-      />
-      <button
-        className={`${
-          size === "large" ? "size-49" : "size-33"
-        } m-6 flex items-center justify-center rounded-100 bg-black`}
+        size === "large" ? "border border-black tablet:border-2 " : "w-460 border border-gray-50"
+      } flex items-center justify-center rounded-100`}
       >
-        <Image
-          draggable={false}
-          src={searchIcon}
-          width={`${size === "large" ? 19 : 13}`}
-          height={`${size === "large" ? 19 : 13}`}
-          alt=""
+        <div className={size === "large" ? "size-34 tablet:size-49" : "size-33"}></div>
+        <input
+          value={value}
+          onFocus={handleFocus}
+          onChange={handleChange}
+          placeholder="리뷰가 궁금한 여행지를 검색해보세요!"
+          className="flex-1 text-center text-12 font-regular leading-18 focus:outline-none tablet:text-16 tablet:leading-24"
         />
-      </button>
-    </form>
+        <button
+          className={`${
+            size === "large" ? "size-34 tablet:size-49" : "size-33"
+          } m-2 flex items-center justify-center rounded-100 bg-black tablet:m-6`}
+        >
+          <Image
+            draggable={false}
+            src={searchIcon}
+            width={`${size === "large" ? 19 : 13}`}
+            height={`${size === "large" ? 19 : 13}`}
+            alt=""
+          />
+        </button>
+      </form>
+    </div>
   );
 };
 
