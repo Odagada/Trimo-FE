@@ -73,7 +73,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           htmlFor="birthdate"
           title="생년월일"
           errors={formState.errors.birthdate}
-          className="border-none pb-0 pl-0 pr-0 pt-0"
+          className="border-none p-0"
         >
           <div className="flex gap-12">
             <Select
@@ -159,7 +159,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
                 type="radio"
                 value="남자"
                 {...register("gender", { required: true })}
-                className="mr-12 h-18 w-18 border-0 accent-black"
+                className="mr-12 size-18 border-0 accent-black"
               />
               남성
             </label>
@@ -169,7 +169,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
                 type="radio"
                 value="여자"
                 {...register("gender", { required: true })}
-                className="mr-12 h-18 w-18 border-0 accent-black"
+                className="mr-12 size-18 border-0 accent-black"
               />
               여성
             </label>

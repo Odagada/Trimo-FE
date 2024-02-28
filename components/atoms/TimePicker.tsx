@@ -26,7 +26,7 @@ export default function TimePicker({ onChange, value }: Props) {
       <div className="relative">
         <Datepicker.Input
           format="HH aa"
-          className="border-gray30 middle-text flex h-36 w-160 rounded-10 border text-center font-bold"
+          className="middle-text flex h-36 w-160 rounded-10 border border-gray-30 text-center font-bold"
         />
         {value && (
           <button type="button" className="absolute inset-y-3 right-3" onClick={() => onChange(undefined)}>

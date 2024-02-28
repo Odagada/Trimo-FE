@@ -5,7 +5,7 @@ function OptionTitle({ children }: { children: ReactNode }) {
 }
 
 function OptionDescription({ children }: { children: ReactNode }) {
-  return <div className="small-text mx-10 flex w-100 flex-shrink-0 gap-22 text-start text-gray-40">{children}</div>;
+  return <div className="small-text mx-10 flex w-100 shrink-0 gap-22 text-start text-gray-40">{children}</div>;
 }
 
 function OptionInfo({ children }: { children: ReactNode }) {

@@ -60,6 +60,7 @@ const config: Config = {
       32: "3.2rem",
       36: "3.6rem",
       45: "4.5rem",
+      60: "6rem",
       100: "10rem",
     },
     lineHeight: {

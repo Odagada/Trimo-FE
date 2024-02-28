@@ -21,7 +21,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
           <input
             type="checkbox"
             value="term"
-            className="h-18 w-18 appearance-none"
+            className="size-18 appearance-none"
             onChange={(e) => handleAllCheck(e.target.checked)}
             checked={checkedTerms.length === TERMS.length}
           />
@@ -45,7 +45,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
               <input
                 type="checkbox"
                 value="term"
-                className="h-18 w-18 appearance-none"
+                className="size-18 appearance-none"
                 onChange={(e) => handleSingleCheck(e.target.checked, termContent.termNo)}
                 checked={checkedTerms.includes(termContent.termNo)}
               />

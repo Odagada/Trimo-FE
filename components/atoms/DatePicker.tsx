@@ -36,7 +36,7 @@ export default function DatePicker({ onChange, value }: Props) {
       <div className="relative">
         <Datepicker.Input
           format="yyyy/MM/dd HH:mm"
-          className="border-gray30 middle-text flex h-36 w-160 rounded-10 border pl-12 font-bold"
+          className="middle-text flex h-36 w-160 rounded-10 border border-gray-30 pl-12 font-bold"
         />
         {value && (
           <button type="button" className="absolute inset-y-3 right-3" onClick={() => onChange(undefined)}>

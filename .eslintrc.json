@@ -10,6 +10,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:tailwindcss/recommended",
     "plugin:storybook/recommended"
   ],
   "overrides": [],
@@ -23,6 +24,8 @@
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     "eqeqeq": "error",
     "no-unused-vars": "off", // 사용하지 않는 변수가 있을 때 에러 -> off
-    "no-undef": "off"
+    "no-undef": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
