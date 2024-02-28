@@ -14,15 +14,16 @@ import Select from "react-select";
 import formatDateToStr from "@/utils/formatDateToStr";
 import useGetUserInfo from "@/hooks/useGetUserInfo";
 import { useEffect, useState } from "react";
+import makeToast from "@/utils/makeToast";
 
 async function updateUserInfo(postData: UserUpdateType, accessToken: string) {
-  const { data } = await fetcher<GetUserUpdateType>({
+  const { data, status } = await fetcher<GetUserUpdateType>({
     method: "post",
     url: "/users/update",
     headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     data: postData,
   });
-  return data;
+  return { data, status };
 }
 
 const UpdateUserInfoForm = () => {
@@ -35,24 +36,26 @@ const UpdateUserInfoForm = () => {
 
   const [userNickname, setUserNickname] = useState<string>();
 
-  const onSubmit = (data: {
+  const onSubmit = async (data: {
     nickName: string;
     birthdate: birthdateValType | null | number;
     birthmonth: birthdateValType | null | number;
     birthyear: birthdateValType | null | number;
     gender: string;
   }) => {
-    if (typeof data.birthyear === "number" || typeof data.birthmonth === "number" || typeof data.birthdate === "number")
-      return;
-    const userBirthdate = formatDateToStr(data.birthyear?.value!, data.birthmonth?.value!, data.birthdate?.value!);
+    const birthYear = typeof data.birthyear === "number" ? data.birthyear : data.birthyear?.value;
+    const birthMonth = typeof data.birthmonth === "number" ? data.birthmonth : data.birthmonth?.value;
+    const birthDate = typeof data.birthdate === "number" ? data.birthdate : data.birthdate?.value;
+    const userBirthdate = formatDateToStr(birthYear!, birthMonth!, birthDate!);
 
     const userData = {
       nickName: data.nickName,
       birthDate: userBirthdate,
       gender: data.gender,
     };
+    const { status } = await updateUserInfo(userData, userAccessToken);
 
-    // updateUserInfo(userData, userAccessToken);
+    status === 200 && makeToast("회원님의 정보가 성공적으로 변경되었습니다!");
   };
 
   const {
