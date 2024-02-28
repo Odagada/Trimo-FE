@@ -106,13 +106,12 @@ const MainReviewSection = () => {
 
   const uploadPostMutation = useMutation({
     mutationFn: () =>
-      fetcher({
-        method: "delete",
-        url: `/user/reviews/${reviewId}`,
+      fetch(`https://trimoserver.com/api/user/reviews/${reviewId}`, {
+        method: "DELETE",
         headers: { Authorization: `bearer ${accessToken}` },
+        credentials: "include",
       }),
     onSuccess: () => {
-      handleModalToggle();
       queryClient.invalidateQueries({ queryKey: ["review"] });
       makeToast("삭제가 완료되었습니다!");
       router.push("/");
