@@ -48,7 +48,7 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
         size === "large" ? "border border-black tablet:border-2 " : "w-460 border border-gray-50"
       } flex items-center justify-center rounded-100`}
       >
-        <div className={size === "large" ? "h-34 w-34 tablet:h-49 tablet:w-49" : "h-33 w-33"}></div>
+        <div className={size === "large" ? "size-34 tablet:size-49" : "size-33"}></div>
         <input
           value={value}
           onFocus={handleFocus}
@@ -58,7 +58,7 @@ const SearchBar = ({ size, className = "" }: { size: "large" | "small"; classNam
         />
         <button
           className={`${
-            size === "large" ? "h-34 w-34 tablet:h-49 tablet:w-49" : "h-33 w-33"
+            size === "large" ? "size-34 tablet:size-49" : "size-33"
           } m-2 flex items-center justify-center rounded-100 bg-black tablet:m-6`}
         >
           <Image
