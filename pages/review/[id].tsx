@@ -105,13 +105,15 @@ const MainReviewSection = () => {
   const queryClient = useQueryClient();
 
   const uploadPostMutation = useMutation({
-    mutationFn: () =>
-      fetcher({
+    mutationFn: () => {
+      return fetcher({
         method: "delete",
         url: `/user/reviews/${reviewId}`,
         headers: { Authorization: `bearer ${accessToken}` },
-      }),
+      });
+    },
     onSuccess: () => {
+      handleModalToggle();
       queryClient.invalidateQueries({ queryKey: ["review"] });
       makeToast("삭제가 완료되었습니다!");
       router.push("/");
@@ -145,7 +147,7 @@ const MainReviewSection = () => {
             <Image src={Message} alt="리뷰 공유" width={24} />
           </button>
 
-          {true && (
+          {isMine && (
             <>
               <button type="button" onClick={() => router.push(`/review/${reviewId}/edit`)}>
                 <Image src={Pen} alt="리뷰 수정" width={24} />
