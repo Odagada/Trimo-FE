@@ -16,9 +16,10 @@ import Message from "@/public/icons/reviewControlIcon_Message.svg";
 import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { useDestructureReviewData, useIsMine } from "@/hooks/useDestructureReviewData";
+import { useDestructureReviewData, useIsMine, useReviewId } from "@/hooks/useDestructureReviewData";
 import useAccessToken from "@/zustands/useAccessToken";
 import { useEffect } from "react";
+import makeToast from "@/utils/makeToast";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -55,13 +56,12 @@ export default function ReadReview({ accessToken }: InferGetServerSidePropsType<
       <ImageCarouselSection />
 
       {/* main text area */}
-      <section className="mx-auto w-full max-w-800 px-4">
+      <section className="mx-auto w-full max-w-800 px-20">
         <MainReviewSection />
 
         {/* map area */}
         <MapNTag />
       </section>
-
       <Footer />
     </>
   );
@@ -85,42 +85,47 @@ const ImageCarouselSection = () => {
 
 const MainReviewSection = () => {
   const { reviewData, dateString, timeString } = useDestructureReviewData();
+  const reviewId = useReviewId();
 
   const { accessToken } = useAccessToken();
 
   const isMine = useIsMine(accessToken);
 
-  const queryClient = useQueryClient();
-
   return (
     <>
       {/* title area */}
-      <h2 className="mb-12 flex items-baseline justify-between gap-15">
-        <div className="flex items-baseline gap-20">
-          <span className="heading1">{reviewData?.data.title}</span>
+      <h2 className="tablet:mb-12 mb-4 flex justify-between">
+        <div className="flex items-baseline tablet:gap-20 gap-8">
+          <span className="tablet:heading1 text-24 font-bold leading-36">{reviewData?.data.title}</span>
 
-          <span className="text-medium text-18 leading-15">{`by ${reviewData?.data.nickName}`}</span>
+          <span className="text-medium text-12 tablet:text-18 leading-15">{`by ${reviewData?.data.nickName}`}</span>
         </div>
 
-        <div className="flex gap-5">
+        <div className="flex items-center gap-5">
           {!isMine && (
             <button type="button">
-              <Image src={Heart} alt="좋아요" />
+              <Image src={Heart} alt="좋아요" width={24} />
             </button>
           )}
 
-          <button type="button">
-            <Image src={Message} alt="리뷰 공유" />
+          <button
+            type="button"
+            onClick={() => {
+              navigator.clipboard.writeText(`https://www.trimo.kr/review/${reviewId}`);
+              makeToast("링크가 복사되었습니다!");
+            }}
+          >
+            <Image src={Message} alt="리뷰 공유" width={24} />
           </button>
 
-          {isMine && (
+          {true && (
             <>
               <button type="button">
-                <Image src={Pen} alt="리뷰 수정" />
+                <Image src={Pen} alt="리뷰 수정" width={24} />
               </button>
 
               <button type="button">
-                <Image src={Bin} alt="리뷰 삭제" />
+                <Image src={Bin} alt="리뷰 삭제" width={24} />
               </button>
             </>
           )}
@@ -128,16 +133,18 @@ const MainReviewSection = () => {
       </h2>
 
       {/* subTitle? */}
-      <div className="mb-30 flex items-center gap-10">
-        <h3 className="text-18 leading-15 text-gray-40">
+      <div className="mb-30 flex tablet:flex-row flex-col tablet:items-center gap-10">
+        <h3 className="tablet:text-18 tablet:leading-27 text-12 leading-18 text-gray-40 ">
           {`${reviewData?.data.spotName} · ${dateString} · ${timeString}`}
           {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
         </h3>
-        {reviewData?.data.stars && <MultiStarRate number={reviewData.data.stars} />}
+        {reviewData?.data.stars ? <MultiStarRate number={reviewData.data.stars} /> : ""}
       </div>
 
       {/* text area */}
-      <p className="mb-20 whitespace-pre-wrap text-justify text-18 leading-42">{reviewData?.data.content}</p>
+      <p className="mb-20 whitespace-pre-wrap text-justify text-16 leading-30 tablet:text-18 tablet:leading-42">
+        {reviewData?.data.content}
+      </p>
     </>
   );
 };
@@ -148,11 +155,11 @@ const MapNTag = () => {
   return (
     <>
       {/* map area */}
-      <div className="mb-73">
+      <div className="tablet:mb-73 mb-12">
         <GoogleMap locationIDList={[placeId]} />
       </div>
       {/* tag and createdAt */}
-      <section className="mb-155 flex items-center justify-between">
+      <section className="mb-155 flex tablet:flex-row flex-col tablet:items-center justify-between gap-24">
         <div className="flex gap-10">
           {tag?.map((item, index) => {
             return (

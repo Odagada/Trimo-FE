@@ -26,10 +26,12 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 export const request = <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T, any>> => {
   const client = instance;
   return client(config);
 };
+
 const fetcher = async <T>(config: AxiosRequestConfig) => {
   const response = await request<T>({ ...config });
   const { data, status }: { data: T; status: number } = response;
