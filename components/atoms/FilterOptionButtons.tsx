@@ -75,6 +75,7 @@ const FilterOptionsButtons = ({ placeId, setQuery }: { placeId: string[]; setQue
               key={index}
             >
               <Clickable color={checkedMenu === optionText ? "black" : "white-"} size="small" shape="capsule">
+                {/* @ts-ignore */}
                 <Emoji>{optionText}</Emoji>
               </Clickable>
             </button>
