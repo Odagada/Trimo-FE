@@ -96,9 +96,9 @@ const UpdateUserInfoForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
       <div>
         <div className="flex items-end">
-          <div className="w-412 mt-42">
+          <div className="mt-42 w-412">
             <InputWrapper
-              className="py-17 border-gray-400 mb-8 "
+              className="border-gray-400 mb-8 py-17 "
               divOptions="w-412"
               htmlFor="title"
               title="닉네임 변경"
@@ -106,7 +106,7 @@ const UpdateUserInfoForm = () => {
               <div>{userNickname}</div>
             </InputWrapper>
             <InputWrapper
-              className="py-17 border-gray-400"
+              className="border-gray-400 py-17"
               divOptions="w-412"
               htmlFor="title"
               title=""
@@ -130,7 +130,7 @@ const UpdateUserInfoForm = () => {
               getValues("nickName") === userNickname || validateNickname(getValues("nickName"));
             }}
           >
-            <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
+            <Clickable size="medium" className="ml-10 whitespace-nowrap px-30 py-17 font-medium">
               중복확인
             </Clickable>
           </button>
@@ -141,7 +141,7 @@ const UpdateUserInfoForm = () => {
         htmlFor="birthdate"
         title="생년월일"
         errors={formState.errors.birthdate}
-        className="pl-0 pb-0 pr-0 pt-0 border-none"
+        className="border-none p-0"
       >
         <div className="flex gap-12">
           <Select
@@ -225,7 +225,7 @@ const UpdateUserInfoForm = () => {
               type="radio"
               value="남자"
               {...register("gender", { required: true })}
-              className="h-18 w-18 border-0 accent-black mr-12"
+              className="mr-12 size-18 border-0 accent-black"
             />
             남성
           </label>
@@ -235,14 +235,14 @@ const UpdateUserInfoForm = () => {
               type="radio"
               value="여자"
               {...register("gender", { required: true })}
-              className="h-18 w-18 border-0 accent-black mr-12"
+              className="mr-12 size-18 border-0 accent-black"
             />
             여성
           </label>
         </div>
       </InputWrapper>
 
-      <button type="submit" className="w-full mt-20" disabled={!formState.isValid || !isNicknameFormValid}>
+      <button type="submit" className="mt-20 w-full" disabled={!formState.isValid || !isNicknameFormValid}>
         <Clickable size="large" className="w-full" color={formState.isValid && isNicknameFormValid ? "black" : "gray"}>
           확인
         </Clickable>
