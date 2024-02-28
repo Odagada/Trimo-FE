@@ -245,18 +245,18 @@ const ServiceExplainSection = () => {
 const DeviceSection = () => {
   return (
     <section className="bg-gray-10 pb-52">
-      <div className="w-1038 flex flex-col gap-12 mx-auto">
-        <h3 className={`bg-white inline px-15 py-8 rounded-100 shadow-main w-fit text-18 font-bold leading-27`}>
+      <div className="laptop:w-1038 tablet:w-690 flex flex-col gap-12 mx-auto">
+        <h3 className="bg-white inline tablet:px-15 tablet:py-8 px-8 py-3 tablet:text-18 tablet:leading-27 leading-16 text-11 rounded-100 shadow-main w-fit font-bold">
           디바이스 지원
         </h3>
 
-        <div className="gap-24 flex">
-          <div className="rounded-30 bg-gray-60 w-330 h-430 p-24 overflow-hidden">
+        <div className="laptop:gap-24 tablet:gap-16 gap-8 flex">
+          <div className=" bg-gray-60 laptop:rounded-30 rounded-10 laptop:w-330 laptop:h-430 tablet:w-220 tablet:h-286 w-159 h-194 p-24 overflow-hidden">
             <p className="text-right leading-18 text-12 text-gray-30">Mobile</p>
             <Image className="mx-auto mt-33" src={mobile} alt="" width={237} />
           </div>
 
-          <div className="rounded-30 bg-gray-60 w-330 h-430 p-24 overflow-hidden flex flex-col justify-between">
+          <div className=" bg-gray-60 laptop:rounded-30 rounded-10 laptop:w-330 laptop:h-430 tablet:w-220 tablet:h-286 w-159 h-194 laptop:p-24 tablet:p-16 p-8 overflow-hidden flex flex-col justify-between">
             <p className="text-right text-white font-bold text-24 leading-36">
               언제 어디서나
               <br />
@@ -269,7 +269,7 @@ const DeviceSection = () => {
             </div>
           </div>
 
-          <div className="rounded-30 bg-gray-60 w-330 h-430 p-24 overflow-hidden">
+          <div className=" bg-gray-60 laptop:rounded-30 rounded-10 laptop:w-330 laptop:h-430 tablet:w-220 tablet:h-286 w-159 h-194 p-24 overflow-hidden">
             <p className="text-right leading-18 text-12 text-gray-30">Desktop</p>
             <Image className="ml-61 mt-85" src={desktop} alt="" width={270} />
           </div>
@@ -281,15 +281,15 @@ const DeviceSection = () => {
 
 const RightNowSection = () => {
   return (
-    <section className="flex flex-col py-92 bg-gray-60 items-center gap-24">
-      <p className="text-28 font-bold leading-42 text-center text-white">
+    <section className="flex flex-col tablet:py-92 py-52 bg-gray-60 items-center tablet:gap-24 gap-18">
+      <p className="tablet:text-28 text-18 tablet:leading-42 leading-27 font-bold text-center text-white">
         쉽고 간편한 여행 리뷰,
         <br />
         지금 바로 작성해보세요!
       </p>
 
       <Link href="/review">
-        <Clickable className="w-max px-20" color="primary" shape="square" size="medium">
+        <Clickable className="w-max tablet:px-20 tablet:py-12 px-12 py-5" color="primary" shape="square" size="medium">
           리뷰 작성하기
         </Clickable>
       </Link>
