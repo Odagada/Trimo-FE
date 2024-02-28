@@ -38,12 +38,12 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 function Login() {
   return (
-    <div className="h-screen flex w-full flex-col">
+    <div className="flex h-screen w-full flex-col">
       <Nav className="-mb-10" isOnlyLogo />
       <ShadowBox>
         <Image src={LogoGroup} width={550} height={165} alt="logo"></Image>
         <span className="mb-37">트리모에 오신 것을 환영합니다!</span>
-        <div className="flex flex-col gap-10 w-437">
+        <div className="flex w-437 flex-col gap-10">
           <Link
             href={
               "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=zPNfUhg8Ln9dvOUlf7ae&redirect_uri=https://www.trimo.kr/signup/naver"
@@ -52,7 +52,7 @@ function Login() {
             <Clickable
               color="naver"
               size="large"
-              className="flex w-550 gap-12 items-center px-28 font-medium whitespace-nowrap"
+              className="flex w-550 items-center gap-12 whitespace-nowrap px-28 font-medium"
             >
               <Image src={naver} alt="example" width={36} height={36}></Image>
               네이버 로그인
@@ -63,7 +63,7 @@ function Login() {
               "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=a8944263d97958802c0a6c200e8cf7e8&redirect_uri=https://www.trimo.kr/signup/kakao"
             }
           >
-            <Clickable color="kakao" size="large" className="flex w-550 gap-12 items-center px-28 font-medium ">
+            <Clickable color="kakao" size="large" className="flex w-550 items-center gap-12 px-28 font-medium ">
               <Image src={kakao} alt="example" width={36} height={36}></Image>
               카카오 로그인
             </Clickable>
@@ -73,7 +73,7 @@ function Login() {
               "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&client_id=730856835844-o09fr02aksdpk7givfn8hkrgpe21jej8.apps.googleusercontent.com&response_type=code&redirect_uri=https%3A%2F%2Fwww.trimo.kr%2Fsignup%2Fgoogle"
             }
           >
-            <Clickable color="white" size="large" className="flex w-550 gap-12 items-center px-28 font-medium">
+            <Clickable color="white" size="large" className="flex w-550 items-center gap-12 px-28 font-medium">
               <Image src={google} alt="example" width={36} height={36}></Image>
               구글 로그인
             </Clickable>

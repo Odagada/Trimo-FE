@@ -26,14 +26,14 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
 export default function Search({ isLoggedIn, query }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div className="flex flex-col justify-between min-h-screen">
+    <div className="flex min-h-screen flex-col justify-between">
       <div>
         <Nav isLoggedIn={isLoggedIn} />
-        <div className="pt-23 pb-15">
+        <div className="pb-15 pt-23">
           <SearchBar size="small" />
         </div>
         <div className="mt-15 flex justify-center">
-          <div className="w-460 flex justify-end">
+          <div className="flex w-460 justify-end">
             <FilterDropdown />
           </div>
         </div>

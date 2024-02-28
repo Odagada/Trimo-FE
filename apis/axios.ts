@@ -2,8 +2,9 @@ import updateToken from "@/business/updateToken";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const instance = axios.create({
-  baseURL: "http://ec2-13-124-115-4.ap-northeast-2.compute.amazonaws.com:8080/api",
+  baseURL: "https://trimoserver.com/api",
   timeout: 5 * 1000,
+  withCredentials: true,
 });
 
 // 401 오류와 리프레시 토큰을 처리하는 요청 인터셉터

@@ -21,7 +21,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
           <input
             type="checkbox"
             value="term"
-            className="h-18 w-18 appearance-none"
+            className="size-18 appearance-none"
             onChange={(e) => handleAllCheck(e.target.checked)}
             checked={checkedTerms.length === TERMS.length}
           />
@@ -38,14 +38,14 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
         return (
           <div key={key}>
             <h5 className="mb-12">{termContent.title}</h5>
-            <p className="w-675 h-200 rounded-[10px] border border-zinc-400 p-20 overflow-y-auto" key={key}>
+            <p className="border-zinc-400 h-200 w-675 overflow-y-auto rounded-[10px] border p-20" key={key}>
               {termContent.content}
             </p>
-            <label className="flex gap-12 m-10 mb-50 items-center">
+            <label className="m-10 mb-50 flex items-center gap-12">
               <input
                 type="checkbox"
                 value="term"
-                className="h-18 w-18 appearance-none"
+                className="size-18 appearance-none"
                 onChange={(e) => handleSingleCheck(e.target.checked, termContent.termNo)}
                 checked={checkedTerms.includes(termContent.termNo)}
               />
