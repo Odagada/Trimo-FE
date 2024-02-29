@@ -26,7 +26,9 @@ function NotFoundPage() {
           </Clickable>
         </Link>
       </main>
-      <Footer />
+      <div className="absolute bottom-0 w-full">
+        <Footer />
+      </div>
     </>
   );
 }
