@@ -191,8 +191,8 @@ const MapNTag = () => {
   return (
     <>
       {/* map area */}
-      <div className="mb-12 tablet:mb-73">
-        <GoogleMap locationIDList={[placeId]} size="maxTablet:w-full maxTablet:h-250" />
+      <div className="mb-12 w-full tablet:mb-73">
+        <GoogleMap locationIDList={[placeId]} size="w-full h-350" />
       </div>
       {/* tag and createdAt */}
       <section className="mb-155 flex flex-col justify-between gap-24 tablet:flex-row tablet:items-center">

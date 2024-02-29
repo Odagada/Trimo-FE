@@ -11,7 +11,7 @@ function SuccessPage({ nickname }: { nickname: string }) {
         <Image src={Camera} width={260} height={200} className="mb-35 mt-46" alt="signup success"></Image>
       </div>
       <div className="mb-35 flex flex-col items-center gap-15 maxTablet:gap-5">
-        <p className="font-bold tablet:text-28 maxTablet:text-18">{`${nickname}${SIGNUP_SUCCESS_MESSAGE}`}</p>
+        <p className="font-bold maxTablet:text-18 tablet:text-28">{`${nickname}${SIGNUP_SUCCESS_MESSAGE}`}</p>
         <span className="maxTablet:text-12">{WELCOMING_MESSAGE}</span>
       </div>
       <Link href={"/"} className="w-full">

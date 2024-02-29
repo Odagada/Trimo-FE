@@ -55,7 +55,7 @@ function TermsAgreements({ progressStatus }: SignupContentProps) {
             <label
               className={`${
                 key === 0 && "maxTablet:hidden"
-              } flex items-center gap-10 text-14 tablet:m-9 tablet:mb-40 maxTablet:mb-15 maxTablet:mt-18 maxTablet:h-45 maxTablet:w-full maxTablet:rounded-10 maxTablet:bg-gray-10 maxTablet:p-15`}
+              } flex items-center gap-10 text-14 maxTablet:mb-15 maxTablet:mt-18 maxTablet:h-45 maxTablet:w-full maxTablet:rounded-10 maxTablet:bg-gray-10 maxTablet:p-15 tablet:m-9 tablet:mb-40`}
             >
               <input
                 type="checkbox"

@@ -42,7 +42,7 @@ function Login() {
       <Nav className="-mb-10" isOnlyLogo />
       <ShadowBox className="maxTablet:w-5/6 maxTablet:px-25 maxTablet:pb-35">
         <Image src={LogoGroup} width={550} height={165} alt="logo"></Image>
-        <span className="mb-37 tablet:text-18 maxTablet:text-14">트리모에 오신 것을 환영합니다! 🤗</span>
+        <span className="mb-37 maxTablet:text-14 tablet:text-18">트리모에 오신 것을 환영합니다! 🤗</span>
         <div className="flex w-437 flex-col gap-10 maxTablet:w-full">
           <Link
             href={
