@@ -62,7 +62,7 @@ const getClickableSizeValue = (size: ClickableSize) => {
     case "medium":
       return "max-w-210 w-full font-bold leading-22 py-12";
     case "small":
-      return "font-regular leading-24 px-14 py-4";
+      return "font-regular leading-24 px-12 py-4";
     default:
       return "";
   }
