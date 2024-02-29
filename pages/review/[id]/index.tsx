@@ -121,13 +121,13 @@ const MainReviewSection = () => {
   return (
     <>
       {/* title area */}
-      <h2 className="mb-4 flex justify-between items-baseline gap-8 tablet:mb-12">
+      <h2 className="mb-4 flex items-baseline justify-between gap-8 tablet:mb-12">
         <div className="flex items-baseline gap-8 tablet:gap-12">
-          <span className="tablet:text-36 flex-auto tablet:leading-36 break-keep tracking-tight text-24 font-bold leading-36">
+          <span className="flex-auto break-keep text-24 font-bold leading-36 tracking-tight tablet:text-36 tablet:leading-36">
             {reviewData?.data.title}
           </span>
 
-          <span className="shrink-0 text-medium text-12 leading-15 tablet:text-18">{`by ${reviewData?.data.nickName}`}</span>
+          <span className="text-medium shrink-0 text-12 leading-15 tablet:text-18">{`by ${reviewData?.data.nickName}`}</span>
         </div>
 
         <div className="flex items-end gap-5">
