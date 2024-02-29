@@ -84,7 +84,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           errors={formState.errors.birthdate}
           className="border-none p-0"
         >
-          <div className="grid h-50 grid-cols-3 gap-12 maxTablet:text-14 tablet:h-60">
+          <div className="grid h-50 w-full grid-cols-3 gap-12 maxTablet:text-14 tablet:h-60">
             <Select
               styles={{
                 control: (baseStyles, state) => ({

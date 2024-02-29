@@ -31,7 +31,7 @@ function SignUp({ userOAuthData }: InferGetServerSidePropsType<typeof getServerS
   return (
     <div className="flex h-screen w-full flex-col">
       <Nav isOnlyLogo />
-      <ShadowBox className="relative my-32 maxTablet:my-20 maxTablet:h-full maxTablet:w-5/6 maxTablet:px-16 maxTablet:pb-30">
+      <ShadowBox className="relative my-35 maxTablet:my-20 maxTablet:h-full maxTablet:w-5/6 maxTablet:px-16 maxTablet:pb-30">
         <span className="mb-8 mt-18 text-center text-16 font-bold tablet:mb-15 tablet:mt-35 tablet:text-20">
           회원가입
         </span>

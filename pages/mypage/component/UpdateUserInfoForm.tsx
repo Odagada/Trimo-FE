@@ -27,14 +27,11 @@ async function updateUserInfo(postData: UserUpdateType, accessToken: string) {
 }
 
 const UpdateUserInfoForm = () => {
-  const birthdate = "2024-02-24";
-  const formatBD = birthdate.split("-");
-
   const { userAccessToken } = useManageUserAccessToken();
   const { userDataRef, requestUserData } = useGetUserInfo();
   const [isNicknameFormValid, setIsNicknameFormValid] = useState<boolean>(false);
 
-  const [userNickname, setUserNickname] = useState<string>();
+  const [userInfo, setUserInfo] = useState({ nickName: "", birthDay: "" });
 
   const onSubmit = async (data: {
     nickName: string;
@@ -73,13 +70,13 @@ const UpdateUserInfoForm = () => {
     restField2,
     restField3,
     availableBirthdateList,
-  } = useRegisterDropdown([2002, 2, 18]);
+  } = useRegisterDropdown(userInfo.birthDay.split("-") as unknown as number[]);
 
   const { validateNickname, data: isNicknameValid } = useValidateNickname();
 
   const fetchUserData = async () => {
     await requestUserData();
-    setUserNickname(String(userDataRef.current?.nickName));
+    setUserInfo({ nickName: String(userDataRef.current?.nickName), birthDay: String(userDataRef.current?.birthdate) });
   };
 
   useEffect(() => {
@@ -87,10 +84,10 @@ const UpdateUserInfoForm = () => {
   }, []);
 
   useEffect(() => {
-    if (getValues("nickName") === userNickname || (isNicknameValid?.data && isNicknameValid.status === 200))
+    if (getValues("nickName") === userInfo.nickName || (isNicknameValid?.data && isNicknameValid.status === 200))
       setIsNicknameFormValid(true);
     else setIsNicknameFormValid(false);
-  }, [getValues, isNicknameValid, userNickname]);
+  }, [getValues, isNicknameValid, userInfo.nickName]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
@@ -103,7 +100,7 @@ const UpdateUserInfoForm = () => {
               htmlFor="title"
               title="닉네임 변경"
             >
-              <div>{userNickname}</div>
+              <div>{userInfo.nickName}</div>
             </InputWrapper>
             <InputWrapper
               className="border-gray-400 py-17"
@@ -127,7 +124,7 @@ const UpdateUserInfoForm = () => {
           </div>
           <button
             onClick={() => {
-              getValues("nickName") === userNickname || validateNickname(getValues("nickName"));
+              getValues("nickName") === userInfo.nickName || validateNickname(getValues("nickName"));
             }}
           >
             <Clickable size="medium" className="ml-10 whitespace-nowrap px-30 py-17 font-medium">
