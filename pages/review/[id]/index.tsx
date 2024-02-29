@@ -121,14 +121,16 @@ const MainReviewSection = () => {
   return (
     <>
       {/* title area */}
-      <h2 className="mb-4 flex justify-between tablet:mb-12">
-        <div className="flex items-baseline gap-8 tablet:gap-20">
-          <span className="tablet:heading1 text-24 font-bold leading-36">{reviewData?.data.title}</span>
+      <h2 className="mb-4 flex items-baseline justify-between gap-8 tablet:mb-12">
+        <div className="flex items-baseline gap-8 tablet:gap-12">
+          <span className="flex-auto break-keep text-24 font-bold leading-36 tracking-tight tablet:text-36 tablet:leading-36">
+            {reviewData?.data.title}
+          </span>
 
-          <span className="text-medium text-12 leading-15 tablet:text-18">{`by ${reviewData?.data.nickName}`}</span>
+          <span className="text-medium shrink-0 text-12 leading-15 tablet:text-18">{`by ${reviewData?.data.nickName}`}</span>
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-end gap-5">
           {!isMine && (
             <button type="button">
               <Image src={Heart} alt="좋아요" width={24} />
