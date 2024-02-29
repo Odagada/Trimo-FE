@@ -1,5 +1,6 @@
 import logo from "@/public/logos/TRIMO.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
         <p className="text-12 leading-18 text-white">
           여행 기록 서비스, 트리모
           <br />
-          개인정보처리방침 | 서비스 이용약관
+          <Link href="https://www.notion.so/acceptagreed/ad6a640d9302461086c474f541f263f4?pvs=4">개인정보처리방침</Link>
         </p>
 
         <p className="mt-32 text-8 leading-12 text-gray-30">
