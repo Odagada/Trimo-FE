@@ -16,7 +16,7 @@ export const useIsMine = (accessToken: string) => {
   const { reviewData } = useDestructureReviewData();
   const { data: userData } = useQuery(getUserInfo(accessToken));
 
-  const reviewAuthorId = reviewData?.data.nickName;
+  const reviewAuthorId = reviewData?.data.nickName ?? "";
   const userId = userData?.data.nickName;
 
   return reviewAuthorId === userId;
