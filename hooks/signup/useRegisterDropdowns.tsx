@@ -1,17 +1,27 @@
 import { useController, useForm } from "react-hook-form";
 import { birthdateValType } from "@/types/client.types";
 
-function useRegisterDropdown() {
+function useRegisterDropdown(defaultBirthDateVal?: number[]) {
   const { register, handleSubmit, control, getValues, formState } = useForm({
     mode: "onBlur",
     shouldFocusError: true,
     reValidateMode: "onChange",
-    defaultValues: { nickName: "", gender: "남자", birthyear: null, birthmonth: null, birthdate: null },
+    defaultValues: {
+      nickName: "",
+      gender: "남자",
+      birthyear: defaultBirthDateVal ? defaultBirthDateVal[0] : null,
+      birthmonth: defaultBirthDateVal ? defaultBirthDateVal[1] : null,
+      birthdate: defaultBirthDateVal ? defaultBirthDateVal[2] : null,
+    },
   });
 
   const {
     field: { value: birthyearVal, onChange: onBirthYearChange, ...restField1 },
-  } = useController({ name: "birthyear", control, rules: { required: true } });
+  } = useController({
+    name: "birthyear",
+    control,
+    rules: { required: true },
+  });
 
   const {
     field: { value: birthmonthVal, onChange: onBirthMonthChange, ...restField2 },

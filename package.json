@@ -10,7 +10,8 @@
     "build-storybook": "storybook build",
     "postinstall": "husky install",
     "format": "prettier --cache --write .",
-    "lint": "eslint --cache ."
+    "lint": "eslint --cache \"**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@aliakbarazizi/headless-datepicker": "^2.0.2",
@@ -29,6 +30,8 @@
     "react-google-autocomplete": "^2.7.3",
     "react-hook-form": "^7.49.3",
     "react-hot-toast": "^2.4.1",
+    "react-indiana-drag-scroll": "^2.2.0",
+    "react-responsive": "^9.0.2",
     "react-select": "^5.8.0",
     "swiper": "^11.0.6",
     "tailwind-scrollbar-hide": "^1.1.7",
@@ -55,8 +58,10 @@
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-storybook": "^0.6.15",
-    "husky": "^8.0.3",
+    "eslint-plugin-tailwindcss": "^3.14.3",
+    "husky": "^8.0.0",
     "postcss": "^8",
+    "prettier": "^3.2.5",
     "sb": "^7.6.10",
     "storybook": "^7.6.10",
     "tailwindcss": "^3.3.0",

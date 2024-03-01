@@ -4,7 +4,11 @@ import Spinner from "@/components/atoms/Spinner";
 import GoogleMapContent from "@/components/molecules/GoogleMapContent";
 import { MapProps } from "@/types/client.types";
 
-function GoogleMap({ locationIDList }: MapProps) {
+export interface GoogleMapProps extends MapProps {
+  size?: string;
+}
+
+function GoogleMap({ locationIDList, size = "" }: GoogleMapProps) {
   const apiKey = "AIzaSyCXXqxV548C4DL_qcOdDWIIqHvRwnl97rY";
 
   if (!apiKey) {
@@ -18,9 +22,9 @@ function GoogleMap({ locationIDList }: MapProps) {
 
   return (
     <Wrapper apiKey={apiKey} libraries={["places"]} render={render}>
-      <GoogleMapContent locationIDList={locationIDList || [""]} />
+      <GoogleMapContent locationIDList={locationIDList || [""]} size={size} />
     </Wrapper>
   );
 }
 
-export default GoogleMap;
+export default React.memo(GoogleMap);

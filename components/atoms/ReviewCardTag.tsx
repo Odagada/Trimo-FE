@@ -1,9 +1,16 @@
 import React from "react";
 
-export default function ReviewCardTag({ value }: { value: string }) {
+interface Props {
+  value: string;
+}
+export default function ReviewCardTag({ value }: Props) {
   return (
     <>
-      {value !== "모르겠음" ? <div className="bg-gray-10 w-43 px-2 py-4 text-center rounded-full">{value}</div> : <></>}
+      {value !== "NONE" && (
+        <div className="flex-center tablet:small-text tablet-py-4 w-32 rounded-full bg-gray-10 text-10 tablet:w-43">
+          {value}
+        </div>
+      )}
     </>
   );
 }

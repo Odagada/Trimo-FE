@@ -17,31 +17,34 @@ body {
     @apply text-45 font-bold leading-67.5;
   }
   .heading2 {
-    @apply text-36 leading-54 font-bold;
+    @apply text-36 font-bold leading-54;
   }
   .heading3 {
-    @apply text-32 leading-48 font-bold;
+    @apply text-32 font-bold leading-48;
   }
   .heading4 {
-    @apply text-28 leading-42 font-bold;
+    @apply text-28 font-bold leading-42;
   }
   .heading5 {
-    @apply text-20 leading-30 font-bold;
+    @apply text-20 font-bold leading-30;
   }
   .heading6 {
-    @apply text-18 leading-27 font-bold;
+    @apply text-18 font-bold leading-27;
   }
   .heading7 {
-    @apply leading-24 font-bold;
+    @apply font-bold leading-24;
   }
   .body1 {
-    @apply text-20 leading-30 font-medium;
+    @apply text-20 font-medium leading-30;
   }
-  .body1 {
+  .body2 {
     @apply text-20 leading-28;
   }
+  .body3 {
+    @apply text-18 leading-27;
+  }
   .p-text {
-    @apply leading-24;
+    @apply text-16 leading-24;
   }
   .middle-text {
     @apply text-14 leading-21;

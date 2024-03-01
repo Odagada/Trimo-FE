@@ -5,22 +5,26 @@ function OptionTitle({ children }: { children: ReactNode }) {
 }
 
 function OptionDescription({ children }: { children: ReactNode }) {
-  return <div className="flex gap-22 small-text text-gray-40">{children}</div>;
+  return <div className="small-text flex gap-22 text-gray-40">{children}</div>;
 }
 
 function OptionInfo({ children }: { children: ReactNode }) {
-  return <div className="flex flex-col gap-10 w-100 break-keep">{children}</div>;
+  return (
+    <div className="flex items-center gap-10 break-keep tablet:w-100 tablet:flex-col tablet:items-start">
+      {children}
+    </div>
+  );
 }
 function OptionError({ children }: { children: ReactNode }) {
-  return <div className="text-error middle-text font-bold">{children}</div>;
+  return <div className="middle-text font-bold text-error">{children}</div>;
 }
 
 function OptionSection({ children }: { children: ReactNode }) {
-  return <div className="flex gap-10 items-end">{children}</div>;
+  return <div className="flex flex-col gap-10 tablet:flex-row tablet:items-end">{children}</div>;
 }
 
 function OptionMain({ children }: { children: ReactNode }) {
-  return <div className="grid grid-cols-2 gap-60">{children}</div>;
+  return <div className="flex flex-col gap-37 tablet:grid tablet:grid-cols-2 tablet:gap-60">{children}</div>;
 }
 
 export const ReviewOption = Object.assign(OptionMain, {

@@ -16,7 +16,10 @@ interface Props extends SignupContentProps {
 }
 
 function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: Props) {
-  const { onSubmit } = useSubmitAdditionalInfo({ progressStatus, userAccessToken });
+  const { onSubmit } = useSubmitAdditionalInfo({
+    progressStatus,
+    userAccessToken,
+  });
 
   const {
     register,
@@ -40,11 +43,11 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
   return (
     <>
       <div className="flex flex-col"></div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30">
-        <div className="flex items-end">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-30 maxTablet:gap-24">
+        <div className="flex items-end gap-10">
           <InputWrapper
-            className="py-17 border-gray-400"
-            divOptions="w-412"
+            className="border-gray-400 py-17 maxTablet:w-full maxTablet:py-12 tablet:w-412"
+            divOptions="w-412 maxTablet:w-full"
             htmlFor="title"
             title="닉네임"
             errors={formState.errors.nickName}
@@ -52,7 +55,10 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             <Input
               {...register("nickName", {
                 required: true,
-                maxLength: { value: 5, message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG },
+                maxLength: {
+                  value: 5,
+                  message: INPUT_VALIDATION_MESSAGE.NICKNAME_TOO_LONG,
+                },
               })}
               id="title"
               placeholder="닉네임"
@@ -63,7 +69,10 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             )}
           </InputWrapper>
           <button onClick={() => validateNickname(getValues("nickName"))} type="button">
-            <Clickable size="medium" className="px-30 py-17 ml-10 font-medium whitespace-nowrap">
+            <Clickable
+              size="medium"
+              className="whitespace-nowrap px-30 py-17 font-medium  maxTablet:px-14 maxTablet:py-12 maxTablet:text-14"
+            >
               중복확인
             </Clickable>
           </button>
@@ -73,15 +82,15 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
           htmlFor="birthdate"
           title="생년월일"
           errors={formState.errors.birthdate}
-          className="pl-0 pb-0 pr-0 pt-0 border-none"
+          className="border-none p-0"
         >
-          <div className="flex gap-12">
+          <div className="grid h-50 w-full grid-cols-3 gap-12 maxTablet:text-14 tablet:h-60">
             <Select
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  height: "60px",
-                  width: "175px",
+                  height: "100%",
+                  width: "100%",
                   whiteSpace: "nowrap",
                   paddingLeft: 8,
                   borderRadius: 10,
@@ -103,8 +112,8 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  height: "60px",
-                  width: "175px",
+                  height: "100%",
+                  width: "100%",
                   whiteSpace: "nowrap",
                   paddingLeft: 8,
                   borderRadius: 10,
@@ -126,8 +135,8 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  height: "60px",
-                  width: "175px",
+                  height: "100%",
+                  width: "100%",
                   whiteSpace: "nowrap",
                   paddingLeft: 8,
                   borderRadius: 10,
@@ -159,7 +168,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
                 type="radio"
                 value="남자"
                 {...register("gender", { required: true })}
-                className="h-18 w-18 border-0 accent-black mr-12"
+                className="mr-12 size-18 border-0 accent-black"
               />
               남성
             </label>
@@ -169,7 +178,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
                 type="radio"
                 value="여자"
                 {...register("gender", { required: true })}
-                className="h-18 w-18 border-0 accent-black mr-12"
+                className="mr-12 size-18 border-0 accent-black"
               />
               여성
             </label>
@@ -178,7 +187,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
 
         <button
           type="submit"
-          className="w-full mt-20"
+          className="mt-20 w-full"
           disabled={!formState.isValid || !isNicknameValid?.data || isNicknameValid.status !== 200}
           onClick={() => setNickname(getValues("nickName"))}
         >
@@ -187,7 +196,7 @@ function WriteAdditionalInfo({ progressStatus, setNickname, userAccessToken }: P
             className="w-full"
             color={formState.isValid && isNicknameValid?.data && isNicknameValid.status ? "black" : "gray"}
           >
-            확인
+            다음
           </Clickable>
         </button>
       </form>

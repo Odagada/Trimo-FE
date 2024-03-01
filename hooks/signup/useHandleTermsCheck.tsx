@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TERMS, INPUT_VALIDATION_MESSAGE } from "@/constants/signupConstants";
 import { SignupContentProps } from "@/pages/signup/components/TermsAgreements";
 import makeToast from "@/utils/makeToast";
 
 function useHandleTermsCheck({ progressStatus }: SignupContentProps) {
   const [checkedTerms, setCheckedTerms] = useState<number[]>([]);
+
+  useEffect(() => {
+    typeof window !== "undefined" && window.innerWidth < 768 && setCheckedTerms([0]);
+  }, []);
 
   const handleSingleCheck = (checked: boolean, id: number) => {
     if (checked) {
