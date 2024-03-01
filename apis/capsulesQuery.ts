@@ -18,7 +18,7 @@ export const getUserInfo = (accessToken: string) => {
         url: `/user/info`,
         headers: { Authorization: `Bearer ${accessToken}` },
       }),
-    enabled: accessToken,
+    enabled: !!accessToken,
   };
 };
 
