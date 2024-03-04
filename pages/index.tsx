@@ -20,20 +20,20 @@ import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
 import { useEffect, useState } from "react";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  try {
-    const queryClient = new QueryClient();
+// export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+//   try {
+//     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery(getReviewCardArray("POPULAR"));
-    await queryClient.prefetchQuery(getReviewCardArray("RECENT"));
+//     await queryClient.prefetchQuery(getReviewCardArray("POPULAR"));
+//     await queryClient.prefetchQuery(getReviewCardArray("RECENT"));
 
-    return {
-      props: { dehydratedState: dehydrate(queryClient) },
-    };
-  } catch {
-    return { notFound: true };
-  }
-};
+//     return {
+//       props: { dehydratedState: dehydrate(queryClient) },
+//     };
+//   } catch {
+//     return { notFound: true };
+//   }
+// };
 
 export default function Landing() {
   return (
