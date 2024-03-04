@@ -7,7 +7,7 @@ import { validateRedirectionByLoginStatus } from "@/utils/validateByLoginStatus"
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
-    const accessToken = await getAccessTokenFromCookie(context);
+    const accessToken = getAccessTokenFromCookie(context);
 
     const isRedirectNeeded = validateRedirectionByLoginStatus({
       statusToBlock: "Logout",
