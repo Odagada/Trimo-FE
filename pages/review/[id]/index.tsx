@@ -79,7 +79,7 @@ const ImageCarouselSection = () => {
         <ImagesCarousel imageArray={imageUrlArray}></ImagesCarousel>
       ) : (
         <div className="relative flex h-[40vh] w-full items-center justify-center bg-gray-40">
-          <Image draggable={false} src={noImage} alt="" fill className="object-contain" />
+          <Image draggable={false} src={noImage} alt="" loading="eager" fill className="object-contain" />
         </div>
       )}
     </section>
