@@ -5,9 +5,9 @@ type StateAction = {
   setAccessToken: (accessToken: string) => void;
 };
 
-const useAccessToken = create<StateAction>((set) => ({
+const useAccessTokenStore = create<StateAction>((set) => ({
   accessToken: "",
   setAccessToken: (accessToken) => set({ accessToken: accessToken }),
 }));
 
-export default useAccessToken;
+export default useAccessTokenStore;

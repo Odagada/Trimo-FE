@@ -16,13 +16,19 @@ import Message from "@/public/icons/reviewControlIcon_Message.svg";
 import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { useDestructureReviewData, useIsMine, useReviewId } from "@/hooks/useDestructureReviewData";
-import useAccessToken from "@/zustands/useAccessToken";
+import { useDestructureReviewData } from "@/hooks/review/useDestructureReviewData";
+import useAccessTokenStore from "@/zustands/useAccessTokenStore";
 import { useEffect, useState } from "react";
 import makeToast from "@/utils/makeToast";
 import { useRouter } from "next/router";
 import Modal from "@/components/molecules/Modal";
 import fetcher from "@/apis/axios";
+import useReviewTimes from "@/hooks/review/useReviewTimes";
+import { useReveiwIsMine } from "@/hooks/review/useReviewIsMine";
+import useReviewId from "@/hooks/review/useReviewId";
+import useReviewTags from "@/hooks/review/useReviewTags";
+import useHandleReview from "@/hooks/review/useHandleReview";
+import useLocalToggle from "@/hooks/useLocalToggle";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -47,7 +53,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 
 export default function ReadReview({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { setAccessToken } = useAccessToken();
+  const { setAccessToken } = useAccessTokenStore();
 
   useEffect(() => {
     setAccessToken(accessToken);
@@ -87,36 +93,14 @@ const ImageCarouselSection = () => {
 };
 
 const MainReviewSection = () => {
-  const { reviewData, dateString, timeString } = useDestructureReviewData();
-  const reviewId = useReviewId();
+  const { title, nickName, spotName, stars, weather, content } = useDestructureReviewData();
+  const { dateString, timeString } = useReviewTimes();
 
-  const router = useRouter();
+  const isMine = useReveiwIsMine();
 
-  const { accessToken } = useAccessToken();
+  const { isOpen, setIsOpen, handleModalToggle } = useLocalToggle();
 
-  const isMine = useIsMine(accessToken);
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleModalToggle = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const queryClient = useQueryClient();
-
-  const uploadPostMutation = useMutation({
-    mutationFn: () =>
-      fetcher({
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${accessToken}` },
-        url: `/user/reviews/${reviewId}`,
-      }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["review"] });
-      makeToast("삭제가 완료되었습니다!");
-      router.push("/");
-    },
-  });
+  const { deleteReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
 
   return (
     <>
@@ -124,10 +108,10 @@ const MainReviewSection = () => {
       <h2 className="mb-4 flex items-baseline justify-between gap-8 tablet:mb-12">
         <div className="flex items-baseline gap-8 tablet:gap-12">
           <span className="flex-auto break-keep text-24 font-bold leading-36 tracking-tight tablet:text-36 tablet:leading-36">
-            {reviewData?.data.title}
+            {title}
           </span>
 
-          <span className="text-medium shrink-0 text-12 leading-15 tablet:text-18">{`by ${reviewData?.data.nickName}`}</span>
+          <span className="text-medium shrink-0 text-12 leading-15 tablet:text-18">{`by ${nickName}`}</span>
         </div>
 
         <div className="flex items-end gap-5">
@@ -137,19 +121,13 @@ const MainReviewSection = () => {
             </button>
           )}
 
-          <button
-            type="button"
-            onClick={() => {
-              navigator.clipboard.writeText(`https://www.trimo.kr/review/${reviewId}`);
-              makeToast("링크가 복사되었습니다!");
-            }}
-          >
+          <button type="button" onClick={handleClipboard}>
             <Image src={Message} alt="리뷰 공유" width={24} />
           </button>
 
           {isMine && (
             <>
-              <button type="button" onClick={() => router.push(`/review/${reviewId}/edit`)}>
+              <button type="button" onClick={handleReviewEdit}>
                 <Image src={Pen} alt="리뷰 수정" width={24} />
               </button>
 
@@ -163,7 +141,7 @@ const MainReviewSection = () => {
                 description="이 게시글을 삭제하시겠습니까?"
                 buttonText={["확인", "취소"]}
                 onClose={handleModalToggle}
-                onClick={uploadPostMutation.mutate}
+                onClick={deleteReviewMutation.mutate}
               ></Modal>
             </>
           )}
@@ -173,22 +151,24 @@ const MainReviewSection = () => {
       {/* subTitle? */}
       <div className="mb-30 flex flex-col gap-10 tablet:flex-row tablet:items-center">
         <h3 className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27 ">
-          {`${reviewData?.data.spotName} · ${dateString} · ${timeString}`}
-          {reviewData?.data.tagValues?.weather && ` · ${reviewData.data.tagValues.weather}`}
+          {`${spotName} · ${dateString} · ${timeString}`}
+          {weather && ` · ${weather}`}
         </h3>
-        {reviewData?.data.stars ? <MultiStarRate number={reviewData.data.stars} /> : ""}
+        {stars ? <MultiStarRate number={stars} /> : ""}
       </div>
 
       {/* text area */}
       <p className="mb-20 whitespace-pre-wrap text-justify text-16 leading-30 tablet:text-18 tablet:leading-42">
-        {reviewData?.data.content}
+        {content}
       </p>
     </>
   );
 };
 
 const MapNTag = () => {
-  const { tag, placeId, createdAt } = useDestructureReviewData();
+  const { placeId } = useDestructureReviewData();
+  const tags = useReviewTags();
+  const { createdAt } = useReviewTimes();
 
   return (
     <>
@@ -199,7 +179,7 @@ const MapNTag = () => {
       {/* tag and createdAt */}
       <section className="mb-155 flex flex-col justify-between gap-24 tablet:flex-row tablet:items-center">
         <div className="flex gap-10">
-          {tag?.map((item, index) => {
+          {tags?.map((item, index) => {
             return (
               <Clickable key={index} color="white-" shape="capsule" size="small">
                 <Emoji>{item}</Emoji>
