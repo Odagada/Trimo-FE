@@ -2,7 +2,7 @@ import { getReview, getReviewIsLiked, getReviewLikeCount, getUserInfo } from "@/
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import MultiStarRate from "@/components/atoms/MultiStarRate";
-import { QueryClient, dehydrate, useMutation, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
@@ -18,14 +18,10 @@ import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { useDestructureReviewData } from "@/hooks/review/useDestructureReviewData";
 import useAccessTokenStore from "@/zustands/useAccessTokenStore";
-import { useEffect, useState } from "react";
-import makeToast from "@/utils/makeToast";
-import { useRouter } from "next/router";
+import { ReactNode, useEffect } from "react";
 import Modal from "@/components/molecules/Modal";
-import fetcher from "@/apis/axios";
 import useReviewTimes from "@/hooks/review/useReviewTimes";
 import { useReveiwIsMine } from "@/hooks/review/useReviewIsMine";
-import useReviewId from "@/hooks/review/useReviewId";
 import useReviewTags from "@/hooks/review/useReviewTags";
 import useHandleReview from "@/hooks/review/useHandleReview";
 import useLocalToggle from "@/hooks/useLocalToggle";
@@ -64,13 +60,18 @@ export default function ReadReview({ accessToken }: InferGetServerSidePropsType<
       <Nav />
       <ImageCarouselSection />
 
-      {/* main text area */}
       <section className="mx-auto w-full max-w-800 px-20">
-        <MainReviewSection />
+        <Title />
 
-        {/* map area */}
-        <MapNTag />
+        <SubTitle />
+
+        <Content />
+
+        <ReviewMap />
+
+        <Tags />
       </section>
+
       <Footer />
     </>
   );
@@ -92,13 +93,12 @@ const ImageCarouselSection = () => {
   );
 };
 
-const MainReviewSection = () => {
-  const { title, nickName, spotName, stars, weather, content } = useDestructureReviewData();
-  const { dateString, timeString } = useReviewTimes();
+const Title = () => {
+  const { title, nickName } = useDestructureReviewData();
 
   const isMine = useReveiwIsMine();
 
-  const { isOpen, setIsOpen, handleModalToggle } = useLocalToggle();
+  const { isOpen, handleToggleOpen } = useLocalToggle();
 
   const { deleteReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
 
@@ -131,7 +131,7 @@ const MainReviewSection = () => {
                 <Image src={Pen} alt="리뷰 수정" width={24} />
               </button>
 
-              <button type="button" onClick={handleModalToggle}>
+              <button type="button" onClick={handleToggleOpen}>
                 <Image src={Bin} alt="리뷰 삭제" width={24} />
               </button>
 
@@ -140,55 +140,68 @@ const MainReviewSection = () => {
                 title="삭제하기"
                 description="이 게시글을 삭제하시겠습니까?"
                 buttonText={["확인", "취소"]}
-                onClose={handleModalToggle}
+                onClose={handleToggleOpen}
                 onClick={deleteReviewMutation.mutate}
               ></Modal>
             </>
           )}
         </div>
       </h2>
-
-      {/* subTitle? */}
-      <div className="mb-30 flex flex-col gap-10 tablet:flex-row tablet:items-center">
-        <h3 className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27 ">
-          {`${spotName} · ${dateString} · ${timeString}`}
-          {weather && ` · ${weather}`}
-        </h3>
-        {stars ? <MultiStarRate number={stars} /> : ""}
-      </div>
-
-      {/* text area */}
-      <p className="mb-20 whitespace-pre-wrap text-justify text-16 leading-30 tablet:text-18 tablet:leading-42">
-        {content}
-      </p>
     </>
   );
 };
 
-const MapNTag = () => {
+const SubTitle = () => {
+  const { spotName, stars, weather } = useDestructureReviewData();
+  const { dateString, timeString } = useReviewTimes();
+
+  return (
+    <div className="mb-30 flex flex-col gap-10 tablet:flex-row tablet:items-center">
+      <h3 className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27 ">
+        {`${spotName} · ${dateString} · ${timeString}`}
+        {weather && ` · ${weather}`}
+      </h3>
+      {stars ? <MultiStarRate number={stars} /> : ""}
+    </div>
+  );
+};
+
+const Content = () => {
+  const { content } = useDestructureReviewData();
+
+  return (
+    <p className="mb-20 whitespace-pre-wrap text-justify text-16 leading-30 tablet:text-18 tablet:leading-42">
+      {content}
+    </p>
+  );
+};
+
+const ReviewMap = () => {
   const { placeId } = useDestructureReviewData();
+
+  return (
+    <div className="mb-12 w-full tablet:mb-73">
+      <GoogleMap locationIDList={[placeId]} size="w-full h-350" />
+    </div>
+  );
+};
+
+const Tags = () => {
   const tags = useReviewTags();
   const { createdAt } = useReviewTimes();
 
   return (
-    <>
-      {/* map area */}
-      <div className="mb-12 w-full tablet:mb-73">
-        <GoogleMap locationIDList={[placeId]} size="w-full h-350" />
+    <section className="mb-155 flex flex-col justify-between gap-24 tablet:flex-row tablet:items-center">
+      <div className="flex gap-10">
+        {tags?.map((item, index) => {
+          return (
+            <Clickable key={index} color="white-" shape="capsule" size="small">
+              <Emoji>{item}</Emoji>
+            </Clickable>
+          );
+        })}
       </div>
-      {/* tag and createdAt */}
-      <section className="mb-155 flex flex-col justify-between gap-24 tablet:flex-row tablet:items-center">
-        <div className="flex gap-10">
-          {tags?.map((item, index) => {
-            return (
-              <Clickable key={index} color="white-" shape="capsule" size="small">
-                <Emoji>{item}</Emoji>
-              </Clickable>
-            );
-          })}
-        </div>
-        <span className="text-16 leading-15 text-gray-40">{`작성일 : ${createdAt}`}</span>
-      </section>
-    </>
+      <span className="text-16 leading-15 text-gray-40">{`작성일 : ${createdAt}`}</span>
+    </section>
   );
 };
