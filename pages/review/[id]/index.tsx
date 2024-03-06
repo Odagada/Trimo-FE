@@ -2,7 +2,7 @@ import { getReview, getReviewIsLiked, getReviewLikeCount, getUserInfo } from "@/
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import MultiStarRate from "@/components/atoms/MultiStarRate";
-import { QueryClient, dehydrate } from "@tanstack/react-query";
+import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
@@ -11,20 +11,23 @@ import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
 import GoogleMap from "@/components/organisms/GoogleMap";
 import Bin from "@/public/icons/reviewControlIcon_Bin.svg";
-import Heart from "@/public/icons/reviewControlIcon_Heart.svg";
+import EmptyHeart from "@/public/icons/reviewControlIcon_HeartEmpty.svg";
+import FullHeart from "@/public/icons/reviewControlIcon_HeartFull.svg";
 import Message from "@/public/icons/reviewControlIcon_Message.svg";
 import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { useDestructureReviewData } from "@/hooks/review/useDestructureReviewData";
 import useAccessTokenStore from "@/zustands/useAccessTokenStore";
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import Modal from "@/components/molecules/Modal";
 import useReviewTimes from "@/hooks/review/useReviewTimes";
 import { useReveiwIsMine } from "@/hooks/review/useReviewIsMine";
 import useReviewTags from "@/hooks/review/useReviewTags";
 import useHandleReview from "@/hooks/review/useHandleReview";
 import useLocalToggle from "@/hooks/useLocalToggle";
+import useReviewIsLiked from "@/hooks/review/useReviewIsLiked";
+import useReviewLikeCount from "@/hooks/review/useReviewLikeCount";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -96,12 +99,6 @@ const ImageCarouselSection = () => {
 const Title = () => {
   const { title, nickName } = useDestructureReviewData();
 
-  const isMine = useReveiwIsMine();
-
-  const { isOpen, handleToggleOpen } = useLocalToggle();
-
-  const { deleteReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
-
   return (
     <>
       {/* title area */}
@@ -114,46 +111,61 @@ const Title = () => {
           <span className="text-medium shrink-0 text-12 leading-15 tablet:text-18">{`by ${nickName}`}</span>
         </div>
 
-        <div className="flex items-end gap-5">
-          {!isMine && (
-            <button type="button">
-              <Image src={Heart} alt="좋아요" width={24} />
-            </button>
-          )}
-
-          <button type="button" onClick={handleClipboard}>
-            <Image src={Message} alt="리뷰 공유" width={24} />
-          </button>
-
-          {isMine && (
-            <>
-              <button type="button" onClick={handleReviewEdit}>
-                <Image src={Pen} alt="리뷰 수정" width={24} />
-              </button>
-
-              <button type="button" onClick={handleToggleOpen}>
-                <Image src={Bin} alt="리뷰 삭제" width={24} />
-              </button>
-
-              <Modal
-                isOpen={isOpen}
-                title="삭제하기"
-                description="이 게시글을 삭제하시겠습니까?"
-                buttonText={["확인", "취소"]}
-                onClose={handleToggleOpen}
-                onClick={deleteReviewMutation.mutate}
-              ></Modal>
-            </>
-          )}
-        </div>
+        <TitleButtons />
       </h2>
     </>
+  );
+};
+
+const TitleButtons = () => {
+  const isMine = useReveiwIsMine();
+
+  const { isOpen, handleToggleOpen } = useLocalToggle();
+
+  const { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
+
+  const isLiked = useReviewIsLiked();
+
+  return (
+    <div className="flex items-end gap-5">
+      {!isMine && (
+        <button type="button" onClick={() => likeReviewMutation.mutate(isLiked)}>
+          <Image src={isLiked ? FullHeart : EmptyHeart} alt="좋아요" width={24} />
+        </button>
+      )}
+
+      <button type="button" onClick={handleClipboard}>
+        <Image src={Message} alt="리뷰 공유" width={24} />
+      </button>
+
+      {isMine && (
+        <>
+          <button type="button" onClick={handleReviewEdit}>
+            <Image src={Pen} alt="리뷰 수정" width={24} />
+          </button>
+
+          <button type="button" onClick={handleToggleOpen}>
+            <Image src={Bin} alt="리뷰 삭제" width={24} />
+          </button>
+
+          <Modal
+            isOpen={isOpen}
+            title="삭제하기"
+            description="이 게시글을 삭제하시겠습니까?"
+            buttonText={["확인", "취소"]}
+            onClose={handleToggleOpen}
+            onClick={deleteReviewMutation.mutate}
+          ></Modal>
+        </>
+      )}
+    </div>
   );
 };
 
 const SubTitle = () => {
   const { spotName, stars, weather } = useDestructureReviewData();
   const { dateString, timeString } = useReviewTimes();
+  const likeCount = useReviewLikeCount();
 
   return (
     <div className="mb-30 flex flex-col gap-10 tablet:flex-row tablet:items-center">
@@ -162,6 +174,14 @@ const SubTitle = () => {
         {weather && ` · ${weather}`}
       </h3>
       {stars ? <MultiStarRate number={stars} /> : ""}
+      {likeCount ? (
+        <>
+          <Image src={FullHeart} width={14} height={14} alt="좋아요 숫자" />
+          <span className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27">{likeCount}</span>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

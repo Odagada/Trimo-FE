@@ -25,7 +25,7 @@ const useDeleteReview = () => {
     },
   });
 
-  return { deleteReviewMutation };
+  return deleteReviewMutation;
 };
 
 export default useDeleteReview;
