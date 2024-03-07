@@ -18,8 +18,6 @@ import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import { useDestructureReviewData } from "@/hooks/review/useDestructureReviewData";
-import useAccessTokenStore from "@/zustands/useAccessTokenStore";
-import { useEffect } from "react";
 import Modal from "@/components/molecules/Modal";
 import useReviewTimes from "@/hooks/review/useReviewTimes";
 import { useReveiwIsMine } from "@/hooks/review/useReviewIsMine";
@@ -52,12 +50,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 
 export default function ReadReview({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { setAccessToken } = useAccessTokenStore();
-
-  useEffect(() => {
-    setAccessToken(accessToken);
-  }, [accessToken]);
-
   return (
     <>
       <Nav />

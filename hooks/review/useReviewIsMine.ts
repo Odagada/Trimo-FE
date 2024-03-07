@@ -1,10 +1,10 @@
 import { getUserInfo } from "@/apis/capsulesQuery";
 import { useDestructureReviewData } from "./useDestructureReviewData";
 import { useQuery } from "@tanstack/react-query";
-import useAccessTokenStore from "@/zustands/useAccessTokenStore";
+import useManageUserAccessToken from "../useManageUserAccessToken";
 
 export const useReveiwIsMine = () => {
-  const { accessToken } = useAccessTokenStore();
+  const { userAccessToken: accessToken } = useManageUserAccessToken();
   const { nickName } = useDestructureReviewData();
   const { data: userData } = useQuery(getUserInfo(accessToken));
 

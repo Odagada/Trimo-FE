@@ -1,12 +1,12 @@
 import { dislikeReview, likeReview } from "@/apis/capsulesQuery";
 import useReviewId from "@/hooks/review/useReviewId";
-import useAccessTokenStore from "@/zustands/useAccessTokenStore";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const useLikeReview = () => {
   const reviewId = useReviewId();
 
-  const { accessToken } = useAccessTokenStore();
+  const { userAccessToken: accessToken } = useManageUserAccessToken();
 
   const queryClient = useQueryClient();
 

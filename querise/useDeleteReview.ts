@@ -1,12 +1,12 @@
 import fetcher from "@/apis/axios";
 import useReviewId from "@/hooks/review/useReviewId";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 import makeToast from "@/utils/makeToast";
-import useAccessTokenStore from "@/zustands/useAccessTokenStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
 const useDeleteReview = () => {
-  const { accessToken } = useAccessTokenStore();
+  const { userAccessToken: accessToken } = useManageUserAccessToken();
   const reviewId = useReviewId();
   const router = useRouter();
   const queryClient = useQueryClient();

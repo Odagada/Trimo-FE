@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import useGetUserInfo from "@/hooks/useGetUserInfo";
 import { User } from "@/types/client.types";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
+import useIsLogin from "@/hooks/useIsLogin";
 
 interface NavProps {
   isOnlyLogo?: boolean;
@@ -23,7 +24,7 @@ function Nav({ isOnlyLogo = false }: NavProps) {
   const [navStatus, setNavStatus] = useState<NavStatusType>();
   const [userData, setUserData] = useState<User | null>();
 
-  const { userAccessToken } = useManageUserAccessToken();
+  const isLogin = useIsLogin();
 
   const { userDataRef, requestUserData } = useGetUserInfo();
 
@@ -33,10 +34,10 @@ function Nav({ isOnlyLogo = false }: NavProps) {
   };
 
   useEffect(() => {
-    if (!isOnlyLogo) userAccessToken ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
+    if (!isOnlyLogo) isLogin ? setNavStatus("LoggedIn") : setNavStatus("LoggedOut");
 
     fetchUserData();
-  }, [userAccessToken, isOnlyLogo, navStatus, userDataRef]);
+  }, [isLogin, isOnlyLogo, navStatus, userDataRef]);
 
   const renderNavbarLeftSide = () => {
     switch (navStatus) {

@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import toast from "react-hot-toast";
 
 const useManageUserAccessToken = () => {
-  const [cookie, setCookie, removeCookie] = useCookies(["userAccessToken"]);
+  const [cookie, setCookie, removeCookie] = useCookies<string, { userAccessToken: string }>(["userAccessToken"]);
   const router = useRouter();
 
   const saveUserAccessToken = (data: string, message?: string) => {
@@ -39,7 +39,7 @@ const useManageUserAccessToken = () => {
     router.push(redirectUri);
   };
 
-  const userAccessToken = cookie.userAccessToken;
+  const userAccessToken = cookie.userAccessToken ?? "";
 
   return { userAccessToken, saveUserAccessToken, removeUserAccessToken };
 };
