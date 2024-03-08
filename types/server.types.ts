@@ -83,7 +83,7 @@ export type GetMyPlacesType = {
   placeIds: string[];
 };
 
-export type reviewList = {
+export type searchReview = {
   reviewList: MultiReviewData[];
   totalCount: number;
 };

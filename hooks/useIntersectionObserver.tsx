@@ -8,19 +8,23 @@ type Options = {
 
 interface Props {
   target: MutableRefObject<HTMLElement | null>;
-  onIntersect: IntersectionObserverCallback;
-  page?: string;
-  options?: Options;
+  onIntersect: () => void;
+  deps?: unknown[];
 }
 
-export default function useInterSectionObserver({ target, onIntersect, options, page = "1" }: Props) {
+export default function useInterSectionObserver({ target, onIntersect, deps = [] }: Props) {
   useEffect(() => {
     let observer: IntersectionObserver;
     if (target && target.current) {
-      observer = new IntersectionObserver(onIntersect, options);
+      observer = new IntersectionObserver((entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            onIntersect();
+          }
+        })
+      );
       observer.observe(target.current);
     }
     return () => observer && observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target, page]);
+  }, [target, ...deps]);
 }

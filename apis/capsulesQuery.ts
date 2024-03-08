@@ -3,7 +3,7 @@ import {
   ReviewLikeCount,
   SingleReviewData,
   SpotData,
-  reviewList,
+  searchReview,
   GetMyPlacesType,
 } from "@/types/server.types";
 import fetcher from "./axios";
@@ -67,7 +67,7 @@ export const getSearchReview = (query: string) => {
   return {
     queryKey: ["reviewList", query],
     queryFn: () =>
-      fetcher<reviewList>({
+      fetcher<searchReview>({
         method: "get",
         url: `main/reviews/specifics?${query}&page=1`,
       }),
