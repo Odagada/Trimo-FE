@@ -13,6 +13,7 @@ import GoogleMap from "@/components/organisms/GoogleMap";
 import Bin from "@/public/icons/reviewControlIcon_Bin.svg";
 import EmptyHeart from "@/public/icons/reviewControlIcon_HeartEmpty.svg";
 import FullHeart from "@/public/icons/reviewControlIcon_HeartFull.svg";
+import DisabledHeart from "@/public/icons/reviewControlIcon_HeartDisabled.svg";
 import Message from "@/public/icons/reviewControlIcon_Message.svg";
 import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
@@ -26,6 +27,7 @@ import useHandleReview from "@/hooks/review/useHandleReview";
 import useLocalToggle from "@/hooks/useLocalToggle";
 import useReviewIsLiked from "@/hooks/review/useReviewIsLiked";
 import useReviewLikeCount from "@/hooks/review/useReviewLikeCount";
+import useIsLogin from "@/hooks/useIsLogin";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -42,14 +44,14 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     }
 
     return {
-      props: { accessToken, dehydratedState: dehydrate(queryClient) },
+      props: { dehydratedState: dehydrate(queryClient) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function ReadReview({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function ReadReview() {
   return (
     <>
       <Nav />
@@ -117,12 +119,13 @@ const TitleButtons = () => {
   const { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
 
   const isLiked = useReviewIsLiked();
+  const isLogin = useIsLogin();
 
   return (
     <div className="flex items-end gap-5">
       {!isMine && (
-        <button type="button" onClick={() => likeReviewMutation.mutate(isLiked)}>
-          <Image src={isLiked ? FullHeart : EmptyHeart} alt="좋아요" width={24} />
+        <button type="button" disabled={!isLogin} onClick={() => likeReviewMutation.mutate(isLiked)}>
+          <Image src={isLogin ? (isLiked ? FullHeart : EmptyHeart) : DisabledHeart} alt="좋아요" width={24} />
         </button>
       )}
 
