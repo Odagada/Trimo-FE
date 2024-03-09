@@ -40,6 +40,7 @@ const ImagesCarousel = ({ imageArray }: { imageArray: string[] }) => {
                   src={item}
                   alt=""
                   fill
+                  loading="eager"
                 ></Image>
               </div>
             </SwiperSlide>

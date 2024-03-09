@@ -5,6 +5,7 @@ import {
   SpotData,
   reviewList,
   GetMyPlacesType,
+  ReviewIsLiked,
 } from "@/types/server.types";
 import fetcher from "./axios";
 import { User } from "@/types/client.types";
@@ -33,6 +34,23 @@ export const getReview = (reviewId: number) => {
   };
 };
 
+export const likeReview = (accessToken: string, reviewId: number) => {
+  return fetcher({
+    method: "post",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    url: `/user/reviews/like/${reviewId}`,
+  });
+};
+
+export const dislikeReview = (accessToken: string, reviewId: number) => {
+  return fetcher({
+    method: "post",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    url: `/user/reviews/like/${reviewId}`,
+  });
+};
+
+// 좋아요 갯수
 export const getReviewLikeCount = (reviewId: number) => {
   return {
     queryKey: ["reviewLikeCount", reviewId],
@@ -44,11 +62,12 @@ export const getReviewLikeCount = (reviewId: number) => {
   };
 };
 
+// 좋아요 여부
 export const getReviewIsLiked = (accessToken: string, reviewId: number) => {
   return {
     queryKey: ["reviewIsLiked", reviewId],
     queryFn: () =>
-      fetcher<ReviewLikeCount>({
+      fetcher<ReviewIsLiked>({
         method: "get",
         url: `/user/reviews/${reviewId}/like`,
         headers: { Authorization: `Bearer ${accessToken}` },
