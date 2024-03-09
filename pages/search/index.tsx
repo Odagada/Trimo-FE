@@ -14,16 +14,13 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const queryClient = new QueryClient();
     const convertQuery = new URLSearchParams(context.query as any).toString();
     await queryClient.prefetchQuery(getSearchReview(convertQuery));
-
-    return {
-      props: { query: convertQuery },
-    };
+    return { props: {} };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function Search({ query }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Search() {
   return (
     <div className="flex min-h-screen flex-col justify-between">
       <div>
@@ -36,7 +33,7 @@ export default function Search({ query }: InferGetServerSidePropsType<typeof get
             <FilterDropdown />
           </div>
         </div>
-        <SearchContent queryStr={query} />
+        <SearchContent />
       </div>
       <Footer />
     </div>
