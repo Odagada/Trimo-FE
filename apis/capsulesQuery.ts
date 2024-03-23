@@ -72,6 +72,7 @@ export const getReviewIsLiked = (accessToken: string, reviewId: number) => {
         url: `/user/reviews/${reviewId}/like`,
         headers: { Authorization: `Bearer ${accessToken}` },
       }),
+    enabled: !!accessToken,
   };
 };
 
