@@ -173,7 +173,7 @@ const SubTitle = () => {
   const likeCount = useReviewLikeCount();
 
   return (
-    <div className="mb-30 flex flex-col gap-4 tablet:gap-8 tablet:flex-row tablet:items-center">
+    <div className="mb-30 flex flex-col gap-4 tablet:flex-row tablet:items-center tablet:gap-8">
       <h3 className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27 ">
         {`${spotName} · ${dateString} · ${timeString}`}
         {weather && ` · ${weather}`}
