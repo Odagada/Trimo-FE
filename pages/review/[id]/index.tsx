@@ -29,7 +29,6 @@ import useHandleReview from "@/hooks/review/useHandleReview";
 import useLocalToggle from "@/hooks/useLocalToggle";
 import useReviewIsLiked from "@/hooks/review/useReviewIsLiked";
 import useReviewLikeCount from "@/hooks/review/useReviewLikeCount";
-import useIsLogin from "@/hooks/useIsLogin";
 import useAccessTokenStore from "@/zustands/useAccessTokenStore";
 import { useEffect } from "react";
 
@@ -122,13 +121,12 @@ const Title = () => {
 };
 
 const TitleButtons = () => {
-  const isMine = useReveiwIsMine();
-
   const { isOpen, handleToggleOpen } = useLocalToggle();
 
   const { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
 
   const isLiked = useReviewIsLiked();
+  const isMine = useReveiwIsMine();
   // const isLogin = useIsLogin();
 
   const { accessToken } = useAccessTokenStore();
@@ -136,7 +134,7 @@ const TitleButtons = () => {
   return (
     <div className="flex items-end gap-5">
       {!isMine && (
-        <button type="button" disabled={false} onClick={() => likeReviewMutation.mutate(isLiked)}>
+        <button type="button" disabled={!accessToken} onClick={() => likeReviewMutation.mutate(isLiked)}>
           <Image src={accessToken ? (isLiked ? FullHeart : EmptyHeart) : DisabledHeart} alt="좋아요" width={24} />
         </button>
       )}
@@ -175,20 +173,22 @@ const SubTitle = () => {
   const likeCount = useReviewLikeCount();
 
   return (
-    <div className="mb-30 flex flex-col gap-10 tablet:flex-row tablet:items-center">
+    <div className="mb-30 flex flex-col gap-4 tablet:gap-8 tablet:flex-row tablet:items-center">
       <h3 className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27 ">
         {`${spotName} · ${dateString} · ${timeString}`}
         {weather && ` · ${weather}`}
       </h3>
-      {stars ? <MultiStarRate number={stars} /> : ""}
-      {likeCount ? (
-        <>
-          <Image src={FullHeart} width={14} height={14} alt="좋아요 숫자" />
-          <span className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27">{likeCount}</span>
-        </>
-      ) : (
-        ""
-      )}
+      <span className="flex gap-8">
+        {stars ? <MultiStarRate number={stars} /> : ""}
+        {likeCount ? (
+          <span className="flex gap-4">
+            <Image src={FullHeart} width={14} height={14} alt="좋아요 숫자" />
+            <span className="text-12 leading-18 text-gray-40 tablet:text-18 tablet:leading-27">{likeCount}</span>
+          </span>
+        ) : (
+          ""
+        )}
+      </span>
     </div>
   );
 };
