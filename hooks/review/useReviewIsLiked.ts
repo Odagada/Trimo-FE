@@ -9,7 +9,7 @@ const useReviewIsLiked = () => {
   const { userAccessToken: accessToken } = useManageUserAccessToken();
 
   const { data } = useQuery(getReviewIsLiked(accessToken, reviewId));
-  const isLiked = data?.data.isLiked ?? false;
+  const isLiked = data?.data?.isLiked ?? false;
 
   return isLiked;
 };

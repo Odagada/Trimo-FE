@@ -2,7 +2,7 @@ import { getReview, getReviewIsLiked, getReviewLikeCount, getUserInfo } from "@/
 import Clickable from "@/components/atoms/Clickable";
 import ImagesCarousel from "@/components/atoms/ImagesCarousel";
 import MultiStarRate from "@/components/atoms/MultiStarRate";
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import noImage from "@/public/images/no_image.webp";
@@ -11,9 +11,11 @@ import Footer from "@/components/atoms/Footer";
 import Nav from "@/components/molecules/NavigationBar";
 import GoogleMap from "@/components/organisms/GoogleMap";
 import Bin from "@/public/icons/reviewControlIcon_Bin.svg";
+
 import EmptyHeart from "@/public/icons/reviewControlIcon_HeartEmpty.svg";
 import FullHeart from "@/public/icons/reviewControlIcon_HeartFull.svg";
 import DisabledHeart from "@/public/icons/reviewControlIcon_HeartDisabled.svg";
+
 import Message from "@/public/icons/reviewControlIcon_Message.svg";
 import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
@@ -28,6 +30,8 @@ import useLocalToggle from "@/hooks/useLocalToggle";
 import useReviewIsLiked from "@/hooks/review/useReviewIsLiked";
 import useReviewLikeCount from "@/hooks/review/useReviewLikeCount";
 import useIsLogin from "@/hooks/useIsLogin";
+import useAccessTokenStore from "@/zustands/useAccessTokenStore";
+import { useEffect } from "react";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -44,14 +48,20 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     }
 
     return {
-      props: { dehydratedState: dehydrate(queryClient) },
+      props: { accessToken, dehydratedState: dehydrate(queryClient) },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function ReadReview() {
+export default function ReadReview({ accessToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { setAccessToken } = useAccessTokenStore();
+
+  useEffect(() => {
+    setAccessToken(accessToken);
+  }, [accessToken]);
+
   return (
     <>
       <Nav />
@@ -119,13 +129,15 @@ const TitleButtons = () => {
   const { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
 
   const isLiked = useReviewIsLiked();
-  const isLogin = useIsLogin();
+  // const isLogin = useIsLogin();
+
+  const { accessToken } = useAccessTokenStore();
 
   return (
     <div className="flex items-end gap-5">
       {!isMine && (
-        <button type="button" disabled={!isLogin} onClick={() => likeReviewMutation.mutate(isLiked)}>
-          <Image src={isLogin ? (isLiked ? FullHeart : EmptyHeart) : DisabledHeart} alt="좋아요" width={24} />
+        <button type="button" disabled={false} onClick={() => likeReviewMutation.mutate(isLiked)}>
+          <Image src={accessToken ? (isLiked ? FullHeart : EmptyHeart) : DisabledHeart} alt="좋아요" width={24} />
         </button>
       )}
 
