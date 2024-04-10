@@ -1,7 +1,6 @@
 import { dislikeReview, likeReview } from "@/apis/capsulesQuery";
 import useReviewId from "@/hooks/review/useReviewId";
 import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
-import { ReviewIsLiked, ReviewLikeCount } from "@/types/server.types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const useLikeReview = () => {
