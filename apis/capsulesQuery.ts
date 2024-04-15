@@ -44,7 +44,7 @@ export const likeReview = (accessToken: string, reviewId: number) => {
 
 export const dislikeReview = (accessToken: string, reviewId: number) => {
   return fetcher({
-    method: "post",
+    method: "delete",
     headers: { Authorization: `Bearer ${accessToken}` },
     url: `/user/reviews/like/${reviewId}`,
   });
@@ -72,6 +72,7 @@ export const getReviewIsLiked = (accessToken: string, reviewId: number) => {
         url: `/user/reviews/${reviewId}/like`,
         headers: { Authorization: `Bearer ${accessToken}` },
       }),
+    enabled: !!accessToken,
   };
 };
 

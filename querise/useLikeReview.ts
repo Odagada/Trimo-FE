@@ -21,12 +21,24 @@ const useLikeReview = () => {
       await queryClient.cancelQueries({ queryKey: ["reviewLikeCount", reviewId] });
 
       // 쿼리 데이터 가져와서 백업해두기
-      const prevLikeCount = queryClient.getQueryData(["reviewIsLiked", reviewId]);
-      const prevLikeStatus = queryClient.getQueryData(["reviewLikeCount", reviewId]);
+      const prevLikeStatus = queryClient.getQueryData(["reviewIsLiked", reviewId]);
+      const prevLikeCount = queryClient.getQueryData(["reviewLikeCount", reviewId]);
 
       // 쿼리 데이터 수정하기
-      queryClient.setQueryData(["reviewLikeCount", reviewId], (prev: number) => (isLiked ? prev - 1 : prev + 1));
-      queryClient.setQueryData(["reviewIsLiked", reviewId], (prev: boolean) => !prev);
+      queryClient.setQueryData(["reviewIsLiked", reviewId], (oldData: any) => {
+        const newData = {
+          ...oldData,
+          data: { isLiked: !oldData.data.isLiked },
+        };
+        return newData;
+      });
+      queryClient.setQueryData(["reviewLikeCount", reviewId], (oldData: any) => {
+        const newData = {
+          ...oldData,
+          data: { likeCount: isLiked ? oldData.data.likeCount - 1 : oldData.data.likeCount + 1 },
+        };
+        return newData;
+      });
 
       // 필요할 때 갖다 쓰기 위한 백업본 리턴하기
       return { prevLikeStatus, prevLikeCount };
