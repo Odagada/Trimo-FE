@@ -1,8 +1,8 @@
 import { getReviewLikeCount } from "@/apis/capsulesQuery";
-import useReviewId from "./useReviewId";
+import useReviewId from "@/hooks/review/useReviewId";
 import { useQuery } from "@tanstack/react-query";
 
-const useReviewLikeCount = () => {
+const useReviewLikeCountAdaptor = () => {
   const reviewId = useReviewId();
 
   const { data } = useQuery(getReviewLikeCount(reviewId));
@@ -11,4 +11,4 @@ const useReviewLikeCount = () => {
   return likeCount;
 };
 
-export default useReviewLikeCount;
+export default useReviewLikeCountAdaptor;

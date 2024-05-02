@@ -1,15 +1,17 @@
-import useDeleteReview from "@/querise/useDeleteReview";
+import useDeleteReview from "@/useMutation/DeleteReview/useDeleteReview";
+import useLikeReview from "@/useMutation/LikeReview/useLikeReview";
 import makeToast from "@/utils/makeToast";
 import useReviewId from "./useReviewId";
 import { useRouter } from "next/router";
-import useLikeReview from "@/querise/useLikeReview";
+import useManageUserAccessToken from "../useManageUserAccessToken";
 
 const useHandleReview = () => {
-  const reviewId = useReviewId();
+  const { userAccessToken: accessToken } = useManageUserAccessToken();
   const router = useRouter();
+  const reviewId = useReviewId();
 
-  const deleteReviewMutation = useDeleteReview();
-  const likeReviewMutation = useLikeReview();
+  const deleteReviewMutation = useDeleteReview({ accessToken, reviewId, router });
+  const likeReviewMutation = useLikeReview({ reviewId, accessToken });
 
   const handleClipboard = () => {
     navigator.clipboard.writeText(`https://www.trimo.kr/review/${reviewId}`);

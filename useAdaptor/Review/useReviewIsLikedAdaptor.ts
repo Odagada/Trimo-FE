@@ -1,11 +1,10 @@
-import useReviewId from "./useReviewId";
 import { getReviewIsLiked } from "@/apis/capsulesQuery";
+import useReviewId from "@/hooks/review/useReviewId";
+import useManageUserAccessToken from "@/hooks/useManageUserAccessToken";
 import { useQuery } from "@tanstack/react-query";
-import useManageUserAccessToken from "../useManageUserAccessToken";
 
-const useReviewIsLiked = () => {
+const useReviewIsLikedAdaptor = () => {
   const reviewId = useReviewId();
-
   const { userAccessToken: accessToken } = useManageUserAccessToken();
 
   const { data } = useQuery(getReviewIsLiked(accessToken, reviewId));
@@ -14,4 +13,4 @@ const useReviewIsLiked = () => {
   return isLiked;
 };
 
-export default useReviewIsLiked;
+export default useReviewIsLikedAdaptor;

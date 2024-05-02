@@ -20,17 +20,17 @@ import Message from "@/public/icons/reviewControlIcon_Message.svg";
 import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
-import { useDestructureReviewData } from "@/hooks/review/useDestructureReviewData";
 import Modal from "@/components/molecules/Modal";
 import useReviewTimes from "@/hooks/review/useReviewTimes";
-import { useReveiwIsMine } from "@/hooks/review/useReviewIsMine";
 import useReviewTags from "@/hooks/review/useReviewTags";
 import useHandleReview from "@/hooks/review/useHandleReview";
 import useLocalToggle from "@/hooks/useLocalToggle";
-import useReviewIsLiked from "@/hooks/review/useReviewIsLiked";
-import useReviewLikeCount from "@/hooks/review/useReviewLikeCount";
 import useAccessTokenStore from "@/zustands/useAccessTokenStore";
 import { useEffect } from "react";
+import useReviewIsLikedAdaptor from "@/useAdaptor/Review/useReviewIsLikedAdaptor";
+import useReviewDataAdaptor from "@/useAdaptor/Review/useReviewDataAdaptor";
+import { useReviewIsMine } from "@/hooks/review/useReviewIsMine";
+import useReviewLikeCountAdaptor from "@/useAdaptor/Review/useReviewLikeCountAdaptor";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -84,7 +84,7 @@ export default function ReadReview({ accessToken }: InferGetServerSidePropsType<
 }
 
 const ImageCarouselSection = () => {
-  const { imageUrlArray } = useDestructureReviewData();
+  const { imageUrlArray } = useReviewDataAdaptor();
 
   return (
     <section className="mb-50 select-none">
@@ -100,7 +100,7 @@ const ImageCarouselSection = () => {
 };
 
 const Title = () => {
-  const { title, nickName } = useDestructureReviewData();
+  const { title, nickName } = useReviewDataAdaptor();
 
   return (
     <>
@@ -125,8 +125,8 @@ const TitleButtons = () => {
 
   const { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
 
-  const isLiked = useReviewIsLiked();
-  const isMine = useReveiwIsMine();
+  const isLiked = useReviewIsLikedAdaptor();
+  const isMine = useReviewIsMine();
   // const isLogin = useIsLogin();
 
   const { accessToken } = useAccessTokenStore();
@@ -168,9 +168,9 @@ const TitleButtons = () => {
 };
 
 const SubTitle = () => {
-  const { spotName, stars, weather } = useDestructureReviewData();
+  const { spotName, stars, weather } = useReviewDataAdaptor();
   const { dateString, timeString } = useReviewTimes();
-  const likeCount = useReviewLikeCount();
+  const likeCount = useReviewLikeCountAdaptor();
 
   return (
     <div className="mb-30 flex flex-col gap-4 tablet:flex-row tablet:items-center tablet:gap-8">
@@ -194,7 +194,7 @@ const SubTitle = () => {
 };
 
 const Content = () => {
-  const { content } = useDestructureReviewData();
+  const { content } = useReviewDataAdaptor();
 
   return (
     <p className="mb-20 whitespace-pre-wrap text-justify text-16 leading-30 tablet:text-18 tablet:leading-42">
@@ -204,7 +204,7 @@ const Content = () => {
 };
 
 const ReviewMap = () => {
-  const { placeId } = useDestructureReviewData();
+  const { placeId } = useReviewDataAdaptor();
 
   return (
     <div className="mb-12 w-full tablet:mb-73">
