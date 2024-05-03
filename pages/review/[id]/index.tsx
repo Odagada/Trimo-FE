@@ -21,8 +21,6 @@ import Pen from "@/public/icons/reviewControlIcon_Pen.svg";
 
 import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import Modal from "@/components/molecules/Modal";
-import useReviewTimes from "@/hooks/review/useReviewTimes";
-import useReviewTags from "@/hooks/review/useReviewTags";
 import useLocalToggle from "@/hooks/useLocalToggle";
 import useAccessTokenStore from "@/zustands/useAccessTokenStore";
 import { useEffect } from "react";
@@ -168,8 +166,7 @@ const TitleButtons = () => {
 };
 
 const SubTitle = () => {
-  const { spotName, stars, weather } = useReviewDataAdaptor();
-  const { dateString, timeString } = useReviewTimes();
+  const { spotName, stars, weather, dateString, timeString } = useReviewDataAdaptor();
   const likeCount = useReviewLikeCountAdaptor();
 
   return (
@@ -214,8 +211,7 @@ const ReviewMap = () => {
 };
 
 const Tags = () => {
-  const tags = useReviewTags();
-  const { createdAt } = useReviewTimes();
+  const { createdAt, tags } = useReviewDataAdaptor();
 
   return (
     <section className="mb-155 flex flex-col justify-between gap-24 tablet:flex-row tablet:items-center">
