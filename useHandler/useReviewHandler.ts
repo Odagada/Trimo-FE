@@ -1,11 +1,11 @@
 import useDeleteReview from "@/useMutation/DeleteReview/useDeleteReview";
 import useLikeReview from "@/useMutation/LikeReview/useLikeReview";
 import makeToast from "@/utils/makeToast";
-import useReviewId from "./useReviewId";
+import useReviewId from "../hooks/review/useReviewId";
 import { useRouter } from "next/router";
-import useManageUserAccessToken from "../useManageUserAccessToken";
+import useManageUserAccessToken from "../hooks/useManageUserAccessToken";
 
-const useHandleReview = () => {
+const useReviewHandler = () => {
   const { userAccessToken: accessToken } = useManageUserAccessToken();
   const router = useRouter();
   const reviewId = useReviewId();
@@ -23,4 +23,4 @@ const useHandleReview = () => {
   return { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit };
 };
 
-export default useHandleReview;
+export default useReviewHandler;

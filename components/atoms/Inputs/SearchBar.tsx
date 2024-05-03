@@ -1,45 +1,11 @@
 import Image from "next/image";
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import searchIcon from "@/public/icons/search.svg";
-import { useRouter } from "next/router";
+import useSearchValue from "@/hooks/useSearchValue";
+import useSearchHandler from "@/useHandler/useSearchHandler";
 
 const SearchBar = ({ size, className = "" }: { size: "large" | "small"; className?: string }) => {
-  const router = useRouter();
-  const { searchValue: initialValue } = router.query;
-  let { order } = router.query;
-
-  // 검색 결과가 있을 때 계산된 값을 input에 주입
-  const calculatedValue = useCallback(() => {
-    if (initialValue) {
-      return `"${initialValue}"에 대한 검색 결과입니다`;
-    } else {
-      return "";
-    }
-  }, [initialValue])();
-
-  // 제어 컴포넌트를 위한 state
-  const [value, setValue] = useState(calculatedValue);
-
-  const handleFocus = () => {
-    setValue("");
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    if (order === undefined) {
-      order = "POPULAR";
-    }
-
-    router.push({
-      pathname: "/search",
-      query: { order: order, searchValue: value },
-    });
-  };
+  const [value, setValue] = useSearchValue();
+  const { handleFocus, handleChange, handleSubmit } = useSearchHandler([value, setValue]);
 
   return (
     <div className={`${size === "large" ? "max-w-632 px-48" : "max-w-460 grow px-24"} mx-auto`}>

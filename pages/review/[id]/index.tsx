@@ -23,7 +23,6 @@ import { getAccessTokenFromCookie } from "@/utils/getAccessTokenFormCookie";
 import Modal from "@/components/molecules/Modal";
 import useReviewTimes from "@/hooks/review/useReviewTimes";
 import useReviewTags from "@/hooks/review/useReviewTags";
-import useHandleReview from "@/hooks/review/useHandleReview";
 import useLocalToggle from "@/hooks/useLocalToggle";
 import useAccessTokenStore from "@/zustands/useAccessTokenStore";
 import { useEffect } from "react";
@@ -31,6 +30,7 @@ import useReviewIsLikedAdaptor from "@/useAdaptor/Review/useReviewIsLikedAdaptor
 import useReviewDataAdaptor from "@/useAdaptor/Review/useReviewDataAdaptor";
 import { useReviewIsMine } from "@/hooks/review/useReviewIsMine";
 import useReviewLikeCountAdaptor from "@/useAdaptor/Review/useReviewLikeCountAdaptor";
+import useReviewHandler from "@/useHandler/useReviewHandler";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
@@ -123,7 +123,7 @@ const Title = () => {
 const TitleButtons = () => {
   const { isOpen, handleToggleOpen } = useLocalToggle();
 
-  const { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit } = useHandleReview();
+  const { deleteReviewMutation, likeReviewMutation, handleClipboard, handleReviewEdit } = useReviewHandler();
 
   const isLiked = useReviewIsLikedAdaptor();
   const isMine = useReviewIsMine();

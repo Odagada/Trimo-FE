@@ -15,12 +15,12 @@ import desktopScreenShot1 from "@/public/images/DesktopScreenShot1.png";
 import desktopScreenShot2 from "@/public/images/DesktopScreenShot2.png";
 import Link from "next/link";
 import Image from "next/image";
-import { GetServerSidePropsContext } from "next";
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { getReviewCardArray } from "@/apis/capsulesQuery";
-import { useEffect, useState } from "react";
+import useLandingCardDataAdaptor from "@/useAdaptor/Landing/useLandingCardDataAdaptor";
+import useMounted from "@/hooks/useMounted";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps = async () => {
   try {
     const queryClient = new QueryClient();
 
@@ -77,11 +77,7 @@ const HeroSection = () => {
 };
 
 const CardSection = () => {
-  const { data: recentData } = useQuery(getReviewCardArray("RECENT"));
-  const { data: populerData } = useQuery(getReviewCardArray("POPULAR"));
-
-  const recentReviewCardArray = recentData?.data ?? [];
-  const populerReviewCardArray = populerData?.data ?? [];
+  const { recentReviewCardArray, popularReviewCardArray } = useLandingCardDataAdaptor();
 
   return (
     <>
@@ -104,8 +100,8 @@ const CardSection = () => {
           {recentReviewCardArray && (
             <MultiReviewCardSlider title="최신리뷰" align="left" reviewCards={recentReviewCardArray} />
           )}
-          {populerReviewCardArray && (
-            <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={populerReviewCardArray} />
+          {popularReviewCardArray && (
+            <MultiReviewCardSlider title="인기리뷰" align="right" reviewCards={popularReviewCardArray} />
           )}
         </div>
       </section>
@@ -174,12 +170,8 @@ const TagSection = () => {
 };
 
 const ServiceExplainSection = () => {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
   const { width } = useWindowSize();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) return null;
 
