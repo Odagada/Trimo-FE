@@ -60,7 +60,7 @@ function Login() {
           </Link>
           <Link
             href={
-              "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=a8944263d97958802c0a6c200e8cf7e8&redirect_uri=https://www.trimo.kr/signup/kakao"
+              "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=ee78bfa008b563c542aacf362daf4c5a&redirect_uri=https://www.trimo.kr/signup/kakao"
             }
           >
             <Clickable
