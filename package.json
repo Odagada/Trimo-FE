@@ -36,7 +36,7 @@
     "swiper": "^11.0.6",
     "tailwind-scrollbar-hide": "^1.1.7",
     "zod": "^3.22.4",
-    "zustand": "^4.4.7"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.10",

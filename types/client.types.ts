@@ -80,7 +80,7 @@ export type User = {
   birthdate: string;
 };
 
-export type Review = {
+type BaseReview = {
   title: string;
   content: string;
   weather: TagWeather;
@@ -88,21 +88,17 @@ export type Review = {
   placeType: TagPlaceType;
   visitingTime: string;
   stars: Stars;
-  images: { file: File }[];
 };
 
+export type Review = {
+  images: { file: File }[];
+} & BaseReview;
+
 export type EditReview = {
-  title: string;
-  content: string;
-  weather: TagWeather;
-  companion: TagCompanion;
-  placeType: TagPlaceType;
-  visitingTime: string;
-  stars: Stars;
   images: ImageType[];
   newImages: { file: File }[];
   spotId: string;
-};
+} & BaseReview;
 
 export type ImageType = {
   name: string;

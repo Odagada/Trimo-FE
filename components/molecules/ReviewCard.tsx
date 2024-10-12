@@ -24,6 +24,7 @@ export default function ReviewCard({ review }: Props) {
           alt="카드 이미지"
           draggable={false}
           fill
+          sizes="(min-width: 768px) 127px,240px"
           style={{
             objectFit: "cover",
           }}
